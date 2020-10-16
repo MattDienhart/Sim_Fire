@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wildfire : MonoBehaviour
 {
+    /*
     public int hitPoints;
     public Tile * tile;
     public string windDirection;
@@ -46,5 +47,6 @@ public class Wildfire : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
+    */
     
 }

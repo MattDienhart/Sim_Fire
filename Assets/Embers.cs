@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Embers : MonoBehaviour
 {
+    /*
     public int hitPoints;
     public Tile * tile;
     public string windDirection;
@@ -44,5 +45,5 @@ public class Embers : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
-    
+    */
 }
