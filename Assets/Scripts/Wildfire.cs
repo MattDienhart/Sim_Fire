@@ -5,10 +5,10 @@ using UnityEngine;
 public class Wildfire : MonoBehaviour
 {
     /*
-    public int hitPoints;
-    public Tile * tile;
-    public string windDirection;
-    public int windSpeed;
+    private int hitPoints;
+    private TileScript * tile;
+    private string windDirection;
+    private int windSpeed;
 
 
     //Constructor
@@ -47,6 +47,6 @@ public class Wildfire : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
-    */
     
+    */
 }
