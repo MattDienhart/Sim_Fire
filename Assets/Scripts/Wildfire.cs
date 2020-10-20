@@ -24,11 +24,10 @@ public class Wildfire : MonoBehaviour
     void Start()
     {
         //Change tile state to on fire
-        tile.onFire = true;
+        tile.burning = true;
         //Wait 5 seconds
         StartCoroutine(waiter(5));
-        //Check if adjacent tile can be lit aflame
-
+        //Spread fire AI
     }
 
     // Update is called once per frame
