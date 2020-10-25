@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6358049388282742825}
   - component: {fileID: 6744352439965429668}
   - component: {fileID: 1362192750070117235}
+  - component: {fileID: 5566494944863514359}
   m_Layer: 0
   m_Name: FireCrew
   m_TagString: Untagged
@@ -47,6 +48,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -68,10 +70,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -492221477
+  m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ff16c7f620594466a872a2679388b7c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a0162c31001244c5082a2c5b51e6c251, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,3 +110,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.25, y: 2.3}
   m_EdgeRadius: 1
+--- !u!114 &5566494944863514359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678436223149907044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f09a6a3894142539e38c2079ae8a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterLevel: 100
+  energyLevel: 100

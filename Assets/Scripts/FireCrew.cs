@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireCrewData : MonoBehaviour
+public class FireCrew : MonoBehaviour
 {
     public int waterLevel;
     public int energyLevel;
