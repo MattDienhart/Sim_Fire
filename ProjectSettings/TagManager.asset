@@ -41,6 +41,9 @@ TagManager:
   - name: BackCanvas
     uniqueID: 3326267981
     locked: 0
+  - name: Grid
+    uniqueID: 3747998381
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

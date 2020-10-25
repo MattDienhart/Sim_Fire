@@ -1,0 +1,4882 @@
+fileFormatVersion: 2
+guid: 9e94bf44498369a45ac9bab09e071918
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 356651165595115356
+    second: grass roguelikeSheet_transparent - Copy_0
+  - first:
+      213: -3271007401278352716
+    second: grass roguelikeSheet_transparent - Copy_1
+  - first:
+      213: -7880743310507882970
+    second: grass roguelikeSheet_transparent - Copy_2
+  - first:
+      213: -7734833556484156000
+    second: grass roguelikeSheet_transparent - Copy_3
+  - first:
+      213: 8719136969243821133
+    second: grass roguelikeSheet_transparent - Copy_4
+  - first:
+      213: 5756945327850396733
+    second: grass roguelikeSheet_transparent - Copy_5
+  - first:
+      213: 3462741321847626781
+    second: grass roguelikeSheet_transparent - Copy_6
+  - first:
+      213: 6803130406144061340
+    second: grass roguelikeSheet_transparent - Copy_7
+  - first:
+      213: -972639328207735509
+    second: grass roguelikeSheet_transparent - Copy_8
+  - first:
+      213: 3445586601927395157
+    second: grass roguelikeSheet_transparent - Copy_9
+  - first:
+      213: -1403016051175936115
+    second: grass roguelikeSheet_transparent - Copy_10
+  - first:
+      213: -476654611317006454
+    second: grass roguelikeSheet_transparent - Copy_11
+  - first:
+      213: -8212892542586531219
+    second: grass roguelikeSheet_transparent - Copy_12
+  - first:
+      213: -1415420078468100998
+    second: grass roguelikeSheet_transparent - Copy_13
+  - first:
+      213: -6041301581935937563
+    second: grass roguelikeSheet_transparent - Copy_14
+  - first:
+      213: -4720681155569262402
+    second: grass roguelikeSheet_transparent - Copy_15
+  - first:
+      213: -7922735940052965638
+    second: grass roguelikeSheet_transparent - Copy_16
+  - first:
+      213: -6940633134692866057
+    second: grass roguelikeSheet_transparent - Copy_17
+  - first:
+      213: 4736527602912197668
+    second: grass roguelikeSheet_transparent - Copy_18
+  - first:
+      213: -1310992173068682652
+    second: grass roguelikeSheet_transparent - Copy_19
+  - first:
+      213: 2092104663280000138
+    second: grass roguelikeSheet_transparent - Copy_20
+  - first:
+      213: -4552545208336253089
+    second: grass roguelikeSheet_transparent - Copy_21
+  - first:
+      213: 8608457117465600932
+    second: grass roguelikeSheet_transparent - Copy_22
+  - first:
+      213: -3214050384141850365
+    second: grass roguelikeSheet_transparent - Copy_23
+  - first:
+      213: 8496763484724505726
+    second: grass roguelikeSheet_transparent - Copy_24
+  - first:
+      213: 5029886957792132630
+    second: grass roguelikeSheet_transparent - Copy_25
+  - first:
+      213: -2258104657853700580
+    second: grass roguelikeSheet_transparent - Copy_26
+  - first:
+      213: -3474739687863080471
+    second: grass roguelikeSheet_transparent - Copy_27
+  - first:
+      213: -3308345898602335235
+    second: grass roguelikeSheet_transparent - Copy_28
+  - first:
+      213: -3349468422257435066
+    second: grass roguelikeSheet_transparent - Copy_29
+  - first:
+      213: 2407966781435743058
+    second: grass roguelikeSheet_transparent - Copy_30
+  - first:
+      213: -7893103225247571427
+    second: grass roguelikeSheet_transparent - Copy_31
+  - first:
+      213: 6541393266584612820
+    second: grass roguelikeSheet_transparent - Copy_32
+  - first:
+      213: -4600041945432191915
+    second: grass roguelikeSheet_transparent - Copy_33
+  - first:
+      213: 4611273176786624101
+    second: grass roguelikeSheet_transparent - Copy_34
+  - first:
+      213: -3937850810460615500
+    second: grass roguelikeSheet_transparent - Copy_35
+  - first:
+      213: -8366660792440375557
+    second: grass roguelikeSheet_transparent - Copy_36
+  - first:
+      213: 6844440842849636609
+    second: grass roguelikeSheet_transparent - Copy_37
+  - first:
+      213: -3137746952143239818
+    second: grass roguelikeSheet_transparent - Copy_38
+  - first:
+      213: -6800319437241693544
+    second: grass roguelikeSheet_transparent - Copy_39
+  - first:
+      213: 7449017502534261945
+    second: grass roguelikeSheet_transparent - Copy_40
+  - first:
+      213: 6978151278221725472
+    second: grass roguelikeSheet_transparent - Copy_41
+  - first:
+      213: -1715359458775470026
+    second: grass roguelikeSheet_transparent - Copy_42
+  - first:
+      213: -4738972894582252476
+    second: grass roguelikeSheet_transparent - Copy_43
+  - first:
+      213: 7395577198303646665
+    second: grass roguelikeSheet_transparent - Copy_44
+  - first:
+      213: 6873877010734741302
+    second: grass roguelikeSheet_transparent - Copy_45
+  - first:
+      213: 8557162044150244557
+    second: grass roguelikeSheet_transparent - Copy_46
+  - first:
+      213: -5325944240457952616
+    second: grass roguelikeSheet_transparent - Copy_47
+  - first:
+      213: 305101546183105426
+    second: grass roguelikeSheet_transparent - Copy_48
+  - first:
+      213: 589476850312152623
+    second: grass roguelikeSheet_transparent - Copy_49
+  - first:
+      213: 4394044782551331649
+    second: grass roguelikeSheet_transparent - Copy_50
+  - first:
+      213: -2158666039686056372
+    second: grass roguelikeSheet_transparent - Copy_51
+  - first:
+      213: 95411935103560239
+    second: grass roguelikeSheet_transparent - Copy_52
+  - first:
+      213: -7790974018585243149
+    second: grass roguelikeSheet_transparent - Copy_53
+  - first:
+      213: -232760799032385188
+    second: grass roguelikeSheet_transparent - Copy_54
+  - first:
+      213: -1961613296860256055
+    second: grass roguelikeSheet_transparent - Copy_55
+  - first:
+      213: 2489411036049605943
+    second: grass roguelikeSheet_transparent - Copy_56
+  - first:
+      213: 1460731785298914743
+    second: grass roguelikeSheet_transparent - Copy_57
+  - first:
+      213: -60529445301090255
+    second: grass roguelikeSheet_transparent - Copy_58
+  - first:
+      213: -7538863254961145112
+    second: grass roguelikeSheet_transparent - Copy_59
+  - first:
+      213: -4719491064852416955
+    second: grass roguelikeSheet_transparent - Copy_60
+  - first:
+      213: -742854442443928408
+    second: grass roguelikeSheet_transparent - Copy_61
+  - first:
+      213: 2189612843823264106
+    second: grass roguelikeSheet_transparent - Copy_62
+  - first:
+      213: -4697152479233028935
+    second: grass roguelikeSheet_transparent - Copy_63
+  - first:
+      213: 4385298346861107274
+    second: grass roguelikeSheet_transparent - Copy_64
+  - first:
+      213: -7167408187636753481
+    second: grass roguelikeSheet_transparent - Copy_65
+  - first:
+      213: -921825310117267181
+    second: grass roguelikeSheet_transparent - Copy_66
+  - first:
+      213: -1547836419734010890
+    second: grass roguelikeSheet_transparent - Copy_67
+  - first:
+      213: 4447729039362236599
+    second: grass roguelikeSheet_transparent - Copy_68
+  - first:
+      213: 6032375376355824812
+    second: grass roguelikeSheet_transparent - Copy_69
+  - first:
+      213: 1758072444208517673
+    second: grass roguelikeSheet_transparent - Copy_70
+  - first:
+      213: 1437640924134308537
+    second: grass roguelikeSheet_transparent - Copy_71
+  - first:
+      213: -9046401818661654705
+    second: grass roguelikeSheet_transparent - Copy_72
+  - first:
+      213: -7548638044636682279
+    second: grass roguelikeSheet_transparent - Copy_73
+  - first:
+      213: -2247525411862447467
+    second: grass roguelikeSheet_transparent - Copy_74
+  - first:
+      213: -4717512831121598613
+    second: grass roguelikeSheet_transparent - Copy_75
+  - first:
+      213: 6798933479744497808
+    second: grass roguelikeSheet_transparent - Copy_76
+  - first:
+      213: 5482436675491576244
+    second: grass roguelikeSheet_transparent - Copy_77
+  - first:
+      213: 1057103336400195500
+    second: grass roguelikeSheet_transparent - Copy_78
+  - first:
+      213: -3821218268581029940
+    second: grass roguelikeSheet_transparent - Copy_79
+  - first:
+      213: -8245711742488626592
+    second: grass roguelikeSheet_transparent - Copy_80
+  - first:
+      213: 4876834695270844840
+    second: grass roguelikeSheet_transparent - Copy_81
+  - first:
+      213: 7298619596205461072
+    second: grass roguelikeSheet_transparent - Copy_82
+  - first:
+      213: -3438413531094112062
+    second: grass roguelikeSheet_transparent - Copy_83
+  - first:
+      213: 3024124492907667786
+    second: grass roguelikeSheet_transparent - Copy_84
+  - first:
+      213: -4134269608857089662
+    second: grass roguelikeSheet_transparent - Copy_85
+  - first:
+      213: -3543562172863373227
+    second: grass roguelikeSheet_transparent - Copy_86
+  - first:
+      213: -1597000583646281223
+    second: grass roguelikeSheet_transparent - Copy_87
+  - first:
+      213: 3153170088499477030
+    second: grass roguelikeSheet_transparent - Copy_88
+  - first:
+      213: -3316970887605501618
+    second: grass roguelikeSheet_transparent - Copy_89
+  - first:
+      213: -3702868325007842908
+    second: grass roguelikeSheet_transparent - Copy_90
+  - first:
+      213: -5937451436789541617
+    second: grass roguelikeSheet_transparent - Copy_91
+  - first:
+      213: 1419954884379415021
+    second: grass roguelikeSheet_transparent - Copy_92
+  - first:
+      213: 8219232367120086439
+    second: grass roguelikeSheet_transparent - Copy_93
+  - first:
+      213: -8344043332638748687
+    second: grass roguelikeSheet_transparent - Copy_94
+  - first:
+      213: 8152648981434003149
+    second: grass roguelikeSheet_transparent - Copy_95
+  - first:
+      213: 9034914264462123269
+    second: grass roguelikeSheet_transparent - Copy_96
+  - first:
+      213: -2911268561438277572
+    second: grass roguelikeSheet_transparent - Copy_97
+  - first:
+      213: 5761747882703822775
+    second: grass roguelikeSheet_transparent - Copy_98
+  - first:
+      213: 8065593948183043262
+    second: grass roguelikeSheet_transparent - Copy_99
+  - first:
+      213: 2084028959418634884
+    second: grass roguelikeSheet_transparent - Copy_100
+  - first:
+      213: -2763018756123228204
+    second: grass roguelikeSheet_transparent - Copy_101
+  - first:
+      213: -393202881281076315
+    second: grass roguelikeSheet_transparent - Copy_102
+  - first:
+      213: -2118496489989218610
+    second: grass roguelikeSheet_transparent - Copy_103
+  - first:
+      213: -7653845432734789597
+    second: grass roguelikeSheet_transparent - Copy_104
+  - first:
+      213: 9175690599929401587
+    second: grass roguelikeSheet_transparent - Copy_105
+  - first:
+      213: -6608561058110813443
+    second: grass roguelikeSheet_transparent - Copy_106
+  - first:
+      213: 2084805088795774585
+    second: grass roguelikeSheet_transparent - Copy_107
+  - first:
+      213: 4161745353898996353
+    second: grass roguelikeSheet_transparent - Copy_108
+  - first:
+      213: 5063401481831954999
+    second: grass roguelikeSheet_transparent - Copy_109
+  - first:
+      213: -2180253232480313787
+    second: grass roguelikeSheet_transparent - Copy_110
+  - first:
+      213: 8738358753811072103
+    second: grass roguelikeSheet_transparent - Copy_111
+  - first:
+      213: -5481170576033548127
+    second: grass roguelikeSheet_transparent - Copy_112
+  - first:
+      213: 5663407402477592072
+    second: grass roguelikeSheet_transparent - Copy_113
+  - first:
+      213: -2017905113212035439
+    second: grass roguelikeSheet_transparent - Copy_114
+  - first:
+      213: 4126382660838349219
+    second: grass roguelikeSheet_transparent - Copy_115
+  - first:
+      213: 4065336492915090331
+    second: grass roguelikeSheet_transparent - Copy_116
+  - first:
+      213: 1938636030493557987
+    second: grass roguelikeSheet_transparent - Copy_117
+  - first:
+      213: 7103526444148463292
+    second: grass roguelikeSheet_transparent - Copy_118
+  - first:
+      213: -5678059826712409731
+    second: grass roguelikeSheet_transparent - Copy_119
+  - first:
+      213: 7785267481986749670
+    second: grass roguelikeSheet_transparent - Copy_120
+  - first:
+      213: -5059721527506761054
+    second: grass roguelikeSheet_transparent - Copy_121
+  - first:
+      213: -6013428519698679429
+    second: grass roguelikeSheet_transparent - Copy_122
+  - first:
+      213: -8355897367708902699
+    second: grass roguelikeSheet_transparent - Copy_123
+  - first:
+      213: 6960069959498994161
+    second: grass roguelikeSheet_transparent - Copy_124
+  - first:
+      213: -8409481952633238037
+    second: grass roguelikeSheet_transparent - Copy_125
+  - first:
+      213: 1154839812187602385
+    second: grass roguelikeSheet_transparent - Copy_126
+  - first:
+      213: -8931294775607792413
+    second: grass roguelikeSheet_transparent - Copy_127
+  - first:
+      213: -973423806391552436
+    second: grass roguelikeSheet_transparent - Copy_128
+  - first:
+      213: -3641018216853586874
+    second: grass roguelikeSheet_transparent - Copy_129
+  - first:
+      213: 9046760809043745674
+    second: grass roguelikeSheet_transparent - Copy_130
+  - first:
+      213: -8509307965709622295
+    second: grass roguelikeSheet_transparent - Copy_131
+  - first:
+      213: -1305773479618657311
+    second: grass roguelikeSheet_transparent - Copy_132
+  - first:
+      213: -6030784034269060365
+    second: grass roguelikeSheet_transparent - Copy_133
+  - first:
+      213: 3187582994618170700
+    second: grass roguelikeSheet_transparent - Copy_134
+  - first:
+      213: 2864946935318361086
+    second: grass roguelikeSheet_transparent - Copy_135
+  - first:
+      213: -988017919438885142
+    second: grass roguelikeSheet_transparent - Copy_136
+  - first:
+      213: -2677145747450187777
+    second: grass roguelikeSheet_transparent - Copy_137
+  - first:
+      213: 1930254985985628809
+    second: grass roguelikeSheet_transparent - Copy_138
+  - first:
+      213: 3137445947992373236
+    second: grass roguelikeSheet_transparent - Copy_139
+  - first:
+      213: 5202057525155244661
+    second: grass roguelikeSheet_transparent - Copy_140
+  - first:
+      213: -8203763196280629216
+    second: grass roguelikeSheet_transparent - Copy_141
+  - first:
+      213: -8112627896125286325
+    second: grass roguelikeSheet_transparent - Copy_142
+  - first:
+      213: 2444424769767512559
+    second: grass roguelikeSheet_transparent - Copy_143
+  - first:
+      213: -4381603373465828863
+    second: grass roguelikeSheet_transparent - Copy_144
+  - first:
+      213: 2443986143500478666
+    second: grass roguelikeSheet_transparent - Copy_145
+  - first:
+      213: 5621224741415007571
+    second: grass roguelikeSheet_transparent - Copy_146
+  - first:
+      213: -3594488218199263387
+    second: grass roguelikeSheet_transparent - Copy_147
+  - first:
+      213: -574901724187861660
+    second: grass roguelikeSheet_transparent - Copy_148
+  - first:
+      213: 5018708649850662536
+    second: grass roguelikeSheet_transparent - Copy_149
+  - first:
+      213: 4605676311454915105
+    second: grass roguelikeSheet_transparent - Copy_150
+  - first:
+      213: 461357054997553833
+    second: grass roguelikeSheet_transparent - Copy_151
+  - first:
+      213: 2486813941706958274
+    second: grass roguelikeSheet_transparent - Copy_152
+  - first:
+      213: -874967147468633718
+    second: grass roguelikeSheet_transparent - Copy_153
+  - first:
+      213: -1078684162619424563
+    second: grass roguelikeSheet_transparent - Copy_154
+  - first:
+      213: -5684022991025844818
+    second: grass roguelikeSheet_transparent - Copy_155
+  - first:
+      213: 3347971435676494869
+    second: grass roguelikeSheet_transparent - Copy_156
+  - first:
+      213: -8504364715155705538
+    second: grass roguelikeSheet_transparent - Copy_157
+  - first:
+      213: -1123697191553980605
+    second: grass roguelikeSheet_transparent - Copy_158
+  - first:
+      213: 1724366927070346273
+    second: grass roguelikeSheet_transparent - Copy_159
+  - first:
+      213: -7442485478777252043
+    second: grass roguelikeSheet_transparent - Copy_160
+  - first:
+      213: -1784141222101713881
+    second: grass roguelikeSheet_transparent - Copy_161
+  - first:
+      213: -3688478981464879743
+    second: grass roguelikeSheet_transparent - Copy_162
+  - first:
+      213: -7995976120224013662
+    second: grass roguelikeSheet_transparent - Copy_163
+  - first:
+      213: -2150554488556189706
+    second: grass roguelikeSheet_transparent - Copy_164
+  - first:
+      213: 3886718341760636407
+    second: grass roguelikeSheet_transparent - Copy_165
+  - first:
+      213: -377714350310577821
+    second: grass roguelikeSheet_transparent - Copy_166
+  - first:
+      213: 1167534098558712200
+    second: grass roguelikeSheet_transparent - Copy_167
+  - first:
+      213: -6990703819958524236
+    second: grass roguelikeSheet_transparent - Copy_168
+  - first:
+      213: -8999556791293674610
+    second: grass roguelikeSheet_transparent - Copy_169
+  - first:
+      213: -4858581540170335259
+    second: grass roguelikeSheet_transparent - Copy_170
+  - first:
+      213: -3426270431002058414
+    second: grass roguelikeSheet_transparent - Copy_171
+  - first:
+      213: -7892746772649100541
+    second: grass roguelikeSheet_transparent - Copy_172
+  - first:
+      213: -4709726125527738135
+    second: grass roguelikeSheet_transparent - Copy_173
+  - first:
+      213: 762176936473252619
+    second: grass roguelikeSheet_transparent - Copy_174
+  - first:
+      213: -9106329807112448698
+    second: grass roguelikeSheet_transparent - Copy_175
+  - first:
+      213: 2336128859544937214
+    second: grass roguelikeSheet_transparent - Copy_176
+  - first:
+      213: -5218759370221682508
+    second: grass roguelikeSheet_transparent - Copy_177
+  - first:
+      213: -8460307889362484440
+    second: grass roguelikeSheet_transparent - Copy_178
+  - first:
+      213: 8538475733538483157
+    second: grass roguelikeSheet_transparent - Copy_179
+  - first:
+      213: 7155528174400638058
+    second: grass roguelikeSheet_transparent - Copy_180
+  - first:
+      213: 2779931204496422943
+    second: grass roguelikeSheet_transparent - Copy_181
+  - first:
+      213: -5441751922836273181
+    second: grass roguelikeSheet_transparent - Copy_182
+  - first:
+      213: 4374946722360174059
+    second: grass roguelikeSheet_transparent - Copy_183
+  - first:
+      213: -7508952420272861169
+    second: grass roguelikeSheet_transparent - Copy_184
+  - first:
+      213: 267391341525511638
+    second: grass roguelikeSheet_transparent - Copy_185
+  - first:
+      213: 8940552954526693022
+    second: grass roguelikeSheet_transparent - Copy_186
+  - first:
+      213: -2718140746445967641
+    second: grass roguelikeSheet_transparent - Copy_187
+  - first:
+      213: -4742644521057422573
+    second: grass roguelikeSheet_transparent - Copy_188
+  - first:
+      213: -5729621736034771061
+    second: grass roguelikeSheet_transparent - Copy_189
+  - first:
+      213: 5922425435626517531
+    second: grass roguelikeSheet_transparent - Copy_190
+  - first:
+      213: 3565142439527058197
+    second: grass roguelikeSheet_transparent - Copy_191
+  - first:
+      213: 8983401414186675503
+    second: grass roguelikeSheet_transparent - Copy_192
+  - first:
+      213: -717858496735848684
+    second: grass roguelikeSheet_transparent - Copy_193
+  - first:
+      213: 5325982113907762378
+    second: grass roguelikeSheet_transparent - Copy_194
+  - first:
+      213: -5765285658603369491
+    second: grass roguelikeSheet_transparent - Copy_195
+  - first:
+      213: -1158021024349798455
+    second: grass roguelikeSheet_transparent - Copy_196
+  - first:
+      213: 4761944127488793079
+    second: grass roguelikeSheet_transparent - Copy_197
+  - first:
+      213: 3824325301359426004
+    second: grass roguelikeSheet_transparent - Copy_198
+  - first:
+      213: 6127813198233486099
+    second: grass roguelikeSheet_transparent - Copy_199
+  - first:
+      213: 6646559357556623085
+    second: grass roguelikeSheet_transparent - Copy_200
+  - first:
+      213: -7842921302566173027
+    second: grass roguelikeSheet_transparent - Copy_201
+  - first:
+      213: -3661608166388261541
+    second: grass roguelikeSheet_transparent - Copy_202
+  - first:
+      213: -8148306520945870583
+    second: grass roguelikeSheet_transparent - Copy_203
+  - first:
+      213: -7648824370491434445
+    second: grass roguelikeSheet_transparent - Copy_204
+  - first:
+      213: 1914632788745479070
+    second: grass roguelikeSheet_transparent - Copy_205
+  - first:
+      213: 2553953346723813513
+    second: grass roguelikeSheet_transparent - Copy_206
+  - first:
+      213: -1823787723149249298
+    second: grass roguelikeSheet_transparent - Copy_207
+  - first:
+      213: 7954965007961601929
+    second: grass roguelikeSheet_transparent - Copy_208
+  - first:
+      213: -6910290953475163584
+    second: grass roguelikeSheet_transparent - Copy_209
+  - first:
+      213: -3233019733476229686
+    second: grass roguelikeSheet_transparent - Copy_0
+  - first:
+      213: 3138103085263860583
+    second: grass roguelikeSheet_transparent - Copy_1
+  - first:
+      213: 272502638479797591
+    second: grass roguelikeSheet_transparent - Copy_2
+  - first:
+      213: 3606076505743038430
+    second: grass roguelikeSheet_transparent - Copy_3
+  - first:
+      213: -4137827776099423651
+    second: grass roguelikeSheet_transparent - Copy_4
+  - first:
+      213: 199449316282253597
+    second: grass roguelikeSheet_transparent - Copy_5
+  - first:
+      213: -5092958692240032928
+    second: grass roguelikeSheet_transparent - Copy_6
+  - first:
+      213: 1637014057430740202
+    second: grass roguelikeSheet_transparent - Copy_7
+  - first:
+      213: 459375528002361503
+    second: grass roguelikeSheet_transparent - Copy_8
+  - first:
+      213: 5098831939256266621
+    second: grass roguelikeSheet_transparent - Copy_9
+  - first:
+      213: 1729778069574855208
+    second: grass roguelikeSheet_transparent - Copy_10
+  - first:
+      213: -3153299783585351415
+    second: grass roguelikeSheet_transparent - Copy_11
+  - first:
+      213: 7067744673532146797
+    second: grass roguelikeSheet_transparent - Copy_12
+  - first:
+      213: 139527719879808090
+    second: grass roguelikeSheet_transparent - Copy_13
+  - first:
+      213: 7657699040938586519
+    second: grass roguelikeSheet_transparent - Copy_14
+  - first:
+      213: 6862981258422005655
+    second: grass roguelikeSheet_transparent - Copy_15
+  - first:
+      213: -4644737894706471962
+    second: grass roguelikeSheet_transparent - Copy_16
+  - first:
+      213: 1184409755738310663
+    second: grass roguelikeSheet_transparent - Copy_17
+  - first:
+      213: -5748336382424609369
+    second: grass roguelikeSheet_transparent - Copy_18
+  - first:
+      213: 4161400077452107476
+    second: grass roguelikeSheet_transparent - Copy_19
+  - first:
+      213: 6350523438100676118
+    second: grass roguelikeSheet_transparent - Copy_20
+  - first:
+      213: -463893818346069088
+    second: grass roguelikeSheet_transparent - Copy_21
+  - first:
+      213: 7011595767447776010
+    second: grass roguelikeSheet_transparent - Copy_22
+  - first:
+      213: 7890018819421978602
+    second: grass roguelikeSheet_transparent - Copy_23
+  - first:
+      213: 796316792213766295
+    second: grass roguelikeSheet_transparent - Copy_24
+  - first:
+      213: 5234314930150946114
+    second: grass roguelikeSheet_transparent - Copy_25
+  - first:
+      213: 5396834170631910257
+    second: grass roguelikeSheet_transparent - Copy_26
+  - first:
+      213: -907324699229290073
+    second: grass roguelikeSheet_transparent - Copy_27
+  - first:
+      213: 2155957852635526756
+    second: grass roguelikeSheet_transparent - Copy_28
+  - first:
+      213: 2061980642109049541
+    second: grass roguelikeSheet_transparent - Copy_29
+  - first:
+      213: -8024812568045659005
+    second: grass roguelikeSheet_transparent - Copy_30
+  - first:
+      213: -1199161064336562174
+    second: grass roguelikeSheet_transparent - Copy_31
+  - first:
+      213: -1666351048948234219
+    second: grass roguelikeSheet_transparent - Copy_32
+  - first:
+      213: 3506722918660863900
+    second: grass roguelikeSheet_transparent - Copy_33
+  - first:
+      213: 3102480025592495338
+    second: grass roguelikeSheet_transparent - Copy_34
+  - first:
+      213: -722151828158985557
+    second: grass roguelikeSheet_transparent - Copy_35
+  - first:
+      213: 8818945140537551343
+    second: grass roguelikeSheet_transparent - Copy_36
+  - first:
+      213: 4320656500567432076
+    second: grass roguelikeSheet_transparent - Copy_37
+  - first:
+      213: -3994523982128070467
+    second: grass roguelikeSheet_transparent - Copy_38
+  - first:
+      213: -7739118257018843648
+    second: grass roguelikeSheet_transparent - Copy_39
+  - first:
+      213: 2849698658449658364
+    second: grass roguelikeSheet_transparent - Copy_40
+  - first:
+      213: -3818676085878771027
+    second: grass roguelikeSheet_transparent - Copy_41
+  - first:
+      213: -7035537572695410061
+    second: grass roguelikeSheet_transparent - Copy_42
+  - first:
+      213: -7558556986168349957
+    second: grass roguelikeSheet_transparent - Copy_43
+  - first:
+      213: -8072315313436278773
+    second: grass roguelikeSheet_transparent - Copy_44
+  - first:
+      213: -8245711245844063634
+    second: grass roguelikeSheet_transparent - Copy_45
+  - first:
+      213: 7098729660102352222
+    second: grass roguelikeSheet_transparent - Copy_46
+  - first:
+      213: -1268437581440992132
+    second: grass roguelikeSheet_transparent - Copy_47
+  - first:
+      213: -8501735315743416510
+    second: grass roguelikeSheet_transparent - Copy_48
+  - first:
+      213: 6690597700683202005
+    second: grass roguelikeSheet_transparent - Copy_49
+  - first:
+      213: -4974970946970548622
+    second: grass roguelikeSheet_transparent - Copy_50
+  - first:
+      213: 840648185267602320
+    second: grass roguelikeSheet_transparent - Copy_51
+  - first:
+      213: -6010279637589859244
+    second: grass roguelikeSheet_transparent - Copy_52
+  - first:
+      213: 1480514901487811871
+    second: grass roguelikeSheet_transparent - Copy_53
+  - first:
+      213: 1008402786600356606
+    second: grass roguelikeSheet_transparent - Copy_54
+  - first:
+      213: 7337116397495544559
+    second: grass roguelikeSheet_transparent - Copy_55
+  - first:
+      213: 6578703047320248970
+    second: grass roguelikeSheet_transparent - Copy_56
+  - first:
+      213: -5226753055472952289
+    second: grass roguelikeSheet_transparent - Copy_57
+  - first:
+      213: -3860338955992261555
+    second: grass roguelikeSheet_transparent - Copy_58
+  - first:
+      213: 8957903546393765272
+    second: grass roguelikeSheet_transparent - Copy_59
+  - first:
+      213: 119591851481973047
+    second: grass roguelikeSheet_transparent - Copy_60
+  - first:
+      213: 6222493823853967094
+    second: grass roguelikeSheet_transparent - Copy_61
+  - first:
+      213: -7811790734535279212
+    second: grass roguelikeSheet_transparent - Copy_62
+  - first:
+      213: -4211486914469607372
+    second: grass roguelikeSheet_transparent - Copy_63
+  - first:
+      213: -2282763044776020153
+    second: grass roguelikeSheet_transparent - Copy_64
+  - first:
+      213: -8851419040566655807
+    second: grass roguelikeSheet_transparent - Copy_65
+  - first:
+      213: 3349238040355965941
+    second: grass roguelikeSheet_transparent - Copy_66
+  - first:
+      213: -2487217877996497736
+    second: grass roguelikeSheet_transparent - Copy_67
+  - first:
+      213: 4935296526663796839
+    second: grass roguelikeSheet_transparent - Copy_68
+  - first:
+      213: -1011878483596739515
+    second: grass roguelikeSheet_transparent - Copy_69
+  - first:
+      213: -8830373247868715891
+    second: grass roguelikeSheet_transparent - Copy_70
+  - first:
+      213: 6165530935430131921
+    second: grass roguelikeSheet_transparent - Copy_71
+  - first:
+      213: 7392567503209049108
+    second: grass roguelikeSheet_transparent - Copy_72
+  - first:
+      213: -6117255948078803411
+    second: grass roguelikeSheet_transparent - Copy_73
+  - first:
+      213: 5220681100586514908
+    second: grass roguelikeSheet_transparent - Copy_74
+  - first:
+      213: -3934987808976906097
+    second: grass roguelikeSheet_transparent - Copy_75
+  - first:
+      213: 8646615361124472281
+    second: grass roguelikeSheet_transparent - Copy_76
+  - first:
+      213: 6941918280532620313
+    second: grass roguelikeSheet_transparent - Copy_77
+  - first:
+      213: 7364713276759250216
+    second: grass roguelikeSheet_transparent - Copy_78
+  - first:
+      213: -319921943890815462
+    second: grass roguelikeSheet_transparent - Copy_79
+  - first:
+      213: 6409232332958983883
+    second: grass roguelikeSheet_transparent - Copy_80
+  - first:
+      213: 8008273968294455303
+    second: grass roguelikeSheet_transparent - Copy_81
+  - first:
+      213: 4229901319457674910
+    second: grass roguelikeSheet_transparent - Copy_82
+  - first:
+      213: -1041198904735803999
+    second: grass roguelikeSheet_transparent - Copy_83
+  - first:
+      213: -3633260591427976410
+    second: grass roguelikeSheet_transparent - Copy_84
+  - first:
+      213: -8210236887763013812
+    second: grass roguelikeSheet_transparent - Copy_85
+  - first:
+      213: 5982921256879691179
+    second: grass roguelikeSheet_transparent - Copy_86
+  - first:
+      213: 7146686056932764081
+    second: grass roguelikeSheet_transparent - Copy_87
+  - first:
+      213: -58954994313033891
+    second: grass roguelikeSheet_transparent - Copy_88
+  - first:
+      213: 2309981800035298384
+    second: grass roguelikeSheet_transparent - Copy_89
+  - first:
+      213: -4249828099449619582
+    second: grass roguelikeSheet_transparent - Copy_90
+  - first:
+      213: -3730378685788121699
+    second: grass roguelikeSheet_transparent - Copy_91
+  - first:
+      213: 7955304184313537112
+    second: grass roguelikeSheet_transparent - Copy_92
+  - first:
+      213: 5121939489032806687
+    second: grass roguelikeSheet_transparent - Copy_93
+  - first:
+      213: -929703940631868573
+    second: grass roguelikeSheet_transparent - Copy_94
+  - first:
+      213: 2520048516618235918
+    second: grass roguelikeSheet_transparent - Copy_95
+  - first:
+      213: 6777740421611219543
+    second: grass roguelikeSheet_transparent - Copy_96
+  - first:
+      213: 771810524055900139
+    second: grass roguelikeSheet_transparent - Copy_97
+  - first:
+      213: -8227386153159002201
+    second: grass roguelikeSheet_transparent - Copy_98
+  - first:
+      213: 8548882731703678778
+    second: grass roguelikeSheet_transparent - Copy_99
+  - first:
+      213: 7262031074967357699
+    second: grass roguelikeSheet_transparent - Copy_100
+  - first:
+      213: 8734685482196516789
+    second: grass roguelikeSheet_transparent - Copy_101
+  - first:
+      213: -8283143106376239203
+    second: grass roguelikeSheet_transparent - Copy_102
+  - first:
+      213: -1099979564166020626
+    second: grass roguelikeSheet_transparent - Copy_103
+  - first:
+      213: -4593491518993189127
+    second: grass roguelikeSheet_transparent - Copy_104
+  - first:
+      213: 5691340341985964797
+    second: grass roguelikeSheet_transparent - Copy_105
+  - first:
+      213: 4178017112769751371
+    second: grass roguelikeSheet_transparent - Copy_106
+  - first:
+      213: 8662995303837010672
+    second: grass roguelikeSheet_transparent - Copy_107
+  - first:
+      213: 4767068043409225095
+    second: grass roguelikeSheet_transparent - Copy_108
+  - first:
+      213: -58075070907766122
+    second: grass roguelikeSheet_transparent - Copy_109
+  - first:
+      213: -7190348076456320207
+    second: grass roguelikeSheet_transparent - Copy_110
+  - first:
+      213: -3503807167356488639
+    second: grass roguelikeSheet_transparent - Copy_111
+  - first:
+      213: -5742222354181039680
+    second: grass roguelikeSheet_transparent - Copy_112
+  - first:
+      213: 5446227250008518027
+    second: grass roguelikeSheet_transparent - Copy_113
+  - first:
+      213: 8034697509818578654
+    second: grass roguelikeSheet_transparent - Copy_114
+  - first:
+      213: -8516773172741745872
+    second: grass roguelikeSheet_transparent - Copy_115
+  - first:
+      213: -1482649875920591833
+    second: grass roguelikeSheet_transparent - Copy_116
+  - first:
+      213: 661700595677500724
+    second: grass roguelikeSheet_transparent - Copy_117
+  - first:
+      213: 2478443907010770669
+    second: grass roguelikeSheet_transparent - Copy_118
+  - first:
+      213: 7534834111436015448
+    second: grass roguelikeSheet_transparent - Copy_119
+  - first:
+      213: -7922571122589049293
+    second: grass roguelikeSheet_transparent - Copy_120
+  - first:
+      213: 1909629741665473252
+    second: grass roguelikeSheet_transparent - Copy_121
+  - first:
+      213: -2142320648076848410
+    second: grass roguelikeSheet_transparent - Copy_122
+  - first:
+      213: -3156238947907283096
+    second: grass roguelikeSheet_transparent - Copy_123
+  - first:
+      213: 4410635354665114310
+    second: grass roguelikeSheet_transparent - Copy_124
+  - first:
+      213: 8952653160894549159
+    second: grass roguelikeSheet_transparent - Copy_125
+  - first:
+      213: -8401665093182613637
+    second: grass roguelikeSheet_transparent - Copy_126
+  - first:
+      213: 4502564005421588981
+    second: grass roguelikeSheet_transparent - Copy_127
+  - first:
+      213: -1512903545514297092
+    second: grass roguelikeSheet_transparent - Copy_128
+  - first:
+      213: 4523806382697736527
+    second: grass roguelikeSheet_transparent - Copy_129
+  - first:
+      213: 2088290875899568587
+    second: grass roguelikeSheet_transparent - Copy_130
+  - first:
+      213: 7999085564995385011
+    second: grass roguelikeSheet_transparent - Copy_131
+  - first:
+      213: 3074510597781452326
+    second: grass roguelikeSheet_transparent - Copy_132
+  - first:
+      213: -4167939530065702326
+    second: grass roguelikeSheet_transparent - Copy_133
+  - first:
+      213: -8361982110768802562
+    second: grass roguelikeSheet_transparent - Copy_134
+  - first:
+      213: -234329925007185821
+    second: grass roguelikeSheet_transparent - Copy_135
+  - first:
+      213: 5951808481947641409
+    second: grass roguelikeSheet_transparent - Copy_136
+  - first:
+      213: -7950989036115196333
+    second: grass roguelikeSheet_transparent - Copy_137
+  - first:
+      213: -119969906488134779
+    second: grass roguelikeSheet_transparent - Copy_138
+  - first:
+      213: 5620473323323750621
+    second: grass roguelikeSheet_transparent - Copy_139
+  - first:
+      213: -5418642791534714932
+    second: grass roguelikeSheet_transparent - Copy_140
+  - first:
+      213: 8576017111689665714
+    second: grass roguelikeSheet_transparent - Copy_141
+  - first:
+      213: -258217650348997351
+    second: grass roguelikeSheet_transparent - Copy_142
+  - first:
+      213: -7806615903460258974
+    second: grass roguelikeSheet_transparent - Copy_143
+  - first:
+      213: 3084550305277284792
+    second: grass roguelikeSheet_transparent - Copy_144
+  - first:
+      213: 8677966465793311061
+    second: grass roguelikeSheet_transparent - Copy_145
+  - first:
+      213: -1188800435626674183
+    second: grass roguelikeSheet_transparent - Copy_146
+  - first:
+      213: -1888634319738837532
+    second: grass roguelikeSheet_transparent - Copy_147
+  - first:
+      213: 1144029907864105911
+    second: grass roguelikeSheet_transparent - Copy_148
+  - first:
+      213: -5584900055902803223
+    second: grass roguelikeSheet_transparent - Copy_149
+  - first:
+      213: -5270800374353357835
+    second: grass roguelikeSheet_transparent - Copy_150
+  - first:
+      213: -2417679540012783600
+    second: grass roguelikeSheet_transparent - Copy_151
+  - first:
+      213: -6226256218687674204
+    second: grass roguelikeSheet_transparent - Copy_152
+  - first:
+      213: 7765563945982754640
+    second: grass roguelikeSheet_transparent - Copy_153
+  - first:
+      213: 4386272560249661027
+    second: grass roguelikeSheet_transparent - Copy_154
+  - first:
+      213: -6409152946893898719
+    second: grass roguelikeSheet_transparent - Copy_155
+  - first:
+      213: 4779959567125417257
+    second: grass roguelikeSheet_transparent - Copy_156
+  - first:
+      213: -206207096403316276
+    second: grass roguelikeSheet_transparent - Copy_157
+  - first:
+      213: 1389701030724811339
+    second: grass roguelikeSheet_transparent - Copy_158
+  - first:
+      213: 3156860234054355243
+    second: grass roguelikeSheet_transparent - Copy_159
+  - first:
+      213: 7260803042612133715
+    second: grass roguelikeSheet_transparent - Copy_160
+  - first:
+      213: 8392431258203850260
+    second: grass roguelikeSheet_transparent - Copy_161
+  - first:
+      213: -2361976349078181695
+    second: grass roguelikeSheet_transparent - Copy_162
+  - first:
+      213: 7602402973745123223
+    second: grass roguelikeSheet_transparent - Copy_163
+  - first:
+      213: -2166836971739076837
+    second: grass roguelikeSheet_transparent - Copy_164
+  - first:
+      213: 727599642665628899
+    second: grass roguelikeSheet_transparent - Copy_165
+  - first:
+      213: -1706369772739297925
+    second: grass roguelikeSheet_transparent - Copy_166
+  - first:
+      213: -7752555297058681214
+    second: grass roguelikeSheet_transparent - Copy_167
+  - first:
+      213: -3600308683040445257
+    second: grass roguelikeSheet_transparent - Copy_168
+  - first:
+      213: 6792960784959619073
+    second: grass roguelikeSheet_transparent - Copy_169
+  - first:
+      213: -51361371828320630
+    second: grass roguelikeSheet_transparent - Copy_170
+  - first:
+      213: 7562518782485896797
+    second: grass roguelikeSheet_transparent - Copy_171
+  - first:
+      213: -555543910380591345
+    second: grass roguelikeSheet_transparent - Copy_172
+  - first:
+      213: -3839550532759601302
+    second: grass roguelikeSheet_transparent - Copy_173
+  - first:
+      213: -4527505222043554179
+    second: grass roguelikeSheet_transparent - Copy_174
+  - first:
+      213: 1252202489883193473
+    second: grass roguelikeSheet_transparent - Copy_175
+  - first:
+      213: -6792844398365774232
+    second: grass roguelikeSheet_transparent - Copy_176
+  - first:
+      213: 3735098273271986336
+    second: grass roguelikeSheet_transparent - Copy_177
+  - first:
+      213: -6060284448847070032
+    second: grass roguelikeSheet_transparent - Copy_178
+  - first:
+      213: 1183703669437537603
+    second: grass roguelikeSheet_transparent - Copy_179
+  - first:
+      213: 5701668219531459658
+    second: grass roguelikeSheet_transparent - Copy_180
+  - first:
+      213: 2975103474263558789
+    second: grass roguelikeSheet_transparent - Copy_181
+  - first:
+      213: -6199101727702034734
+    second: grass roguelikeSheet_transparent - Copy_182
+  - first:
+      213: -8702405086910287616
+    second: grass roguelikeSheet_transparent - Copy_183
+  - first:
+      213: -6321756668189305702
+    second: grass roguelikeSheet_transparent - Copy_184
+  - first:
+      213: 8419403499618315561
+    second: grass roguelikeSheet_transparent - Copy_185
+  - first:
+      213: 8749752892929548398
+    second: grass roguelikeSheet_transparent - Copy_186
+  - first:
+      213: -5187480202238056479
+    second: grass roguelikeSheet_transparent - Copy_187
+  - first:
+      213: -8319597415896742065
+    second: grass roguelikeSheet_transparent - Copy_188
+  - first:
+      213: -4032155495246208090
+    second: grass roguelikeSheet_transparent - Copy_189
+  - first:
+      213: 6196879497927225011
+    second: grass roguelikeSheet_transparent - Copy_190
+  - first:
+      213: -7556664344642718676
+    second: grass roguelikeSheet_transparent - Copy_210
+  - first:
+      213: 8125272948810358403
+    second: grass roguelikeSheet_transparent - Copy_211
+  - first:
+      213: 3599488078780126285
+    second: grass roguelikeSheet_transparent - Copy_212
+  - first:
+      213: -4898127108598508449
+    second: grass roguelikeSheet_transparent - Copy_213
+  - first:
+      213: 3176526713167586283
+    second: grass roguelikeSheet_transparent - Copy_214
+  - first:
+      213: 4097792581259410886
+    second: grass roguelikeSheet_transparent - Copy_215
+  - first:
+      213: -3575127164168852267
+    second: grass roguelikeSheet_transparent - Copy_216
+  - first:
+      213: -9018360008400321171
+    second: grass roguelikeSheet_transparent - Copy_217
+  - first:
+      213: -7545682293661487149
+    second: grass roguelikeSheet_transparent - Copy_218
+  - first:
+      213: 4550427076914715733
+    second: grass roguelikeSheet_transparent - Copy_219
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acd32528ea10223d0800000000000000
+      internalID: -3233019733476229686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 763b5b13128cc8b20800000000000000
+      internalID: 3138103085263860583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_2
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75de1f6b4bf18c300800000000000000
+      internalID: 272502638479797591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_3
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed712b5e97b5b0230800000000000000
+      internalID: 3606076505743038430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_4
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5a69df8f8b7396c0800000000000000
+      internalID: -4137827776099423651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_5
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d11c2bfa81694c200800000000000000
+      internalID: 199449316282253597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_6
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b7b459d0d2259b0800000000000000
+      internalID: -5092958692240032928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_7
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aecea79ac97d7b610800000000000000
+      internalID: 1637014057430740202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_8
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f98961ddb97006600800000000000000
+      internalID: 459375528002361503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_9
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7f29cc42a0b2c640800000000000000
+      internalID: 5098831939256266621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_10
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82a25415df7610810800000000000000
+      internalID: 1729778069574855208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_12
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d64fa05855ca51260800000000000000
+      internalID: 7067744673532146797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_13
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5491c3d8b3bfe100800000000000000
+      internalID: 139527719879808090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_14
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7917efb94bc954a60800000000000000
+      internalID: 7657699040938586519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_15
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 161
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f2868c7153e3f50800000000000000
+      internalID: 6862981258422005655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_16
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eb993f5e739a8fb0800000000000000
+      internalID: -4644737894706471962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_17
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7080a47c56edf6010800000000000000
+      internalID: 1184409755738310663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_18
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ad8024248ec930b0800000000000000
+      internalID: -5748336382424609369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_19
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ded0d8825340c930800000000000000
+      internalID: 4161400077452107476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_20
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61e78c1ab67912850800000000000000
+      internalID: 6350523438100676118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_21
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a3abffa70bef89f0800000000000000
+      internalID: -463893818346069088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_22
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0b6b5393313e4160800000000000000
+      internalID: 7011595767447776010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_23
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aef3bca205afe7d60800000000000000
+      internalID: 7890018819421978602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_24
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790849847e51d0b00800000000000000
+      internalID: 796316792213766295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_25
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 245bb2642b504a840800000000000000
+      internalID: 5234314930150946114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_26
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1737434a51865ea40800000000000000
+      internalID: 5396834170631910257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_28
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 145
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 466fd058e308bed10800000000000000
+      internalID: 2155957852635526756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_29
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 145
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ca44aa1870ad9c10800000000000000
+      internalID: 2061980642109049541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_30
+      rect:
+        serializedVersion: 2
+        x: 253
+        y: 145
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38c5c849c7322a090800000000000000
+      internalID: -8024812568045659005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_31
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 144
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2086dbb8d59bb5fe0800000000000000
+      internalID: -1199161064336562174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_32
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5184758bc8eefd8e0800000000000000
+      internalID: -1666351048948234219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_33
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9770844ae16aa030800000000000000
+      internalID: 3506722918660863900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_34
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aec7f2845293e0b20800000000000000
+      internalID: 3102480025592495338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_35
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: baa4fa80db66af5f0800000000000000
+      internalID: -722151828158985557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_36
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe9e56b61ef236a70800000000000000
+      internalID: 8818945140537551343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_37
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c8bddc8023e06fb30800000000000000
+      internalID: 4320656500567432076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_38
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db04a762a999098c0800000000000000
+      internalID: -3994523982128070467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_39
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00ec6a7e2f0299490800000000000000
+      internalID: -7739118257018843648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_40
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf19ccdd4d92c8720800000000000000
+      internalID: 2849698658449658364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_41
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da2bae40556510bc0800000000000000
+      internalID: -3818676085878771027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_42
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37a739f7adfbc5e90800000000000000
+      internalID: -7035537572695410061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_44
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b004fabcdff59ff80800000000000000
+      internalID: -8072315313436278773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_45
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6a550f3f49519d80800000000000000
+      internalID: -8245711245844063634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_46
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5d1ee2e301c38260800000000000000
+      internalID: 7098729660102352222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_48
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24f58b246c4c30a80800000000000000
+      internalID: -8501735315743416510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_49
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 127
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dd74441927c9dc50800000000000000
+      internalID: 6690597700683202005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_50
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2768ee1484a55fab0800000000000000
+      internalID: -4974970946970548622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_51
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 093c3ff02159aab00800000000000000
+      internalID: 840648185267602320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_52
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45461b07382379ca0800000000000000
+      internalID: -6010279637589859244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_53
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1d7ad37578db8410800000000000000
+      internalID: 1480514901487811871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_54
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa04ddddf09efd00800000000000000
+      internalID: 1008402786600356606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_55
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fea6a646d7ca2d560800000000000000
+      internalID: 7337116397495544559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_56
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a82ad4ae09f3c4b50800000000000000
+      internalID: 6578703047320248970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_57
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1cd8dfd9c7d677b0800000000000000
+      internalID: -5226753055472952289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_58
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4c9a772c225d6ac0800000000000000
+      internalID: -3860338955992261555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_59
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 895230f70ddd05c70800000000000000
+      internalID: 8957903546393765272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_60
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7314d91c720e8a100800000000000000
+      internalID: 119591851481973047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_61
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f6b0e32a2dba5650800000000000000
+      internalID: 6222493823853967094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_66
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fb84afa042ea7e20800000000000000
+      internalID: 3349238040355965941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_67
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 110
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b4940f8480ab7dd0800000000000000
+      internalID: -2487217877996497736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_68
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 768c30dea02bd7440800000000000000
+      internalID: 4935296526663796839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_69
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54cfa5d51e515f1f0800000000000000
+      internalID: -1011878483596739515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_70
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c3caef056347580800000000000000
+      internalID: -8830373247868715891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_71
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d0bef928bd509550800000000000000
+      internalID: 6165530935430131921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_72
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41c2fd60afca79660800000000000000
+      internalID: 7392567503209049108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_73
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d261e9630242b1ba0800000000000000
+      internalID: -6117255948078803411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_74
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd9fd06fcc5937840800000000000000
+      internalID: 5220681100586514908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_75
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f88507aaf6d1469c0800000000000000
+      internalID: -3934987808976906097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_76
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d59245fbd2fef770800000000000000
+      internalID: 8646615361124472281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_77
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 914ffe275e5a65060800000000000000
+      internalID: 6941918280532620313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_78
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82596dd84b7b43660800000000000000
+      internalID: 7364713276759250216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_79
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a161982efa86f8bf0800000000000000
+      internalID: -319921943890815462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_80
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc6e7f869da22f850800000000000000
+      internalID: 6409232332958983883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_81
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 708e2389eba132f60800000000000000
+      internalID: 8008273968294455303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_82
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e961b3dc6d0a3ba30800000000000000
+      internalID: 4229901319457674910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_83
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a552b6dc1bec81f0800000000000000
+      internalID: -1041198904735803999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_84
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 623828fedb0149dc0800000000000000
+      internalID: -3633260591427976410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_85
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 93
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4fa31fdc016f0e80800000000000000
+      internalID: -8210236887763013812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_86
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba5927b2f2b970350800000000000000
+      internalID: 5982921256879691179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_87
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b9e6b0aa112e2360800000000000000
+      internalID: 7146686056932764081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_88
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d578c3abebc8e2ff0800000000000000
+      internalID: -58954994313033891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_89
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ca8b45534be0020800000000000000
+      internalID: 2309981800035298384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_90
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28bf4df2cd39505c0800000000000000
+      internalID: -4249828099449619582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_91
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9519e389580b3cc0800000000000000
+      internalID: -3730378685788121699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_92
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 852ef22b10be66e60800000000000000
+      internalID: 7955304184313537112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_93
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f11a8dcf3d8c41740800000000000000
+      internalID: 5121939489032806687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_94
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36b4b5811370913f0800000000000000
+      internalID: -929703940631868573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_95
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e00b7c926c209f220800000000000000
+      internalID: 2520048516618235918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_96
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75a61f1e00f5f0e50800000000000000
+      internalID: 6777740421611219543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_97
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bef8248159506ba00800000000000000
+      internalID: 771810524055900139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_98
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a77dfe52e372dd80800000000000000
+      internalID: -8227386153159002201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_99
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a373ba1fc8bb3a670800000000000000
+      internalID: 8548882731703678778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_100
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 309074b69cae7c460800000000000000
+      internalID: 7262031074967357699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_101
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bfb51fea26d73970800000000000000
+      internalID: 8734685482196516789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_102
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d97f7b01b3d5c0d80800000000000000
+      internalID: -8283143106376239203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_103
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 76
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee102b11a661cb0f0800000000000000
+      internalID: -1099979564166020626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_104
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f634a30dc3a040c0800000000000000
+      internalID: -4593491518993189127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_105
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df27ce313e3bbfe40800000000000000
+      internalID: 5691340341985964797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_106
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b49e4209d6c4bf930800000000000000
+      internalID: 4178017112769751371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_107
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fa05109454293870800000000000000
+      internalID: 8662995303837010672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_108
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 785f583e027082240800000000000000
+      internalID: 4767068043409225095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_109
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69aac3cd70da13ff0800000000000000
+      internalID: -58075070907766122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_110
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13368634580c63c90800000000000000
+      internalID: -7190348076456320207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_111
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 144bf3cf1f9ff5fc0800000000000000
+      internalID: -3503807167356488639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_112
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c95bb541378f40b0800000000000000
+      internalID: -5742222354181039680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_113
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d6fca14d2e49b40800000000000000
+      internalID: 5446227250008518027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_114
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed6b376c0daf08f60800000000000000
+      internalID: 8034697509818578654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_115
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 033d6265ce75ec980800000000000000
+      internalID: -8516773172741745872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_116
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 724e9731bc19c6be0800000000000000
+      internalID: -1482649875920591833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_117
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43595099f25de2900800000000000000
+      internalID: 661700595677500724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_118
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de6bb112a93356220800000000000000
+      internalID: 2478443907010770669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_119
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 857c3adf3bb119860800000000000000
+      internalID: 7534834111436015448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_120
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 59
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33edf422a8f5d0290800000000000000
+      internalID: -7922571122589049293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_121
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e2dd74e12e508a10800000000000000
+      internalID: 1909629741665473252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_122
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2156898b2f442e0800000000000000
+      internalID: -2142320648076848410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_123
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 867dbbb3669c234d0800000000000000
+      internalID: -3156238947907283096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_124
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6cad79c8c79b53d30800000000000000
+      internalID: 4410635354665114310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_125
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7acc56cdd963e3c70800000000000000
+      internalID: 8952653160894549159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_126
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b771d079c1a476b80800000000000000
+      internalID: -8401665093182613637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_127
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f12d997b125c7e30800000000000000
+      internalID: 4502564005421588981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_128
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf8f036bd36110be0800000000000000
+      internalID: -1512903545514297092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_129
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49e759dfe9c7ce30800000000000000
+      internalID: 4523806382697736527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_130
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc1eea5cc791bfc10800000000000000
+      internalID: 2088290875899568587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_131
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b6318db0f5720f60800000000000000
+      internalID: 7999085564995385011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_132
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626ffe6691bdaaa20800000000000000
+      internalID: 3074510597781452326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_133
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a42102184118826c0800000000000000
+      internalID: -4167939530065702326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_134
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef4547de29544fb80800000000000000
+      internalID: -8361982110768802562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_135
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 368e3bbbc2e7fbcf0800000000000000
+      internalID: -234329925007185821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_136
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14665a1c742199250800000000000000
+      internalID: 5951808481947641409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_137
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3560459099968a190800000000000000
+      internalID: -7950989036115196333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_138
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 583b9047108c55ef0800000000000000
+      internalID: -119969906488134779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_139
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 42
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8754285beeffd40800000000000000
+      internalID: 5620473323323750621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_140
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ccf97dd171d1dc4b0800000000000000
+      internalID: -5418642791534714932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_141
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc1fe91022240770800000000000000
+      internalID: 8576017111689665714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_142
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91546344a60aa6cf0800000000000000
+      internalID: -258217650348997351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_143
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b0650723459a390800000000000000
+      internalID: -7806615903460258974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_144
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b110e5f8268eca20800000000000000
+      internalID: 3084550305277284792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_145
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 551cc56d5845e6870800000000000000
+      internalID: 8677966465793311061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_146
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f774a56d48808fe0800000000000000
+      internalID: -1188800435626674183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_147
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e5ea55b7193ac5e0800000000000000
+      internalID: -1888634319738837532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_148
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b3b9aec32960ef00800000000000000
+      internalID: 1144029907864105911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_149
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9eaaadd3df27e72b0800000000000000
+      internalID: -5584900055902803223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_150
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f31ca44cfa5ad6b0800000000000000
+      internalID: -5270800374353357835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_151
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 018eecc844da27ed0800000000000000
+      internalID: -2417679540012783600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_152
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a8ed8c05f4e799a0800000000000000
+      internalID: -6226256218687674204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_153
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ff1e0e343d4cb60800000000000000
+      internalID: 7765563945982754640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_154
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36669b177ab2fdc30800000000000000
+      internalID: 4386272560249661027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_155
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 25
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12cbd391a5d1e07a0800000000000000
+      internalID: -6409152946893898719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_156
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92d8d37a6e3d55240800000000000000
+      internalID: 4779959567125417257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_157
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc137b40db7632df0800000000000000
+      internalID: -206207096403316276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_158
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4ab85879b5394310800000000000000
+      internalID: 1389701030724811339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_159
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b29cd5838ab6fcb20800000000000000
+      internalID: 3156860234054355243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_160
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35fb8fad5ed83c460800000000000000
+      internalID: 7260803042612133715
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_161
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 416002ba3c7e77470800000000000000
+      internalID: 8392431258203850260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_162
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c822595603983fd0800000000000000
+      internalID: -2361976349078181695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_163
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79f8371b939218960800000000000000
+      internalID: 7602402973745123223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_164
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b172f4d2149dde1e0800000000000000
+      internalID: -2166836971739076837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_165
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e439cf1504f81a00800000000000000
+      internalID: 727599642665628899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_166
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7df8608bb1c158e0800000000000000
+      internalID: -1706369772739297925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_167
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28e8e393804696490800000000000000
+      internalID: -7752555297058681214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_168
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bcae99f352290ec0800000000000000
+      internalID: -3600308683040445257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_169
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1004da0e7d1754e50800000000000000
+      internalID: 6792960784959619073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_170
+      rect:
+        serializedVersion: 2
+        x: 238
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a860ffcba17894ff0800000000000000
+      internalID: -51361371828320630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_171
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5e9a45c3c673f860800000000000000
+      internalID: 7562518782485896797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_172
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0722a4c1cf4a48f0800000000000000
+      internalID: -555543910380591345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_173
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6fb3bd122d27bac0800000000000000
+      internalID: -3839550532759601302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grass roguelikeSheet_transparent - Copy_174
+      rect:
+        serializedVersion: 2
+        x: 306
+        y: 8
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7e2e510df11b21c0800000000000000
+      internalID: -4527505222043554179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
