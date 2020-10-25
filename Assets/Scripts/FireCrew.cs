@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class FireCrew : MonoBehaviour
 {
-    public int waterLevel;
-    public int energyLevel;
+    public int WaterLevel;
+    public int EnergyLevel;
     private GameManagerBehavior gameManager;
 
     public Sprite unselected;
     public Sprite selected;
     private SpriteRenderer crewSpriteRenderer;
+
+    private int crewID;
+    public int CrewID 
+    {
+        get
+        {
+            return crewID;
+        }
+        set 
+        {
+            crewID = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,4 +49,6 @@ public class FireCrew : MonoBehaviour
         crewSpriteRenderer.sprite = selected;
         gameManager.SelectedFireCrew = gameObject;
     }
+
+
 }
