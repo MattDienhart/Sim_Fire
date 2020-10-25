@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Tile
+  - FireCrew
   layers:
   - Default
   - TransparentFX
@@ -46,4 +48,13 @@ TagManager:
     locked: 0
   - name: HUD
     uniqueID: 1829864435
+    locked: 0
+  - name: Background
+    uniqueID: 1920037539
+    locked: 0
+  - name: Midground
+    uniqueID: 3844357499
+    locked: 0
+  - name: Foreground
+    uniqueID: 3802745819
     locked: 0
