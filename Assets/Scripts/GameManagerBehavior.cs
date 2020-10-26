@@ -30,8 +30,8 @@ public class GameManagerBehavior : MonoBehaviour
 
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
-        AddFireCrew(allTiles[5]);
-        AddFireCrew(allTiles[8]);
+        AddFireCrew(allTiles[45]);
+        AddFireCrew(allTiles[110]);
 
     }
 
@@ -47,8 +47,8 @@ public class GameManagerBehavior : MonoBehaviour
         GameObject newFireCrew = (GameObject)Instantiate(fireCrewPrefab);
         newFireCrew.transform.position = spawnLocation.transform.position;
         newFireCrew.GetComponent<FireCrew>().CrewID = fireCrewInstances + 1;
-        newFireCrew.GetComponent<FireCrew>().WaterLevel = 100;
-        newFireCrew.GetComponent<FireCrew>().EnergyLevel = 100;
+        newFireCrew.GetComponent<FireCrew>().waterLevel = 100;
+        newFireCrew.GetComponent<FireCrew>().energyLevel = 100;
         fireCrewInstances ++;
     }
 }

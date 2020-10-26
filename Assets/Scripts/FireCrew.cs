@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class FireCrew : MonoBehaviour
 {
-    public int WaterLevel;
-    public int EnergyLevel;
+    public int waterLevel;
+    public int energyLevel;
     private GameManagerBehavior gameManager;
 
     public Sprite unselected;
     public Sprite selected;
     private SpriteRenderer crewSpriteRenderer;
+
+    private WaterBar waterBar;
+    private EnergyBar energyBar;
 
     private int crewID;
     public int CrewID 
@@ -28,8 +31,10 @@ public class FireCrew : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        crewSpriteRenderer = GetComponent<SpriteRenderer>();
+        crewSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+        waterBar = gameObject.GetComponentInChildren<WaterBar>();
+        energyBar = gameObject.GetComponentInChildren<EnergyBar>();
     }
 
     // Update is called once per frame
@@ -40,6 +45,10 @@ public class FireCrew : MonoBehaviour
         {
             crewSpriteRenderer.sprite = unselected;
         }
+
+        // update status bars for energy and water
+        waterBar.currentWater = waterLevel;
+        energyBar.currentEnergy = energyLevel;
     }
 
     // Handle selection of this object
