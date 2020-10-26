@@ -28,7 +28,7 @@ public class FireCrew : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        crewSpriteRenderer = GetComponent<SpriteRenderer>();
+        crewSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
     }
 

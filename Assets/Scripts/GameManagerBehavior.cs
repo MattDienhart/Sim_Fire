@@ -30,8 +30,8 @@ public class GameManagerBehavior : MonoBehaviour
 
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
-        AddFireCrew(allTiles[5]);
-        AddFireCrew(allTiles[8]);
+        AddFireCrew(allTiles[45]);
+        AddFireCrew(allTiles[110]);
 
     }
 
