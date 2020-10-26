@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2027925578142698543}
   - component: {fileID: 3135517192965687378}
+  - component: {fileID: 8790326251268073346}
   m_Layer: 0
   m_Name: WaterFillStatus
   m_TagString: Untagged
@@ -82,6 +83,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8790326251268073346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273128853934655221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d6b7f2f3e64f4375be65c079e361dd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4678436223149907044
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3997830200954832218}
   - component: {fileID: 4721946142193892564}
+  - component: {fileID: 8237637282352851383}
   m_Layer: 0
   m_Name: EnergyFillStatus
   m_TagString: Untagged
@@ -324,6 +338,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8237637282352851383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7414635212016433185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09807d0017d88429db1b987f936af52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8816602255777830543
 GameObject:
   m_ObjectHideFlags: 0
