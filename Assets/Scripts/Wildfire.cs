@@ -4,20 +4,50 @@ using UnityEngine;
 
 public class Wildfire : MonoBehaviour
 {
-    
     public int hitPoints;
-    //public TileScript * tile;
+    public int HitPoints 
+    {
+        get
+        {
+            return hitPoints;
+        }
+        set 
+        {
+            hitPoints = value;
+        }
+    }
     public string windDirection;
+    public string WindDirection 
+    {
+        get
+        {
+            return windDirection;
+        }
+        set 
+        {
+            windDirection = value;
+        }
+    }
     public int windSpeed;
+    public int WindSpeed 
+    {
+        get
+        {
+            return windSpeed;
+        }
+        set 
+        {
+            windSpeed = value;
+        }
+    }
 
 
     //Constructor
-    public Wildfire(/*TileScript * tileParameter, */string direction, int speed)
+    public Wildfire()
     {
-        hitPoints = 100;
-        //tile = tileParameter;
-        windDirection = direction;
-        windSpeed = speed;
+        // hitPoints = 100;
+        // windDirection = "direction";
+        // windSpeed = 10;
     }
 
     // Start is called before the first frame update
@@ -26,7 +56,7 @@ public class Wildfire : MonoBehaviour
         //Change tile state to on fire
         //tile.burning = true;
         //Wait 5 seconds
-        StartCoroutine(waiter(5));
+        //StartCoroutine(waiter(5));
         //Spread fire AI
     }
 

@@ -42,6 +42,11 @@ public class TileScript : MonoBehaviour
         burning = change;
     }
 
+    public int getDryness()
+    {
+        return dryness;
+    }
+
     private void getNeighbors()
     {
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
@@ -67,7 +72,7 @@ public class TileScript : MonoBehaviour
         }
     }
 
-    private void checkNeighbors()
+    public bool checkNeighbors()
     {
         int fireCount = 0;
         foreach (GameObject tile in neighborTiles)
@@ -78,7 +83,9 @@ public class TileScript : MonoBehaviour
         {
             dryness = 100;
             burning = true;
+            return true;
         }
+        return false;
     }
 
     public GameObject GetNorth()
