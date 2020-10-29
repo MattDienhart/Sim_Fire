@@ -10,7 +10,6 @@ public class Embers : MonoBehaviour
     public string windDirection;
     public int windSpeed;
 
-
     //Constructor
     public Embers(Tile * tileParameter, string direction, int speed)
     {
@@ -26,7 +25,6 @@ public class Embers : MonoBehaviour
         //Wait 5 seconds
         StartCoroutine(waiter(5));
         //Check if adjacent tile can be lit aflame
-
     }
 
     // Update is called once per frame

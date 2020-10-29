@@ -6,7 +6,7 @@ public class FireCrew : MonoBehaviour
 {
     public int waterLevel;
     public int energyLevel;
-    private GameManagerBehavior gameManager;
+    private GameManager gameManager;
 
     public Sprite unselected;
     public Sprite selected;
@@ -32,7 +32,7 @@ public class FireCrew : MonoBehaviour
     void Start()
     {
         crewSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManagerBehavior>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         waterBar = gameObject.GetComponentInChildren<WaterBar>();
         energyBar = gameObject.GetComponentInChildren<EnergyBar>();
     }

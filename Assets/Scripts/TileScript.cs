@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 public class TileScript : MonoBehaviour
 {
     private int dryness = 50;
-    private int damage = 0;
+    private int amountBurned = 0;
     private bool burning = false;
     public Sprite[] sprites;
     List<GameObject> neighborTiles = new List<GameObject>();
@@ -18,7 +18,6 @@ public class TileScript : MonoBehaviour
 
     private string terrian; // tile dependant? forest, hill, water, grass, road
     // private int elevation = 0; Maybe a feature for later
-
 
     void Start()
     {
