@@ -58,6 +58,7 @@ public class Wildfire : MonoBehaviour
         //Wait 5 seconds
         //StartCoroutine(waiter(5));
         //Spread fire AI
+        Debug.Log("testing");
     }
 
     // Update is called once per frame

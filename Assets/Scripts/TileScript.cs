@@ -110,4 +110,8 @@ public class TileScript : MonoBehaviour
         return this.gameObject;
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("Collided");
+    }
 }
