@@ -29,7 +29,11 @@ public class TileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(burning) {
+            GetComponent<SpriteRenderer>().enabled = true;
+        } else {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     public bool getBurning()

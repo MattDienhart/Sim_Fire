@@ -41,12 +41,16 @@ public class GameManagerBehavior : MonoBehaviour
         // Instantiate wildfire
         wildfireInstances = 0;
         lightTile(allTiles[1]);
+
+        // Start wildfire behavior
+        allTiles[1].GetComponent<TileScript>().setBurning(true);
+        InvokeRepeating("wildfireBehavior", 5, 5);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab
@@ -72,13 +76,15 @@ public class GameManagerBehavior : MonoBehaviour
     }
 
 
-    void _spreadfire(GameObject litTile, GameObject adjTile, string windDirection) {
+    void _spreadfire(GameObject litTile, GameObject adjTile, string windDirection, int index) {
         //Make sure tile exists (litTile might be on edge)
-        if(!GameObject.ReferenceEquals(litTile, adjTile)) 
+        if(!GameObject.ReferenceEquals(litTile, adjTile))
         {
+            Debug.Log("This adjacent tile exists");
             //Make sure tile isn't burning
             if(!adjTile.GetComponent<TileScript>().getBurning()) 
             {
+                Debug.Log("And it's not on fire");
                 int chanceToBurn = litTile.GetComponent<TileScript>().getDryness();
 
                 //Check wind direction
@@ -96,24 +102,49 @@ public class GameManagerBehavior : MonoBehaviour
                 if(adjTile.GetComponent<TileScript>().GetWest().GetComponent<TileScript>().getBurning()) multiplier++;
 
                 chanceToBurn += 10 * multiplier;
+                Debug.Log("Chance to burn is: " + chanceToBurn.ToString());
+
+                int roll = Random.Range(0, 100);
+                Debug.Log("Dice roll is: " + roll.ToString());
 
                 //Roll die to see if fire spreads
-                if (Random.Range(0, 100) < chanceToBurn) adjTile.GetComponent<TileScript>().setBurning(true);
+                if (roll < chanceToBurn) {
+                    adjTile.GetComponent<TileScript>().setBurning(true);
+                    lightTile(adjTile);
+                    Debug.Log("Tile " + index.ToString() + " is lit!");
+                }
             }
         }
     }
 
-    void spreadFire(GameObject litTile, string windDirection) 
+    void spreadFire(GameObject litTile, string windDirection, int index) 
     {
+        Debug.Log("Spreadfire function run with wind: " + windDirection + " at tile: " + index.ToString());
         GameObject northTile = litTile.GetComponent<TileScript>().GetNorth();
         GameObject southTile = litTile.GetComponent<TileScript>().GetSouth();
         GameObject eastTile = litTile.GetComponent<TileScript>().GetEast();
         GameObject westTile = litTile.GetComponent<TileScript>().GetWest();
+        if(litTile.Equals(northTile)) Debug.Log("Lit and north are the same!");
+        if(litTile.Equals(southTile)) Debug.Log("Lit and south are the same!");
+        if(litTile.Equals(eastTile)) Debug.Log("Lit and east are the same!");
+        if(litTile.Equals(westTile)) Debug.Log("Lit and west are the same!");
 
-        _spreadfire(litTile, northTile, windDirection);
-        _spreadfire(litTile, southTile, windDirection);
-        _spreadfire(litTile, eastTile, windDirection);
-        _spreadfire(litTile, westTile, windDirection);
+        _spreadfire(litTile, northTile, windDirection, index - 18);
+        _spreadfire(litTile, southTile, windDirection, index + 18);
+        _spreadfire(litTile, eastTile, windDirection, index + 1);
+        _spreadfire(litTile, westTile, windDirection, index - 1);
+    }
+
+    void wildfireBehavior() {
+        for(int i = 1; i < allTiles.Length; i++) 
+        {
+            Debug.Log("Checking tile #" + i.ToString());
+            if(allTiles[i].GetComponent<TileScript>().getBurning())
+            {
+                Debug.Log("This tile is on fire!");
+                spreadFire(allTiles[i], "North", i);
+            }
+        }
     }
 
     void pickEvent() {
