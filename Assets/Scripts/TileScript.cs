@@ -72,7 +72,7 @@ public class TileScript : MonoBehaviour
         }
     }
 
-    public bool checkNeighbors()
+    public void  checkNeighbors()
     {
         int fireCount = 0;
         foreach (GameObject tile in neighborTiles)
@@ -83,9 +83,7 @@ public class TileScript : MonoBehaviour
         {
             dryness = 100;
             burning = true;
-            return true;
         }
-        return false;
     }
 
     public GameObject GetNorth()
