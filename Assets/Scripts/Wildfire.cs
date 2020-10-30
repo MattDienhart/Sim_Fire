@@ -41,6 +41,18 @@ public class Wildfire : MonoBehaviour
         }
     }
 
+    public int tileLocation;
+    public int TileLocation 
+    {
+        get
+        {
+            return tileLocation;
+        }
+        set 
+        {
+            tileLocation = value;
+        }
+    }
 
     //Constructor
     public Wildfire()
@@ -58,7 +70,7 @@ public class Wildfire : MonoBehaviour
         //Wait 5 seconds
         //StartCoroutine(waiter(5));
         //Spread fire AI
-        Debug.Log("testing");
+        //Debug.Log("testing");
     }
 
     // Update is called once per frame

@@ -5,10 +5,13 @@ using UnityEngine;
 public class GameManagerBehavior : MonoBehaviour
 {
     private GameObject[] allTiles;
+    private GameObject[] fireStations;
+    private GameObject[] wildFires;
     private string windDirection;
-    private int money;
-    private int happiness;
+    public int money;
+    public int happiness;
     private int fireCrewInstances;
+    private int helicopterInstances;
     private int wildfireInstances;
 
     public GameObject fireCrewPrefab;
@@ -32,6 +35,7 @@ public class GameManagerBehavior : MonoBehaviour
     void Start()
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
+        wildFires =  new GameObject[181];
 
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
@@ -40,11 +44,14 @@ public class GameManagerBehavior : MonoBehaviour
 
         // Instantiate wildfire
         wildfireInstances = 0;
-        lightTile(allTiles[1]);
+        lightTile(allTiles[1], 1);
+        lightTile(allTiles[3], 3);
+        lightTile(allTiles[34], 34);
 
         // Start wildfire behavior
-        allTiles[1].GetComponent<TileScript>().setBurning(true);
-        InvokeRepeating("wildfireBehavior", 5, 5);
+        //allTiles[1].GetComponent<TileScript>().setBurning(true);
+        //InvokeRepeating("wildfireBehavior", 5, 5);
+        InvokeRepeating("pickEvent", 5, 5);
     }
 
     // Update is called once per frame
@@ -64,30 +71,33 @@ public class GameManagerBehavior : MonoBehaviour
         fireCrewInstances ++;
     }
 
-    //Spawn new Wildfire instance from wildfire prefab
-    void lightTile(GameObject spawnLocation)
+    // Spawn new Wildfire instance from wildfire prefab
+    void lightTile(GameObject spawnLocation, int tileIndex)
     {
         GameObject newWildfire = (GameObject)Instantiate(firePrefab);
         newWildfire.transform.position = spawnLocation.transform.position;
         newWildfire.GetComponent<Wildfire>().hitPoints = 100;
-        newWildfire.GetComponent<Wildfire>().windDirection = "North";
-        newWildfire.GetComponent<Wildfire>().windSpeed = 10;
+        //newWildfire.GetComponent<Wildfire>().windDirection = "North";
+        //newWildfire.GetComponent<Wildfire>().windSpeed = 10;
+        spawnLocation.GetComponent<TileScript>().setBurning(true);
+        wildFires[tileIndex] = newWildfire;
+        Debug.Log("Tile " + tileIndex.ToString() + " is on fire!");
         wildfireInstances ++;
     }
 
-
-    void _spreadfire(GameObject litTile, GameObject adjTile, string windDirection, int index) {
-        //Make sure tile exists (litTile might be on edge)
+    void _spreadfire(GameObject litTile, GameObject adjTile, string windDirection, int index) 
+    {
+        // Make sure tile exists (litTile might be on edge)
         if(!GameObject.ReferenceEquals(litTile, adjTile))
         {
             Debug.Log("This adjacent tile exists");
-            //Make sure tile isn't burning
+            // Make sure tile isn't burning
             if(!adjTile.GetComponent<TileScript>().getBurning()) 
             {
                 Debug.Log("And it's not on fire");
                 int chanceToBurn = litTile.GetComponent<TileScript>().getDryness();
 
-                //Check wind direction
+                // Check wind direction
                 if((windDirection == "North") && (GameObject.ReferenceEquals(adjTile, litTile.GetComponent<TileScript>().GetSouth()))) chanceToBurn *= 2;
                 if((windDirection == "South") && (GameObject.ReferenceEquals(adjTile, litTile.GetComponent<TileScript>().GetNorth()))) chanceToBurn *= 2;
                 if((windDirection == "East") && (GameObject.ReferenceEquals(adjTile, litTile.GetComponent<TileScript>().GetWest()))) chanceToBurn *= 2;
@@ -95,7 +105,7 @@ public class GameManagerBehavior : MonoBehaviour
 
                 int multiplier = 0;
 
-                //Check tiles adjacent to north adjacent tile
+                // Check tiles adjacent to north adjacent tile
                 if(adjTile.GetComponent<TileScript>().GetNorth().GetComponent<TileScript>().getBurning()) multiplier++;
                 if(adjTile.GetComponent<TileScript>().GetSouth().GetComponent<TileScript>().getBurning()) multiplier++;
                 if(adjTile.GetComponent<TileScript>().GetEast().GetComponent<TileScript>().getBurning()) multiplier++;
@@ -107,11 +117,9 @@ public class GameManagerBehavior : MonoBehaviour
                 int roll = Random.Range(0, 100);
                 Debug.Log("Dice roll is: " + roll.ToString());
 
-                //Roll die to see if fire spreads
-                if (roll < chanceToBurn) {
-                    adjTile.GetComponent<TileScript>().setBurning(true);
-                    lightTile(adjTile);
-                    Debug.Log("Tile " + index.ToString() + " is lit!");
+                // Roll die to see if fire spreads
+                if (roll < chanceToBurn) {                    
+                    lightTile(adjTile, index);
                 }
             }
         }
@@ -135,10 +143,12 @@ public class GameManagerBehavior : MonoBehaviour
         _spreadfire(litTile, westTile, windDirection, index - 1);
     }
 
-    void wildfireBehavior() {
+    void wildfireBehavior() 
+    {
         for(int i = 1; i < allTiles.Length; i++) 
         {
             Debug.Log("Checking tile #" + i.ToString());
+
             if(allTiles[i].GetComponent<TileScript>().getBurning())
             {
                 Debug.Log("This tile is on fire!");
@@ -147,37 +157,147 @@ public class GameManagerBehavior : MonoBehaviour
         }
     }
 
-    void pickEvent() {
-        int dice = Random.Range(0, 100);
-
-        //Calendar Sale
-        if((dice > 40) && (dice < 55)) {
-
+    void putOutFire(int tileNumber) 
+    {
+        if(allTiles[tileNumber].GetComponent<TileScript>().getBurning()) 
+        {
+            allTiles[tileNumber].GetComponent<TileScript>().setBurning(false);
+            Destroy(wildFires[tileNumber]);
         }
 
-        //Lightning Strikes
-        if((dice > 55) && (dice < 60)) {
+        Debug.Log("Put out fire at tile: " + tileNumber.ToString());
+    }
 
+    void pickEvent() 
+    {
+        //int dice = Random.Range(0, 110);
+        int dice = 105;
+        Debug.Log("Game Event Dice Roll is: " + dice.ToString());
+
+        //Nothing
+        if(dice <= 40) 
+        {
+            // Display alert message
+            Debug.Log("Nothing event triggered!");
         }
 
-        //Career fair
-        if((dice > 60) && (dice < 75)) {
+        // Calendar Sale
+        if((dice > 40) && (dice <= 55)) 
+        {
+            // Add money to player resources
+            money += 1000;
 
+            // Display alert message
+            Debug.Log("Calendar event triggered!");
         }
 
-        //Charitable donation
-        if((dice > 75) && (dice < 80)) {
+        // Lightning Strikes
+        if((dice > 55) && (dice <= 60)) 
+        {
+            int unluckyTile = Random.Range(1,180);
+            
+            // Make sure tile isn't already on fire
+            while(allTiles[unluckyTile].GetComponent<TileScript>().getBurning()) 
+            {
+                unluckyTile++;
+            }
 
+            lightTile(allTiles[unluckyTile], unluckyTile);
+
+            // Display alert message
+            Debug.Log("Lightning event triggered!");
         }
 
-        //Retirement
-        if((dice > 80) && (dice < 90)) {
+        //UNFINISHED
+        // Career fair
+        if((dice > 60) && (dice <= 75)) 
+        {
+            int bonus = Random.Range(1, 3);
+            
+            // Add fire crew
+            fireCrewInstances += bonus;
 
+            for(int i = 0; i < bonus; i++) 
+            {
+                //ADD FIRE CREW AND INSTANTIATE AT FIRESTATION
+                //AddFireCrew(fireStations[Random.Range(0, fireStations.Length)]);
+            }
+
+            // Display alert message
+            Debug.Log("Career fair event triggered!");
+        }
+
+        //UNFINISHED
+        // Charitable donation
+        if((dice > 75) && (dice <= 80)) 
+        {
+            // Add money
+            money += 10000;
+
+            // Add helicopter
+            helicopterInstances++;
+            //INSTANTIATE HELICOPTER HERE
+
+            // Display alert message
+            Debug.Log("Donation event triggered!");
+        }
+
+        //UNFINISHED
+        // Retirement
+        if((dice > 80) && (dice <= 90)) 
+        {
+            int penalty = Random.Range(1, 2);
+
+            // Subtract firecrew instances
+            fireCrewInstances -=  penalty;
+
+            for(int i = 0; i < penalty; i++) 
+            {
+                // DESTROY INSTANCE CODE HERE
+            }
+
+            // Display alert message
+            Debug.Log("Retirement event triggered!");
         }
 
         //Gender reveal party
-        if((dice > 90) && (dice <= 100)) {
+        if((dice > 90) && (dice <= 100)) 
+        {
+            int unluckyTile = Random.Range(1,180);
+            
+            // Make sure tile isn't already on fire
+            while(allTiles[unluckyTile].GetComponent<TileScript>().getBurning())
+            {
+                unluckyTile++;
+            }
 
+            lightTile(allTiles[unluckyTile], unluckyTile);
+
+            // Display alert message
+            Debug.Log("Reveal party event triggered!");
+        }
+
+        //Heavy rain
+        if((dice > 100) && (dice <= 110)) 
+        {
+            List<int> litTileIndex = new List<int>();
+
+            //Grab every lit tile
+            for(int i = 0; i < allTiles.Length; i++)
+            {
+                if(allTiles[i].GetComponent<TileScript>().getBurning())
+                {
+                    litTileIndex.Add(i);
+                }
+            }
+
+            //Put out 3 random fires
+            putOutFire(litTileIndex[Random.Range(0, litTileIndex.Count)]);
+            putOutFire(litTileIndex[Random.Range(0, litTileIndex.Count)]);
+            putOutFire(litTileIndex[Random.Range(0, litTileIndex.Count)]);
+
+            // Display alert message
+            Debug.Log("Heavy rain event triggered!");
         }
     }
 }
