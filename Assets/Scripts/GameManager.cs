@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     private int wildfireInstances;
 
     public GameObject fireCrewPrefab;
+    public GameObject firePrefab;
     
     private GameObject selectedFireCrew;
     
@@ -102,7 +103,7 @@ public class GameManager : MonoBehaviour
             print("This object was selected: Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID);
         }
     }
-}
+    
     // Spawn new Wildfire instance from wildfire prefab
     void lightTile(GameObject spawnLocation, int tileIndex)
     {
