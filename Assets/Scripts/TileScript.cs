@@ -28,7 +28,11 @@ public class TileScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(burning) {
+            GetComponent<SpriteRenderer>().enabled = true;
+        } else {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
     }
 
     public bool getBurning()
@@ -39,6 +43,11 @@ public class TileScript : MonoBehaviour
     public void setBurning(bool change)
     {
         burning = change;
+    }
+
+    public int getDryness()
+    {
+        return dryness;
     }
 
     private void getNeighbors()
@@ -66,7 +75,7 @@ public class TileScript : MonoBehaviour
         }
     }
 
-    private void checkNeighbors()
+    public void  checkNeighbors()
     {
         int fireCount = 0;
         foreach (GameObject tile in neighborTiles)
@@ -104,4 +113,8 @@ public class TileScript : MonoBehaviour
         return this.gameObject;
     }
 
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log("Collided");
+    }
 }
