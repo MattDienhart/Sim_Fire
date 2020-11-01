@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     [Header("HUD")]
     public Text selectedText;
+    public Text notificationText;
+    public Text windDirectionText;
     public Button crewBtn;
     public Button dispatchBtn;
     public Button infoBtn;
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
         wildFires =  new GameObject[181];
+        windDirection = pickWindDirection();
+        windDirectionText.text = "The wind blows: \n" + windDirection;
 
         // Set on click listeners
         crewBtn.onClick.AddListener(() => CrewClicked());
@@ -45,14 +49,13 @@ public class GameManager : MonoBehaviour
 
         // Instantiate wildfire
         wildfireInstances = 0;
-        lightTile(allTiles[1], 1);
-        lightTile(allTiles[3], 3);
-        lightTile(allTiles[34], 34);
+        lightTile(allTiles[29], 29);
+        lightTile(allTiles[138], 138);
+        StartCoroutine(sendNotification("Oh no, there are two wildfires! Put them out!", 3));
 
         // Start wildfire behavior
-        //allTiles[1].GetComponent<TileScript>().setBurning(true);
-        //InvokeRepeating("wildfireBehavior", 5, 5);
-        InvokeRepeating("pickEvent", 5, 5);
+        InvokeRepeating("wildfireBehavior", 10, 10);
+        //InvokeRepeating("pickEvent", 20, 20);
     }
 
     // Update is called once per frame
@@ -110,20 +113,18 @@ public class GameManager : MonoBehaviour
         GameObject newWildfire = (GameObject)Instantiate(firePrefab);
         newWildfire.transform.position = spawnLocation.transform.position;
         newWildfire.GetComponent<Wildfire>().hitPoints = 100;
-        //newWildfire.GetComponent<Wildfire>().windDirection = "North";
-        //newWildfire.GetComponent<Wildfire>().windSpeed = 10;
         spawnLocation.GetComponent<TileScript>().setBurning(true);
         wildFires[tileIndex] = newWildfire;
         Debug.Log("Tile " + tileIndex.ToString() + " is on fire!");
         wildfireInstances ++;
     }
 
-    void _spreadfire(GameObject litTile, GameObject adjTile, string windDirection, int index) 
+    void _spreadfire(GameObject litTile, GameObject adjTile, string windDirection, int index, string adjDirection) 
     {
         // Make sure tile exists (litTile might be on edge)
         if(!GameObject.ReferenceEquals(litTile, adjTile))
         {
-            Debug.Log("This adjacent tile exists");
+            Debug.Log("The " + adjDirection + " adjacent tile exists");
             // Make sure tile isn't burning
             if(!adjTile.GetComponent<TileScript>().getBurning()) 
             {
@@ -165,19 +166,44 @@ public class GameManager : MonoBehaviour
         GameObject southTile = litTile.GetComponent<TileScript>().GetSouth();
         GameObject eastTile = litTile.GetComponent<TileScript>().GetEast();
         GameObject westTile = litTile.GetComponent<TileScript>().GetWest();
-        if(litTile.Equals(northTile)) Debug.Log("Lit and north are the same!");
-        if(litTile.Equals(southTile)) Debug.Log("Lit and south are the same!");
-        if(litTile.Equals(eastTile)) Debug.Log("Lit and east are the same!");
-        if(litTile.Equals(westTile)) Debug.Log("Lit and west are the same!");
-
-        _spreadfire(litTile, northTile, windDirection, index - 18);
-        _spreadfire(litTile, southTile, windDirection, index + 18);
-        _spreadfire(litTile, eastTile, windDirection, index + 1);
-        _spreadfire(litTile, westTile, windDirection, index - 1);
+        if(litTile.Equals(northTile))
+        {
+            Debug.Log("Lit and north are the same!");
+        } 
+        else 
+        {
+            _spreadfire(litTile, northTile, windDirection, index - 18, "North");
+        }
+        if(litTile.Equals(southTile)) 
+        {
+            Debug.Log("Lit and south are the same!");
+        }
+        else
+        {
+            _spreadfire(litTile, southTile, windDirection, index + 18, "South");
+        }
+        if(litTile.Equals(eastTile)) 
+        {
+            Debug.Log("Lit and east are the same!");
+        }
+        else
+        {
+            _spreadfire(litTile, eastTile, windDirection, index + 1, "East");
+        }
+        if(litTile.Equals(westTile)) 
+        {
+            Debug.Log("Lit and west are the same!");
+        }
+        else 
+        {
+            _spreadfire(litTile, westTile, windDirection, index - 1, "West");
+        }    
     }
 
     void wildfireBehavior() 
     {
+        StartCoroutine(sendNotification("The fire is spreading!", 2));
+
         for(int i = 1; i < allTiles.Length; i++) 
         {
             Debug.Log("Checking tile #" + i.ToString());
@@ -185,7 +211,7 @@ public class GameManager : MonoBehaviour
             if(allTiles[i].GetComponent<TileScript>().getBurning())
             {
                 Debug.Log("This tile is on fire!");
-                spreadFire(allTiles[i], "North", i);
+                spreadFire(allTiles[i], windDirection, i);
             }
         }
     }
@@ -199,12 +225,13 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("Put out fire at tile: " + tileNumber.ToString());
+        StartCoroutine(sendNotification("Fire has been put out! HUZZAH!", 2));
     }
 
     void pickEvent() 
     {
-        //int dice = Random.Range(0, 110);
-        int dice = 105;
+        int dice = Random.Range(0, 110);
+        //int dice = 105;
         Debug.Log("Game Event Dice Roll is: " + dice.ToString());
 
         //Nothing
@@ -221,6 +248,7 @@ public class GameManager : MonoBehaviour
             money += 1000;
 
             // Display alert message
+            StartCoroutine(sendNotification("The calendar sale was a success! You've added $1000!", 3));
             Debug.Log("Calendar event triggered!");
         }
 
@@ -238,6 +266,7 @@ public class GameManager : MonoBehaviour
             lightTile(allTiles[unluckyTile], unluckyTile);
 
             // Display alert message
+            StartCoroutine(sendNotification("Oh no! Lightning struck and a wildfire started! Put it out!", 3));
             Debug.Log("Lightning event triggered!");
         }
 
@@ -256,7 +285,10 @@ public class GameManager : MonoBehaviour
                 //AddFireCrew(fireStations[Random.Range(0, fireStations.Length)]);
             }
 
+            string alert = "The career fair worked, we've added " + bonus.ToString() + " recruits!";
+
             // Display alert message
+            StartCoroutine(sendNotification(alert, 3));
             Debug.Log("Career fair event triggered!");
         }
 
@@ -272,6 +304,7 @@ public class GameManager : MonoBehaviour
             //INSTANTIATE HELICOPTER HERE
 
             // Display alert message
+            StartCoroutine(sendNotification("Generous donor alert! $10,000 added as well as your very own helicopter!", 3));
             Debug.Log("Donation event triggered!");
         }
 
@@ -289,7 +322,10 @@ public class GameManager : MonoBehaviour
                 // DESTROY INSTANCE CODE HERE
             }
 
+            string alert = "It looks like " + penalty.ToString() + " of our own are retiring, they've put in their time. Well deserved!";
+
             // Display alert message
+            StartCoroutine(sendNotification(alert, 3));
             Debug.Log("Retirement event triggered!");
         }
 
@@ -307,6 +343,7 @@ public class GameManager : MonoBehaviour
             lightTile(allTiles[unluckyTile], unluckyTile);
 
             // Display alert message
+            StartCoroutine(sendNotification("A new wildfire has appeared! It looks like some nearby fireworks may be the cause.", 3));
             Debug.Log("Reveal party event triggered!");
         }
 
@@ -330,7 +367,34 @@ public class GameManager : MonoBehaviour
             putOutFire(litTileIndex[Random.Range(0, litTileIndex.Count)]);
 
             // Display alert message
+            StartCoroutine(sendNotification("Sweet rain! It's putting out a few fires!", 3));
             Debug.Log("Heavy rain event triggered!");
         }
+    }
+
+    IEnumerator sendNotification(string text, int time)
+    {
+        notificationText.text = text;
+        yield return new WaitForSeconds(time);
+        notificationText.text = "";
+    }
+
+    string pickWindDirection() 
+    {
+        switch ((int)Random.Range(1, 4)) {
+            case 1:
+                return "North";
+
+            case 2:
+                return "South";
+
+            case 3:
+                return "East";
+
+            case 4:
+                return "West";
+        }
+
+        return "East";
     }
 }
