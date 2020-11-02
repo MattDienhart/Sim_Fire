@@ -66,14 +66,14 @@ public class TileScript : MonoBehaviour
             eastTile = GameObject.Find("Tile (" + (tileNum + 1) + ")");
             neighborTiles.Add(eastTile);
         }
-        if (tileNum - 10 > 0)
+        if (tileNum - 18 > 0)
         {
-            southTile = GameObject.Find("Tile (" + (tileNum - 10) + ")");
+            southTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
             neighborTiles.Add(southTile);
         }
-        if (tileNum + 10 < 180)
+        if (tileNum + 18 < 180)
         {
-            northTile = GameObject.Find("Tile (" + (tileNum + 10) + ")");
+            northTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
             neighborTiles.Add(northTile);
         }
     }
