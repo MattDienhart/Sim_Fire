@@ -102,6 +102,7 @@ public class FireCrew : MonoBehaviour
     {
         Vector3 currentTilePosition = currentTile.transform.position;
         Vector3 destPosition = destinationTile.transform.position;
+        bool destUnreachable= false;
 
         //print("Attempting to move to the destination");
         // Choose the next tile to move to, if we haven't already
@@ -142,14 +143,30 @@ public class FireCrew : MonoBehaviour
                 // update the minimum distance
                 if (distance < minDistance)
                 {
-                    minDistance = distance;
-                    minDistanceIndex = j;
+                    if (adjacentTiles[j].GetComponent<TileScript>().getBurning() == false)
+                    {
+                        minDistance = distance;
+                        minDistanceIndex = j;
+                    }
+                    else if (adjacentTiles[j].GetComponent<TileScript>().getBurning() == true && adjacentTiles[j] == destinationTile)
+                    {
+                        destUnreachable = true;
+                    }
                 }
             }
 
             // the next tile is the one with the shortest distance to the destination
-            nextTile = adjacentTiles[minDistanceIndex];
-            lastWaypointTime = Time.time;
+            if (!destUnreachable)
+            {
+                nextTile = adjacentTiles[minDistanceIndex];
+                lastWaypointTime = Time.time;
+            }
+            else
+            {
+                // can't reach destination tile, so stop here
+                nextTile = null;
+                destinationTile = currentTile;
+            }
         }
         else if (gameObject.transform.position.Equals(nextTile.transform.position))
         {
