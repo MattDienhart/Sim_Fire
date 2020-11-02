@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private GameObject[] allTiles;
-    private GameObject[] fireStations;
+    private GameObject[] fireHouses;
     private GameObject[] wildFires;
     List<int> litTiles = new List<int>();
     private string windDirection;
@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     
 
     [Header("HUD")]
+    public Text moneyText;
     public Text selectedText;
     public Text notificationText;
     public Text windDirectionText;
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
+        fireHouses = GameObject.FindGameObjectsWithTag("Firehouse");
         wildFires =  new GameObject[181];
         windDirection = pickWindDirection();
         difficulty = 2;
@@ -63,9 +65,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(sendNotification("Oh no, there are two wildfires! Put them out!", 3));
 
         // Start wildfire behavior
-        //allTiles[1].GetComponent<TileScript>().setBurning(true);
-        InvokeRepeating("wildfireBehavior", 10, 10);
-        //InvokeRepeating("pickEvent", 5, 5);
+        // InvokeRepeating("wildfireBehavior", 10, 40);
+        // InvokeRepeating("pickEvent", 60, 120);
+        InvokeRepeating("pickEvent", 5, 10);
 
         DestSelectModeOn = false;
     }
@@ -73,7 +75,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        moneyText.text = "$" + money.ToString();
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab
@@ -275,7 +277,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void putOutFire(int tileNumber) 
+    IEnumerator putOutFire(int tileNumber) 
     {
         if(allTiles[tileNumber].GetComponent<TileScript>().getBurning()) 
         {
@@ -287,12 +289,12 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Put out fire at tile: " + tileNumber.ToString());
         StartCoroutine(sendNotification("Fire has been put out! HUZZAH!", 2));
+        yield return null;
     }
 
     void pickEvent() 
     {
         int dice = UnityEngine.Random.Range(0, 110);
-        //int dice = 105;
         Debug.Log("Game Event Dice Roll is: " + dice.ToString());
 
         //Nothing
@@ -324,14 +326,16 @@ public class GameManager : MonoBehaviour
                 unluckyTile++;
             }
 
-            lightTile(allTiles[unluckyTile], unluckyTile);
+            StartCoroutine(lightTile(allTiles[unluckyTile], unluckyTile));
 
             // Display alert message
             StartCoroutine(sendNotification("Oh no! Lightning struck and a wildfire started! Put it out!", 3));
             Debug.Log("Lightning event triggered!");
+            Debug.Log("Unlucky tile:" + unluckyTile.ToString());
         }
 
-        //UNFINISHED
+        // NEEDS TO INSTANTIATE AT FIREHOUSE LOCATION
+        // FOR NOW INSTANTIATES AT TILE 40
         // Career fair
         if((dice > 60) && (dice <= 75)) 
         {
@@ -343,7 +347,7 @@ public class GameManager : MonoBehaviour
             for(int i = 0; i < bonus; i++) 
             {
                 //ADD FIRE CREW AND INSTANTIATE AT FIRESTATION
-                //AddFireCrew(fireStations[Random.Range(0, fireStations.Length)]);
+                AddFireCrew(allTiles[40]);
             }
 
             string alert = "The career fair worked, we've added " + bonus.ToString() + " recruits!";
@@ -353,7 +357,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Career fair event triggered!");
         }
 
-        //UNFINISHED
+        // NEEDS HELICOPTER IMPLEMENTATION
         // Charitable donation
         if((dice > 75) && (dice <= 80)) 
         {
@@ -401,7 +405,7 @@ public class GameManager : MonoBehaviour
                 unluckyTile++;
             }
 
-            lightTile(allTiles[unluckyTile], unluckyTile);
+            StartCoroutine(lightTile(allTiles[unluckyTile], unluckyTile));
 
             // Display alert message
             StartCoroutine(sendNotification("A new wildfire has appeared! It looks like some nearby fireworks may be the cause.", 3));
@@ -423,9 +427,15 @@ public class GameManager : MonoBehaviour
             }
 
             //Put out 3 random fires
-            putOutFire(litTileIndex[UnityEngine.Random.Range(0, litTileIndex.Count)]);
-            putOutFire(litTileIndex[UnityEngine.Random.Range(0, litTileIndex.Count)]);
-            putOutFire(litTileIndex[UnityEngine.Random.Range(0, litTileIndex.Count)]);
+            for(int i = 0 ; i < 3; i++) 
+            {
+                if(litTileIndex.Count > 0) 
+                {
+                    int index = UnityEngine.Random.Range(0, litTileIndex.Count);
+                    StartCoroutine(putOutFire(litTileIndex[index]));
+                    litTileIndex.RemoveAt(index);
+                }
+            }
 
             // Display alert message
             StartCoroutine(sendNotification("Sweet rain! It's putting out a few fires!", 3));

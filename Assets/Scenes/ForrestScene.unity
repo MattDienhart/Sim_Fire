@@ -1957,6 +1957,7 @@ MonoBehaviour:
   fireCrewPrefab: {fileID: 4678436223149907044, guid: 1a7d9194cba214c9eadc4657b5eeab9b, type: 3}
   firePrefab: {fileID: 7157456362132186166, guid: 35ccd44ebee0b914987a004a96f8a00a, type: 3}
   DestSelectModeOn: 0
+  moneyText: {fileID: 1340784735}
   selectedText: {fileID: 126623093}
   notificationText: {fileID: 2104944113}
   windDirectionText: {fileID: 837655549}
@@ -16055,7 +16056,7 @@ GameObject:
   - component: {fileID: 992586003}
   m_Layer: 0
   m_Name: Firehouse
-  m_TagString: Untagged
+  m_TagString: Firehouse
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19498,7 +19499,7 @@ GameObject:
   - component: {fileID: 1340784736}
   - component: {fileID: 1340784735}
   m_Layer: 5
-  m_Name: TopLeftText
+  m_Name: MoneyBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19556,7 +19557,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: $28,174
+  m_Text: 
 --- !u!222 &1340784736
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33124,7 +33125,7 @@ GameObject:
   - component: {fileID: 2023518459}
   - component: {fileID: 2023518458}
   m_Layer: 5
-  m_Name: LeftTextbox
+  m_Name: MoneyBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35511,7 +35512,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7244ac6f06cc7a3428740923462aea92, type: 3}
-    m_FontSize: 30
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -35519,7 +35520,7 @@ MonoBehaviour:
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 
