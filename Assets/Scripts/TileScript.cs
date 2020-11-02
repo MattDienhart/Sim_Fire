@@ -10,11 +10,12 @@ public class TileScript : MonoBehaviour
     private bool burning = false;
     public Sprite[] sprites;
     List<GameObject> neighborTiles = new List<GameObject>();
-    private GameObject northTile;
-    private GameObject southTile;
-    private GameObject eastTile;
-    private GameObject westTile;
+    public GameObject northTile;
+    public GameObject southTile;
+    public GameObject eastTile;
+    public GameObject westTile;
 
+    private GameManager gameManager;
 
     private string terrian; // tile dependant? forest, hill, water, grass, road
     // private int elevation = 0; Maybe a feature for later
@@ -22,6 +23,7 @@ public class TileScript : MonoBehaviour
     void Start()
     {
         GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         getNeighbors();
     }
 
@@ -60,17 +62,17 @@ public class TileScript : MonoBehaviour
         }
         if (tileNum + 1 < 180)
         {
-            eastTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
+            eastTile = GameObject.Find("Tile (" + (tileNum + 1) + ")");
             neighborTiles.Add(eastTile);
         }
         if (tileNum - 10 > 0)
         {
-            southTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
+            southTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
             neighborTiles.Add(southTile);
         }
         if (tileNum + 10 < 180)
         {
-            northTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
+            northTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
             neighborTiles.Add(northTile);
         }
     }
@@ -91,30 +93,69 @@ public class TileScript : MonoBehaviour
 
     public GameObject GetNorth()
     {
-        if(northTile) return northTile;
-        return this.gameObject;
+        if(neighborTiles.Contains(northTile)) 
+        {
+            return northTile;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public GameObject GetSouth()
     {
-        if (northTile) return southTile;
-        return this.gameObject;
+        if(neighborTiles.Contains(southTile)) 
+        {
+            return southTile;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public GameObject GetEast()
     {
-        if (northTile) return eastTile;
-        return this.gameObject;
+        if(neighborTiles.Contains(eastTile)) 
+        {
+            return eastTile;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public GameObject GetWest()
     {
-        if (northTile) return westTile;
-        return this.gameObject;
+        if(neighborTiles.Contains(westTile)) 
+        {
+            return westTile;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log("Collided");
+    }
+
+    // Handle the selection of this object
+    void OnMouseUp()
+    {
+        // If we are not in destination select mode, deselect all fire crews
+        if(gameManager.DestSelectModeOn == false)
+        {
+            gameManager.SelectedFireCrew = null;
+            gameManager.SelectedTile = null;
+        }
+        else if (gameManager.DestSelectModeOn == true && gameManager.SelectedFireCrew != null)
+        {
+            gameManager.SelectedTile = gameObject;
+        }
     }
 }

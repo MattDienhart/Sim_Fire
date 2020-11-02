@@ -1954,11 +1954,12 @@ MonoBehaviour:
   money: 100
   happiness: 0
   fireCrewPrefab: {fileID: 4678436223149907044, guid: 1a7d9194cba214c9eadc4657b5eeab9b, type: 3}
+  firePrefab: {fileID: 7157456362132186166, guid: 35ccd44ebee0b914987a004a96f8a00a, type: 3}
+  DestSelectModeOn: 0
   selectedText: {fileID: 126623093}
   crewBtn: {fileID: 1995107800}
   dispatchBtn: {fileID: 1068395163}
   infoBtn: {fileID: 1304942007}
-  firePrefab: {fileID: 7157456362132186166, guid: 35ccd44ebee0b914987a004a96f8a00a, type: 3}
 --- !u!4 &152921759
 Transform:
   m_ObjectHideFlags: 0
@@ -29230,7 +29231,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 57.399963, y: -57.899994}
+  m_AnchoredPosition: {x: 57.40039, y: -57.899902}
   m_SizeDelta: {x: 135.32262, y: 34.155895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1756468490

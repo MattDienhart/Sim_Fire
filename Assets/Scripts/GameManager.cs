@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     public GameObject firePrefab;
     
     private GameObject selectedFireCrew;
+    private GameObject selectedTile;
+
+    public bool DestSelectModeOn;
     
 
     [Header("HUD")]
@@ -53,6 +56,8 @@ public class GameManager : MonoBehaviour
         //allTiles[1].GetComponent<TileScript>().setBurning(true);
         //InvokeRepeating("wildfireBehavior", 5, 5);
         InvokeRepeating("pickEvent", 5, 5);
+
+        DestSelectModeOn = false;
     }
 
     // Update is called once per frame
@@ -69,6 +74,7 @@ public class GameManager : MonoBehaviour
         newFireCrew.GetComponent<FireCrew>().CrewID = fireCrewInstances + 1;
         newFireCrew.GetComponent<FireCrew>().waterLevel = 100;
         newFireCrew.GetComponent<FireCrew>().energyLevel = 100;
+        newFireCrew.GetComponent<FireCrew>().currentTile = spawnLocation;
         fireCrewInstances ++;
     }
 
@@ -81,7 +87,19 @@ public class GameManager : MonoBehaviour
     void DispatchClicked()
     {
         Debug.Log("Dispatch button has been clicked.");
-        selectedText.text = "Dispatch";
+
+        // Toggle between destination select mode OFF and ON
+        // Must have selected a fire crew before trying to dispatch
+        if (!DestSelectModeOn && SelectedFireCrew != null)
+        {
+            DestSelectModeOn = true;
+            selectedText.text = "Dispatch";
+        }
+        else
+        {
+            DestSelectModeOn = false;
+            selectedText.text = "";
+        }
     }
 
     void InfoClicked()
@@ -99,8 +117,27 @@ public class GameManager : MonoBehaviour
         set
         {
             selectedFireCrew = value;
-            selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
-            print("This object was selected: Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID);
+            if (selectedFireCrew != null)
+            {
+                selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
+                print("This object was selected: Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID);
+            }
+        }
+    }
+
+    public GameObject SelectedTile
+    {
+        get 
+        {
+            return selectedTile;
+        }
+        set 
+        {
+            selectedTile = value;
+            if (selectedTile != null)
+            {
+                print("This tile was selected: " + selectedTile.GetInstanceID());
+            }
         }
     }
     
