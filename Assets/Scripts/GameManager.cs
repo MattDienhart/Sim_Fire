@@ -65,9 +65,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(sendNotification("Oh no, there are two wildfires! Put them out!", 3));
 
         // Start wildfire behavior
-        // InvokeRepeating("wildfireBehavior", 10, 40);
-        // InvokeRepeating("pickEvent", 60, 120);
-        InvokeRepeating("pickEvent", 5, 10);
+        InvokeRepeating("wildfireBehavior", 10, 40);
+        InvokeRepeating("pickEvent", 60, 120);
 
         DestSelectModeOn = false;
     }
