@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,9 +24,12 @@ public class GameManager : MonoBehaviour
 
     [Header("HUD")]
     public Text selectedText;
+    public Text happinessText;
+    public Text moneyText;
     public Button crewBtn;
     public Button dispatchBtn;
     public Button infoBtn;
+    
 
 
     // Start is called before the first frame update
@@ -48,7 +52,7 @@ public class GameManager : MonoBehaviour
         lightTile(allTiles[1], 1);
         lightTile(allTiles[3], 3);
         lightTile(allTiles[34], 34);
-
+        Debug.Log("here: " + System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")));
         // Start wildfire behavior
         //allTiles[1].GetComponent<TileScript>().setBurning(true);
         //InvokeRepeating("wildfireBehavior", 5, 5);
@@ -58,7 +62,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (happiness != System.Convert.ToInt32(happinessText.text)) { }
+            happinessText.text = happiness.ToString();
+        if (money !=  System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")))
+        {
+            moneyText.text = "$" + money.ToString();
+        }   
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab
@@ -194,7 +203,7 @@ public class GameManager : MonoBehaviour
     {
         if(allTiles[tileNumber].GetComponent<TileScript>().getBurning()) 
         {
-            allTiles[tileNumber].GetComponent<TileScript>().setBurning(false);
+           // allTiles[tileNumber].GetComponent<TileScript>().setBurning(false);
             Destroy(wildFires[tileNumber]);
         }
 

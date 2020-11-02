@@ -7,13 +7,16 @@ public class TileScript : MonoBehaviour
 {
     private int dryness = 50;
     private int amountBurned = 0;
-    private bool burning = false;
-    public Sprite[] sprites;
+    public bool burning = false;
+    public Sprite sprite;
+    public string type = "terrain tile";
     List<GameObject> neighborTiles = new List<GameObject>();
     private GameObject northTile;
     private GameObject southTile;
     private GameObject eastTile;
     private GameObject westTile;
+
+    public string color = "red";
 
 
     private string terrian; // tile dependant? forest, hill, water, grass, road
@@ -21,7 +24,7 @@ public class TileScript : MonoBehaviour
 
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+//        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
         getNeighbors();
     }
 
@@ -60,17 +63,17 @@ public class TileScript : MonoBehaviour
         }
         if (tileNum + 1 < 180)
         {
-            eastTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
+            eastTile = GameObject.Find("Tile (" + (tileNum + 1) + ")");
             neighborTiles.Add(eastTile);
         }
         if (tileNum - 10 > 0)
         {
-            southTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
+            southTile = GameObject.Find("Tile (" + (tileNum - 10) + ")");
             neighborTiles.Add(southTile);
         }
         if (tileNum + 10 < 180)
         {
-            northTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
+            northTile = GameObject.Find("Tile (" + (tileNum + 10) + ")");
             neighborTiles.Add(northTile);
         }
     }
@@ -117,4 +120,10 @@ public class TileScript : MonoBehaviour
     {
         Debug.Log("Collided");
     }
+
+    public int getAmountBurned()
+    {
+        return amountBurned;
+    }
+
 }
