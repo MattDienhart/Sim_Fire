@@ -92,16 +92,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7681646436556870137}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 48ca4a5a0078bc845a2cc1c24e1d14c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 8c2ffcb64e62b20448de65669333aa27, type: 3}
-  - {fileID: 21300000, guid: a5845122d91d26d419c877d012e15439, type: 3}
-  - {fileID: 21300000, guid: ae0b7bd4503db2c469a0161ad4f9ce6f, type: 3}
-  - {fileID: 21300000, guid: ce1550e070bffbe40a9be4219a5023ce, type: 3}
+  burning: 0
+  sprite: {fileID: 0}
+  type: terrain tile
+  color: red
 --- !u!95 &3191324734975517481
 Animator:
   serializedVersion: 3

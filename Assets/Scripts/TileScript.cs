@@ -7,14 +7,16 @@ public class TileScript : MonoBehaviour
 {
     private int dryness = 50;
     private int amountBurned = 0;
-    private bool burning = false;
-    public Sprite[] sprites;
+    public bool burning = false;
+    public Sprite sprite;
+    public string type = "terrain tile";
     List<GameObject> neighborTiles = new List<GameObject>();
     public GameObject northTile;
     public GameObject southTile;
     public GameObject eastTile;
     public GameObject westTile;
 
+    public string color = "red";
     private GameManager gameManager;
 
     private string terrian; // tile dependant? forest, hill, water, grass, road
@@ -22,8 +24,11 @@ public class TileScript : MonoBehaviour
 
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+
+//        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         getNeighbors();
     }
 
@@ -65,14 +70,22 @@ public class TileScript : MonoBehaviour
             eastTile = GameObject.Find("Tile (" + (tileNum + 1) + ")");
             neighborTiles.Add(eastTile);
         }
-        if (tileNum - 10 > 0)
+        if (tileNum - 18 > 0)
         {
+
+            southTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
+
             southTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
+
             neighborTiles.Add(southTile);
         }
-        if (tileNum + 10 < 180)
+        if (tileNum + 18 < 180)
         {
+
+            northTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
+
             northTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
+
             neighborTiles.Add(northTile);
         }
     }
@@ -144,6 +157,13 @@ public class TileScript : MonoBehaviour
         Debug.Log("Collided");
     }
 
+
+    public int getAmountBurned()
+    {
+        return amountBurned;
+    }
+
+
     // Handle the selection of this object
     void OnMouseUp()
     {
@@ -159,4 +179,5 @@ public class TileScript : MonoBehaviour
             gameManager.SelectedTile = gameObject;
         }
     }
+
 }
