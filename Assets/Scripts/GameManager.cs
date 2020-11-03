@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     private GameObject selectedTile;
 
     public bool DestSelectModeOn;
+    public bool TargetSelectModeOn;
     
 
     [Header("HUD")]
@@ -43,7 +44,6 @@ public class GameManager : MonoBehaviour
     public Button dispatchBtn;
     public Button infoBtn;
     
-
 
     // Start is called before the first frame update
     void Start()
@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("pickEvent", 60, 120);
 
         DestSelectModeOn = false;
+        TargetSelectModeOn = false;
     }
 
     // Update is called once per frame
@@ -114,7 +115,20 @@ public class GameManager : MonoBehaviour
     void CrewClicked()
     {
         Debug.Log("Crew button has been clicked.");
-        selectedText.text = "Crew";
+        
+        // Toggle between target select mode OFF and ON
+        // Must have selected a fire crew before trying to spray water
+        if (!TargetSelectModeOn && SelectedFireCrew != null)
+        {
+            TargetSelectModeOn = true;
+            DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
+            selectedText.text = "Extinguish";
+        }
+        else
+        {
+            TargetSelectModeOn = false;
+            selectedText.text = "";
+        }
     }
 
     void DispatchClicked()
@@ -126,6 +140,7 @@ public class GameManager : MonoBehaviour
         if (!DestSelectModeOn && SelectedFireCrew != null)
         {
             DestSelectModeOn = true;
+            TargetSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Dispatch";
         }
         else
