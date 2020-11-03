@@ -33,13 +33,12 @@ public class GameManager : MonoBehaviour
     [Header("HUD")]
     public Text moneyText;
     public Text selectedText;
-<<<<<<< HEAD
+
     public Text happinessText;
-    public Text moneyText;
-=======
+
     public Text notificationText;
     public Text windDirectionText;
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
+
     public Button crewBtn;
     public Button dispatchBtn;
     public Button infoBtn;
@@ -67,17 +66,17 @@ public class GameManager : MonoBehaviour
 
         // Instantiate wildfire
         wildfireInstances = 0;
-<<<<<<< HEAD
+
         lightTile(allTiles[1], 1);
         lightTile(allTiles[3], 3);
         lightTile(allTiles[34], 34);
         Debug.Log("here: " + System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")));
-=======
+
         StartCoroutine(lightTile(allTiles[29], 29));
         StartCoroutine(lightTile(allTiles[138], 138));
         StartCoroutine(sendNotification("Oh no, there are two wildfires! Put them out!", 3));
 
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
+
         // Start wildfire behavior
         InvokeRepeating("wildfireBehavior", 10, 40);
         InvokeRepeating("pickEvent", 60, 120);
@@ -88,16 +87,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
+
         if (happiness != System.Convert.ToInt32(happinessText.text)) { }
             happinessText.text = happiness.ToString();
         if (money !=  System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")))
         {
             moneyText.text = "$" + money.ToString();
         }   
-=======
+
         moneyText.text = "$" + money.ToString();
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
+
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab

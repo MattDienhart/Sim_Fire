@@ -16,24 +16,19 @@ public class TileScript : MonoBehaviour
     public GameObject eastTile;
     public GameObject westTile;
 
-<<<<<<< HEAD
     public string color = "red";
-
-=======
     private GameManager gameManager;
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
 
     private string terrian; // tile dependant? forest, hill, water, grass, road
     // private int elevation = 0; Maybe a feature for later
 
     void Start()
     {
-<<<<<<< HEAD
+
 //        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
-=======
-        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
+
         getNeighbors();
     }
 
@@ -77,20 +72,20 @@ public class TileScript : MonoBehaviour
         }
         if (tileNum - 18 > 0)
         {
-<<<<<<< HEAD
+
             southTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
-=======
+
             southTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
+
             neighborTiles.Add(southTile);
         }
         if (tileNum + 18 < 180)
         {
-<<<<<<< HEAD
+
             northTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
-=======
+
             northTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
+
             neighborTiles.Add(northTile);
         }
     }
@@ -162,13 +157,13 @@ public class TileScript : MonoBehaviour
         Debug.Log("Collided");
     }
 
-<<<<<<< HEAD
+
     public int getAmountBurned()
     {
         return amountBurned;
     }
 
-=======
+
     // Handle the selection of this object
     void OnMouseUp()
     {
@@ -183,5 +178,5 @@ public class TileScript : MonoBehaviour
             gameManager.SelectedTile = gameObject;
         }
     }
->>>>>>> 776b0976db7b3b58db827f9891a131ae477a3c9e
+
 }
