@@ -15,6 +15,7 @@ public class FireCrew : MonoBehaviour
     private SpriteRenderer crewSpriteRenderer;
 
     private WaterBar waterBar;
+    private int totalWaterSprayed;
     private EnergyBar energyBar;
 
     private int crewID;
@@ -34,6 +35,8 @@ public class FireCrew : MonoBehaviour
     public GameObject destinationTile;
     public GameObject nextTile;
     public GameObject DestinationMarker;
+    public GameObject targetTile;
+    public GameObject TargetMarker;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,7 @@ public class FireCrew : MonoBehaviour
         waterBar = gameObject.GetComponentInChildren<WaterBar>();
         energyBar = gameObject.GetComponentInChildren<EnergyBar>();
         DestinationMarker.SetActive(false);
+        TargetMarker.SetActive(false);
         destinationTile = null;
         nextTile = null;
     }
@@ -50,21 +54,47 @@ public class FireCrew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // disable the box collider for the currently occupied tile to avoid "OnMouseUp" interference
+        currentTile.GetComponent<Collider2D>().enabled = false;
+
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedFireCrew != gameObject)
         {
             crewSpriteRenderer.sprite = unselected;
             DestinationMarker.SetActive(false);
+            TargetMarker.SetActive(false);
         }
 
         // If a destination has been chosen for this crew, update the variable
-        if (gameManager.SelectedFireCrew == gameObject && gameManager.SelectedTile != null)
+        if (gameManager.SelectedFireCrew == gameObject && gameManager.SelectedTile != null && gameManager.DestSelectModeOn == true)
         {
             destinationTile = gameManager.SelectedTile;
             DestinationMarker.SetActive(true);
-            DestinationMarker.transform.position = gameManager.SelectedTile.transform.position;
+            DestinationMarker.transform.position = destinationTile.transform.position;
             gameManager.SelectedTile = null;
             gameManager.DestSelectModeOn = false;
+        }
+
+        // If a target has been chosen for the crew to spray water on, update the variable
+        if (gameManager.SelectedFireCrew == gameObject && gameManager.SelectedTile != null && gameManager.TargetSelectModeOn == true)
+        {
+            // We can only mark a tile as a target if it is currently on fire and it is adjacent to this fire crew
+            // We also cannot mark a tile as a target if the fire crew is still moving
+            if ((gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetNorth() ||
+                gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetEast() ||
+                gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetSouth() ||
+                gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetWest()) &&
+                destinationTile == null && gameManager.SelectedTile.GetComponent<TileScript>().getBurning() == true)
+            {
+                targetTile = gameManager.SelectedTile;
+                TargetMarker.SetActive(true);
+                TargetMarker.transform.position = targetTile.transform.position;
+                totalWaterSprayed = 0;
+            }
+
+            // reset the selection parameters
+            gameManager.SelectedTile = null;
+            gameManager.TargetSelectModeOn = false;
         }
 
         // update status bars for energy and water
@@ -81,6 +111,18 @@ public class FireCrew : MonoBehaviour
             StopCoroutine("MoveToDest");
             destinationTile = null;
             DestinationMarker.SetActive(false);
+        }
+
+        // spray water on the target tile until the fire is extinguished
+        if (targetTile != null && destinationTile == null)
+        {
+            StartCoroutine("SprayWater");
+        }
+        else
+        {
+            StopCoroutine("SprayWater");
+            TargetMarker.SetActive(false);
+            totalWaterSprayed = 0;
         }
     }
 
@@ -171,6 +213,7 @@ public class FireCrew : MonoBehaviour
         else if (gameObject.transform.position.Equals(nextTile.transform.position))
         {
             // we have arrived at the next tile
+            currentTile.GetComponent<Collider2D>().enabled = true;
             currentTile = nextTile;
             nextTile = null;
         }
@@ -198,6 +241,28 @@ public class FireCrew : MonoBehaviour
         }
 
         yield return null;
+    }
+
+    // Handle spraying water on the fire
+    IEnumerator SprayWater()
+    {
+        if (targetTile.GetComponent<TileScript>().getBurning() == true && waterLevel >= 1)
+        {
+            waterLevel -= 1;
+            totalWaterSprayed += 1;
+        }
+        else
+        {
+            targetTile = null;
+        }
+
+        if (totalWaterSprayed >= 10)
+        {
+            //gameManager.GetComponent<GameManager>().putOutFire(targetTile);
+            targetTile = null;
+        }
+
+        yield return new WaitForSeconds(1.0f);
     }
 
 
