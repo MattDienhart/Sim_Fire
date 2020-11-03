@@ -2692,7 +2692,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6c8a9ad0aefe34f9cf8c9f0bcde8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 0}
+  startBtn: {fileID: 0}
   fires: []
 --- !u!1 &923637630
 GameObject:
@@ -2825,7 +2825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6c8a9ad0aefe34f9cf8c9f0bcde8c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startButton: {fileID: 1905685906}
+  startBtn: {fileID: 1905685906}
   fires:
   - {fileID: 1335516576}
   - {fileID: 1437640488}

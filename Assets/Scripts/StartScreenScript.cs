@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 public class StartScreenScript : MonoBehaviour
 {
-    public Button startButton;
+    public Button startBtn;
     public GameObject[] fires;
 
     void Start()
     {
-        startButton.onClick.AddListener(() => StartClicked());
+        startBtn.onClick.AddListener(() => StartClicked());
     }
 
     void StartClicked()
