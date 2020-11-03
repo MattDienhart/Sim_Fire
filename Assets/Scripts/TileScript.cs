@@ -3,24 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-public class TileScript : MonoBehaviour
+public abstract class TileScript : MonoBehaviour
 {
-    private int dryness = 50;
+    protected int dryness;
+    protected int speed;
     private int amountBurned = 0;
     public bool burning = false;
     public Sprite sprite;
-    public string type = "terrain tile";
+    public string terrian = "terrain tile";
+
     List<GameObject> neighborTiles = new List<GameObject>();
     private GameObject northTile;
     private GameObject southTile;
     private GameObject eastTile;
     private GameObject westTile;
 
-    public string color = "red";
-
-
-    private string terrian; // tile dependant? forest, hill, water, grass, road
-    // private int elevation = 0; Maybe a feature for later
 
     void Start()
     {
@@ -121,9 +118,24 @@ public class TileScript : MonoBehaviour
         Debug.Log("Collided");
     }
 
-    public int getAmountBurned()
+    public int GetAmountBurned()
     {
         return amountBurned;
     }
 
+    public int GetSpeed()
+    {
+        return speed;
+    }
+
+    public string GetTerrian()
+    {
+        return terrian;
+    }
+
+    public void SetSprite(Sprite newSprite)
+    {
+        sprite = newSprite;
+        GetComponent<SpriteRenderer>().sprite = sprite;
+    }
 }
