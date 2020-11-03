@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/oldStartScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: b2e55ab5e66464a41b383eb4d008e8f4
+  - enabled: 1
+    path: Assets/Scenes/ForrestScene.unity
+    guid: fd663699192f9c34fbc3abac60fd8321
   m_configObjects: {}
