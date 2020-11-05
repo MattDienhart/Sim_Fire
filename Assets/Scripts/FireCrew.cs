@@ -265,7 +265,7 @@ public class FireCrew : MonoBehaviour
                 if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
             }
             Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
-            StartCoroutine(gameManager.GetComponent<GameManager>().putOutFire(tileIndex));
+            StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
             targetTile = null;
         }
 

@@ -27,6 +27,17 @@ public class GameManager : MonoBehaviour
     private string windDirection;
     public int money;
     public int happiness;
+    public int Happiness 
+    {
+        get
+        {
+            return happiness;
+        }
+        set 
+        {
+            happiness = value;
+        }
+    }
     public int difficulty;
     private int fireCrewInstances;
     private int helicopterInstances;
@@ -62,7 +73,7 @@ public class GameManager : MonoBehaviour
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
         fireHouses = GameObject.FindGameObjectsWithTag("Firehouse");
         wildFires =  new GameObject[181];
-        windDirection = pickWindDirection();
+        windDirection = PickWindDirection();
         difficulty = 2;
         windDirectionText.text = "The wind blows: \n" + windDirection;
 
@@ -77,20 +88,17 @@ public class GameManager : MonoBehaviour
 
         // Instantiate wildfire
         wildfireInstances = 0;
-
-        lightTile(allTiles[1], 1);
-        lightTile(allTiles[3], 3);
-        lightTile(allTiles[34], 34);
         Debug.Log("here: " + System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")));
 
-        StartCoroutine(lightTile(allTiles[29], 29));
-        StartCoroutine(lightTile(allTiles[138], 138));
-        StartCoroutine(sendNotification("Oh no, there are two wildfires! Put them out!", 3));
+        StartCoroutine(LightTile(allTiles[29], 29));
+        StartCoroutine(LightTile(allTiles[138], 138));
+        StartCoroutine(SendNotification("Oh no, there are two wildfires! Put them out!", 3));
 
 
         // Start wildfire behavior
-        //InvokeRepeating("wildfireBehavior", 10, 40);
-        //InvokeRepeating("pickEvent", 60, 120);
+        InvokeRepeating("WildFireBehavior", 10, 40);
+        InvokeRepeating("PickEvent", 60, 120);
+        InvokeRepeating("CalcHappy", 0, 5);
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
@@ -100,15 +108,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
 
-        if (happiness != System.Convert.ToInt32(happinessText.text)) { }
-            happinessText.text = happiness.ToString();
+        // if (happiness != System.Convert.ToInt32(happinessText.text)) { }
+        //     happinessText.text = happiness.ToString();
         if (money !=  System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")))
         {
             moneyText.text = "$" + money.ToString();
         }   
 
         moneyText.text = "$" + money.ToString();
-
+        happinessText.text = happiness.ToString() + "/100";
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab
@@ -201,7 +209,7 @@ public class GameManager : MonoBehaviour
     }
     
     // Spawn new Wildfire instance from wildfire prefab
-    IEnumerator lightTile(GameObject spawnLocation, int tileIndex)
+    IEnumerator LightTile(GameObject spawnLocation, int tileIndex)
     {
         GameObject newWildfire = (GameObject)Instantiate(firePrefab);
         newWildfire.transform.position = spawnLocation.transform.position;
@@ -214,7 +222,7 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator _spreadFire(GameObject litTile, GameObject inspectTile, string windDirection, int index, string adjDirection, Action<bool> callback) 
+    IEnumerator _SpreadFire(GameObject litTile, GameObject inspectTile, string windDirection, int index, string adjDirection, Action<bool> callback) 
     {
         //Find tiles surrounding tile adjacent to lit tile (Yes I know a little complicated, if I figure out an easier way I'll change it)
         GameObject northTile = inspectTile.GetComponent<TileScript>().northTile;
@@ -256,7 +264,7 @@ public class GameManager : MonoBehaviour
 
                 // Roll die to see if fire spreads
                 if (roll < chanceToBurn) {                    
-                    StartCoroutine(lightTile(inspectTile, index));
+                    StartCoroutine(LightTile(inspectTile, index));
                     callback(true);
                 }
             }
@@ -267,9 +275,9 @@ public class GameManager : MonoBehaviour
         yield return null; 
     }
 
-    IEnumerator spreadFire(GameObject litTile, string windDirection, int index) 
+    IEnumerator SpreadFire(GameObject litTile, string windDirection, int index) 
     {
-        Debug.Log("Spreadfire function run with wind: " + windDirection + " at tile: " + index.ToString());
+        Debug.Log("SpreadFire function run with wind: " + windDirection + " at tile: " + index.ToString());
 
         //Grab surrounding tiles to lit tile
         GameObject northTile = litTile.GetComponent<TileScript>().GetNorth();
@@ -280,29 +288,29 @@ public class GameManager : MonoBehaviour
         bool hasLitOne = false;
         yield return new WaitForSeconds(1); 
 
-        //Execute _spreadfire if tile exists and none have been newly lit on fire
-        if ((northTile) && (!hasLitOne)) StartCoroutine(_spreadFire(litTile, northTile, windDirection, index - 18, "North",  (i) =>
+        //Execute _SpreadFire if tile exists and none have been newly lit on fire
+        if ((northTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, northTile, windDirection, index - 18, "North",  (i) =>
         {
             hasLitOne = i;
         })); 
         
         Debug.Log("hasLitOne is " + hasLitOne.ToString());
 
-        if ((southTile) && (!hasLitOne)) StartCoroutine(_spreadFire(litTile, southTile, windDirection, index + 18, "South",  (i) =>
+        if ((southTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, southTile, windDirection, index + 18, "South",  (i) =>
         {
             hasLitOne = i;
         })); 
         
         Debug.Log("hasLitOne is " + hasLitOne.ToString());
 
-        if ((eastTile) && (!hasLitOne)) StartCoroutine(_spreadFire(litTile, eastTile, windDirection, index + 1, "East",  (i) =>
+        if ((eastTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, eastTile, windDirection, index + 1, "East",  (i) =>
         {
             hasLitOne = i;
         })); 
         
         Debug.Log("hasLitOne is " + hasLitOne.ToString());
 
-        if ((westTile) && (!hasLitOne)) StartCoroutine(_spreadFire(litTile, westTile, windDirection, index - 1, "West",  (i) =>
+        if ((westTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, westTile, windDirection, index - 1, "West",  (i) =>
         {
             hasLitOne = i;
         })); 
@@ -312,19 +320,19 @@ public class GameManager : MonoBehaviour
         yield return null;    
     }
 
-    void wildfireBehavior() 
+    void WildFireBehavior() 
     {
-        StartCoroutine(sendNotification("The fire is spreading!", 2));
+        StartCoroutine(SendNotification("The fire is spreading!", 2));
 
         //Spread fire as much as difficulty allows
         for(int i = 0; i < difficulty; i++) {
-            Debug.Log("Executing spreadFire " + (i + 1).ToString() + " time");
+            Debug.Log("Executing SpreadFire " + (i + 1).ToString() + " time");
             int randomIndex = (int)UnityEngine.Random.Range(0, litTiles.Count);
-            StartCoroutine(spreadFire(allTiles[litTiles[randomIndex]], windDirection, litTiles[randomIndex]));
+            StartCoroutine(SpreadFire(allTiles[litTiles[randomIndex]], windDirection, litTiles[randomIndex]));
         }
     }
 
-    public IEnumerator putOutFire(int tileNumber) 
+    public IEnumerator PutOutFire(int tileNumber) 
     {
         if(allTiles[tileNumber].GetComponent<TileScript>().getBurning()) 
         {
@@ -335,11 +343,11 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log("Put out fire at tile: " + tileNumber.ToString());
-        StartCoroutine(sendNotification("Fire has been put out! HUZZAH!", 2));
+        StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
         yield return null;
     }
 
-    void pickEvent() 
+    void PickEvent() 
     {
         int dice = UnityEngine.Random.Range(0, 110);
         Debug.Log("Game Event Dice Roll is: " + dice.ToString());
@@ -358,7 +366,7 @@ public class GameManager : MonoBehaviour
             money += 1000;
 
             // Display alert message
-            StartCoroutine(sendNotification("The calendar sale was a success! You've added $1000!", 3));
+            StartCoroutine(SendNotification("The calendar sale was a success! You've added $1000!", 3));
             Debug.Log("Calendar event triggered!");
         }
 
@@ -373,10 +381,10 @@ public class GameManager : MonoBehaviour
                 unluckyTile++;
             }
 
-            StartCoroutine(lightTile(allTiles[unluckyTile], unluckyTile));
+            StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
 
             // Display alert message
-            StartCoroutine(sendNotification("Oh no! Lightning struck and a wildfire started! Put it out!", 3));
+            StartCoroutine(SendNotification("Oh no! Lightning struck and a wildfire started! Put it out!", 3));
             Debug.Log("Lightning event triggered!");
             Debug.Log("Unlucky tile:" + unluckyTile.ToString());
         }
@@ -400,7 +408,7 @@ public class GameManager : MonoBehaviour
             string alert = "The career fair worked, we've added " + bonus.ToString() + " recruits!";
 
             // Display alert message
-            StartCoroutine(sendNotification(alert, 3));
+            StartCoroutine(SendNotification(alert, 3));
             Debug.Log("Career fair event triggered!");
         }
 
@@ -416,7 +424,7 @@ public class GameManager : MonoBehaviour
             //INSTANTIATE HELICOPTER HERE
 
             // Display alert message
-            StartCoroutine(sendNotification("Generous donor alert! $10,000 added as well as your very own helicopter!", 3));
+            StartCoroutine(SendNotification("Generous donor alert! $10,000 added as well as your very own helicopter!", 3));
             Debug.Log("Donation event triggered!");
         }
 
@@ -437,7 +445,7 @@ public class GameManager : MonoBehaviour
             string alert = "It looks like " + penalty.ToString() + " of our own are retiring, they've put in their time. Well deserved!";
 
             // Display alert message
-            StartCoroutine(sendNotification(alert, 3));
+            StartCoroutine(SendNotification(alert, 3));
             Debug.Log("Retirement event triggered!");
         }
 
@@ -452,10 +460,10 @@ public class GameManager : MonoBehaviour
                 unluckyTile++;
             }
 
-            StartCoroutine(lightTile(allTiles[unluckyTile], unluckyTile));
+            StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
 
             // Display alert message
-            StartCoroutine(sendNotification("A new wildfire has appeared! It looks like some nearby fireworks may be the cause.", 3));
+            StartCoroutine(SendNotification("A new wildfire has appeared! It looks like some nearby fireworks may be the cause.", 3));
             Debug.Log("Reveal party event triggered!");
         }
 
@@ -479,25 +487,25 @@ public class GameManager : MonoBehaviour
                 if(litTileIndex.Count > 0) 
                 {
                     int index = UnityEngine.Random.Range(0, litTileIndex.Count);
-                    StartCoroutine(putOutFire(litTileIndex[index]));
+                    StartCoroutine(PutOutFire(litTileIndex[index]));
                     litTileIndex.RemoveAt(index);
                 }
             }
 
             // Display alert message
-            StartCoroutine(sendNotification("Sweet rain! It's putting out a few fires!", 3));
+            StartCoroutine(SendNotification("Sweet rain! It's putting out a few fires!", 3));
             Debug.Log("Heavy rain event triggered!");
         }
     }
 
-    IEnumerator sendNotification(string text, int time)
+    IEnumerator SendNotification(string text, int time)
     {
         notificationText.text = text;
         yield return new WaitForSeconds(time);
         notificationText.text = "";
     }
 
-    string pickWindDirection() 
+    string PickWindDirection()
     {
         switch ((int)UnityEngine.Random.Range(1, 4)) {
             case 1:
@@ -514,5 +522,21 @@ public class GameManager : MonoBehaviour
         }
 
         return "East";
+    }
+
+    void CalcHappy()
+    {
+        // Start with a perfect rating
+        double result = 100;
+
+        // If any fires exist
+        if(wildfireInstances > 0) 
+        {
+            result -= 10;
+        }
+
+        // Multiply remaining happiness with the percentage of normal tiles
+        result *= (((double)allTiles.Length - (double)wildfireInstances) / (double)allTiles.Length);
+        happiness = (int)result;
     }
 }
