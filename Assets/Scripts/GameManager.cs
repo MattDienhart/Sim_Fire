@@ -10,6 +10,17 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private GameObject[] allTiles;
+    public GameObject[] AllTiles 
+    {
+        get
+        {
+            return allTiles;
+        }
+        set 
+        {
+            allTiles = value;
+        }
+    }
     private GameObject[] fireHouses;
     private GameObject[] wildFires;
     List<int> litTiles = new List<int>();
@@ -78,8 +89,8 @@ public class GameManager : MonoBehaviour
 
 
         // Start wildfire behavior
-        InvokeRepeating("wildfireBehavior", 10, 40);
-        InvokeRepeating("pickEvent", 60, 120);
+        //InvokeRepeating("wildfireBehavior", 10, 40);
+        //InvokeRepeating("pickEvent", 60, 120);
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
@@ -313,11 +324,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator putOutFire(int tileNumber) 
+    public IEnumerator putOutFire(int tileNumber) 
     {
         if(allTiles[tileNumber].GetComponent<TileScript>().getBurning()) 
         {
-           // allTiles[tileNumber].GetComponent<TileScript>().setBurning(false);
+            allTiles[tileNumber].GetComponent<TileScript>().setBurning(false);
             Destroy(wildFires[tileNumber]);
             wildfireInstances--;
             litTiles.Remove(tileNumber);

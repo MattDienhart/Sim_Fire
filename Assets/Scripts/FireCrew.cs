@@ -16,6 +16,7 @@ public class FireCrew : MonoBehaviour
 
     private WaterBar waterBar;
     private int totalWaterSprayed;
+    private int tileIndex;
     private EnergyBar energyBar;
 
     private int crewID;
@@ -258,7 +259,13 @@ public class FireCrew : MonoBehaviour
 
         if (totalWaterSprayed >= 10)
         {
-            //gameManager.GetComponent<GameManager>().putOutFire(targetTile);
+            // Grab tile index
+            for(int i = 0; i < gameManager.AllTiles.Length; i++ ) 
+            {
+                if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
+            }
+            Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
+            StartCoroutine(gameManager.GetComponent<GameManager>().putOutFire(tileIndex));
             targetTile = null;
         }
 
