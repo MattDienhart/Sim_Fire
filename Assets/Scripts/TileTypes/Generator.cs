@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class Generator : MonoBehaviour
 {
+    /*
     public int width;
     public int height;
     public bool empty;
@@ -94,4 +95,5 @@ public class Generator : MonoBehaviour
         }
         return map;
     }
+    */
 }

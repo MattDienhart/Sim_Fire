@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class ForestTerrain : TileScript
 {
-    public Sprite[] sprites;
-    public int amountBurned = 0;
-
+   // public Sprite dirtSprite;
+    public Sprite[] plants;
     private void Start()
     {
+        Transform[] children = new Transform[transform.childCount];
+        for (int i = 0; i < transform.childCount; i++)
+        {
+          if(Random.Range(0, 3) == 2)
+            transform.GetChild(i).GetComponent<SpriteRenderer>().sprite =
+                plants[Random.Range(0, plants.Length)];
+        }
+       // base.SetSprite(dirtSprite);
         base.setBurning(true);
         dryness = Random.Range(60, 100); 
         speed = Random.Range(1, 3);
-        base.SetSprite(sprites[Random.Range(0, sprites.Length)]);
         terrian = "Forest";
+        //Instantiate(prefab, new Vector3(2.0F, 0, 0), Quaternion.identity);
     }
 }
 

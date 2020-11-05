@@ -394,28 +394,28 @@ TextureImporter:
     second: towerDefense_tilesheet_129
   - first:
       213: 7472850949012510594
-    second: towerDefense_tilesheet_130
+    second: tree1
   - first:
       213: 1998356374996614298
-    second: towerDefense_tilesheet_131
+    second: tree2
   - first:
       213: -2706617662835846856
-    second: towerDefense_tilesheet_132
+    second: tree3
   - first:
       213: 3431660209487935425
-    second: towerDefense_tilesheet_133
+    second: tree4
   - first:
       213: -6240649441308942700
-    second: towerDefense_tilesheet_134
+    second: tree5
   - first:
       213: 4908284081128093034
-    second: towerDefense_tilesheet_135
+    second: tree6
   - first:
       213: 2557807135567859826
-    second: towerDefense_tilesheet_136
+    second: tree7
   - first:
       213: -1905191676012298886
-    second: towerDefense_tilesheet_137
+    second: tree8
   - first:
       213: -1940225227316763881
     second: towerDefense_tilesheet_138
@@ -3584,7 +3584,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_130
+      name: tree1
       rect:
         serializedVersion: 2
         x: 961
@@ -3605,7 +3605,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_131
+      name: tree2
       rect:
         serializedVersion: 2
         x: 1024
@@ -3626,7 +3626,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_132
+      name: tree3
       rect:
         serializedVersion: 2
         x: 1089
@@ -3647,7 +3647,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_133
+      name: tree4
       rect:
         serializedVersion: 2
         x: 1152
@@ -3668,7 +3668,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_134
+      name: tree5
       rect:
         serializedVersion: 2
         x: 1217
@@ -3689,13 +3689,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_135
+      name: tree6
       rect:
         serializedVersion: 2
-        x: 1280
-        y: 448
-        width: 64
-        height: 64
+        x: 1281
+        y: 449
+        width: 62
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3710,13 +3710,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_136
+      name: tree7
       rect:
         serializedVersion: 2
-        x: 1344
-        y: 448
-        width: 64
-        height: 64
+        x: 1345
+        y: 449
+        width: 62
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -3731,13 +3731,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: towerDefense_tilesheet_137
+      name: tree8
       rect:
         serializedVersion: 2
         x: 1408
-        y: 448
-        width: 64
-        height: 64
+        y: 449
+        width: 62
+        height: 62
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
