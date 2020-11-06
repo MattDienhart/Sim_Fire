@@ -11,9 +11,13 @@ public class ForestTerrain : TileScript
         Transform[] children = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
-          if(Random.Range(0, 3) == 2)
-            transform.GetChild(i).GetComponent<SpriteRenderer>().sprite =
+            int r = Random.Range(0, 3);
+            if (Random.Range(0, 3) == 2)
+            {
+                transform.GetChild(i).GetComponent<SpriteRenderer>().sprite =
                 plants[Random.Range(0, plants.Length)];
+            }
+            
         }
        // base.SetSprite(dirtSprite);
         base.setBurning(true);
