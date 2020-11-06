@@ -2,27 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrassTerrain : MonoBehaviour
+public class GrassTerrain : TileScript
 {
-    public Sprite[] sprites;
-
-    public string getType()
+    public Sprite[] buildings;
+    private void Start()
     {
-        return "Grass";
-    }
-
-    public Sprite getSprite()
-    {
-        return sprites[Random.Range(0, sprites.Length)];
-    }
-
-    public int getDryness()
-    {
-        return Random.Range(20, 50);
-    }
-
-    public int getSpeed()
-    {
-        return Random.Range(3, 5);
+        if (Random.Range(0, 5) == 3)
+        {
+            Sprite house = buildings[Random.Range(0, buildings.Length)];
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = house;
+        }
+            
+        base.setBurning(true);
+        // dryness = Random.Range(40, 60);
+        // speed = Random.Range(4, 6);
+        //terrian = "Sand";
+        //Instantiate(prefab, new Vector3(2.0F, 0, 0), Quaternion.identity);
     }
 }
