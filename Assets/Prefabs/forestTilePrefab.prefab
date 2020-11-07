@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 4879523151182457070}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.32, y: -0.32, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4879523151764178125}
   m_RootOrder: 3
@@ -185,12 +185,12 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 99669be024a0e714f8f8d0430b96db34, type: 3}
   terrian: terrain tile
   plants:
-  - {fileID: 7472850949012510594, guid: 3e46d2ded52dcff4cb1197cf45a0d2c2, type: 3}
-  - {fileID: 1998356374996614298, guid: 3e46d2ded52dcff4cb1197cf45a0d2c2, type: 3}
-  - {fileID: -2706617662835846856, guid: 3e46d2ded52dcff4cb1197cf45a0d2c2, type: 3}
-  - {fileID: 3431660209487935425, guid: 3e46d2ded52dcff4cb1197cf45a0d2c2, type: 3}
-  - {fileID: -6240649441308942700, guid: 3e46d2ded52dcff4cb1197cf45a0d2c2, type: 3}
-  - {fileID: 4908284081128093034, guid: 3e46d2ded52dcff4cb1197cf45a0d2c2, type: 3}
+  - {fileID: 21300000, guid: 2bc6cf3be03e90348a339ec5a94203f2, type: 3}
+  - {fileID: 21300000, guid: 5c8c36c8d64f8a2409133b246b1e52a8, type: 3}
+  - {fileID: 21300000, guid: c7e50603636c0ee4aa7163282f436a3d, type: 3}
+  - {fileID: 21300000, guid: 4c3ffbfb89703f44dafdceec2da8b3ee, type: 3}
+  - {fileID: 21300000, guid: dfc8fcb21bd938745b2eb4faacc6c028, type: 3}
+  - {fileID: 21300000, guid: 0e0dceae3aeeaa844baa7c4092c44824, type: 3}
 --- !u!1 &4879523151980372757
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +217,7 @@ Transform:
   m_GameObject: {fileID: 4879523151980372757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.32, y: 0.32, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4879523151764178125}
   m_RootOrder: 0
@@ -299,7 +299,7 @@ Transform:
   m_GameObject: {fileID: 4879523152979452060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32, y: -0.32, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4879523151764178125}
   m_RootOrder: 2
@@ -381,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 4879523153153313900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.32, y: 0.32, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 4879523151764178125}
   m_RootOrder: 1
@@ -431,7 +431,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.05, y: 1.05}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
