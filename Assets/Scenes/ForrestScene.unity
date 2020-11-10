@@ -7246,8 +7246,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1068395165
-BoxCollider2D:
+--- !u!58 &1068395165
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7256,22 +7256,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 25, y: 25}
-  m_EdgeRadius: 0
+  m_Radius: 25
 --- !u!4 &1078718545 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7681646436556870139, guid: 22f9823b51ff0ac4d915dbe690d9d2ac, type: 3}
@@ -8385,6 +8375,7 @@ GameObject:
   - component: {fileID: 1304942008}
   - component: {fileID: 1304942007}
   - component: {fileID: 1304942011}
+  - component: {fileID: 1304942012}
   m_Layer: 5
   m_Name: InfoBtn
   m_TagString: InfoBtn
@@ -8513,6 +8504,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1304942012
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304942006}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 25
 --- !u!4 &1328582834 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7681646436556870139, guid: 22f9823b51ff0ac4d915dbe690d9d2ac, type: 3}
@@ -18059,6 +18066,7 @@ GameObject:
   - component: {fileID: 1995107798}
   - component: {fileID: 1995107800}
   - component: {fileID: 1995107801}
+  - component: {fileID: 1995107802}
   m_Layer: 5
   m_Name: CrewBtn
   m_TagString: CrewBtn
@@ -18187,6 +18195,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &1995107802
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1995107796}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 25
 --- !u!1001 &2003238548
 PrefabInstance:
   m_ObjectHideFlags: 0
