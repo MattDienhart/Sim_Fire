@@ -122,8 +122,20 @@ public class GameManager : MonoBehaviour
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            LayerMask tileSelectMask = LayerMask.GetMask("Tile Select");
+            LayerMask defaultMask = LayerMask.GetMask("Default") | LayerMask.GetMask("UI");
+            LayerMask mask;
 
-            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+            if (DestSelectModeOn == true || TargetSelectModeOn == true)
+            {
+                mask = tileSelectMask;
+            }
+            else
+            {
+                mask = defaultMask;
+            }
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, 20.0f, mask);
 
             if (hit.collider != null)
             {
@@ -135,6 +147,11 @@ public class GameManager : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<TileScript>().Selected();
                 }
+            }
+            else
+            {
+                selectedFireCrew = null;
+                selectedTile = null;
             }
         }
     }
