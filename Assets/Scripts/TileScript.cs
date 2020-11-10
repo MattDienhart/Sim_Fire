@@ -165,7 +165,7 @@ public class TileScript : MonoBehaviour
 
 
     // Handle the selection of this object
-    void OnMouseUp()
+    public void Selected()
     {
         Debug.Log("Tile " + gameObject.GetInstanceID() + " has been clicked");
         // If we are not in any selection mode, deselect all fire crews

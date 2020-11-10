@@ -19,6 +19,8 @@ public class PoliceScript : MonoBehaviour
                 Vector2 pos = hit.collider.gameObject.GetComponent<Transform>().position;
                 Debug.Log("Clicked: " + hit.collider.gameObject.name + "  x: " + pos.x + " y: " + pos.y);
                 transform.position = (pos);
+
+                Debug.Log(hit.collider.name);
             }
         }
     }

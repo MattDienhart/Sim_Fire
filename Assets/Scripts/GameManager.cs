@@ -117,6 +117,43 @@ public class GameManager : MonoBehaviour
 
         moneyText.text = "$" + money.ToString();
         happinessText.text = happiness.ToString() + "/100";
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            LayerMask tileSelectMask = LayerMask.GetMask("Tile Select");
+            LayerMask defaultMask = LayerMask.GetMask("Default") | LayerMask.GetMask("UI");
+            LayerMask mask;
+
+            if (DestSelectModeOn == true || TargetSelectModeOn == true)
+            {
+                mask = tileSelectMask;
+            }
+            else
+            {
+                mask = defaultMask;
+            }
+
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero, 20.0f, mask);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject.CompareTag("FireCrew"))
+                {
+                    hit.collider.gameObject.GetComponent<FireCrew>().Selected();
+                }
+                if (hit.collider.gameObject.CompareTag("Tile"))
+                {
+                    hit.collider.gameObject.GetComponent<TileScript>().Selected();
+                }
+            }
+            else
+            {
+                selectedFireCrew = null;
+                selectedTile = null;
+            }
+        }
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab

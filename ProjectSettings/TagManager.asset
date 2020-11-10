@@ -8,6 +8,9 @@ TagManager:
   - FireCrew
   - Wildfire
   - Firehouse
+  - CrewBtn
+  - InfoBtn
+  - DispatchBtn
   layers:
   - Default
   - TransparentFX
@@ -17,7 +20,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Tile Select
   - 
   - 
   - 
