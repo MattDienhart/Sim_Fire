@@ -128,7 +128,7 @@ public class FireCrew : MonoBehaviour
     }
 
     // Handle selection of this object
-    void OnMouseUp()
+    public void Selected()
     {
         // If this is the currently selected game object, update the sprite
         crewSpriteRenderer.sprite = selected;

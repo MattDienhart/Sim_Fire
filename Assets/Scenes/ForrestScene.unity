@@ -1145,6 +1145,7 @@ MonoBehaviour:
   fireCrewPrefab: {fileID: 4678436223149907044, guid: 1a7d9194cba214c9eadc4657b5eeab9b, type: 3}
   firePrefab: {fileID: 7157456362132186166, guid: 35ccd44ebee0b914987a004a96f8a00a, type: 3}
   DestSelectModeOn: 0
+  TargetSelectModeOn: 0
   moneyText: {fileID: 1340784735}
   selectedText: {fileID: 126623093}
   happinessText: {fileID: 755692423}
@@ -7130,7 +7131,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068395159}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1675536919}
@@ -7662,7 +7663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 66.29999, y: -592.1}
+  m_AnchoredPosition: {x: 66.299805, y: -592.1001}
   m_SizeDelta: {x: 135.32262, y: 34.155895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1154566060
@@ -8431,7 +8432,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304942006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1675536919}
@@ -16272,7 +16273,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 57.400024, y: -57.900024}
+  m_AnchoredPosition: {x: 57.40039, y: -57.899902}
   m_SizeDelta: {x: 135.32262, y: 34.155895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1756468490
@@ -17994,7 +17995,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1995107796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1675536919}
