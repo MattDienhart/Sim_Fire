@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4482432222512293936}
   - component: {fileID: 2692483352518918861}
   m_Layer: 0
-  m_Name: sandTile
+  m_Name: sandPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   - {fileID: -1905191676012298886, guid: 3e46d2ded52dcff4cb1197cf45a0d2c2, type: 3}
   - {fileID: -7652217368671782963, guid: fa8cb7b891aab48418d0e3b3f181c066, type: 3}
   - {fileID: 5284382692947628944, guid: fa8cb7b891aab48418d0e3b3f181c066, type: 3}
+  forestPrefab: {fileID: 4879523151764178126, guid: c3f72ae849208424cae40a6c64c0040e, type: 3}
 --- !u!1 &4482432222866657257
 GameObject:
   m_ObjectHideFlags: 0

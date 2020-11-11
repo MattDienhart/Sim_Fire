@@ -12,12 +12,11 @@ public abstract class TileScript : MonoBehaviour
     public Sprite sprite;
     public string terrian = "terrain tile";
 
-    List<GameObject> neighborTiles = new List<GameObject>();
+    protected List<GameObject> neighborTiles = new List<GameObject>();
     private GameObject northTile;
     private GameObject southTile;
     private GameObject eastTile;
     private GameObject westTile;
-
 
     void Start()
     {
@@ -40,7 +39,7 @@ public abstract class TileScript : MonoBehaviour
         return burning;
     }
 
-    public void setBurning(bool change)
+    public virtual void setBurning(bool change)
     {
         burning = change;
     }

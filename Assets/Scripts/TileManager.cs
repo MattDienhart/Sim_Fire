@@ -17,6 +17,7 @@ public class TileManager : MonoBehaviour
     private int[] usedValues;
     //public char[] tileTypes;
     List<int> values = new List<int>();
+    string[] terrainTypes = { "Sand", "Forest", "Road", "SideRoad" };
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +33,9 @@ public class TileManager : MonoBehaviour
         oneEight[Random.Range(0, 2)] += 17;
         int negPos = Random.Range(0, 2) * 2 - 1;
         int count = 0;
-        while(values.Count < 59)
+
+        while(values.Count < usedValues.Length/3)
         {
-          //  Debug.Log("--------------");
-         //   Debug.Log(currentIndex + oneEight[0] * negPos);
-            //values[i++] = currentIndex;
             if (ValidIndex(currentIndex, (currentIndex + oneEight[0] * negPos)))
             {
                 values.Add(currentIndex + oneEight[0] * negPos);
@@ -64,60 +63,71 @@ public class TileManager : MonoBehaviour
             count++;
             if(count > 500) { Debug.Log("ISSUE"); break; }
             currentIndex = values[Random.Range(0, values.Count)];
-            //3.91 and 3.92
         }
         Debug.Log("------------len: " + values.Count);
 
         // ROAD
-        int roadColumn = Random.Range(0, columnCount);
+        int roadColumn = Random.Range(1, columnCount-1);
+
         int sideStreet1 = Random.Range(1, rowCount - 1);
         int side1NegPos = Random.Range(0, 2) * 2 - 1;
         int side1Len = Random.Range(columnCount / 4, columnCount / 4 + 2);
-        if (rowCount + side1Len * negPos < 1) side1NegPos *= -1;
+        //Debug.Log("r: " + roadColumn + " side1Len: " + side1Len + " n: " + side1NegPos + " res: " + (roadColumn + side1Len * side1NegPos));
+        if ((roadColumn + side1Len * side1NegPos) < 1 || 
+            ((roadColumn + side1Len * side1NegPos) > columnCount))
+        {
+            side1NegPos *= -1;
+        }
+            
 
-        int sideStreet2 = Random.Range(1, rowCount - 1);
+        //Debug.Log("--r: " + roadColumn + " side1Len: " + side1Len + " n: " + side1NegPos + " res: " + (roadColumn + side1Len * side1NegPos));
+
+        int sideStreet2 = Random.Range(1, rowCount - 2);
         int side2NegPos = Random.Range(0, 2) * 2 - 1;
         int side2Len = Random.Range(columnCount / 4 - 1, columnCount / 4 + 2);
-        if (rowCount + side2Len * negPos < 1) side2NegPos *= -1;
-        while(side1NegPos == side2NegPos && sideStreet2 == sideStreet1 || 
-            sideStreet2 - 1 == sideStreet1 || sideStreet2 + 1 == sideStreet1)
+        if ((roadColumn + side2Len * side2NegPos) < 1 || (roadColumn + side2Len * side2NegPos) > columnCount) side2NegPos *= -1;
+        Debug.Log("s2: " + sideStreet2*side2NegPos + " s1: " + sideStreet1*side1NegPos);
+        int count2 = 0;
+        while (side1NegPos == side2NegPos && CheckSideStreets(sideStreet1, sideStreet2))
         {
-            sideStreet2 = Random.Range(2, rowCount - 1);
+            Debug.Log("c--2: " + count2++);
+            sideStreet2 = Random.Range(2, rowCount - 2);
         }
-
-      
+        Debug.Log("s2: " + sideStreet2 * side2NegPos + " s1: " + sideStreet1 * side1NegPos);
 
         for (int i = 0; i < rowCount; i++)
         {
             usedValues[roadColumn + (columnCount * i)] = 2;
             if (i == sideStreet1) 
             {
-                for (int j = 0; j < side1Len; j++)
+                for (int j = 1; j < side1Len; j++)
                     usedValues[(roadColumn + (columnCount * i)) + j * side1NegPos] = 3;
-            } else if (i == sideStreet2)
+            } 
+            if (i == sideStreet2)
             {
-                for (int j = 0; j < side2Len; j++)
+                for (int j = 1; j < side2Len; j++)
                     usedValues[(roadColumn + (columnCount * i)) + j * side2NegPos] = 3;
             }
         }
-      //  string myrow = "";
         for(int n = 0; n < usedValues.Length; n++)
         {
-            Debug.Log("n-> " + n + " val: " + usedValues[n]);
+           // Debug.Log("n-> " + n + " val: " + usedValues[n]);
         }
 
         
         // Instatiate all tile objects forest, road, sand
         for (int j = 0; j < usedValues.Length; j++)
         {
-            Debug.Log("j-> " + j + " and: " +  usedValues[j]);
+            // Check if sand tile island
+            if (usedValues[j] == 0) SandCheck(j);
+      //      Debug.Log("j-> " + j + " and: " +  usedValues[j]);
             GameObject tempTile = Instantiate(
                tilePrefabs[usedValues[j]],
                emptyTiles[j].transform.position,
                emptyTiles[j].transform.rotation,
                forestPrefab.transform.parent);
             tempTile.transform.localScale = emptyTiles[j].transform.localScale;
-            tempTile.name = "Forest" + j;
+            tempTile.name = "Tile (" + j + ")";//terrainTypes[usedValues[j]] + " (" + j + ")";
             Destroy(emptyTiles[j]);
         }
         
@@ -154,8 +164,29 @@ public class TileManager : MonoBehaviour
         return temp;
     }
 
-    private bool CheckSideStreets()
+    private bool CheckSideStreets(int sideStreet1, int sideStreet2)
     {
-        return false;
+        return sideStreet2 == sideStreet1 ||
+            sideStreet2 - 1 == sideStreet1 || 
+            sideStreet2 + 1 == sideStreet1 ||
+            sideStreet2 - 2 == sideStreet1 ||
+            sideStreet2 + 2 == sideStreet1;
+    }
+
+    private void SandCheck(int tileNum)
+    {
+        bool one = (tileNum + 1 < 179 && usedValues[tileNum + 1] == 0);
+        bool two = (tileNum - 1 > 0 && usedValues[tileNum - 1] == 0);
+        bool three = tileNum + columnCount < 179 && usedValues[tileNum + columnCount] == 0;
+        bool four = tileNum - columnCount > 0 && usedValues[tileNum - columnCount] == 0;
+        char z = ' ';
+        if (!(one || two || three || four)) z = 'z';
+        Debug.Log(z + " t: " + tileNum + " 1: " + one + " 2: " + two + " 3: " + three + " 4: " + four);
+        if (tileNum + 1 < 179 && usedValues[tileNum + 1] == 0 ||
+            tileNum - 1 > 0 && usedValues[tileNum - 1] == 0 ||
+             tileNum + columnCount < 179 && usedValues[tileNum + columnCount] == 0 ||
+             tileNum - columnCount > 0 && usedValues[tileNum - columnCount] == 0)
+            return;
+        usedValues[tileNum] = 1;
     }
 }

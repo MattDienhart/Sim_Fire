@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadScript : MonoBehaviour
+public class RoadScript : TileScript
 {
+    public override void setBurning(bool change) => burning = false; 
+
     // Start is called before the first frame update
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        dryness = 0;
+        speed = Random.Range(8, 10);
+        terrian = "Road";
     }
 }
