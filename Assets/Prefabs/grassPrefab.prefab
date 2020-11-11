@@ -92,9 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7524791998948851064}
   - component: {fileID: 7524791998948851065}
-  - component: {fileID: 8258407845713793476}
+  - component: {fileID: -3302988442617028790}
   m_Layer: 0
-  m_Name: grassTile
+  m_Name: grassPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_SortingLayerID: 1920037539
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1088952733218738394, guid: ca0e2e3b386462b4db632b5f26fb38e8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0231a377f0417e94d95529668d948ca2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8258407845713793476
+--- !u!114 &-3302988442617028790
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,15 +175,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7524791998948851067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863a5e9f703ff7b46932b300bda376fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b82019e40f8f5549a149f2fc674b523, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burning: 0
-  sprite: {fileID: 0}
-  terrian: terrain tile
-  buildings:
-  - {fileID: 1874638683097876547, guid: fa8cb7b891aab48418d0e3b3f181c066, type: 3}
-  - {fileID: 9166424852326620884, guid: fa8cb7b891aab48418d0e3b3f181c066, type: 3}
-  - {fileID: -8379323532782737653, guid: fa8cb7b891aab48418d0e3b3f181c066, type: 3}
-  - {fileID: 9220892715235637443, guid: fa8cb7b891aab48418d0e3b3f181c066, type: 3}
-  - {fileID: 3944918410346182644, guid: fa8cb7b891aab48418d0e3b3f181c066, type: 3}
