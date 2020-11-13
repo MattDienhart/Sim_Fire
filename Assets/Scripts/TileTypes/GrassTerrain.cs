@@ -7,7 +7,7 @@ public class GrassTerrain : TileScript
     public Sprite[] buildings;
     private void Start()
     {
-        if (Random.Range(0, 3) == 2)
+        if (Random.Range(0, 2) == 1)
         {
             Sprite house = buildings[Random.Range(0, buildings.Length)];
             transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = house;

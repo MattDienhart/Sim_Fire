@@ -34,26 +34,26 @@ public class TileManager : MonoBehaviour
         int negPos = Random.Range(0, 2) * 2 - 1;
         int count = 0;
 
-        while(values.Count < usedValues.Length * 0.4f)
+        while (values.Count < usedValues.Length * 0.4f)
         {
             if (ValidIndex(currentIndex, (currentIndex + oneEight[0] * negPos)))
             {
                 values.Add(currentIndex + oneEight[0] * negPos);
                 usedValues[currentIndex + oneEight[0] * negPos] = 1;
             }
-                
+
             if (ValidIndex(currentIndex, (currentIndex - oneEight[0] * negPos)))
             {
                 values.Add(currentIndex - oneEight[0] * negPos);
                 usedValues[currentIndex - oneEight[0] * negPos] = 1;
             }
-                
+
             if (ValidIndex(currentIndex, (currentIndex + oneEight[1] * negPos)))
             {
                 values.Add(currentIndex + oneEight[1] * negPos);
                 usedValues[currentIndex + oneEight[1] * negPos] = 1;
             }
-                
+
             if (ValidIndex(currentIndex, (currentIndex - oneEight[1] * negPos)))
             {
                 values.Add(currentIndex - oneEight[1] * negPos);
@@ -61,11 +61,18 @@ public class TileManager : MonoBehaviour
             }
 
             count++;
-            if(count > 500) { Debug.Log("ISSUE"); break; }
+            if (count > 500) { Debug.Log("ISSUE"); break; }
             currentIndex = values[Random.Range(0, values.Count)];
         }
-        Debug.Log("------------len: " + values.Count);
 
+      //  Debug.Log("------------len: " + values.Count);
+        string mygrid = "";
+        for (int i = 0; i < usedValues.Length; i++)
+        {
+            if(i%18 == 0) mygrid += "\r\n"+(i/18+1)+":  ";
+            mygrid += usedValues[i];
+        }
+        Debug.Log("-grid: \n" + mygrid);
         // ROAD
         int roadColumn = Random.Range(1, columnCount-1);
 
@@ -77,10 +84,7 @@ public class TileManager : MonoBehaviour
             ((roadColumn + side1Len * side1NegPos) > columnCount))
         {
             side1NegPos *= -1;
-        }
-            
-
-        //Debug.Log("--r: " + roadColumn + " side1Len: " + side1Len + " n: " + side1NegPos + " res: " + (roadColumn + side1Len * side1NegPos));
+        }        
 
         int sideStreet2 = Random.Range(1, rowCount - 2);
         int side2NegPos = Random.Range(0, 2) * 2 - 1;
@@ -92,7 +96,7 @@ public class TileManager : MonoBehaviour
            // Debug.Log("c--2: " + count2++);
             sideStreet2 = Random.Range(2, rowCount - 2);
         }
-        Debug.Log("s2: " + sideStreet2 * side2NegPos + " s1: " + sideStreet1 * side1NegPos);
+    //    Debug.Log("s2: " + sideStreet2 * side2NegPos + " s1: " + sideStreet1 * side1NegPos);
 
         for (int i = 0; i < rowCount; i++)
         {
@@ -100,16 +104,20 @@ public class TileManager : MonoBehaviour
             if (i == sideStreet1) 
             {
                 int j;
+                int sideCell = roadColumn + (columnCount * i);
                 for (j = 1; j < side1Len; j++)
                 {
-                    usedValues[(roadColumn + (columnCount * i)) + j * side1NegPos] = 3;
-                    usedValues[(roadColumn + (columnCount * i) - columnCount) + j * side1NegPos] = 4;
-                    usedValues[(roadColumn + (columnCount * i) + columnCount) + j * side1NegPos] = 4;
+                    usedValues[sideCell + j * side1NegPos] = 3;
+                    usedValues[sideCell - columnCount + j * side1NegPos] = 4;
+                    usedValues[sideCell + columnCount + j * side1NegPos] = 4;
                 }
-               // j++;
-                usedValues[(roadColumn + (columnCount * i)) + j * side1NegPos] = 4;
-                usedValues[(roadColumn + (columnCount * i) - columnCount) + j * side1NegPos] = 4;
-                usedValues[(roadColumn + (columnCount * i) + columnCount) + j * side1NegPos] = 4;
+                usedValues[sideCell + j * side1NegPos] = 4;
+                usedValues[sideCell - columnCount + j * side1NegPos] = 4;
+                usedValues[sideCell + columnCount + j * side1NegPos] = 4;
+
+                usedValues[sideCell - 1 * side1NegPos] = 4;
+                usedValues[sideCell - columnCount - 1 * side1NegPos] = 4;
+                usedValues[sideCell + columnCount - 1 * side1NegPos] = 4;
 
             } 
             if (i == sideStreet2)
@@ -122,8 +130,12 @@ public class TileManager : MonoBehaviour
         {
            // Debug.Log("n-> " + n + " val: " + usedValues[n]);
         }
-        //int waterColumn = 1 + 17 * Random.Range(0, 2 );
-
+        int waterColumn = 1 + (columnCount - 1) * Random.Range(0, 2 );
+        for (int i = 0; i < rowCount; i++)
+        { 
+            usedValues[waterColumn - 1 + (columnCount * i)] = 5;
+          //  usedValues[waterColumn + (columnCount * i)] = 6;
+        }
         // Instatiate all tile objects forest, road, sand
         for (int j = 0; j < usedValues.Length; j++)
         {
@@ -136,6 +148,19 @@ public class TileManager : MonoBehaviour
                emptyTiles[j].transform.rotation,
                forestPrefab.transform.parent);
             tempTile.transform.localScale = emptyTiles[j].transform.localScale;
+            // if water, added land border to it
+            if (usedValues[j] == 5)
+            {
+                int next = -1;
+                if (waterColumn == 1)
+                {
+                    next = 1;
+                    tempTile.GetComponent<WaterTerrain>().rotateBorder();
+                }
+                if (usedValues[j + next] < 3 || usedValues[j + next] == 4)
+                    tempTile.GetComponent<WaterTerrain>().SetBorderSprite(usedValues[j + next]);
+            }
+                   
             tempTile.name = "Tile (" + j + ")";//terrainTypes[usedValues[j]] + " (" + j + ")";
             Destroy(emptyTiles[j]);
         }
@@ -180,10 +205,10 @@ public class TileManager : MonoBehaviour
 
     private void SandCheck(int tileNum)
     {
-        bool one = (tileNum + 1 < 179 && (tileNum + 1) / columnCount == tileNum / columnCount
-            && usedValues[tileNum + 1] == 0);
-        bool two = (tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
-            && usedValues[tileNum - 1] == 0);
+        bool one = (tileNum + 1 < 179 && tileNum % columnCount != 0 &&
+            usedValues[tileNum + 1] < 1);
+        bool two = (tileNum - 1 > 0 && (tileNum-1) % columnCount != 0
+            && usedValues[tileNum - 1] < 1);
         bool three = tileNum + columnCount < 179 && usedValues[tileNum + columnCount] == 0;
         bool four = tileNum - columnCount > 0 && usedValues[tileNum - columnCount] == 0;
         char z = ' ';

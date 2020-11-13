@@ -49,7 +49,7 @@ public abstract class TileScript : MonoBehaviour
         return dryness;
     }
 
-    private void getNeighbors()
+    public void getNeighbors()
     {
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
         if (tileNum - 1 > 0)
@@ -134,7 +134,6 @@ public abstract class TileScript : MonoBehaviour
 
     public void SetSprite(Sprite newSprite)
     {
-        sprite = newSprite;
-        GetComponent<SpriteRenderer>().sprite = sprite;
+        GetComponent<SpriteRenderer>().sprite = newSprite;
     }
 }
