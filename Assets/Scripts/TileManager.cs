@@ -24,7 +24,7 @@ public class TileManager : MonoBehaviour
     {
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
         //values = new int[60];
-        usedValues = Enumerable.Repeat(0, 181).ToArray();
+        usedValues = Enumerable.Repeat(0, 180).ToArray();
         int startIndex = Random.Range(0, 179);
 
         int currentIndex = startIndex;
@@ -34,7 +34,7 @@ public class TileManager : MonoBehaviour
         int negPos = Random.Range(0, 2) * 2 - 1;
         int count = 0;
 
-        while(values.Count < usedValues.Length/3)
+        while(values.Count < usedValues.Length * 0.4f)
         {
             if (ValidIndex(currentIndex, (currentIndex + oneEight[0] * negPos)))
             {
@@ -86,11 +86,10 @@ public class TileManager : MonoBehaviour
         int side2NegPos = Random.Range(0, 2) * 2 - 1;
         int side2Len = Random.Range(columnCount / 4 - 1, columnCount / 4 + 2);
         if ((roadColumn + side2Len * side2NegPos) < 1 || (roadColumn + side2Len * side2NegPos) > columnCount) side2NegPos *= -1;
-        Debug.Log("s2: " + sideStreet2*side2NegPos + " s1: " + sideStreet1*side1NegPos);
-        int count2 = 0;
+
         while (side1NegPos == side2NegPos && CheckSideStreets(sideStreet1, sideStreet2))
         {
-            Debug.Log("c--2: " + count2++);
+           // Debug.Log("c--2: " + count2++);
             sideStreet2 = Random.Range(2, rowCount - 2);
         }
         Debug.Log("s2: " + sideStreet2 * side2NegPos + " s1: " + sideStreet1 * side1NegPos);
@@ -100,8 +99,18 @@ public class TileManager : MonoBehaviour
             usedValues[roadColumn + (columnCount * i)] = 2;
             if (i == sideStreet1) 
             {
-                for (int j = 1; j < side1Len; j++)
+                int j;
+                for (j = 1; j < side1Len; j++)
+                {
                     usedValues[(roadColumn + (columnCount * i)) + j * side1NegPos] = 3;
+                    usedValues[(roadColumn + (columnCount * i) - columnCount) + j * side1NegPos] = 4;
+                    usedValues[(roadColumn + (columnCount * i) + columnCount) + j * side1NegPos] = 4;
+                }
+               // j++;
+                usedValues[(roadColumn + (columnCount * i)) + j * side1NegPos] = 4;
+                usedValues[(roadColumn + (columnCount * i) - columnCount) + j * side1NegPos] = 4;
+                usedValues[(roadColumn + (columnCount * i) + columnCount) + j * side1NegPos] = 4;
+
             } 
             if (i == sideStreet2)
             {
@@ -113,14 +122,14 @@ public class TileManager : MonoBehaviour
         {
            // Debug.Log("n-> " + n + " val: " + usedValues[n]);
         }
+        //int waterColumn = 1 + 17 * Random.Range(0, 2 );
 
-        
         // Instatiate all tile objects forest, road, sand
         for (int j = 0; j < usedValues.Length; j++)
         {
             // Check if sand tile island
             if (usedValues[j] == 0) SandCheck(j);
-      //      Debug.Log("j-> " + j + " and: " +  usedValues[j]);
+         //  Debug.Log("j-> " + j + " and: " +  usedValues[j]);
             GameObject tempTile = Instantiate(
                tilePrefabs[usedValues[j]],
                emptyTiles[j].transform.position,
@@ -130,10 +139,6 @@ public class TileManager : MonoBehaviour
             tempTile.name = "Tile (" + j + ")";//terrainTypes[usedValues[j]] + " (" + j + ")";
             Destroy(emptyTiles[j]);
         }
-        
-
-
-
 
         /*
         GameObject[] fest = GameObject.FindGameObjectsWithTag("Tile");
@@ -175,15 +180,19 @@ public class TileManager : MonoBehaviour
 
     private void SandCheck(int tileNum)
     {
-        bool one = (tileNum + 1 < 179 && usedValues[tileNum + 1] == 0);
-        bool two = (tileNum - 1 > 0 && usedValues[tileNum - 1] == 0);
+        bool one = (tileNum + 1 < 179 && (tileNum + 1) / columnCount == tileNum / columnCount
+            && usedValues[tileNum + 1] == 0);
+        bool two = (tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
+            && usedValues[tileNum - 1] == 0);
         bool three = tileNum + columnCount < 179 && usedValues[tileNum + columnCount] == 0;
         bool four = tileNum - columnCount > 0 && usedValues[tileNum - columnCount] == 0;
         char z = ' ';
-        if (!(one || two || three || four)) z = 'z';
-        Debug.Log(z + " t: " + tileNum + " 1: " + one + " 2: " + two + " 3: " + three + " 4: " + four);
-        if (tileNum + 1 < 179 && usedValues[tileNum + 1] == 0 ||
-            tileNum - 1 > 0 && usedValues[tileNum - 1] == 0 ||
+     //   if (!(one || two || three || four)) z = 'z';
+   //   Debug.Log(z + " t: " + tileNum + " 1: " + one + " 2: " + two + " 3: " + three + " 4: " + four);
+        if (tileNum + 1 < 179 && (tileNum + 1)/columnCount == tileNum/columnCount 
+            && usedValues[tileNum + 1] == 0 ||
+            tileNum - 1 > 0 && tileNum/columnCount == (tileNum - 1) / columnCount 
+            && usedValues[tileNum - 1] == 0 ||
              tileNum + columnCount < 179 && usedValues[tileNum + columnCount] == 0 ||
              tileNum - columnCount > 0 && usedValues[tileNum - columnCount] == 0)
             return;

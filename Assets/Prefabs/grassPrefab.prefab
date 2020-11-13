@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524791998766340768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.32, y: 0.32, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalPosition: {x: 0.07, y: 0, z: 0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 7524791998948851064}
   m_RootOrder: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.05, y: 1.05}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7524791998948851064}
   - component: {fileID: 7524791998948851065}
-  - component: {fileID: -3302988442617028790}
+  - component: {fileID: 4101023180146656331}
   m_Layer: 0
   m_Name: grassPrefab
   m_TagString: Untagged
@@ -166,7 +166,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3302988442617028790
+--- !u!114 &4101023180146656331
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,6 +175,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7524791998948851067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b82019e40f8f5549a149f2fc674b523, type: 3}
+  m_Script: {fileID: 11500000, guid: 863a5e9f703ff7b46932b300bda376fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burning: 0
+  sprite: {fileID: 0}
+  terrian: Grass
+  buildings:
+  - {fileID: 21300000, guid: 9920bbeaaf2b17d439e85c680ac58765, type: 3}
+  - {fileID: 21300000, guid: 92c9c99e5e861424aa24d47609d310ea, type: 3}
+  - {fileID: 21300000, guid: 4ad52e0ccde0ca74fa643ccc1d145456, type: 3}
+  - {fileID: 21300000, guid: c1da0b70fb2c94540961362a7333eb23, type: 3}
+  - {fileID: 21300000, guid: cc67a78a17362234890295778de815a8, type: 3}
