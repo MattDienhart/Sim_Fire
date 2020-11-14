@@ -10,14 +10,17 @@ public class TileManager : MonoBehaviour
     public GameObject forestPrefab;
     public GameObject sandPrefab;
     public Transform tileLocation1;
-    public GameObject[] emptyTiles;
+    private GameObject[] emptyTiles;
     public GameObject[] tilePrefabs;
     public int columnCount = 18;
     public int rowCount = 10;
     private int[] usedValues;
-    //public char[] tileTypes;
+    public GameObject BorderPrefab;
+    
     List<int> values = new List<int>();
     string[] terrainTypes = { "Sand", "Forest", "Road", "SideRoad" };
+
+    public Sprite[] borderSprites;
 
     // Start is called before the first frame update
     void Start()
@@ -64,18 +67,9 @@ public class TileManager : MonoBehaviour
             if (count > 500) { Debug.Log("ISSUE"); break; }
             currentIndex = values[Random.Range(0, values.Count)];
         }
-
-      //  Debug.Log("------------len: " + values.Count);
-        string mygrid = "";
-        for (int i = 0; i < usedValues.Length; i++)
-        {
-            if(i%18 == 0) mygrid += "\r\n"+(i/18+1)+":  ";
-            mygrid += usedValues[i];
-        }
-        Debug.Log("-grid: \n" + mygrid);
-        // ROAD
+        // ROAD select random column, if not sand try again
         int roadColumn = Random.Range(1, columnCount-1);
-
+        if(usedValues[roadColumn] != 0) roadColumn = Random.Range(1, columnCount - 1);
         int sideStreet1 = Random.Range(1, rowCount - 1);
         int side1NegPos = Random.Range(0, 2) * 2 - 1;
         int side1Len = Random.Range(columnCount / 4, columnCount / 4 + 2);
@@ -111,13 +105,14 @@ public class TileManager : MonoBehaviour
                     usedValues[sideCell - columnCount + j * side1NegPos] = 4;
                     usedValues[sideCell + columnCount + j * side1NegPos] = 4;
                 }
+                // Houses at end of side street
                 usedValues[sideCell + j * side1NegPos] = 4;
                 usedValues[sideCell - columnCount + j * side1NegPos] = 4;
                 usedValues[sideCell + columnCount + j * side1NegPos] = 4;
-
-                usedValues[sideCell - 1 * side1NegPos] = 4;
-                usedValues[sideCell - columnCount - 1 * side1NegPos] = 4;
-                usedValues[sideCell + columnCount - 1 * side1NegPos] = 4;
+                // Houses along main road, make sure not to cover other side road
+                if(usedValues[sideCell - 1 * side1NegPos] != 3) usedValues[sideCell - 1 * side1NegPos] = 4;
+                if (usedValues[sideCell - columnCount - 1 * side1NegPos] != 3) usedValues[sideCell - columnCount - 1 * side1NegPos] = 4;
+                if (usedValues[sideCell + columnCount - 1 * side1NegPos] != 3) usedValues[sideCell + columnCount - 1 * side1NegPos] = 4;
 
             } 
             if (i == sideStreet2)
@@ -126,21 +121,29 @@ public class TileManager : MonoBehaviour
                     usedValues[(roadColumn + (columnCount * i)) + j * side2NegPos] = 3;
             }
         }
-        for(int n = 0; n < usedValues.Length; n++)
+        // Debugging to output current board numbers
+        string mygrid = "";
+        for (int i = 0; i < usedValues.Length; i++)
         {
-           // Debug.Log("n-> " + n + " val: " + usedValues[n]);
+            if (i % 18 == 0) mygrid += "\r\n" + (i / 18 + 1) + ":  ";
+            mygrid += usedValues[i];
         }
-        int waterColumn = 1 + (columnCount - 1) * Random.Range(0, 2 );
+        Debug.Log("-grid: \n" + mygrid);
+        // Choose the water column
+        int waterColumn = 1 + (columnCount - 1) * Random.Range(0, 2);
         for (int i = 0; i < rowCount; i++)
         { 
             usedValues[waterColumn - 1 + (columnCount * i)] = 5;
-          //  usedValues[waterColumn + (columnCount * i)] = 6;
+        }
+        // Check if sand tile island
+        for (int j = 0; j < usedValues.Length; j++)
+        {
+            if (usedValues[j] == 0) SandCheck(j);
         }
         // Instatiate all tile objects forest, road, sand
         for (int j = 0; j < usedValues.Length; j++)
         {
             // Check if sand tile island
-            if (usedValues[j] == 0) SandCheck(j);
          //  Debug.Log("j-> " + j + " and: " +  usedValues[j]);
             GameObject tempTile = Instantiate(
                tilePrefabs[usedValues[j]],
@@ -148,38 +151,43 @@ public class TileManager : MonoBehaviour
                emptyTiles[j].transform.rotation,
                forestPrefab.transform.parent);
             tempTile.transform.localScale = emptyTiles[j].transform.localScale;
+            tempTile.name = "Tile (" + j + ")";
             // if water, added land border to it
             if (usedValues[j] == 5)
             {
+                
                 int next = -1;
-                if (waterColumn == 1)
+                if (waterColumn < columnCount - 1) next = 1;
+                // create border for water, child over water 
+                if (usedValues[j + next] != 3)
                 {
-                    next = 1;
-                    tempTile.GetComponent<WaterTerrain>().rotateBorder();
+                    float rotation = 0;
+                    if (waterColumn == 1) rotation = 180f;
+                   //Debug.Log("border count: " + borderSprites + "  uv: " + (j + next - columnCount));
+                    tempTile.GetComponent<WaterTerrain>().SetBorderSprite
+                        (borderSprites[usedValues[j + next]], rotation);
                 }
-                if (usedValues[j + next] < 3 || usedValues[j + next] == 4)
-                    tempTile.GetComponent<WaterTerrain>().SetBorderSprite(usedValues[j + next]);
+                else 
+                {
+                    // else if a road tile make the board tile what the border above it is
+                    float rotation = 0;
+                    if (waterColumn == 1) rotation = 180f;
+                    int tileIndex = j + next - columnCount;
+                    if (tileIndex < 0) tileIndex = 3;
+                    tempTile.GetComponent<WaterTerrain>().SetBorderSprite
+                        (borderSprites[usedValues[tileIndex]], rotation);
+                }
             }
-                   
-            tempTile.name = "Tile (" + j + ")";//terrainTypes[usedValues[j]] + " (" + j + ")";
+            else if(usedValues[j] == 0)
+            {
+                SetBorders(j, tempTile);
+            }
+            //terrainTypes[usedValues[j]] + " (" + j + ")";
             Destroy(emptyTiles[j]);
         }
-
-        /*
-        GameObject[] fest = GameObject.FindGameObjectsWithTag("Tile");
-        Debug.Log("North: " + fest[5].GetComponent<ForestTerrain>().GetNorth().name);
-        Debug.Log("South: " + fest[5].GetComponent<ForestTerrain>().GetSouth().name);
-        Debug.Log("East: " + fest[5].GetComponent<ForestTerrain>().GetEast().name);
-        Debug.Log("West: " + fest[5].GetComponent<ForestTerrain>().GetWest().name);
-        */
         // Clear empty array and repopulate with tiles remaining
         System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
-    }
-
-    private void GenerateRoads()
-    {
-        int negPos = Random.Range(0, 1);
     }
 
     private bool ValidIndex(int currentIndex, int newIndex)
@@ -205,22 +213,51 @@ public class TileManager : MonoBehaviour
 
     private void SandCheck(int tileNum)
     {
-        bool one = (tileNum + 1 < 179 && tileNum % columnCount != 0 &&
-            usedValues[tileNum + 1] < 1);
-        bool two = (tileNum - 1 > 0 && (tileNum-1) % columnCount != 0
-            && usedValues[tileNum - 1] < 1);
-        bool three = tileNum + columnCount < 179 && usedValues[tileNum + columnCount] == 0;
-        bool four = tileNum - columnCount > 0 && usedValues[tileNum - columnCount] == 0;
-        char z = ' ';
-     //   if (!(one || two || three || four)) z = 'z';
-   //   Debug.Log(z + " t: " + tileNum + " 1: " + one + " 2: " + two + " 3: " + three + " 4: " + four);
-        if (tileNum + 1 < 179 && (tileNum + 1)/columnCount == tileNum/columnCount 
-            && usedValues[tileNum + 1] == 0 ||
-            tileNum - 1 > 0 && tileNum/columnCount == (tileNum - 1) / columnCount 
-            && usedValues[tileNum - 1] == 0 ||
-             tileNum + columnCount < 179 && usedValues[tileNum + columnCount] == 0 ||
-             tileNum - columnCount > 0 && usedValues[tileNum - columnCount] == 0)
+        int east = tileNum+1 < 179 && (tileNum+1)/columnCount 
+            == tileNum/columnCount ? usedValues[tileNum + 1] : -1;
+        int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
+            ? usedValues[tileNum - 1] : -1;
+        int north = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -1;
+        int south = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : 0;
+        // if surrounded by sand tiles do nothing
+        if (east == 0 || west == 0 || north == 0 || south == 0)
+        {
             return;
-        usedValues[tileNum] = 1;
+        } else if (east == 1 || west == 1 || north == 1 || south == 1)
+        {
+            // if surrounded by forest convert to forest tile, index 1
+            usedValues[tileNum] = 1;
+        }
     }
+
+    private void SetBorders(int tileNum, GameObject currentTile)
+    {
+        int east = tileNum + 1 < 179 && (tileNum + 1) / columnCount
+            == tileNum / columnCount ? usedValues[tileNum + 1] : -1;
+        int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
+            ? usedValues[tileNum - 1] : -1;
+        int north = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -1;
+        int south = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : 0;
+        // if surrounded by sand tiles do nothing
+        if (east != usedValues[tileNum] && east != -1)
+        {
+            Debug.Log("east");
+            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[east], 180);
+        }
+        if (west != usedValues[tileNum] && west != -1)
+        {
+            Debug.Log("west");
+            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[west], 0);
+        }
+        if (north != usedValues[tileNum] && north != -1)
+        {
+            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[north], 90);
+        }
+        if (south != usedValues[tileNum] && south != -1)
+        {
+            Debug.Log("west");
+            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[south], -90);
+        }
+    }
+
 }

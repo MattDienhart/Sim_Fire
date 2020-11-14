@@ -10,6 +10,7 @@ public abstract class TileScript : MonoBehaviour
     private int amountBurned = 0;
     public bool burning = false;
     public Sprite sprite;
+    //abstract Sprite[] borderSprites;
     public string terrian = "terrain tile";
 
     protected List<GameObject> neighborTiles = new List<GameObject>();
@@ -17,6 +18,8 @@ public abstract class TileScript : MonoBehaviour
     private GameObject southTile;
     private GameObject eastTile;
     private GameObject westTile;
+
+    private GameObject borderPrefab;
 
     void Start()
     {
@@ -51,6 +54,7 @@ public abstract class TileScript : MonoBehaviour
 
     public void getNeighbors()
     {
+        Debug.Log("name: " + this.name);
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
         if (tileNum - 1 > 0)
         {
@@ -132,8 +136,41 @@ public abstract class TileScript : MonoBehaviour
         return terrian;
     }
 
-    public void SetSprite(Sprite newSprite)
+    public virtual void SetBorderSprite(Sprite sprite, float rotation)
     {
-        GetComponent<SpriteRenderer>().sprite = newSprite;
+        foreach (Transform child in this.transform)
+        {
+            if (child.gameObject.name != "Border")
+            {
+                Destroy(child.gameObject);
+            }
+        }
+        borderPrefab = GameObject.Find("BorderPrefab");
+        Debug.Log("set border" + borderPrefab.name);
+        GameObject newBorder = Instantiate(
+               borderPrefab,
+               this.transform.position,
+               this.transform.rotation,
+               this.transform.parent);
+        newBorder.transform.localScale = this.transform.localScale;
+        
+        newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
+        newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
+        newBorder.name = "Border";
+
+        float current = transform.localRotation.eulerAngles.z;
+        // Rotate child
+        newBorder.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, current + rotation));
+
+       
+        if(transform.childCount > 1)
+        {
+            Transform[] children = new Transform[transform.childCount];
+            for (int i = 0; i < children.Length; i++)
+            {
+             Destroy(children[i]);
+            }
+        }
+        newBorder.transform.parent = gameObject.transform;
     }
 }

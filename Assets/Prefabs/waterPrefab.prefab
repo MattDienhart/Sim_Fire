@@ -91,7 +91,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2823906937906586616}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d2b80735c78b0ed4c901095fc2b9f733, type: 3}
   m_Name: 
@@ -99,12 +99,6 @@ MonoBehaviour:
   burning: 0
   sprite: {fileID: 0}
   terrian: terrain tile
-  sprites:
-  - {fileID: 21300000, guid: 82cac9a9d3bc64e46ac665bb22fede92, type: 3}
-  - {fileID: 21300000, guid: 6aec37f6cbc876342a2548d76d0e5cbe, type: 3}
-  - {fileID: 21300000, guid: f4a4aac5c3b91a640b57aee3d4d0e3be, type: 3}
-  - {fileID: 21300000, guid: f4a4aac5c3b91a640b57aee3d4d0e3be, type: 3}
-  - {fileID: 21300000, guid: f4a4aac5c3b91a640b57aee3d4d0e3be, type: 3}
 --- !u!1 &7085300081487517570
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,7 +110,7 @@ GameObject:
   - component: {fileID: 6624765963284728080}
   - component: {fileID: 859723387278917413}
   m_Layer: 0
-  m_Name: border
+  m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

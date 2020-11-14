@@ -5,12 +5,11 @@ using UnityEngine;
 public class SandTerrain : TileScript
 {
     public Sprite[] rocks;
-    public GameObject forestPrefab;
 
     private void Start()
     {
         Transform[] children = new Transform[transform.childCount];
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < 4; i++)
         {
             if (Random.Range(0, 8) == 3)
                 transform.GetChild(i).GetComponent<SpriteRenderer>().sprite =
@@ -22,4 +21,13 @@ public class SandTerrain : TileScript
         //terrian = "Sand";
         //Instantiate(prefab, new Vector3(2.0F, 0, 0), Quaternion.identity);
     }
+
+    public override void SetBorderSprite(Sprite sprite, float rotation)
+    {
+        if(sprite.name == "dirtEdge" || sprite.name == "grassEdge" )
+            base.SetBorderSprite(sprite, rotation);
+    }
+
+
+
 }
