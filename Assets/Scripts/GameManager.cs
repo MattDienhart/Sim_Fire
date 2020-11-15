@@ -118,6 +118,11 @@ public class GameManager : MonoBehaviour
         moneyText.text = "$" + money.ToString();
         happinessText.text = happiness.ToString() + "/100";
 
+        if ((selectedFireCrew != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
+        {
+            selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -152,6 +157,7 @@ public class GameManager : MonoBehaviour
             {
                 selectedFireCrew = null;
                 selectedTile = null;
+                selectedText.text = "";
             }
         }
     }
