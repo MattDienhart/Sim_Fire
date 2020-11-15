@@ -55,9 +55,6 @@ public class FireCrew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // disable the box collider for the currently occupied tile to avoid "OnMouseUp" interference
-        currentTile.GetComponent<Collider2D>().enabled = false;
-
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedFireCrew != gameObject)
         {
@@ -103,7 +100,7 @@ public class FireCrew : MonoBehaviour
         energyBar.currentEnergy = energyLevel;
 
         // move the crew to the next tile if not at the destination
-        if (destinationTile != null && currentTile != null)
+        if ((destinationTile != null) && (currentTile != null) && (destinationTile != currentTile))
         {
             StartCoroutine("MoveToDest");
         }
@@ -115,7 +112,7 @@ public class FireCrew : MonoBehaviour
         }
 
         // spray water on the target tile until the fire is extinguished
-        if (targetTile != null && destinationTile == null)
+        if ((targetTile != null) && (destinationTile == null))
         {
             StartCoroutine("SprayWater");
         }
@@ -154,22 +151,22 @@ public class FireCrew : MonoBehaviour
             GameObject[] adjacentTiles = new GameObject[4];
             int i = 0;
             // check how many tiles are adjacent to the current one
-            if (currentTile.GetComponent<TileScript>().GetNorth() != null)
+            if ((currentTile.GetComponent<TileScript>().GetNorth() != null) && (currentTile.GetComponent<TileScript>().GetNorth() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetNorth();
                 i++;
             }
-            if (currentTile.GetComponent<TileScript>().GetEast() != null)
+            if ((currentTile.GetComponent<TileScript>().GetEast() != null) && (currentTile.GetComponent<TileScript>().GetEast() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetEast();
                 i++;
             }
-            if (currentTile.GetComponent<TileScript>().GetSouth() != null)
+            if ((currentTile.GetComponent<TileScript>().GetSouth() != null) && (currentTile.GetComponent<TileScript>().GetSouth() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetSouth();
                 i++;
             }
-            if (currentTile.GetComponent<TileScript>().GetWest() != null)
+            if ((currentTile.GetComponent<TileScript>().GetWest() != null) && (currentTile.GetComponent<TileScript>().GetWest() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetWest();
                 i++;
@@ -214,7 +211,6 @@ public class FireCrew : MonoBehaviour
         else if (gameObject.transform.position.Equals(nextTile.transform.position))
         {
             // we have arrived at the next tile
-            currentTile.GetComponent<Collider2D>().enabled = true;
             currentTile = nextTile;
             nextTile = null;
         }
