@@ -40,13 +40,16 @@ public class GameManager : MonoBehaviour
     }
     public int difficulty;
     private int fireCrewInstances;
+    private int fireTruckInstances;
     private int helicopterInstances;
     private int wildfireInstances;
 
     public GameObject fireCrewPrefab;
+    public GameObject fireTruckPrefab;
     public GameObject firePrefab;
     
     private GameObject selectedFireCrew;
+    private GameObject selectedFireTruck;
     private GameObject selectedTile;
 
     public bool DestSelectModeOn;
@@ -83,8 +86,10 @@ public class GameManager : MonoBehaviour
         infoBtn.onClick.AddListener(() => InfoClicked());
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
+        fireTruckInstances = 0;
         AddFireCrew(allTiles[45]);
         AddFireCrew(allTiles[110]);
+        AddFireTruck(allTiles[111]);
 
         // Instantiate wildfire
         wildfireInstances = 0;
@@ -122,6 +127,10 @@ public class GameManager : MonoBehaviour
         {
             selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
         }
+        else if ((selectedFireTruck != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
+        {
+            selectedText.text = "Fire Truck " + selectedFireTruck.GetComponent<FireTruck>().TruckID;
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -148,7 +157,11 @@ public class GameManager : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<FireCrew>().Selected();
                 }
-                if (hit.collider.gameObject.CompareTag("Tile"))
+                else if (hit.collider.gameObject.CompareTag("FireTruck"))
+                {
+                    hit.collider.gameObject.GetComponent<FireTruck>().Selected();
+                }
+                else if (hit.collider.gameObject.CompareTag("Tile"))
                 {
                     hit.collider.gameObject.GetComponent<TileScript>().Selected();
                 }
@@ -156,6 +169,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 selectedFireCrew = null;
+                selectedFireTruck = null;
                 selectedTile = null;
                 selectedText.text = "";
             }
@@ -174,13 +188,25 @@ public class GameManager : MonoBehaviour
         fireCrewInstances ++;
     }
 
+    // Spawn new Fire Truck instances from the FireTruck prefab
+    void AddFireTruck(GameObject spawnLocation)
+    {
+        GameObject newFireTruck = (GameObject)Instantiate(fireTruckPrefab);
+        newFireTruck.transform.position = spawnLocation.transform.position;
+        newFireTruck.GetComponent<FireTruck>().TruckID = fireTruckInstances + 1;
+        newFireTruck.GetComponent<FireTruck>().waterLevel = 100;
+        newFireTruck.GetComponent<FireTruck>().energyLevel = 100;
+        newFireTruck.GetComponent<FireTruck>().currentTile = spawnLocation;
+        fireTruckInstances ++;
+    }
+
     void CrewClicked()
     {
         Debug.Log("Crew button has been clicked.");
         
         // Toggle between target select mode OFF and ON
         // Must have selected a fire crew before trying to spray water
-        if (!TargetSelectModeOn && SelectedFireCrew != null)
+        if (!TargetSelectModeOn && ((SelectedFireCrew != null) || (selectedFireTruck != null)))
         {
             TargetSelectModeOn = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
@@ -199,7 +225,7 @@ public class GameManager : MonoBehaviour
 
         // Toggle between destination select mode OFF and ON
         // Must have selected a fire crew before trying to dispatch
-        if (!DestSelectModeOn && SelectedFireCrew != null)
+        if (!DestSelectModeOn && ((SelectedFireCrew != null) || (selectedFireTruck != null)))
         {
             DestSelectModeOn = true;
             TargetSelectModeOn = false;  // don't want to have two selection modes active at the same time
@@ -230,7 +256,24 @@ public class GameManager : MonoBehaviour
             if (selectedFireCrew != null)
             {
                 selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
-                print("This object was selected: Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID);
+                Debug.Log("This object was selected: Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID);
+            }
+        }
+    }
+
+    public GameObject SelectedFireTruck
+    {
+        get
+        {
+            return selectedFireTruck;
+        }
+        set
+        {
+            selectedFireTruck = value;
+            if (selectedFireTruck != null)
+            {
+                selectedText.text = "Fire Truck " + selectedFireTruck.GetComponent<FireTruck>().TruckID;
+                Debug.Log("This object was selected: Fire Truck " + selectedFireTruck.GetComponent<FireTruck>().TruckID);
             }
         }
     }

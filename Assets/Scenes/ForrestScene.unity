@@ -1143,6 +1143,7 @@ MonoBehaviour:
   happiness: 0
   difficulty: 0
   fireCrewPrefab: {fileID: 4678436223149907044, guid: 1a7d9194cba214c9eadc4657b5eeab9b, type: 3}
+  fireTruckPrefab: {fileID: 359308276648517986, guid: 860f6db3d754c488a8ec28b892fff0b4, type: 3}
   firePrefab: {fileID: 7157456362132186166, guid: 35ccd44ebee0b914987a004a96f8a00a, type: 3}
   DestSelectModeOn: 0
   TargetSelectModeOn: 0
@@ -16462,23 +16463,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7681646436556870139, guid: 22f9823b51ff0ac4d915dbe690d9d2ac, type: 3}
   m_PrefabInstance: {fileID: 1797468630}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1797710279 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7681646436556870137, guid: 22f9823b51ff0ac4d915dbe690d9d2ac, type: 3}
-  m_PrefabInstance: {fileID: 1618361075}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1797710280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1797710279}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620917442ebc8424e9cf302283476773, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1798026592
 PrefabInstance:
   m_ObjectHideFlags: 0
