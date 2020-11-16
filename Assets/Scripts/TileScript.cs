@@ -16,6 +16,7 @@ public class TileScript : MonoBehaviour
     public GameObject eastTile;
     public GameObject westTile;
 
+    int columnCount = 18;
     public string color = "red";
     private GameManager gameManager;
 
@@ -59,35 +60,36 @@ public class TileScript : MonoBehaviour
 
     private void getNeighbors()
     {
+        string temp = "";
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
-        if (tileNum - 1 > 0)
+        if (tileNum - 1 > 0 && (tileNum / columnCount) == ((tileNum - 1) / columnCount))
         {
             westTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
             neighborTiles.Add(westTile);
+            temp += " west: " + westTile.name;
         }
-        if (tileNum + 1 < 180)
+        if (tileNum + 1 < 180 && (tileNum / columnCount) == ((tileNum+1) / columnCount))
         {
             eastTile = GameObject.Find("Tile (" + (tileNum + 1) + ")");
             neighborTiles.Add(eastTile);
+            temp += " eastTile: " + eastTile.name;
         }
         if (tileNum - 18 > 0)
         {
-
-            southTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
-
-            southTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
-
-            neighborTiles.Add(southTile);
-        }
-        if (tileNum + 18 < 180)
-        {
-
-            northTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
-
             northTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
 
             neighborTiles.Add(northTile);
+            temp += " northTile: " + northTile.name;
         }
+        if (tileNum + 18 < 180)
+        {
+            southTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
+
+            neighborTiles.Add(southTile);
+            temp += " southTile: " + southTile.name;
+        }
+       
+     //   Debug.Log(this.name + ": neighbors : " + temp);
     }
 
     public void  checkNeighbors()
