@@ -173,4 +173,9 @@ public abstract class TileScript : MonoBehaviour
         }
         newBorder.transform.parent = gameObject.transform;
     }
+
+    private void ScreenEdgeCover()
+    {
+       
+    }
 }

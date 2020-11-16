@@ -21,6 +21,7 @@ public class TileManager : MonoBehaviour
     string[] terrainTypes = { "Sand", "Forest", "Road", "SideRoad" };
 
     public Sprite[] borderSprites;
+    public Sprite[] edgeSprites;
 
     // Start is called before the first frame update
     void Start()
@@ -153,6 +154,7 @@ public class TileManager : MonoBehaviour
             tempTile.transform.localScale = emptyTiles[j].transform.localScale;
             tempTile.name = "Tile (" + j + ")";
             // if water, added land border to it
+            
             if (usedValues[j] == 5)
             {
                 
@@ -183,11 +185,19 @@ public class TileManager : MonoBehaviour
                 SetBorders(j, tempTile);
             }
             //terrainTypes[usedValues[j]] + " (" + j + ")";
-            Destroy(emptyTiles[j]);
+            if (j < columnCount)
+            {
+                emptyTiles[j].GetComponent<SpriteRenderer>().sprite = edgeSprites[usedValues[j]];
+                emptyTiles[j].transform.localScale = new Vector3(1.0f, 2.0f, 1.0f);
+            } else
+            {
+                Destroy(emptyTiles[j]);
+            }
+            
         }
         // Clear empty array and repopulate with tiles remaining
-        System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
-        emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
+       // System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
+       // emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
     }
 
     private bool ValidIndex(int currentIndex, int newIndex)
