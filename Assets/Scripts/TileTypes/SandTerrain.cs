@@ -24,8 +24,13 @@ public class SandTerrain : TileScript
 
     public override void SetBorderSprite(Sprite sprite, float rotation)
     {
-        if(sprite.name == "dirtEdge" || sprite.name == "grassEdge" )
+        if(sprite.name == "dirtEdge" || sprite.name == "dirtCorner" 
+            || sprite.name == "grassEdge" || sprite.name == "grassCorner")
+        {
+            if(sprite.name == "dirtCorner" ) Debug.Log("dirt corner " + this.name);
             base.SetBorderSprite(sprite, rotation);
+        }
+            
     }
 
 

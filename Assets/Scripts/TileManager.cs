@@ -21,7 +21,7 @@ public class TileManager : MonoBehaviour
     string[] terrainTypes = { "Sand", "Forest", "Road", "SideRoad" };
 
     public Sprite[] borderSprites;
-    public Sprite[] edgeSprites;
+    public Sprite[] cornerSprites;
 
     // Start is called before the first frame update
     void Start()
@@ -165,7 +165,6 @@ public class TileManager : MonoBehaviour
                 {
                     float rotation = 0;
                     if (waterColumn == 1) rotation = 180f;
-                   //Debug.Log("border count: " + borderSprites + "  uv: " + (j + next - columnCount));
                     tempTile.GetComponent<WaterTerrain>().SetBorderSprite
                         (borderSprites[usedValues[j + next]], rotation);
                 }
@@ -180,24 +179,25 @@ public class TileManager : MonoBehaviour
                         (borderSprites[usedValues[tileIndex]], rotation);
                 }
             }
-            else if(usedValues[j] == 0)
+            // If sand or dirt/forest tiles, create needed borders
+            else if(usedValues[j] == 0 || usedValues[j] == 1)
             {
                 SetBorders(j, tempTile);
             }
-            //terrainTypes[usedValues[j]] + " (" + j + ")";
-            if (j < columnCount)
+            // Make sure edge tiles go to edge of actual viewable screen, increase scale slightly
+            if (j < columnCount || j > (columnCount * (rowCount - 1))-1)
             {
-                emptyTiles[j].GetComponent<SpriteRenderer>().sprite = edgeSprites[usedValues[j]];
-                emptyTiles[j].transform.localScale = new Vector3(1.0f, 2.0f, 1.0f);
+                // emptyTiles[j].GetComponent<SpriteRenderer>().sprite = edgeSprites[usedValues[j]];
+                Vector3 locScale = tempTile.transform.localScale;
+                tempTile.transform.localScale = new Vector3(locScale.x, locScale.y * 1.1f, locScale.z);
             } else
             {
                 Destroy(emptyTiles[j]);
             }
-            
         }
         // Clear empty array and repopulate with tiles remaining
-       // System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
-       // emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
+   //    System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
+    //   emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
     }
 
     private bool ValidIndex(int currentIndex, int newIndex)
@@ -227,13 +227,13 @@ public class TileManager : MonoBehaviour
             == tileNum/columnCount ? usedValues[tileNum + 1] : -1;
         int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
             ? usedValues[tileNum - 1] : -1;
-        int north = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -1;
-        int south = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : 0;
+        int south = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -1;
+        int north = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : 0;
         // if surrounded by sand tiles do nothing
-        if (east == 0 || west == 0 || north == 0 || south == 0)
+        if (east == 0 || west == 0 || south == 0 || north == 0)
         {
             return;
-        } else if (east == 1 || west == 1 || north == 1 || south == 1)
+        } else if (east == 1 || west == 1 || south == 1 || north == 1)
         {
             // if surrounded by forest convert to forest tile, index 1
             usedValues[tileNum] = 1;
@@ -245,29 +245,61 @@ public class TileManager : MonoBehaviour
         int east = tileNum + 1 < 179 && (tileNum + 1) / columnCount
             == tileNum / columnCount ? usedValues[tileNum + 1] : -1;
         int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
-            ? usedValues[tileNum - 1] : -1;
-        int north = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -1;
-        int south = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : 0;
+            ? usedValues[tileNum - 1] : -2;
+        int south = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -3;
+        int north = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : -4;
+        bool eastDiff = east != usedValues[tileNum];
+        bool westDiff = west != usedValues[tileNum];
         // if surrounded by sand tiles do nothing
-        if (east != usedValues[tileNum] && east != -1)
+        // Debug.Log("tile: " + tileNum + east + " " + west + " " + south + " " + north);
+
+        if (eastDiff && east != -1)
         {
-            Debug.Log("east");
+            //Debug.Log("east");
             currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[east], 180);
         }
-        if (west != usedValues[tileNum] && west != -1)
+        if (westDiff && west != -2)
         {
-            Debug.Log("west");
+         //   Debug.Log("west");
             currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[west], 0);
         }
-        if (north != usedValues[tileNum] && north != -1)
+        if (south != usedValues[tileNum] && south != -3)
         {
-            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[north], 90);
+            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[south], 90);
         }
-        if (south != usedValues[tileNum] && south != -1)
+        if (north != usedValues[tileNum] && north != -4)
         {
-            Debug.Log("west");
-            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[south], -90);
+          //  Debug.Log("west");
+            currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[north], -90);
         }
+        // Corner borders creation
+        if (!eastDiff && east == south && (tileNum + 1) / columnCount == tileNum / columnCount)
+        {
+           if(usedValues[tileNum + columnCount + 1] != usedValues[tileNum])
+            {
+                Debug.Log("name: " + currentTile + " e: " + east + " n: " + north  + " c: " 
+                    + usedValues[tileNum + columnCount + 1]);
+                Debug.Log("sprite cor: " + cornerSprites[south].name);
+                currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[south], 0);
+            }
+        }
+        /*
+        if (!westDiff && west == south)
+        {
+            Debug.Log("name: " + currentTile + "w == nn");
+            currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[south], 0);
+        }
+        if (!eastDiff && east == north)
+        {
+            Debug.Log("name: " + currentTile + "e == s");
+            currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[north], 0);
+        }
+        if (!westDiff && west == north)
+        {
+            Debug.Log("name: " + currentTile + "w == s");
+            currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[north], 0);
+        }
+        */
     }
 
 }

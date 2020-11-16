@@ -11,6 +11,7 @@ public class RoadScript : TileScript
     {
         dryness = 0;
         speed = Random.Range(8, 10);
-        terrian = "Road";
+        terrain = "Road";
     }
+
 }

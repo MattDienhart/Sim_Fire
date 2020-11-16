@@ -9,5 +9,9 @@ public class WaterTerrain : TileScript
     {
         dryness = 0;
     }
-
+    public override void SetBorderSprite(Sprite sprite, float rotation)
+    {
+        if (sprite.name != "roadEdge")
+            base.SetBorderSprite(sprite, rotation);
+    }
 }

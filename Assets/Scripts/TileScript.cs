@@ -11,7 +11,7 @@ public abstract class TileScript : MonoBehaviour
     public bool burning = false;
     public Sprite sprite;
     //abstract Sprite[] borderSprites;
-    public string terrian = "terrain tile";
+    public string terrain = "terrain tile";
 
     protected List<GameObject> neighborTiles = new List<GameObject>();
     private GameObject northTile;
@@ -19,20 +19,25 @@ public abstract class TileScript : MonoBehaviour
     private GameObject eastTile;
     private GameObject westTile;
 
+    protected int borderCount = 0;
+
     private GameObject borderPrefab;
 
     void Start()
     {
-//        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+        //        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
         getNeighbors();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(burning) {
+        if (burning)
+        {
             GetComponent<SpriteRenderer>().enabled = true;
-        } else {
+        }
+        else
+        {
             GetComponent<SpriteRenderer>().enabled = false;
         }
     }
@@ -78,14 +83,14 @@ public abstract class TileScript : MonoBehaviour
         }
     }
 
-    public void  checkNeighbors()
+    public void checkNeighbors()
     {
         int fireCount = 0;
         foreach (GameObject tile in neighborTiles)
         {
             if (tile.GetComponent<TileScript>().getBurning()) fireCount++;
         }
-        if(fireCount > 3)
+        if (fireCount > 3)
         {
             dryness = 100;
             burning = true;
@@ -94,7 +99,7 @@ public abstract class TileScript : MonoBehaviour
 
     public GameObject GetNorth()
     {
-        if(northTile) return northTile;
+        if (northTile) return northTile;
         return this.gameObject;
     }
 
@@ -131,51 +136,47 @@ public abstract class TileScript : MonoBehaviour
         return speed;
     }
 
-    public string GetTerrian()
+    public string GetTerrain()
     {
-        return terrian;
+        return terrain;
     }
 
     public virtual void SetBorderSprite(Sprite sprite, float rotation)
     {
+        Debug.Log("sprite name: " + sprite.name + " t: " + this.name);
         foreach (Transform child in this.transform)
         {
-            if (child.gameObject.name != "Border")
+            if (!child.gameObject.CompareTag("TileBorder"))
             {
                 Destroy(child.gameObject);
             }
         }
         borderPrefab = GameObject.Find("BorderPrefab");
-        Debug.Log("set border" + borderPrefab.name);
+        //  Debug.Log("set border" + borderPrefab.name);
         GameObject newBorder = Instantiate(
                borderPrefab,
                this.transform.position,
                this.transform.rotation,
                this.transform.parent);
         newBorder.transform.localScale = this.transform.localScale;
-        
-        newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
+
         newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
         newBorder.name = "Border";
-
         float current = transform.localRotation.eulerAngles.z;
         // Rotate child
         newBorder.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, current + rotation));
-
-       
-        if(transform.childCount > 1)
-        {
-            Transform[] children = new Transform[transform.childCount];
-            for (int i = 0; i < children.Length; i++)
-            {
-             Destroy(children[i]);
-            }
-        }
         newBorder.transform.parent = gameObject.transform;
+
+        // Grass border should be placed on top of all others
+        if (sprite.name == "grassEdge")
+        {
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        }
+        borderCount++;
     }
 
-    private void ScreenEdgeCover()
+    public virtual void SetCornerSprite(Sprite sprite, float rotation)
     {
-       
+        SetBorderSprite(sprite, rotation);
     }
 }
