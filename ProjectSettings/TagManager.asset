@@ -12,6 +12,8 @@ TagManager:
   - InfoBtn
   - DispatchBtn
   - FireTruck
+  - PurchaseCrewBtn
+  - PurchaseTruckBtn
   layers:
   - Default
   - TransparentFX

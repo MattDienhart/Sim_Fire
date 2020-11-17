@@ -68,6 +68,8 @@ public class GameManager : MonoBehaviour
     public Button crewBtn;
     public Button dispatchBtn;
     public Button infoBtn;
+    public Button purchaseCrewBtn;
+    public Button purchaseTruckBtn;
     
 
     // Start is called before the first frame update
@@ -83,6 +85,8 @@ public class GameManager : MonoBehaviour
         crewBtn.onClick.AddListener(() => CrewClicked());
         dispatchBtn.onClick.AddListener(() => DispatchClicked());
         infoBtn.onClick.AddListener(() => InfoClicked());
+        purchaseCrewBtn.onClick.AddListener(() => PurchaseCrewClicked());
+        purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
         fireTruckInstances = 0;
@@ -245,6 +249,30 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Info button has been clicked.");
         selectedText.text = "Info";
+    }
+
+    void PurchaseCrewClicked()
+    {
+        Debug.Log("Purchase Crew button has been clicked.");
+        int crewCost = 100;
+
+        if(money >= crewCost)
+        {
+            money -= crewCost;
+            AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
+        }
+    }
+
+    void PurchaseTruckClicked()
+    {
+        Debug.Log("Purchase Truck button has been clicked.");
+        int truckCost = 1000;
+
+        if(money >= truckCost)
+        {
+            money -= truckCost;
+            AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
+        }
     }
 
     public GameObject SelectedUnit
@@ -517,8 +545,7 @@ public class GameManager : MonoBehaviour
 
     void PickEvent() 
     {
-        //int dice = UnityEngine.Random.Range(0, 110);
-        int dice = 85;
+        int dice = UnityEngine.Random.Range(0, 110);
         Debug.Log("Game Event Dice Roll is: " + dice.ToString());
 
         //Nothing
