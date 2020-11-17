@@ -577,6 +577,22 @@ public class GameManager : MonoBehaviour
                 unluckyTile++;
             }
 
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    unluckyTile++;
+                }
+            }
+
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    unluckyTile++;
+                }
+            }
+
             StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
 
             // Display alert message
@@ -651,6 +667,22 @@ public class GameManager : MonoBehaviour
             while(allTiles[unluckyTile].GetComponent<TileScript>().getBurning())
             {
                 unluckyTile++;
+            }
+
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    unluckyTile++;
+                }
+            }
+
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    unluckyTile++;
+                }
             }
 
             StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
