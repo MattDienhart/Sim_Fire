@@ -99,9 +99,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(SendNotification("Oh no, there are two wildfires! Put them out!", 3));
 
         // Start wildfire behavior
-        InvokeRepeating("WildFireBehavior", 10, 40);
-        InvokeRepeating("PickEvent", 60, 120);
+        //InvokeRepeating("WildFireBehavior", 10, 40);
+        // InvokeRepeating("PickEvent", 60, 120);
         InvokeRepeating("CalcHappy", 0, 5);
+        InvokeRepeating("PickEvent", 5, 10);
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
@@ -516,7 +517,8 @@ public class GameManager : MonoBehaviour
 
     void PickEvent() 
     {
-        int dice = UnityEngine.Random.Range(0, 110);
+        //int dice = UnityEngine.Random.Range(0, 110);
+        int dice = 85;
         Debug.Log("Game Event Dice Roll is: " + dice.ToString());
 
         //Nothing
@@ -588,18 +590,22 @@ public class GameManager : MonoBehaviour
             Debug.Log("Donation event triggered!");
         }
 
-        //UNFINISHED
         // Retirement
-        if((dice > 80) && (dice <= 90)) 
+        if((dice > 80) && (dice <= 90) && (fireCrew.Count > 0)) 
         {
-            int penalty = UnityEngine.Random.Range(1, 2);
+            int penalty = (int)UnityEngine.Random.Range(1, 2);
+            if(penalty > fireCrew.Count)
+            {
+                penalty = fireCrew.Count;
+            }
 
             // Subtract firecrew instances
-            fireCrewInstances -=  penalty;
-
             for(int i = 0; i < penalty; i++) 
             {
-                // DESTROY INSTANCE CODE HERE
+                int random = (int)UnityEngine.Random.Range(0, fireCrew.Count);
+                Destroy(fireCrew[random]);
+                fireCrew.RemoveAt(random);
+                fireCrewInstances--;
             }
 
             string alert = "It looks like " + penalty.ToString() + " of our own are retiring, they've put in their time. Well deserved!";
