@@ -258,7 +258,8 @@ public class GameManager : MonoBehaviour
         if(money >= crewCost)
         {
             money -= crewCost;
-            AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
+            //AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
+            AddFireCrew(AllTiles[39]);
         }
     }
 
@@ -270,7 +271,8 @@ public class GameManager : MonoBehaviour
         if(money >= truckCost)
         {
             money -= truckCost;
-            AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
+            //AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
+            AddFireTruck(AllTiles[39]);
         }
     }
 
@@ -608,7 +610,8 @@ public class GameManager : MonoBehaviour
             // Add fire crew
             for(int i = 0; i < bonus; i++) 
             {
-                AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
+                //AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
+                AddFireCrew(AllTiles[39]);
             }
 
             string alert = "The career fair worked, we've added " + bonus.ToString() + " recruits!";
@@ -621,14 +624,17 @@ public class GameManager : MonoBehaviour
         // Charitable donation
         if((dice > 75) && (dice <= 80)) 
         {
+            int donation = 10000;
+            
             // Add money
-            money += 10000;
+            money += donation;
 
             // Add Fire Truck
-            AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
+            //AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
+            AddFireTruck(AllTiles[39]);
 
             // Display alert message
-            StartCoroutine(SendNotification("Generous donor alert! $10,000 added as well as your very own helicopter!", 3));
+            StartCoroutine(SendNotification("Generous donor alert! $" + donation.ToString() + " added as well as your very own helicopter!", 3));
             Debug.Log("Donation event triggered!");
         }
 
