@@ -48,8 +48,7 @@ public class GameManager : MonoBehaviour
     public GameObject fireTruckPrefab;
     public GameObject firePrefab;
     
-    private GameObject selectedFireCrew;
-    private GameObject selectedFireTruck;
+    private GameObject selectedUnit;
     private GameObject selectedTile;
 
     public bool DestSelectModeOn;
@@ -123,13 +122,16 @@ public class GameManager : MonoBehaviour
         moneyText.text = "$" + money.ToString();
         happinessText.text = happiness.ToString() + "/100";
 
-        if ((selectedFireCrew != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
+        if ((selectedUnit != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
         {
-            selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
-        }
-        else if ((selectedFireTruck != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
-        {
-            selectedText.text = "Fire Truck " + selectedFireTruck.GetComponent<FireTruck>().TruckID;
+            if (selectedUnit.CompareTag("FireCrew"))
+            {
+                selectedText.text = "Fire Crew " + selectedUnit.GetComponent<FireCrew>().CrewID;
+            }
+            else if (selectedUnit.CompareTag("FireTruck"))
+            {
+                selectedText.text = "Fire Truck " + selectedUnit.GetComponent<FireTruck>().TruckID;
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -168,8 +170,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                selectedFireCrew = null;
-                selectedFireTruck = null;
+                selectedUnit = null;
                 selectedTile = null;
                 selectedText.text = "";
             }
@@ -206,7 +207,7 @@ public class GameManager : MonoBehaviour
         
         // Toggle between target select mode OFF and ON
         // Must have selected a fire crew before trying to spray water
-        if (!TargetSelectModeOn && ((SelectedFireCrew != null) || (selectedFireTruck != null)))
+        if ((!TargetSelectModeOn) && (SelectedUnit != null))
         {
             TargetSelectModeOn = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
@@ -225,7 +226,7 @@ public class GameManager : MonoBehaviour
 
         // Toggle between destination select mode OFF and ON
         // Must have selected a fire crew before trying to dispatch
-        if (!DestSelectModeOn && ((SelectedFireCrew != null) || (selectedFireTruck != null)))
+        if ((!DestSelectModeOn) && (SelectedUnit != null))
         {
             DestSelectModeOn = true;
             TargetSelectModeOn = false;  // don't want to have two selection modes active at the same time
@@ -244,36 +245,25 @@ public class GameManager : MonoBehaviour
         selectedText.text = "Info";
     }
 
-    public GameObject SelectedFireCrew
+    public GameObject SelectedUnit
     {
         get
         {
-            return selectedFireCrew;
+            return selectedUnit;
         }
         set
         {
-            selectedFireCrew = value;
-            if (selectedFireCrew != null)
+            selectedUnit = value;
+            if (selectedUnit != null)
             {
-                selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
-                Debug.Log("This object was selected: Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID);
-            }
-        }
-    }
-
-    public GameObject SelectedFireTruck
-    {
-        get
-        {
-            return selectedFireTruck;
-        }
-        set
-        {
-            selectedFireTruck = value;
-            if (selectedFireTruck != null)
-            {
-                selectedText.text = "Fire Truck " + selectedFireTruck.GetComponent<FireTruck>().TruckID;
-                Debug.Log("This object was selected: Fire Truck " + selectedFireTruck.GetComponent<FireTruck>().TruckID);
+                if (selectedUnit.CompareTag("FireCrew"))
+                {
+                    selectedText.text = "Fire Crew " + selectedUnit.GetComponent<FireCrew>().CrewID;
+                }
+                else if (selectedUnit.CompareTag("FireTruck"))
+                {
+                    selectedText.text = "Fire Truck " + selectedUnit.GetComponent<FireTruck>().TruckID;
+                }
             }
         }
     }
@@ -289,7 +279,7 @@ public class GameManager : MonoBehaviour
             selectedTile = value;
             if (selectedTile != null)
             {
-                print("This tile was selected: " + selectedTile.GetInstanceID());
+                Debug.Log("This tile was selected: " + selectedTile.GetInstanceID());
             }
         }
     }

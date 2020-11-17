@@ -56,7 +56,7 @@ public class FireCrew : MonoBehaviour
     void Update()
     {
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
-        if (gameManager.SelectedFireCrew != gameObject)
+        if (gameManager.SelectedUnit != gameObject)
         {
             crewSpriteRenderer.sprite = unselected;
             DestinationMarker.SetActive(false);
@@ -64,7 +64,7 @@ public class FireCrew : MonoBehaviour
         }
 
         // If a destination has been chosen for this crew, update the variable
-        if (gameManager.SelectedFireCrew == gameObject && gameManager.SelectedTile != null && gameManager.DestSelectModeOn == true)
+        if (gameManager.SelectedUnit == gameObject && gameManager.SelectedTile != null && gameManager.DestSelectModeOn == true)
         {
             destinationTile = gameManager.SelectedTile;
             DestinationMarker.SetActive(true);
@@ -74,7 +74,7 @@ public class FireCrew : MonoBehaviour
         }
 
         // If a target has been chosen for the crew to spray water on, update the variable
-        if (gameManager.SelectedFireCrew == gameObject && gameManager.SelectedTile != null && gameManager.TargetSelectModeOn == true)
+        if (gameManager.SelectedUnit == gameObject && gameManager.SelectedTile != null && gameManager.TargetSelectModeOn == true)
         {
             // We can only mark a tile as a target if it is currently on fire and it is adjacent to this fire crew
             // We also cannot mark a tile as a target if the fire crew is still moving
@@ -129,7 +129,7 @@ public class FireCrew : MonoBehaviour
     {
         // If this is the currently selected game object, update the sprite
         crewSpriteRenderer.sprite = selected;
-        gameManager.SelectedFireCrew = gameObject;
+        gameManager.SelectedUnit = gameObject;
 
         if (destinationTile != null)
         {
