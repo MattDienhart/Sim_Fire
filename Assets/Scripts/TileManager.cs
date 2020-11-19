@@ -277,10 +277,17 @@ public class TileManager : MonoBehaviour
         {
            if(usedValues[tileNum + columnCount + 1] != usedValues[tileNum])
             {
-                Debug.Log("name: " + currentTile + " e: " + east + " n: " + north  + " c: " 
-                    + usedValues[tileNum + columnCount + 1]);
-                Debug.Log("sprite cor: " + cornerSprites[south].name);
-                currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[south], 0);
+                //Debug.Log("name: " + currentTile + " e: " + east + " n: " + north  + " c: "  + usedValues[tileNum + columnCount + 1]);
+                if(cornerSprites[south].name == "dirtCorner")
+                {
+                    Debug.Log("Tile Manager: South tile is dirtCorner");
+                    if( usedValues[tileNum] == 0){
+                        Debug.Log("Sand tile south sprite: " + tileNum + " cor: " + cornerSprites[south].name);
+                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[south], 0);
+                    }
+                    
+                }
+                    
             }
         }
         /*

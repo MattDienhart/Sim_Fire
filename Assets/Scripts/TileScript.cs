@@ -143,7 +143,9 @@ public abstract class TileScript : MonoBehaviour
 
     public virtual void SetBorderSprite(Sprite sprite, float rotation)
     {
-        Debug.Log("sprite name: " + sprite.name + " t: " + this.name);
+        //string x = "dirtCorner";
+        Debug.Log("SetBorderSprite name: " + sprite.name.Length + " t: " + this.name);
+        if (string.Equals(sprite.name, "sandCorner")) Debug.Log("MATCH corner ");//+ sprite.name + " t: " + this.name);
         foreach (Transform child in this.transform)
         {
             if (!child.gameObject.CompareTag("TileBorder"))
