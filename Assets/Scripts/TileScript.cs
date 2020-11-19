@@ -173,10 +173,10 @@ public class TileScript : MonoBehaviour
         // If we are not in any selection mode, deselect all fire crews
         if(gameManager.DestSelectModeOn == false && gameManager.TargetSelectModeOn == false)
         {
-            gameManager.SelectedFireCrew = null;
+            gameManager.SelectedUnit = null;
             gameManager.SelectedTile = null;
         }
-        else if ((gameManager.DestSelectModeOn == true || gameManager.TargetSelectModeOn == true) && gameManager.SelectedFireCrew != null)
+        else if ((gameManager.DestSelectModeOn == true || gameManager.TargetSelectModeOn == true) && gameManager.SelectedUnit != null)
         {
             gameManager.SelectedTile = gameObject;
         }

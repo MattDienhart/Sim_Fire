@@ -2,33 +2,33 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireCrew : MonoBehaviour
+public class FireTruck : MonoBehaviour
 {
     public int waterLevel;
     public int energyLevel;
-    public float movementSpeed = 1.0f;
+    public float movementSpeed = 2.0f;
     private float lastWaypointTime;
     private GameManager gameManager;
 
     public Sprite unselected;
     public Sprite selected;
-    private SpriteRenderer crewSpriteRenderer;
+    private SpriteRenderer truckSpriteRenderer;
 
     private WaterBar waterBar;
     private int totalWaterSprayed;
     private int tileIndex;
     private EnergyBar energyBar;
 
-    private int crewID;
-    public int CrewID 
+    private int truckID;
+    public int TruckID 
     {
         get
         {
-            return crewID;
+            return truckID;
         }
         set 
         {
-            crewID = value;
+            truckID = value;
         }
     }
 
@@ -42,7 +42,7 @@ public class FireCrew : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        crewSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        truckSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         waterBar = gameObject.GetComponentInChildren<WaterBar>();
         energyBar = gameObject.GetComponentInChildren<EnergyBar>();
@@ -58,7 +58,7 @@ public class FireCrew : MonoBehaviour
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedUnit != gameObject)
         {
-            crewSpriteRenderer.sprite = unselected;
+            truckSpriteRenderer.sprite = unselected;
             DestinationMarker.SetActive(false);
             TargetMarker.SetActive(false);
         }
@@ -128,7 +128,7 @@ public class FireCrew : MonoBehaviour
     public void Selected()
     {
         // If this is the currently selected game object, update the sprite
-        crewSpriteRenderer.sprite = selected;
+        truckSpriteRenderer.sprite = selected;
         gameManager.SelectedUnit = gameObject;
 
         if (destinationTile != null)
@@ -267,6 +267,5 @@ public class FireCrew : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
     }
-
 
 }

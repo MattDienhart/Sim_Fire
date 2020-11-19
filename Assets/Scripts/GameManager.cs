@@ -21,9 +21,10 @@ public class GameManager : MonoBehaviour
             allTiles = value;
         }
     }
-    private GameObject[] fireHouses;
+    private List<GameObject> fireCrew = new List<GameObject>();
+    private List<GameObject> fireTruck = new List<GameObject>();
     private GameObject[] wildFires;
-    List<int> litTiles = new List<int>();
+    private List<int> litTiles = new List<int>();
     private string windDirection;
     public int money;
     public int happiness;
@@ -40,13 +41,15 @@ public class GameManager : MonoBehaviour
     }
     public int difficulty;
     private int fireCrewInstances;
+    private int fireTruckInstances;
     private int helicopterInstances;
     private int wildfireInstances;
 
     public GameObject fireCrewPrefab;
+    public GameObject fireTruckPrefab;
     public GameObject firePrefab;
     
-    private GameObject selectedFireCrew;
+    private GameObject selectedUnit;
     private GameObject selectedTile;
 
     public bool DestSelectModeOn;
@@ -65,13 +68,14 @@ public class GameManager : MonoBehaviour
     public Button crewBtn;
     public Button dispatchBtn;
     public Button infoBtn;
+    public Button purchaseCrewBtn;
+    public Button purchaseTruckBtn;
     
 
     // Start is called before the first frame update
     void Start()
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
-        fireHouses = GameObject.FindGameObjectsWithTag("Firehouse");
         wildFires =  new GameObject[181];
         windDirection = PickWindDirection();
         difficulty = 2;
@@ -81,10 +85,14 @@ public class GameManager : MonoBehaviour
         crewBtn.onClick.AddListener(() => CrewClicked());
         dispatchBtn.onClick.AddListener(() => DispatchClicked());
         infoBtn.onClick.AddListener(() => InfoClicked());
+        purchaseCrewBtn.onClick.AddListener(() => PurchaseCrewClicked());
+        purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
+        fireTruckInstances = 0;
         AddFireCrew(allTiles[45]);
         AddFireCrew(allTiles[110]);
+        AddFireTruck(allTiles[111]);
 
         // Instantiate wildfire
         wildfireInstances = 0;
@@ -93,7 +101,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LightTile(allTiles[29], 29));
         StartCoroutine(LightTile(allTiles[138], 138));
         StartCoroutine(SendNotification("Oh no, there are two wildfires! Put them out!", 3));
-
 
         // Start wildfire behavior
         InvokeRepeating("WildFireBehavior", 10, 40);
@@ -118,9 +125,16 @@ public class GameManager : MonoBehaviour
         moneyText.text = "$" + money.ToString();
         happinessText.text = happiness.ToString() + "/100";
 
-        if ((selectedFireCrew != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
+        if ((selectedUnit != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
         {
-            selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
+            if (selectedUnit.CompareTag("FireCrew"))
+            {
+                selectedText.text = "Fire Crew " + selectedUnit.GetComponent<FireCrew>().CrewID;
+            }
+            else if (selectedUnit.CompareTag("FireTruck"))
+            {
+                selectedText.text = "Fire Truck " + selectedUnit.GetComponent<FireTruck>().TruckID;
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -148,14 +162,18 @@ public class GameManager : MonoBehaviour
                 {
                     hit.collider.gameObject.GetComponent<FireCrew>().Selected();
                 }
-                if (hit.collider.gameObject.CompareTag("Tile"))
+                else if (hit.collider.gameObject.CompareTag("FireTruck"))
+                {
+                    hit.collider.gameObject.GetComponent<FireTruck>().Selected();
+                }
+                else if (hit.collider.gameObject.CompareTag("Tile"))
                 {
                     hit.collider.gameObject.GetComponent<TileScript>().Selected();
                 }
             }
             else
             {
-                selectedFireCrew = null;
+                selectedUnit = null;
                 selectedTile = null;
                 selectedText.text = "";
             }
@@ -171,7 +189,21 @@ public class GameManager : MonoBehaviour
         newFireCrew.GetComponent<FireCrew>().waterLevel = 100;
         newFireCrew.GetComponent<FireCrew>().energyLevel = 100;
         newFireCrew.GetComponent<FireCrew>().currentTile = spawnLocation;
+        fireCrew.Add(newFireCrew);
         fireCrewInstances ++;
+    }
+
+    // Spawn new Fire Truck instances from the FireTruck prefab
+    void AddFireTruck(GameObject spawnLocation)
+    {
+        GameObject newFireTruck = (GameObject)Instantiate(fireTruckPrefab);
+        newFireTruck.transform.position = spawnLocation.transform.position;
+        newFireTruck.GetComponent<FireTruck>().TruckID = fireTruckInstances + 1;
+        newFireTruck.GetComponent<FireTruck>().waterLevel = 100;
+        newFireTruck.GetComponent<FireTruck>().energyLevel = 100;
+        newFireTruck.GetComponent<FireTruck>().currentTile = spawnLocation;
+        fireTruck.Add(newFireTruck);
+        fireTruckInstances ++;
     }
 
     void CrewClicked()
@@ -180,7 +212,7 @@ public class GameManager : MonoBehaviour
         
         // Toggle between target select mode OFF and ON
         // Must have selected a fire crew before trying to spray water
-        if (!TargetSelectModeOn && SelectedFireCrew != null)
+        if ((!TargetSelectModeOn) && (SelectedUnit != null))
         {
             TargetSelectModeOn = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
@@ -199,7 +231,7 @@ public class GameManager : MonoBehaviour
 
         // Toggle between destination select mode OFF and ON
         // Must have selected a fire crew before trying to dispatch
-        if (!DestSelectModeOn && SelectedFireCrew != null)
+        if ((!DestSelectModeOn) && (SelectedUnit != null))
         {
             DestSelectModeOn = true;
             TargetSelectModeOn = false;  // don't want to have two selection modes active at the same time
@@ -218,19 +250,51 @@ public class GameManager : MonoBehaviour
         selectedText.text = "Info";
     }
 
-    public GameObject SelectedFireCrew
+    void PurchaseCrewClicked()
+    {
+        Debug.Log("Purchase Crew button has been clicked.");
+        int crewCost = 100;
+
+        if(money >= crewCost)
+        {
+            money -= crewCost;
+            //AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
+            AddFireCrew(AllTiles[39]);
+        }
+    }
+
+    void PurchaseTruckClicked()
+    {
+        Debug.Log("Purchase Truck button has been clicked.");
+        int truckCost = 1000;
+
+        if(money >= truckCost)
+        {
+            money -= truckCost;
+            //AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
+            AddFireTruck(AllTiles[39]);
+        }
+    }
+
+    public GameObject SelectedUnit
     {
         get
         {
-            return selectedFireCrew;
+            return selectedUnit;
         }
         set
         {
-            selectedFireCrew = value;
-            if (selectedFireCrew != null)
+            selectedUnit = value;
+            if (selectedUnit != null)
             {
-                selectedText.text = "Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID;
-                print("This object was selected: Fire Crew " + selectedFireCrew.GetComponent<FireCrew>().CrewID);
+                if (selectedUnit.CompareTag("FireCrew"))
+                {
+                    selectedText.text = "Fire Crew " + selectedUnit.GetComponent<FireCrew>().CrewID;
+                }
+                else if (selectedUnit.CompareTag("FireTruck"))
+                {
+                    selectedText.text = "Fire Truck " + selectedUnit.GetComponent<FireTruck>().TruckID;
+                }
             }
         }
     }
@@ -246,7 +310,7 @@ public class GameManager : MonoBehaviour
             selectedTile = value;
             if (selectedTile != null)
             {
-                print("This tile was selected: " + selectedTile.GetInstanceID());
+                Debug.Log("This tile was selected: " + selectedTile.GetInstanceID());
             }
         }
     }
@@ -329,37 +393,126 @@ public class GameManager : MonoBehaviour
         GameObject westTile = litTile.GetComponent<TileScript>().GetWest();
 
         bool hasLitOne = false;
-        yield return new WaitForSeconds(1); 
+        yield return new WaitForSeconds(1);
 
-        //Execute _SpreadFire if tile exists and none have been newly lit on fire
-        if ((northTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, northTile, windDirection, index - 18, "North",  (i) =>
+        // Pick a random direction (North, south, east, or west)
+        switch((int)UnityEngine.Random.Range(1, 4))
         {
-            hasLitOne = i;
-        })); 
-        
-        Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            case 1:
+            //Check if tile is occupied
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(northTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    Debug.Log("northTile is occupied");
+                    goto case 2;
+                }
+            }
 
-        if ((southTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, southTile, windDirection, index + 18, "South",  (i) =>
-        {
-            hasLitOne = i;
-        })); 
-        
-        Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(northTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    Debug.Log("northTile is occupied");
+                    goto case 2;
+                }
+            }
 
-        if ((eastTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, eastTile, windDirection, index + 1, "East",  (i) =>
-        {
-            hasLitOne = i;
-        })); 
-        
-        Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            if ((northTile) && (!hasLitOne)) 
+                StartCoroutine(_SpreadFire(litTile, northTile, windDirection, index - 18, "North",  (i) =>
+                {
+                    hasLitOne = i;
+                }));
+            Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            break;
 
-        if ((westTile) && (!hasLitOne)) StartCoroutine(_SpreadFire(litTile, westTile, windDirection, index - 1, "West",  (i) =>
-        {
-            hasLitOne = i;
-        })); 
-        
-        Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            case 2:
+            //Check if tile is occupied
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(southTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    Debug.Log("southTile is occupied");
+                    goto case 3;
+                }
+            }
 
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(southTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    Debug.Log("southTile is occupied");
+                    goto case 3;
+                }
+            }
+
+            if ((southTile) && (!hasLitOne)) 
+                StartCoroutine(_SpreadFire(litTile, southTile, windDirection, index + 18, "South",  (i) =>
+                {
+                    hasLitOne = i;
+                }));
+            Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            break;
+
+            case 3:
+            //Check if tile is occupied
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(eastTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    Debug.Log("eastTile is occupied");
+                    goto case 4;
+                }
+            }
+
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(eastTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    Debug.Log("eastTile is occupied");
+                    goto case 4;
+                }
+            }
+
+            if ((eastTile) && (!hasLitOne)) 
+            StartCoroutine(_SpreadFire(litTile, eastTile, windDirection, index + 1, "East",  (i) =>
+                {
+                    hasLitOne = i;
+                }));
+            Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            break;
+
+            case 4:
+            //Check if tile is occupied
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(westTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    Debug.Log("WestTile is occupied");
+                    goto NoFires;
+                }
+            }
+
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(westTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    Debug.Log("westTile is occupied");
+                    goto NoFires;
+                }
+            }
+
+            if ((westTile) && (!hasLitOne)) 
+            StartCoroutine(_SpreadFire(litTile, westTile, windDirection, index - 1, "West",  (i) =>
+                {
+                    hasLitOne = i;
+                }));
+            Debug.Log("hasLitOne is " + hasLitOne.ToString());
+            break;
+        }
+
+        NoFires:
+            Debug.Log("No fires have been lit");
         yield return null;    
     }
 
@@ -383,6 +536,7 @@ public class GameManager : MonoBehaviour
             Destroy(wildFires[tileNumber]);
             wildfireInstances--;
             litTiles.Remove(tileNumber);
+            money += 100;
         }
 
         Debug.Log("Put out fire at tile: " + tileNumber.ToString());
@@ -424,6 +578,22 @@ public class GameManager : MonoBehaviour
                 unluckyTile++;
             }
 
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    unluckyTile++;
+                }
+            }
+
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    unluckyTile++;
+                }
+            }
+
             StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
 
             // Display alert message
@@ -432,20 +602,16 @@ public class GameManager : MonoBehaviour
             Debug.Log("Unlucky tile:" + unluckyTile.ToString());
         }
 
-        // NEEDS TO INSTANTIATE AT FIREHOUSE LOCATION
-        // FOR NOW INSTANTIATES AT TILE 40
         // Career fair
         if((dice > 60) && (dice <= 75)) 
         {
-            int bonus = UnityEngine.Random.Range(1, 3);
+            int bonus = UnityEngine.Random.Range(1, 2);
             
             // Add fire crew
-            fireCrewInstances += bonus;
-
             for(int i = 0; i < bonus; i++) 
             {
-                //ADD FIRE CREW AND INSTANTIATE AT FIRESTATION
-                AddFireCrew(allTiles[40]);
+                //AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
+                AddFireCrew(AllTiles[39]);
             }
 
             string alert = "The career fair worked, we've added " + bonus.ToString() + " recruits!";
@@ -455,34 +621,39 @@ public class GameManager : MonoBehaviour
             Debug.Log("Career fair event triggered!");
         }
 
-        // NEEDS HELICOPTER IMPLEMENTATION
         // Charitable donation
         if((dice > 75) && (dice <= 80)) 
         {
+            int donation = 10000;
+            
             // Add money
-            money += 10000;
+            money += donation;
 
-            // Add helicopter
-            helicopterInstances++;
-            //INSTANTIATE HELICOPTER HERE
+            // Add Fire Truck
+            //AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
+            AddFireTruck(AllTiles[39]);
 
             // Display alert message
-            StartCoroutine(SendNotification("Generous donor alert! $10,000 added as well as your very own helicopter!", 3));
+            StartCoroutine(SendNotification("Generous donor alert! $" + donation.ToString() + " added as well as your very own helicopter!", 3));
             Debug.Log("Donation event triggered!");
         }
 
-        //UNFINISHED
         // Retirement
-        if((dice > 80) && (dice <= 90)) 
+        if((dice > 80) && (dice <= 90) && (fireCrew.Count > 0)) 
         {
-            int penalty = UnityEngine.Random.Range(1, 2);
+            int penalty = (int)UnityEngine.Random.Range(1, 2);
+            if(penalty > fireCrew.Count)
+            {
+                penalty = fireCrew.Count;
+            }
 
             // Subtract firecrew instances
-            fireCrewInstances -=  penalty;
-
             for(int i = 0; i < penalty; i++) 
             {
-                // DESTROY INSTANCE CODE HERE
+                int random = (int)UnityEngine.Random.Range(0, fireCrew.Count);
+                Destroy(fireCrew[random]);
+                fireCrew.RemoveAt(random);
+                fireCrewInstances--;
             }
 
             string alert = "It looks like " + penalty.ToString() + " of our own are retiring, they've put in their time. Well deserved!";
@@ -501,6 +672,22 @@ public class GameManager : MonoBehaviour
             while(allTiles[unluckyTile].GetComponent<TileScript>().getBurning())
             {
                 unluckyTile++;
+            }
+
+            for(int i = 0; i < fireCrew.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireCrew[i].GetComponent<FireCrew>().currentTile)
+                {
+                    unluckyTile++;
+                }
+            }
+
+            for(int i = 0; i < fireTruck.Count; i++)
+            {
+                if(allTiles[unluckyTile] == fireTruck[i].GetComponent<FireTruck>().currentTile)
+                {
+                    unluckyTile++;
+                }
             }
 
             StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
