@@ -16,6 +16,8 @@ public class TileScript : MonoBehaviour
     public GameObject eastTile;
     public GameObject westTile;
 
+    public bool occupied = false;
+
     int columnCount = 18;
     public string color = "red";
     private GameManager gameManager;
@@ -180,6 +182,15 @@ public class TileScript : MonoBehaviour
         {
             gameManager.SelectedTile = gameObject;
         }
+    }
+    public bool GetOccupied()
+    {
+        return occupied;
+    }
+
+    public void SetOccupied()
+    {
+        occupied = !occupied;
     }
 
 }
