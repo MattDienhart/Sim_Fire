@@ -157,7 +157,6 @@ public class TileManager : MonoBehaviour
             
             if (usedValues[j] == 5)
             {
-                
                 int next = -1;
                 if (waterColumn < columnCount - 1) next = 1;
                 // create border for water, child over water 
@@ -190,10 +189,9 @@ public class TileManager : MonoBehaviour
                 // emptyTiles[j].GetComponent<SpriteRenderer>().sprite = edgeSprites[usedValues[j]];
                 Vector3 locScale = tempTile.transform.localScale;
                 tempTile.transform.localScale = new Vector3(locScale.x, locScale.y * 1.1f, locScale.z);
-            } else
-            {
+            } 
                 Destroy(emptyTiles[j]);
-            }
+            
         }
         // Clear empty array and repopulate with tiles remaining
    //    System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
@@ -273,16 +271,16 @@ public class TileManager : MonoBehaviour
             currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[north], -90);
         }
         // Corner borders creation
-        if (!eastDiff && east == south && (tileNum + 1) / columnCount == tileNum / columnCount)
+        if (!eastDiff && east == south)// && (tileNum + 1) / columnCount == tileNum / columnCount)
         {
            if(usedValues[tileNum + columnCount + 1] != usedValues[tileNum])
             {
                 //Debug.Log("name: " + currentTile + " e: " + east + " n: " + north  + " c: "  + usedValues[tileNum + columnCount + 1]);
                 if(cornerSprites[south].name == "dirtCorner")
                 {
-                    Debug.Log("Tile Manager: South tile is dirtCorner");
+                    Debug.Log("Tile Manager: South tile is dirtCorner tile Num: " + usedValues[tileNum]);
                     if( usedValues[tileNum] == 0){
-                        Debug.Log("Sand tile south sprite: " + tileNum + " cor: " + cornerSprites[south].name);
+                        Debug.Log(" -- Sand corner tile south sprite: " + tileNum + " cor: " + cornerSprites[south].name);
                         currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[south], 0);
                     }
                     
