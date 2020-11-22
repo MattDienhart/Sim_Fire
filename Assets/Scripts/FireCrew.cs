@@ -7,7 +7,6 @@ public class FireCrew : MonoBehaviour
     public int waterLevel;
     public int energyLevel;
     public float movementSpeed = 1.0f;
-    private float lastWaypointTime;
     private GameManager gameManager;
 
     public Sprite unselected;
@@ -50,6 +49,9 @@ public class FireCrew : MonoBehaviour
         TargetMarker.SetActive(false);
         destinationTile = null;
         nextTile = null;
+
+        // mark the current tile as "occupied" so that other units & fires can't overlap
+        currentTile.GetComponent<TileScript>().SetOccupied();
     }
 
     // Update is called once per frame
@@ -102,11 +104,14 @@ public class FireCrew : MonoBehaviour
         // move the crew to the next tile if not at the destination
         if ((destinationTile != null) && (currentTile != null) && (destinationTile != currentTile))
         {
-            StartCoroutine("MoveToDest");
+            StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+            
+            // This keeps the destination marker from moving along with the other objects in the FireCrew prefab
+            DestinationMarker.transform.position = destinationTile.transform.position;
         }
         if (destinationTile == currentTile)
         {
-            StopCoroutine("MoveToDest");
+            StopCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
             destinationTile = null;
             DestinationMarker.SetActive(false);
         }
@@ -135,109 +140,6 @@ public class FireCrew : MonoBehaviour
         {
             DestinationMarker.SetActive(true);
         }
-    }
-
-    // Handle movmenet to the destination
-    IEnumerator MoveToDest()
-    {
-        Vector3 currentTilePosition = currentTile.transform.position;
-        Vector3 destPosition = destinationTile.transform.position;
-        bool destUnreachable= false;
-
-        //print("Attempting to move to the destination");
-        // Choose the next tile to move to, if we haven't already
-        if (nextTile == null)
-        {
-            GameObject[] adjacentTiles = new GameObject[4];
-            int i = 0;
-            // check how many tiles are adjacent to the current one
-            if ((currentTile.GetComponent<TileScript>().GetNorth() != null) && (currentTile.GetComponent<TileScript>().GetNorth() != currentTile))
-            {
-                adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetNorth();
-                i++;
-            }
-            if ((currentTile.GetComponent<TileScript>().GetEast() != null) && (currentTile.GetComponent<TileScript>().GetEast() != currentTile))
-            {
-                adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetEast();
-                i++;
-            }
-            if ((currentTile.GetComponent<TileScript>().GetSouth() != null) && (currentTile.GetComponent<TileScript>().GetSouth() != currentTile))
-            {
-                adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetSouth();
-                i++;
-            }
-            if ((currentTile.GetComponent<TileScript>().GetWest() != null) && (currentTile.GetComponent<TileScript>().GetWest() != currentTile))
-            {
-                adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetWest();
-                i++;
-            }
-
-            // find the adjacent tile that will bring us the closest to the destination tile
-            float minDistance = Vector3.Distance(currentTilePosition, destPosition);
-            int minDistanceIndex = 0;
-            for (int j = 0; j<i; j++)
-            {
-                Vector3 nextPosition = adjacentTiles[j].transform.position;
-                float distance = Vector3.Distance(nextPosition, destPosition);
-
-                // update the minimum distance
-                if (distance < minDistance)
-                {
-                    if (adjacentTiles[j].GetComponent<TileScript>().getBurning() == false)
-                    {
-                        minDistance = distance;
-                        minDistanceIndex = j;
-                    }
-                    else if (adjacentTiles[j].GetComponent<TileScript>().getBurning() == true && adjacentTiles[j] == destinationTile)
-                    {
-                        destUnreachable = true;
-                    }
-                }
-            }
-
-            // the next tile is the one with the shortest distance to the destination
-            if (!destUnreachable)
-            {
-                nextTile = adjacentTiles[minDistanceIndex];
-                lastWaypointTime = Time.time;
-            }
-            else
-            {
-                // can't reach destination tile, so stop here
-                nextTile = null;
-                destinationTile = currentTile;
-            }
-        }
-        else if (gameObject.transform.position.Equals(nextTile.transform.position))
-        {
-            // we have arrived at the next tile
-            currentTile = nextTile;
-            nextTile = null;
-        }
-        else
-        {
-            // keep moving to the next tile
-            Vector3 nextTilePosition = nextTile.transform.position;
-            float segmentLength = Vector3.Distance(currentTilePosition, nextTilePosition);
-            float totalSegmentTime = segmentLength / movementSpeed;
-            float timeOnSegment = Time.time - lastWaypointTime;
-            if (timeOnSegment < totalSegmentTime - 0.05)
-            {
-                // we are far away from the next tile, so keep moving
-                gameObject.transform.position = Vector2.Lerp(currentTilePosition, nextTilePosition, (timeOnSegment / totalSegmentTime));
-            }
-            else
-            {
-                // we are close enough to the next tile, so match position
-                gameObject.transform.position = nextTile.transform.position;
-            }
-
-            // This keeps the destination marker from moving along with the other objects in the FireCrew prefab
-            DestinationMarker.transform.position = destinationTile.transform.position;
-
-        }
-
-        yield return null;
     }
 
     // Handle spraying water on the fire

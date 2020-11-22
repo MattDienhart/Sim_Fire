@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 6358049388282742825}
   - component: {fileID: 6541402354593818476}
   - component: {fileID: 5566494944863514359}
+  - component: {fileID: -2018156453334479055}
   m_Layer: 0
   m_Name: FireCrew
   m_TagString: FireCrew
@@ -266,6 +267,20 @@ MonoBehaviour:
   DestinationMarker: {fileID: 4942951348940395426}
   targetTile: {fileID: 0}
   TargetMarker: {fileID: 4197327047562715191}
+--- !u!114 &-2018156453334479055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678436223149907044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb4cf147abf5480e80e1f1d6c6f539e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  speed: 1
 --- !u!1 &4942951348940395426
 GameObject:
   m_ObjectHideFlags: 0

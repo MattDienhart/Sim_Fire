@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5225064608252797897}
   - component: {fileID: 4603857045139127352}
   - component: {fileID: 8941839198176416360}
+  - component: {fileID: 8056389074558602488}
   m_Layer: 0
   m_Name: FireTruck
   m_TagString: FireTruck
@@ -87,6 +88,20 @@ MonoBehaviour:
   DestinationMarker: {fileID: 7141055693338540687}
   targetTile: {fileID: 0}
   TargetMarker: {fileID: 4139102381045286940}
+--- !u!114 &8056389074558602488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 359308276648517986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cb4cf147abf5480e80e1f1d6c6f539e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypoints: []
+  speed: 1
 --- !u!1 &4139102381045286940
 GameObject:
   m_ObjectHideFlags: 0
