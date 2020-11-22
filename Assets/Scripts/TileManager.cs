@@ -179,7 +179,7 @@ public class TileManager : MonoBehaviour
                 }
             }
             // If sand or dirt/forest tiles, create needed borders
-            else if(usedValues[j] == 0 || usedValues[j] == 1)
+            if(usedValues[j] == 0 || usedValues[j] == 1 || usedValues[j] == 5)
             {
                 SetBorders(j, tempTile);
             }
@@ -240,6 +240,7 @@ public class TileManager : MonoBehaviour
 
     private void SetBorders(int tileNum, GameObject currentTile)
     {
+        if (usedValues[tileNum] == 5) Debug.Log("11WATER <-- " + tileNum);
         int east = tileNum + 1 < 179 && (tileNum + 1) / columnCount
             == tileNum / columnCount ? usedValues[tileNum + 1] : -1;
         int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
@@ -249,8 +250,6 @@ public class TileManager : MonoBehaviour
         bool eastDiff = east != usedValues[tileNum];
         bool westDiff = west != usedValues[tileNum];
         // if surrounded by sand tiles do nothing
-        // Debug.Log("tile: " + tileNum + east + " " + west + " " + south + " " + north);
-
         if (eastDiff && east != -1)
         {
             //Debug.Log("east");
@@ -270,24 +269,89 @@ public class TileManager : MonoBehaviour
           //  Debug.Log("west");
             currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[north], -90);
         }
+
         // Corner borders creation
-        if (!eastDiff && east == south)// && (tileNum + 1) / columnCount == tileNum / columnCount)
+       // Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south);
+        if (south > -1)
         {
-           if(usedValues[tileNum + columnCount + 1] != usedValues[tileNum])
-            {
-                //Debug.Log("name: " + currentTile + " e: " + east + " n: " + north  + " c: "  + usedValues[tileNum + columnCount + 1]);
-                if(cornerSprites[south].name == "dirtCorner")
+            if (usedValues[tileNum] == 5) Debug.Log("WATER <-- " + tileNum);
+                if (east > -1) {
+                int southEast = usedValues[tileNum + columnCount + 1];
+                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " se: " + southEast);
+                //  Debug.Log("tileNum: " + tileNum + " southEast: " + southEast);
+                if (usedValues[tileNum] != southEast && southEast != east && southEast != south)
                 {
-                    Debug.Log("Tile Manager: South tile is dirtCorner tile Num: " + usedValues[tileNum]);
-                    if( usedValues[tileNum] == 0){
-                        Debug.Log(" -- Sand corner tile south sprite: " + tileNum + " cor: " + cornerSprites[south].name);
-                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[south], 0);
-                    }
-                    
+
+                  //  if (usedValues[tileNum] == 0)
+                //    {
+                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
+                    Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
+                    Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " se: " + southEast + " sprite: " + cornerSprites[southEast].name);
+                    currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southEast], 90);
+                  //  }
                 }
-                    
             }
+            if (west > -1)
+            {
+                int southWest = usedValues[tileNum + columnCount - 1];
+                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " se: " + southEast);
+                //  Debug.Log("tileNum: " + tileNum + " southEast: " + southEast);
+                if (usedValues[tileNum] != southWest && southWest != east && southWest != south)
+                {
+
+                    //if (usedValues[tileNum] == 0)
+                    //{
+                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
+                        Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
+                        Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " sW: " + southWest + " sprite: " + cornerSprites[southWest].name);
+                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southWest], 0);
+//                    }
+                }
+            }
+
         }
+
+        // Checking north corners
+        // Checking north corners
+        if (north > -1)
+        {
+            if (east > -1)
+            {
+                int northEast = usedValues[tileNum - columnCount + 1];
+                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " se: " + northEast);
+                //  Debug.Log("tileNum: " + tileNum + " northEast: " + northEast);
+                if (usedValues[tileNum] != northEast && northEast != east && northEast != north)
+                {
+
+                 //   if (usedValues[tileNum] == 0)
+                //    {
+                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
+                        Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
+                        Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " se: " + northEast + " sprite: " + cornerSprites[northEast].name);
+                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northEast], 180);
+                  //  }
+                }
+            }
+            if (west > -1)
+            {
+                int northWest = usedValues[tileNum - columnCount - 1];
+                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " se: " + northEast);
+                //  Debug.Log("tileNum: " + tileNum + " northEast: " + northEast);
+                if (usedValues[tileNum] != northWest && northWest != east && northWest != north)
+                {
+
+                  //  if (usedValues[tileNum] == 0)
+                  //  {
+                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
+                        Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
+                        Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " sW: " + northWest + " sprite: " + cornerSprites[northWest].name);
+                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northWest], 270);
+                  //  }
+                }
+            }
+
+        }
+
         /*
         if (!westDiff && west == south)
         {

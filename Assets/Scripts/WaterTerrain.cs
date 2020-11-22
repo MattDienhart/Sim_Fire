@@ -11,7 +11,10 @@ public class WaterTerrain : TileScript
     }
     public override void SetBorderSprite(Sprite sprite, float rotation)
     {
-        if (sprite.name != "roadEdge")
+        if (sprite.name != "roadEdge" && sprite.name != "sandCorner" && sprite.name != "roadCorner")
+        {
             base.SetBorderSprite(sprite, rotation);
+        }
+            
     }
 }

@@ -145,7 +145,7 @@ public abstract class TileScript : MonoBehaviour
     {
         //string x = "dirtCorner";
         Debug.Log("SetBorderSprite name: " + sprite.name.Length + " t: " + this.name);
-        if (string.Equals(sprite.name, "sandCorner")) Debug.Log("MATCH corner ");//+ sprite.name + " t: " + this.name);
+        
         foreach (Transform child in this.transform)
         {
             if (!child.gameObject.CompareTag("TileBorder"))
@@ -161,6 +161,9 @@ public abstract class TileScript : MonoBehaviour
                this.transform.rotation,
                this.transform.parent);
         newBorder.transform.localScale = this.transform.localScale;
+        // If corner adjust order layer on top of border
+        if (sprite.name.IndexOf("Corner") != -1) newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+
 
         newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
         newBorder.name = "Border";
