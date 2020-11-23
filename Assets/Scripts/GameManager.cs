@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     private List<GameObject> fireCrew = new List<GameObject>();
     private List<GameObject> fireTruck = new List<GameObject>();
     private GameObject[] wildFires;
-    private List<int> litTiles = new List<int>();
+    public List<int> litTiles = new List<int>();
+    public List<int> loadLitTiles = new List<int>();
     public string windDirection;
     public int money;
     public int happiness;
@@ -99,7 +100,6 @@ public class GameManager : MonoBehaviour
         purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
         saveBtn.onClick.AddListener(() => SaveGame());
         loadBtn.onClick.AddListener(() => LoadGame());
-        // quitBtn.onClick.AddListener(() => QuitGame());
         quitBtn.onClick.AddListener(Application.Quit);
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
@@ -124,12 +124,6 @@ public class GameManager : MonoBehaviour
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
     }
-
-    // void QuitGame()
-    // {
-    //     Debug.Log("GAME SHOULD BE QUITTING");
-    //     Application.Quit();
-    // }
 
     // Update is called once per frame
     void Update()
@@ -221,6 +215,7 @@ public class GameManager : MonoBehaviour
             loadBtn.GetComponent<Button>().enabled = true;
             quitBtn.GetComponent<Image>().enabled = true;
             quitBtn.GetComponent<Button>().enabled = true;
+            notificationText.GetComponent<Text>().enabled = false;
         }
         else 
         {
@@ -236,6 +231,7 @@ public class GameManager : MonoBehaviour
             loadBtn.GetComponent<Button>().enabled = false;
             quitBtn.GetComponent<Image>().enabled = false;
             quitBtn.GetComponent<Button>().enabled = false;
+            notificationText.GetComponent<Text>().enabled = true;
         }
     }
 
@@ -596,10 +592,10 @@ public class GameManager : MonoBehaviour
             wildfireInstances--;
             litTiles.Remove(tileNumber);
             money += 100;
+            StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
+            Debug.Log("Put out fire at tile: " + tileNumber.ToString());
         }
-
-        Debug.Log("Put out fire at tile: " + tileNumber.ToString());
-        StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
+        
         yield return null;
     }
 
@@ -838,9 +834,22 @@ public class GameManager : MonoBehaviour
     {
         GameData data = SaveLoadSystem.LoadGame();
 
+        // Put out all fires
+        for(int i = 0; i < allTiles.Length; i++)
+        {
+            StartCoroutine(PutOutFire(i));
+        }
+
         money = data.money;
         happiness = data.happiness;
         windDirection = data.windDirection;
         windDirectionText.text = "The wind blows: \n" + windDirection;
+        loadLitTiles = data.litTiles;
+
+        // Reinstantiate fires at proper locations
+        for(int i = 0; i < loadLitTiles.Count; i++)
+        {
+            StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
+        }
     }
 }
