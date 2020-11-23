@@ -5,7 +5,6 @@ using UnityEngine;
 public class FireTruck : MonoBehaviour
 {
     public int waterLevel;
-    public int energyLevel;
     public float movementSpeed = 2.0f;
     private GameManager gameManager;
 
@@ -16,7 +15,6 @@ public class FireTruck : MonoBehaviour
     private WaterBar waterBar;
     private int totalWaterSprayed;
     private int tileIndex;
-    private EnergyBar energyBar;
 
     private int truckID;
     public int TruckID 
@@ -37,6 +35,7 @@ public class FireTruck : MonoBehaviour
     public GameObject DestinationMarker;
     public GameObject targetTile;
     public GameObject TargetMarker;
+    public GameObject SelectionBox;
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +43,7 @@ public class FireTruck : MonoBehaviour
         truckSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         waterBar = gameObject.GetComponentInChildren<WaterBar>();
-        energyBar = gameObject.GetComponentInChildren<EnergyBar>();
+        SelectionBox.SetActive(false);
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
@@ -60,12 +59,12 @@ public class FireTruck : MonoBehaviour
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedUnit != gameObject)
         {
-            truckSpriteRenderer.sprite = unselected;
+            SelectionBox.SetActive(false);
             DestinationMarker.SetActive(false);
             TargetMarker.SetActive(false);
         }
 
-        // If a destination has been chosen for this crew, update the variable
+        // If a destination has been chosen for this unit, update the variable
         if (gameManager.SelectedUnit == gameObject && gameManager.SelectedTile != null && gameManager.DestSelectModeOn == true)
         {
             destinationTile = gameManager.SelectedTile;
@@ -75,11 +74,11 @@ public class FireTruck : MonoBehaviour
             gameManager.DestSelectModeOn = false;
         }
 
-        // If a target has been chosen for the crew to spray water on, update the variable
+        // If a target has been chosen for the unit to spray water on, update the variable
         if (gameManager.SelectedUnit == gameObject && gameManager.SelectedTile != null && gameManager.TargetSelectModeOn == true)
         {
-            // We can only mark a tile as a target if it is currently on fire and it is adjacent to this fire crew
-            // We also cannot mark a tile as a target if the fire crew is still moving
+            // We can only mark a tile as a target if it is currently on fire and it is adjacent to this fire truck
+            // We also cannot mark a tile as a target if the fire truck is still moving
             if ((gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetNorth() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetEast() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetSouth() ||
@@ -97,16 +96,15 @@ public class FireTruck : MonoBehaviour
             gameManager.TargetSelectModeOn = false;
         }
 
-        // update status bars for energy and water
+        // update water status bar
         waterBar.currentWater = waterLevel;
-        energyBar.currentEnergy = energyLevel;
 
-        // move the crew to the next tile if not at the destination
+        // move the unit to the next tile if not at the destination
         if ((destinationTile != null) && (currentTile != null) && (destinationTile != currentTile))
         {
             StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
 
-            // This keeps the destination marker from moving along with the other objects in the FireCrew prefab
+            // This keeps the destination marker from moving along with the other objects in the FireTruck prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
         }
         if (destinationTile == currentTile)
@@ -133,7 +131,7 @@ public class FireTruck : MonoBehaviour
     public void Selected()
     {
         // If this is the currently selected game object, update the sprite
-        truckSpriteRenderer.sprite = selected;
+        SelectionBox.SetActive(true);
         gameManager.SelectedUnit = gameObject;
 
         if (destinationTile != null)
