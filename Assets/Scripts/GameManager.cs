@@ -200,7 +200,6 @@ public class GameManager : MonoBehaviour
         newFireTruck.transform.position = spawnLocation.transform.position;
         newFireTruck.GetComponent<FireTruck>().TruckID = fireTruckInstances + 1;
         newFireTruck.GetComponent<FireTruck>().waterLevel = 100;
-        newFireTruck.GetComponent<FireTruck>().energyLevel = 100;
         newFireTruck.GetComponent<FireTruck>().currentTile = spawnLocation;
         fireTruck.Add(newFireTruck);
         fireTruckInstances ++;
