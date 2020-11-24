@@ -8,10 +8,6 @@ public class FireTruck : MonoBehaviour
     public float movementSpeed = 2.0f;
     private GameManager gameManager;
 
-    public Sprite unselected;
-    public Sprite selected;
-    private SpriteRenderer truckSpriteRenderer;
-
     private WaterBar waterBar;
     private int totalWaterSprayed;
     private int tileIndex;
@@ -31,7 +27,6 @@ public class FireTruck : MonoBehaviour
 
     public GameObject currentTile;
     public GameObject destinationTile;
-    public GameObject nextTile;
     public GameObject DestinationMarker;
     public GameObject targetTile;
     public GameObject TargetMarker;
@@ -40,17 +35,15 @@ public class FireTruck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        truckSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         waterBar = gameObject.GetComponentInChildren<WaterBar>();
         SelectionBox.SetActive(false);
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
-        nextTile = null;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
-        currentTile.GetComponent<TileScript>().SetOccupied();
+        currentTile.GetComponent<TileScript>().SetOccupied(true);
     }
 
     // Update is called once per frame
