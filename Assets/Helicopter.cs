@@ -2,32 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireCrew : MonoBehaviour
+public class Helicopter : MonoBehaviour
 {
     public int waterLevel;
-    public int energyLevel;
-    public float movementSpeed = 1.0f;
+    public float movementSpeed = 2.0f;
     private GameManager gameManager;
-
-    public Sprite unselected;
-    public Sprite selected;
-    private SpriteRenderer crewSpriteRenderer;
 
     private WaterBar waterBar;
     private int totalWaterSprayed;
     private int tileIndex;
-    private EnergyBar energyBar;
 
-    private int crewID;
-    public int CrewID 
+    private int helicopterID;
+    public int HelicopterID 
     {
         get
         {
-            return crewID;
+            return helicopterID;
         }
         set 
         {
-            crewID = value;
+            helicopterID = value;
         }
     }
 
@@ -36,17 +30,19 @@ public class FireCrew : MonoBehaviour
     public GameObject DestinationMarker;
     public GameObject targetTile;
     public GameObject TargetMarker;
+    public GameObject SelectionBox;
+    private GameObject liftoffTile;
 
     // Start is called before the first frame update
     void Start()
     {
-        crewSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         waterBar = gameObject.GetComponentInChildren<WaterBar>();
-        energyBar = gameObject.GetComponentInChildren<EnergyBar>();
+        SelectionBox.SetActive(false);
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
+        liftoffTile = null;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
         currentTile.GetComponent<TileScript>().SetOccupied(true);
@@ -58,12 +54,12 @@ public class FireCrew : MonoBehaviour
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedUnit != gameObject)
         {
-            crewSpriteRenderer.sprite = unselected;
+            SelectionBox.SetActive(false);
             DestinationMarker.SetActive(false);
             TargetMarker.SetActive(false);
         }
 
-        // If a destination has been chosen for this crew, update the variable
+        // If a destination has been chosen for this unit, update the variable
         if (gameManager.SelectedUnit == gameObject && gameManager.SelectedTile != null && gameManager.DestSelectModeOn == true)
         {
             destinationTile = gameManager.SelectedTile;
@@ -71,13 +67,16 @@ public class FireCrew : MonoBehaviour
             DestinationMarker.transform.position = destinationTile.transform.position;
             gameManager.SelectedTile = null;
             gameManager.DestSelectModeOn = false;
+
+            // store the tile that we lifted off from in "liftoffTile" so that we can mark it unoccupied later
+            liftoffTile = currentTile;
         }
 
-        // If a target has been chosen for the crew to spray water on, update the variable
+        // If a target has been chosen for the unit to spray water on, update the variable
         if (gameManager.SelectedUnit == gameObject && gameManager.SelectedTile != null && gameManager.TargetSelectModeOn == true)
         {
-            // We can only mark a tile as a target if it is currently on fire and it is adjacent to this fire crew
-            // We also cannot mark a tile as a target if the fire crew is still moving
+            // We can only mark a tile as a target if it is currently on fire and it is adjacent to this fire truck
+            // We also cannot mark a tile as a target if the fire truck is still moving
             if ((gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetNorth() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetEast() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetSouth() ||
@@ -95,23 +94,30 @@ public class FireCrew : MonoBehaviour
             gameManager.TargetSelectModeOn = false;
         }
 
-        // update status bars for energy and water
+        // update water status bar
         waterBar.currentWater = waterLevel;
-        energyBar.currentEnergy = energyLevel;
 
-        // move the crew to the next tile if not at the destination
+        // move the unit to the next tile if not at the destination
         if ((destinationTile != null) && (currentTile != null) && (destinationTile != currentTile))
         {
-            StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
-            
-            // This keeps the destination marker from moving along with the other objects in the FireCrew prefab
+            StartCoroutine(gameObject.GetComponent<FlyToDest>().Fly(currentTile, destinationTile, movementSpeed));
+
+            // This keeps the destination marker from moving along with the other objects in the FireTruck prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
+
+            // if we just lifted off, mark the liftoffTile as "unoccupied"
+            if (liftoffTile == currentTile)
+            {
+                liftoffTile.GetComponent<TileScript>().SetOccupied(false);
+            }
         }
         if (destinationTile == currentTile)
         {
-            StopCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+            StopCoroutine(gameObject.GetComponent<FlyToDest>().Fly(currentTile, destinationTile, movementSpeed));
             destinationTile = null;
             DestinationMarker.SetActive(false);
+            currentTile.GetComponent<TileScript>().SetOccupied(true); // current tile is now occupied
+            liftoffTile = null; // reset the liftoffTile for later use
         }
 
         // spray water on the target tile until the fire is extinguished
@@ -124,14 +130,14 @@ public class FireCrew : MonoBehaviour
             StopCoroutine("SprayWater");
             TargetMarker.SetActive(false);
             totalWaterSprayed = 0;
-        }
+        }        
     }
 
     // Handle selection of this object
     public void Selected()
     {
         // If this is the currently selected game object, update the sprite
-        crewSpriteRenderer.sprite = selected;
+        SelectionBox.SetActive(true);
         gameManager.SelectedUnit = gameObject;
 
         if (destinationTile != null)

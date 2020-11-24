@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveToDest : MonoBehaviour
+public class FlyToDest : MonoBehaviour
 {
     public GameObject nextTile;
     private float lastWaypointTime;
@@ -20,7 +20,7 @@ public class MoveToDest : MonoBehaviour
     }
 
     // Handle unit's movmenet to the destination
-    public IEnumerator Move(GameObject currentTile, GameObject destinationTile, float movementSpeed)
+    public IEnumerator Fly(GameObject currentTile, GameObject destinationTile, float movementSpeed)
     {
         Vector3 currentTilePosition = currentTile.transform.position;
         Vector3 destPosition = destinationTile.transform.position;
@@ -35,90 +35,22 @@ public class MoveToDest : MonoBehaviour
             if ((currentTile.GetComponent<TileScript>().GetNorth() != null) && (currentTile.GetComponent<TileScript>().GetNorth() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetNorth();
-
-                // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
-                {
-                    if (adjacentTiles[i] == destinationTile)
-                    {
-                        // set this flag if we are next to the destination tile, but can't reach it
-                        destUnreachable = true;
-                    }
-                    else
-                    {
-                        adjacentTiles[i] = null;
-                    }
-                }
-                else 
-                {
-                    i++;
-                }
+                i++;
             }
             if ((currentTile.GetComponent<TileScript>().GetEast() != null) && (currentTile.GetComponent<TileScript>().GetEast() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetEast();
-                
-                // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
-                {
-                    if (adjacentTiles[i] == destinationTile)
-                    {
-                        // set this flag if we are next to the destination tile, but can't reach it
-                        destUnreachable = true;
-                    }
-                    else
-                    {
-                        adjacentTiles[i] = null;
-                    }
-                }
-                else 
-                {
-                    i++;
-                }
+                i++;
             }
             if ((currentTile.GetComponent<TileScript>().GetSouth() != null) && (currentTile.GetComponent<TileScript>().GetSouth() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetSouth();
-                
-                // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
-                {
-                    if (adjacentTiles[i] == destinationTile)
-                    {
-                        // set this flag if we are next to the destination tile, but can't reach it
-                        destUnreachable = true;
-                    }
-                    else
-                    {
-                        adjacentTiles[i] = null;
-                    }
-                }
-                else 
-                {
-                    i++;
-                }
+                i++;
             }
             if ((currentTile.GetComponent<TileScript>().GetWest() != null) && (currentTile.GetComponent<TileScript>().GetWest() != currentTile))
             {
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetWest();
-                
-                // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
-                {
-                    if (adjacentTiles[i] == destinationTile)
-                    {
-                        // set this flag if we are next to the destination tile, but can't reach it
-                        destUnreachable = true;
-                    }
-                    else
-                    {
-                        adjacentTiles[i] = null;
-                    }
-                }
-                else 
-                {
-                    i++;
-                }
+                i++;
             }
 
             // find the adjacent tile that will bring us the closest to the destination tile
@@ -132,13 +64,21 @@ public class MoveToDest : MonoBehaviour
                 // find the minimum distance
                 if (distance < minDistance)
                 {
-                    minDistance = distance;
-                    minDistanceIndex = j;
+                    if ((adjacentTiles[j].GetComponent<TileScript>().getBurning() == true || adjacentTiles[j].GetComponent<TileScript>().GetOccupied() == true) && (adjacentTiles[j] == destinationTile))
+                    {
+                        // if the next tile is the destination, and it is on fire or occupied, stop here
+                        destUnreachable = true;
+                    }
+                    else
+                    {
+                        minDistance = distance;
+                        minDistanceIndex = j;
+                    }
                 }
             }
 
             // the next tile is the one with the shortest distance to the destination
-            if ((destUnreachable == false) && (adjacentTiles[minDistanceIndex] != null))
+            if (destUnreachable == false)
             {
                 nextTile = adjacentTiles[minDistanceIndex];
                 lastWaypointTime = Time.time;
@@ -159,13 +99,15 @@ public class MoveToDest : MonoBehaviour
                 {
                     gameObject.GetComponent<FireTruck>().destinationTile = currentTile;
                 }
+                else if (gameObject.CompareTag("Helicopter"))
+                {
+                    gameObject.GetComponent<Helicopter>().destinationTile = currentTile;
+                }
             }
         }
         else if (gameObject.transform.position.Equals(nextTile.transform.position))
         {
             // we have arrived at the next tile
-            currentTile.GetComponent<TileScript>().SetOccupied(false); // current tile is now unoccupied
-            nextTile.GetComponent<TileScript>().SetOccupied(true); // next tile is now occupied
             currentTile = nextTile;
             nextTile = null;
 
@@ -177,6 +119,10 @@ public class MoveToDest : MonoBehaviour
             else if (gameObject.CompareTag("FireTruck"))
             {
                 gameObject.GetComponent<FireTruck>().currentTile = currentTile;
+            }
+            else if (gameObject.CompareTag("Helicopter"))
+            {
+                gameObject.GetComponent<Helicopter>().currentTile = currentTile;
             }
 
         }
@@ -202,4 +148,5 @@ public class MoveToDest : MonoBehaviour
 
         yield return null;
     }
+
 }

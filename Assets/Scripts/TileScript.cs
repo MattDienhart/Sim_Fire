@@ -188,9 +188,9 @@ public class TileScript : MonoBehaviour
         return occupied;
     }
 
-    public void SetOccupied()
+    public void SetOccupied(bool value)
     {
-        occupied = !occupied;
+        occupied = value;
     }
 
 }

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     }
     private List<GameObject> fireCrew = new List<GameObject>();
     private List<GameObject> fireTruck = new List<GameObject>();
+    private List<GameObject> helicopter = new List<GameObject>();
     private GameObject[] wildFires;
     private List<int> litTiles = new List<int>();
     private string windDirection;
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject fireCrewPrefab;
     public GameObject fireTruckPrefab;
+    public GameObject helicopterPrefab;
     public GameObject firePrefab;
     
     private GameObject selectedUnit;
@@ -90,9 +92,11 @@ public class GameManager : MonoBehaviour
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
         fireTruckInstances = 0;
+        helicopterInstances = 0;
         AddFireCrew(allTiles[45]);
         AddFireCrew(allTiles[110]);
         AddFireTruck(allTiles[111]);
+        AddHelicopter(allTiles[112]);
 
         // Instantiate wildfire
         wildfireInstances = 0;
@@ -135,6 +139,10 @@ public class GameManager : MonoBehaviour
             {
                 selectedText.text = "Fire Truck " + selectedUnit.GetComponent<FireTruck>().TruckID;
             }
+            else if (selectedUnit.CompareTag("Helicopter"))
+            {
+                selectedText.text = "Helicopter " + selectedUnit.GetComponent<Helicopter>().HelicopterID;
+            }
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -165,6 +173,10 @@ public class GameManager : MonoBehaviour
                 else if (hit.collider.gameObject.CompareTag("FireTruck"))
                 {
                     hit.collider.gameObject.GetComponent<FireTruck>().Selected();
+                }
+                else if (hit.collider.gameObject.CompareTag("Helicopter"))
+                {
+                    hit.collider.gameObject.GetComponent<Helicopter>().Selected();
                 }
                 else if (hit.collider.gameObject.CompareTag("Tile"))
                 {
@@ -203,6 +215,17 @@ public class GameManager : MonoBehaviour
         newFireTruck.GetComponent<FireTruck>().currentTile = spawnLocation;
         fireTruck.Add(newFireTruck);
         fireTruckInstances ++;
+    }
+
+    void AddHelicopter(GameObject spawnLocation)
+    {
+        GameObject newHelicopter = (GameObject)Instantiate(helicopterPrefab);
+        newHelicopter.transform.position = spawnLocation.transform.position;
+        newHelicopter.GetComponent<Helicopter>().HelicopterID = helicopterInstances + 1;
+        newHelicopter.GetComponent<Helicopter>().waterLevel = 100;
+        newHelicopter.GetComponent<Helicopter>().currentTile = spawnLocation;
+        helicopter.Add(newHelicopter);
+        helicopterInstances ++;
     }
 
     void CrewClicked()
@@ -293,6 +316,10 @@ public class GameManager : MonoBehaviour
                 else if (selectedUnit.CompareTag("FireTruck"))
                 {
                     selectedText.text = "Fire Truck " + selectedUnit.GetComponent<FireTruck>().TruckID;
+                }
+                else if (selectedUnit.CompareTag("Helicopter"))
+                {
+                    selectedText.text = "Helicopter " + selectedUnit.GetComponent<Helicopter>().HelicopterID;
                 }
             }
         }
