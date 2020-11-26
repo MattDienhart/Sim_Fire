@@ -81,7 +81,7 @@ public class Helicopter : MonoBehaviour
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetEast() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetSouth() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetWest()) &&
-                destinationTile == null && gameManager.SelectedTile.GetComponent<TileScript>().getBurning() == true)
+                destinationTile == null && gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == true)
             {
                 targetTile = gameManager.SelectedTile;
                 TargetMarker.SetActive(true);
@@ -149,7 +149,7 @@ public class Helicopter : MonoBehaviour
     // Handle spraying water on the fire
     IEnumerator SprayWater()
     {
-        if (targetTile.GetComponent<TileScript>().getBurning() == true && waterLevel >= 1)
+        if (targetTile.GetComponent<TileScript>().GetBurning() == true && waterLevel >= 1)
         {
             waterLevel -= 1;
             totalWaterSprayed += 1;

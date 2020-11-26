@@ -64,7 +64,7 @@ public class FlyToDest : MonoBehaviour
                 // find the minimum distance
                 if (distance < minDistance)
                 {
-                    if ((adjacentTiles[j].GetComponent<TileScript>().getBurning() == true || adjacentTiles[j].GetComponent<TileScript>().GetOccupied() == true) && (adjacentTiles[j] == destinationTile))
+                    if ((adjacentTiles[j].GetComponent<TileScript>().GetBurning() == true || adjacentTiles[j].GetComponent<TileScript>().GetOccupied() == true) && (adjacentTiles[j] == destinationTile))
                     {
                         // if the next tile is the destination, and it is on fire or occupied, stop here
                         destUnreachable = true;
