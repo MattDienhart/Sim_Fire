@@ -371,8 +371,8 @@ public class GameManager : MonoBehaviour
             if(!inspectTile.GetComponent<TileScript>().GetBurning()) 
             {
                 Debug.Log("And it's not on fire");
-                int chanceToBurn = inspectTile.GetComponent<TileScript>().getDryness();
-                Debug.Log("Tile dryness is " + inspectTile.GetComponent<TileScript>().getDryness());
+                int chanceToBurn = inspectTile.GetComponent<TileScript>().GetDryness();
+                Debug.Log("Tile dryness is " + inspectTile.GetComponent<TileScript>().GetDryness());
 
                 // Check wind direction
                 if (southTile) if((windDirection == "North") && (southTile.GetComponent<TileScript>().GetBurning())) chanceToBurn *= 2;
@@ -794,5 +794,10 @@ public class GameManager : MonoBehaviour
         // Multiply remaining happiness with the percentage of normal tiles
         result *= (((double)allTiles.Length - (double)wildfireInstances) / (double)allTiles.Length);
         happiness = (int)result;
+    }
+
+    public void SetNotificationText(string msg)
+    {
+        notificationText.text = msg;
     }
 }

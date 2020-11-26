@@ -2,27 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SandTerrain : MonoBehaviour
+public class SandTerrain : TileScript
 {
-    public Sprite[] sprites;
+    public Sprite[] rocks;
 
-    public string getType()
+    private void Start()
     {
-        return "Sand";
+        Transform[] children = new Transform[transform.childCount];
+        for (int i = 0; i < 4; i++)
+        {
+            if (Random.Range(0, 8) == 3)
+            {
+                transform.GetChild(i).GetComponent<SpriteRenderer>().sprite =
+                    rocks[Random.Range(0, rocks.Length)];
+                obstacles.Add(transform.GetChild(i).gameObject);
+            }
+                
+        }
+        dryness = Random.Range(40, 60);
+        speed = Random.Range(4, 6);
+        terrain = "Sand";
     }
 
-    public Sprite getSprite()
+    public override void SetBorderSprite(Sprite sprite, float rotation)
     {
-        return sprites[Random.Range(0, sprites.Length)];
+        if (sprite.name == "dirtEdge" || sprite.name == "dirtCorner"
+            || sprite.name == "grassEdge" || sprite.name == "grassCorner")
+        {
+            base.SetBorderSprite(sprite, rotation);
+        }
+
     }
 
-    public int getDryness()
-    {
-        return Random.Range(50, 60);
-    }
 
-    public int getSpeed()
-    {
-        return Random.Range(4, 7);
-    }
+
 }

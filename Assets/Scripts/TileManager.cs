@@ -7,30 +7,36 @@ using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour
 {
+    [Header("Tiles")]
     public GameObject forestPrefab;
     public GameObject sandPrefab;
-    public Transform tileLocation1;
-    private GameObject[] emptyTiles;
     public GameObject[] tilePrefabs;
-    public int columnCount = 18;
-    public int rowCount = 10;
-    private int[] usedValues;
-    public GameObject BorderPrefab;
     
+    private int[] usedValues;
+    private GameObject[] emptyTiles;
+
+    [Header("Prefabs")]
+    public GameObject firePrefab;
+    public GameObject fireLinePrefab;
+    public GameObject borderPrefab;
+
     List<int> values = new List<int>();
     string[] terrainTypes = { "Sand", "Forest", "Road", "SideRoad" };
 
+    public int columnCount = 18;
+    public int rowCount = 10;
+
+    [Header("Edges")]
     public Sprite[] borderSprites;
     public Sprite[] cornerSprites;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
         //values = new int[60];
         usedValues = Enumerable.Repeat(0, 180).ToArray();
         int startIndex = Random.Range(0, 179);
-
         int currentIndex = startIndex;
         values.Add(currentIndex);
         int[] oneEight = { 1, 1 };
@@ -74,9 +80,8 @@ public class TileManager : MonoBehaviour
         int sideStreet1 = Random.Range(1, rowCount - 1);
         int side1NegPos = Random.Range(0, 2) * 2 - 1;
         int side1Len = Random.Range(columnCount / 4, columnCount / 4 + 2);
-        //Debug.Log("r: " + roadColumn + " side1Len: " + side1Len + " n: " + side1NegPos + " res: " + (roadColumn + side1Len * side1NegPos));
-        if ((roadColumn + side1Len * side1NegPos) < 1 || 
-            ((roadColumn + side1Len * side1NegPos) > columnCount))
+        if ((roadColumn + side1Len * side1NegPos) < 2 || 
+            ((roadColumn + side1Len * side1NegPos) > columnCount -1 ))
         {
             side1NegPos *= -1;
         }        
@@ -90,7 +95,6 @@ public class TileManager : MonoBehaviour
         {
             sideStreet2 = Random.Range(2, rowCount - 2);
         }
-    //    Debug.Log("s2: " + sideStreet2 * side2NegPos + " s1: " + sideStreet1 * side1NegPos);
 
         for (int i = 0; i < rowCount; i++)
         {
@@ -144,7 +148,6 @@ public class TileManager : MonoBehaviour
         for (int j = 0; j < usedValues.Length; j++)
         {
             // Check if sand tile island
-         //  Debug.Log("j-> " + j + " and: " +  usedValues[j]);
             GameObject tempTile = Instantiate(
                tilePrefabs[usedValues[j]],
                emptyTiles[j].transform.position,
@@ -239,7 +242,6 @@ public class TileManager : MonoBehaviour
 
     private void SetBorders(int tileNum, GameObject currentTile)
     {
-        if (usedValues[tileNum] == 5) Debug.Log("11WATER <-- " + tileNum);
         int east = tileNum + 1 < 179 && (tileNum + 1) / columnCount
             == tileNum / columnCount ? usedValues[tileNum + 1] : -1;
         int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
@@ -269,41 +271,21 @@ public class TileManager : MonoBehaviour
         }
 
         // Corner borders creation
-       // Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south);
         if (south > -1)
         {
-            if (usedValues[tileNum] == 5) Debug.Log("WATER <-- " + tileNum);
-                if (east > -1) {
-                int southEast = usedValues[tileNum + columnCount + 1];
-                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " se: " + southEast);
-                //  Debug.Log("tileNum: " + tileNum + " southEast: " + southEast);
-                if (usedValues[tileNum] != southEast && southEast != east && southEast != south)
-                {
-
-                  //  if (usedValues[tileNum] == 0)
-                //    {
-                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
-                    Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
-                    Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " se: " + southEast + " sprite: " + cornerSprites[southEast].name);
-                    currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southEast], 90);
-                  //  }
-                }
+            if (east > -1) {
+                    int southEast = usedValues[tileNum + columnCount + 1];
+                    if (usedValues[tileNum] != southEast && southEast != east && southEast != south)
+                    {
+                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southEast], 90);
+                    }
             }
             if (west > -1)
             {
                 int southWest = usedValues[tileNum + columnCount - 1];
-                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " se: " + southEast);
-                //  Debug.Log("tileNum: " + tileNum + " southEast: " + southEast);
                 if (usedValues[tileNum] != southWest && southWest != east && southWest != south)
                 {
-
-                    //if (usedValues[tileNum] == 0)
-                    //{
-                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
-                        Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
-                        Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + south + " sW: " + southWest + " sprite: " + cornerSprites[southWest].name);
-                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southWest], 0);
-//                    }
+                    currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southWest], 0);
                 }
             }
 
@@ -316,57 +298,35 @@ public class TileManager : MonoBehaviour
             if (east > -1)
             {
                 int northEast = usedValues[tileNum - columnCount + 1];
-                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " se: " + northEast);
-                //  Debug.Log("tileNum: " + tileNum + " northEast: " + northEast);
                 if (usedValues[tileNum] != northEast && northEast != east && northEast != north)
                 {
-
-                 //   if (usedValues[tileNum] == 0)
-                //    {
-                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
-                        Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
-                        Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " se: " + northEast + " sprite: " + cornerSprites[northEast].name);
-                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northEast], 180);
-                  //  }
+                    currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northEast], 180);
                 }
             }
             if (west > -1)
             {
                 int northWest = usedValues[tileNum - columnCount - 1];
-                //Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " se: " + northEast);
-                //  Debug.Log("tileNum: " + tileNum + " northEast: " + northEast);
                 if (usedValues[tileNum] != northWest && northWest != east && northWest != north)
                 {
-
-                  //  if (usedValues[tileNum] == 0)
-                  //  {
-                        // if (usedValues[tileNum] == 0) Debug.Log("Name: " + currentTile + "2Boom v: " + usedValues[tileNum]);
-                        Debug.Log("tilename: " + currentTile + " tile Num: " + usedValues[tileNum]);
-                        Debug.Log("t: " + tileNum + " v: " + usedValues[tileNum] + " e:" + east + " s:" + north + " sW: " + northWest + " sprite: " + cornerSprites[northWest].name);
-                        currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northWest], 270);
-                  //  }
+                    currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northWest], 270);
                 }
             }
 
         }
-
-        /*
-        if (!westDiff && west == south)
-        {
-            Debug.Log("name: " + currentTile + "w == nn");
-            currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[south], 0);
-        }
-        if (!eastDiff && east == north)
-        {
-            Debug.Log("name: " + currentTile + "e == s");
-            currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[north], 0);
-        }
-        if (!westDiff && west == north)
-        {
-            Debug.Log("name: " + currentTile + "w == s");
-            currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[north], 0);
-        }
-        */
     }
 
+    public GameObject GetFirePrefab()
+    {
+        return firePrefab;
+    }
+
+    public GameObject GetBorderPrefab()
+    {
+        return borderPrefab;
+    }
+
+    public GameObject GetFireLinePrefab()
+    {
+        return fireLinePrefab;
+    }
 }
