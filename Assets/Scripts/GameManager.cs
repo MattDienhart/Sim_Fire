@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     private GameObject[] wildFires;
     public List<int> litTiles = new List<int>();
     public List<int> loadLitTiles = new List<int>();
+    public List<int> crewTileIDs = new List<int>();
     public string windDirection;
     public int money;
     public int happiness;
@@ -93,6 +94,13 @@ public class GameManager : MonoBehaviour
         windDirection = PickWindDirection();
         difficulty = 2;
         windDirectionText.text = "The wind blows: \n" + windDirection;
+
+        //Rename tile objects for save/load feature
+        for(int i = 0; i < allTiles.Length; i++)
+        {
+            string id = allTiles[i].GetInstanceID().ToString();
+            allTiles[i].name = id;
+        }       
 
         // Set on click listeners
         crewBtn.onClick.AddListener(() => CrewClicked());
@@ -858,6 +866,10 @@ public class GameManager : MonoBehaviour
     
     void SaveGame()
     {
+        for(int i = 0; i < fireCrew.Count; i++)
+        {
+            crewTileIDs.Add(fireCrew[i].GetComponent<FireCrew>().currentTile.GetInstanceID());
+        }
         SaveLoadSystem.SaveGame(this);
     }
 
@@ -871,16 +883,31 @@ public class GameManager : MonoBehaviour
             StartCoroutine(PutOutFire(i));
         }
 
+        // Destroy fireCrew
+        for(int i = 0; i < fireCrew.Count; i++)
+        {
+            Destroy(fireCrew[i]);
+            fireCrew.RemoveAt(i);
+            fireCrewInstances--;
+        }
+
         money = data.money;
         happiness = data.happiness;
         windDirection = data.windDirection;
         windDirectionText.text = "The wind blows: \n" + windDirection;
         loadLitTiles = data.litTiles;
+        crewTileIDs = data.crewTileIDs;
 
         // Reinstantiate fires at proper locations
         for(int i = 0; i < loadLitTiles.Count; i++)
         {
             StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
+        }
+
+        // Reinstantiate crew at proper locations
+        for(int i = 0; i < crewTileIDs.Count; i++)
+        {
+            AddFireCrew(GameObject.Find(crewTileIDs[i].ToString()));
         }
     }
 }

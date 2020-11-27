@@ -9,6 +9,7 @@ public class GameData
     public int happiness;
     public string windDirection;
     public List<int> litTiles = new List<int>();
+    public List<int> crewTileIDs = new List<int>();
 
     public GameData (GameManager gameManager) 
     {
@@ -16,5 +17,6 @@ public class GameData
         happiness = gameManager.happiness;
         windDirection = gameManager.windDirection;
         litTiles = gameManager.litTiles;
+        crewTileIDs = gameManager.crewTileIDs;
     }
 }
