@@ -2,38 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrassTerrain : TileScript
+public class GrassTerrain : MonoBehaviour
 {
-    protected override void BuildFireLine() => CheckHouse();
+    public Sprite[] sprites;
 
-    public Sprite[] buildings;
-    bool houseHere = false;
-    private void Start()
+    public string getType()
     {
-        if (Random.Range(0, 2) == 1)
-        {
-            Sprite house = buildings[Random.Range(0, buildings.Length)];
-            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = house;
-            houseHere = true;
-        }
-
-        dryness = Random.Range(40, 60);
-        speed = Random.Range(4, 6);
-        terrain = "grass";
-        
+        return "Grass";
     }
 
-    private void CheckHouse()
+    public Sprite getSprite()
     {
-        if (houseHere)
-        {
-            TileNotificationText("Can't build fire line here.");
-        }
-        else
-        {
-            base.BuildFireLine();
-        }
-            
+        return sprites[Random.Range(0, sprites.Length)];
     }
-        
+
+    public int getDryness()
+    {
+        return Random.Range(20, 50);
+    }
+
+    public int getSpeed()
+    {
+        return Random.Range(3, 5);
+    }
 }

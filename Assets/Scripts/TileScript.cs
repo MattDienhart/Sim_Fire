@@ -25,20 +25,26 @@ public abstract  class TileScript : MonoBehaviour
     int columnCount = 18;
     public string color = "red";
     private GameManager gameManager;
-    private TileManager tileManager;
+
     private GameObject borderPrefab;
-    private GameObject firePrefab;
-    protected List<GameObject> obstacles = new List<GameObject>();
 
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
-        borderPrefab = tileManager.GetBorderPrefab();
-        firePrefab = tileManager.GetFirePrefab();
-        GetNeighbors();
+        borderPrefab = GameObject.Find("BorderPrefab");
+        getNeighbors();
     }
-    
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(burning) {
+            GetComponent<SpriteRenderer>().enabled = true;
+        } else {
+            GetComponent<SpriteRenderer>().enabled = false;
+        }
+    }
+
     public bool GetBurning()
     {
         return burning;
@@ -47,66 +53,14 @@ public abstract  class TileScript : MonoBehaviour
     public virtual void SetBurning(bool change)
     {
         burning = change;
-        if(burning)
-        {
-            SpawnFire();
-        }
-        else
-        {
-            Transform fire = transform.Find("Fire");
-            if (fire != null) Destroy(fire.gameObject);
-        }
     }
 
-    public void DestroyObstacle()
-    {
-        if(obstacles.Count > 0)
-        {
-            Destroy(obstacles[0]);
-            obstacles.RemoveAt(0);
-        }
-    }
-
-    public int GetDryness()
+    public int getDryness()
     {
         return dryness;
     }
 
-    private void SpawnFire()
-    {
-        tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
-        firePrefab = tileManager.GetFirePrefab();
-        GameObject newFire = Instantiate(
-               firePrefab,
-               this.transform.position,
-               this.transform.rotation,
-               this.transform.parent);
-        newFire.transform.parent = this.transform;
-        newFire.name = "Fire";
-    }
-
-    protected virtual void BuildFireLine()
-    {
-        tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
-        GameObject fireLine = tileManager.GetFireLinePrefab();
-        GameObject newLine = Instantiate(
-               fireLine,
-               this.transform.position,
-               this.transform.rotation,
-               this.transform.parent);
-        newLine.transform.parent = this.transform;
-        newLine.name = "FireLine";
-        dryness -= 20;
-    }
-
-    public void RotateFireLine()
-    {
-        Transform fireLine = transform.Find("FireLine");
-        if (fireLine != null)
-            fireLine.Rotate(Vector3.forward * 90);
-    }
-
-    private void GetNeighbors()
+    private void getNeighbors()
     {
         string temp = "";
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
@@ -243,6 +197,9 @@ public abstract  class TileScript : MonoBehaviour
     }
     public virtual void SetBorderSprite(Sprite sprite, float rotation)
     {
+        //string x = "dirtCorner";
+        Debug.Log("SetBorderSprite name: " + sprite.name.Length + " t: " + this.name);
+
         foreach (Transform child in this.transform)
         {
             if (!child.gameObject.CompareTag("TileBorder"))
@@ -251,6 +208,7 @@ public abstract  class TileScript : MonoBehaviour
             }
         }
         borderPrefab = GameObject.Find("BorderPrefab");
+        //  Debug.Log("set border" + borderPrefab.name);
         GameObject newBorder = Instantiate(
                borderPrefab,
                this.transform.position,
@@ -275,17 +233,6 @@ public abstract  class TileScript : MonoBehaviour
     public virtual void SetCornerSprite(Sprite sprite, float rotation)
     {
         SetBorderSprite(sprite, rotation);
-    }
-
-    public virtual int GetSpeed()
-    {
-        return 2;
-    }
-
-    public void TileNotificationText(string msg)
-    {
-       // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-       // gameManager.SetNotificationText(msg);
     }
 }
 

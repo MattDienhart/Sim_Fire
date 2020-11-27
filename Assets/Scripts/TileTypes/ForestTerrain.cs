@@ -2,40 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ForestTerrain : TileScript
+public class ForestTerrain : MonoBehaviour
 {
-    // public Sprite dirtSprite;
-    public Sprite[] plants;
+    public Sprite[] sprites;
+    public int dryness = 50;
+    public int amountBurned = 0;
+    public Sprite terrainSprite;
 
-    private void Start()
+    public string getType()
     {
-        if (transform.childCount > 0 && base.borderCount < 1)
-        {
-            Transform[] children = new Transform[transform.childCount];
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (Random.Range(0, 3) == 1)
-                {
-                    Transform temp = transform.GetChild(i);
-                    temp.GetComponent<SpriteRenderer>().sprite =
-                        plants[Random.Range(0, plants.Length)];
-
-                  obstacles.Add(transform.GetChild(i).gameObject);
-                }
-                
-            }
-        }
-        base.SetBurning(false);
-        dryness = Random.Range(60, 100);
-        speed = Random.Range(1, 3);
-        terrain = "forest";
+        return "Forest";
     }
 
-    public override void SetBorderSprite(Sprite sprite, float rotation)
+    public Sprite getSprite()
     {
-        if (sprite.name == "grassEdge" || sprite.name == "grassCorner")
-        {
-            base.SetBorderSprite(sprite, rotation);
-        }
+        return sprites[Random.Range(0, sprites.Length)];
+    }
+
+    public int getDryness()
+    {
+        return Random.Range(60, 100);
+    }
+
+    public int getSpeed()
+    {
+        return Random.Range(1, 3);
     }
 }
+
