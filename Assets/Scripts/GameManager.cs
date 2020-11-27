@@ -850,7 +850,6 @@ public class GameManager : MonoBehaviour
         result *= (((double)allTiles.Length - (double)wildfireInstances) / (double)allTiles.Length);
         happiness = (int)result;
     }
-<<<<<<< HEAD
 
     public void SetNotificationText(string msg)
     {
@@ -884,6 +883,4 @@ public class GameManager : MonoBehaviour
             StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
         }
     }
-=======
->>>>>>> parent of e274010... Added scene randomization
 }
