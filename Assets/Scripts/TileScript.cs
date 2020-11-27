@@ -64,7 +64,6 @@ public abstract  class TileScript : MonoBehaviour
         {
             Destroy(obstacles[0]);
             obstacles.RemoveAt(0);
-            dryness -= 10;
         }
     }
 
