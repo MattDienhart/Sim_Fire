@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-public abstract  class TileScript : MonoBehaviour
+public class TileScript : MonoBehaviour
 {
-    protected int dryness;
-    protected int speed;
+    private int dryness = 50;
     private int amountBurned = 0;
     public bool burning = false;
     public Sprite sprite;
-    public string terrain = "terrain tile";
-
-    // Neighboring Tiles
-    protected List<GameObject> neighborTiles = new List<GameObject>();
+    public string type = "terrain tile";
+    List<GameObject> neighborTiles = new List<GameObject>();
     public GameObject northTile;
     public GameObject southTile;
     public GameObject eastTile;
     public GameObject westTile;
 
     public bool occupied = false;
-    protected int borderCount = 0;
 
     int columnCount = 18;
     public string color = "red";
     private GameManager gameManager;
 
-    private GameObject borderPrefab;
+    private string terrian; // tile dependant? forest, hill, water, grass, road
+    // private int elevation = 0; Maybe a feature for later
 
     void Start()
     {
+
+//        GetComponent<SpriteRenderer>().sprite = sprites[Random.Range(0, sprites.Length)];
+
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        borderPrefab = GameObject.Find("BorderPrefab");
+
         getNeighbors();
     }
 
@@ -45,12 +45,12 @@ public abstract  class TileScript : MonoBehaviour
         }
     }
 
-    public bool GetBurning()
+    public bool getBurning()
     {
         return burning;
     }
 
-    public virtual void SetBurning(bool change)
+    public void setBurning(bool change)
     {
         burning = change;
     }
@@ -90,14 +90,16 @@ public abstract  class TileScript : MonoBehaviour
             neighborTiles.Add(southTile);
             temp += " southTile: " + southTile.name;
         }
+       
+     //   Debug.Log(this.name + ": neighbors : " + temp);
     }
 
-    public void  CheckNeighbors()
+    public void  checkNeighbors()
     {
         int fireCount = 0;
         foreach (GameObject tile in neighborTiles)
         {
-            if (tile.GetComponent<TileScript>().GetBurning()) fireCount++;
+            if (tile.GetComponent<TileScript>().getBurning()) fireCount++;
         }
         if(fireCount > 3)
         {
@@ -160,7 +162,7 @@ public abstract  class TileScript : MonoBehaviour
     }
 
 
-    public int GetAmountBurned()
+    public int getAmountBurned()
     {
         return amountBurned;
     }
@@ -191,48 +193,4 @@ public abstract  class TileScript : MonoBehaviour
         occupied = value;
     }
 
-    public string GetTerrain()
-    {
-        return terrain;
-    }
-    public virtual void SetBorderSprite(Sprite sprite, float rotation)
-    {
-        //string x = "dirtCorner";
-        Debug.Log("SetBorderSprite name: " + sprite.name.Length + " t: " + this.name);
-
-        foreach (Transform child in this.transform)
-        {
-            if (!child.gameObject.CompareTag("TileBorder"))
-            {
-                Destroy(child.gameObject);
-            }
-        }
-        borderPrefab = GameObject.Find("BorderPrefab");
-        //  Debug.Log("set border" + borderPrefab.name);
-        GameObject newBorder = Instantiate(
-               borderPrefab,
-               this.transform.position,
-               this.transform.rotation,
-               this.transform.parent);
-        newBorder.transform.localScale = this.transform.localScale;
-        // If corner adjust order layer on top of border
-        if (sprite.name.IndexOf("Corner") != -1) newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
-        newBorder.name = "Border";
-        float current = transform.localRotation.eulerAngles.z;
-        // Rotate child
-        newBorder.transform.localRotation = Quaternion.Euler(new Vector3(0, 0, current + rotation));
-        newBorder.transform.parent = gameObject.transform;
-        // Grass border should be placed on top of all others
-        if (sprite.name == "grassEdge")
-        {
-            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
-        }
-        borderCount++;
-    }
-    public virtual void SetCornerSprite(Sprite sprite, float rotation)
-    {
-        SetBorderSprite(sprite, rotation);
-    }
 }
-

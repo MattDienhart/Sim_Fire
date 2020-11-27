@@ -37,7 +37,7 @@ public class MoveToDest : MonoBehaviour
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetNorth();
 
                 // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().GetBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
+                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
                 {
                     if (adjacentTiles[i] == destinationTile)
                     {
@@ -59,7 +59,7 @@ public class MoveToDest : MonoBehaviour
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetEast();
                 
                 // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().GetBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
+                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
                 {
                     if (adjacentTiles[i] == destinationTile)
                     {
@@ -81,7 +81,7 @@ public class MoveToDest : MonoBehaviour
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetSouth();
                 
                 // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().GetBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
+                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
                 {
                     if (adjacentTiles[i] == destinationTile)
                     {
@@ -103,7 +103,7 @@ public class MoveToDest : MonoBehaviour
                 adjacentTiles[i] = currentTile.GetComponent<TileScript>().GetWest();
                 
                 // omit burning or occupied tiles
-                if (adjacentTiles[i].GetComponent<TileScript>().GetBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
+                if (adjacentTiles[i].GetComponent<TileScript>().getBurning() == true || adjacentTiles[i].GetComponent<TileScript>().GetOccupied() == true)
                 {
                     if (adjacentTiles[i] == destinationTile)
                     {

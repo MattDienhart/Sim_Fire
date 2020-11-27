@@ -402,7 +402,7 @@ public class GameManager : MonoBehaviour
         GameObject newWildfire = (GameObject)Instantiate(firePrefab);
         newWildfire.transform.position = spawnLocation.transform.position;
         newWildfire.GetComponent<Wildfire>().hitPoints = 100;
-        spawnLocation.GetComponent<TileScript>().SetBurning(true);
+        spawnLocation.GetComponent<TileScript>().setBurning(true);
         wildFires[tileIndex] = newWildfire;
         Debug.Log("Tile " + tileIndex.ToString() + " is on fire!");
         litTiles.Add(tileIndex);
@@ -423,25 +423,25 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("The " + adjDirection + " adjacent tile exists");
             // Make sure tile isn't burning
-            if(!inspectTile.GetComponent<TileScript>().GetBurning()) 
+            if(!inspectTile.GetComponent<TileScript>().getBurning()) 
             {
                 Debug.Log("And it's not on fire");
                 int chanceToBurn = inspectTile.GetComponent<TileScript>().getDryness();
                 Debug.Log("Tile dryness is " + inspectTile.GetComponent<TileScript>().getDryness());
 
                 // Check wind direction
-                if (southTile) if((windDirection == "North") && (southTile.GetComponent<TileScript>().GetBurning())) chanceToBurn *= 2;
-                if (northTile) if((windDirection == "South") && (northTile.GetComponent<TileScript>().GetBurning())) chanceToBurn *= 2;
-                if (westTile) if((windDirection == "East") && (westTile.GetComponent<TileScript>().GetBurning())) chanceToBurn *= 2;
-                if (eastTile) if((windDirection == "West") && (eastTile.GetComponent<TileScript>().GetBurning())) chanceToBurn *= 2;
+                if (southTile) if((windDirection == "North") && (southTile.GetComponent<TileScript>().getBurning())) chanceToBurn *= 2;
+                if (northTile) if((windDirection == "South") && (northTile.GetComponent<TileScript>().getBurning())) chanceToBurn *= 2;
+                if (westTile) if((windDirection == "East") && (westTile.GetComponent<TileScript>().getBurning())) chanceToBurn *= 2;
+                if (eastTile) if((windDirection == "West") && (eastTile.GetComponent<TileScript>().getBurning())) chanceToBurn *= 2;
 
                 int multiplier = 0;
 
                 // Check which surrounding tiles are on fire
-                if (northTile) if(northTile.GetComponent<TileScript>().GetBurning()) multiplier++;
-                if (southTile) if(southTile.GetComponent<TileScript>().GetBurning()) multiplier++;
-                if (eastTile) if(eastTile.GetComponent<TileScript>().GetBurning()) multiplier++;
-                if (westTile) if(westTile.GetComponent<TileScript>().GetBurning()) multiplier++;
+                if (northTile) if(northTile.GetComponent<TileScript>().getBurning()) multiplier++;
+                if (southTile) if(southTile.GetComponent<TileScript>().getBurning()) multiplier++;
+                if (eastTile) if(eastTile.GetComponent<TileScript>().getBurning()) multiplier++;
+                if (westTile) if(westTile.GetComponent<TileScript>().getBurning()) multiplier++;
                 Debug.Log("Multiplier is: " + multiplier.ToString());
 
                 chanceToBurn += 10 * multiplier;
@@ -611,9 +611,9 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator PutOutFire(int tileNumber) 
     {
-        if(allTiles[tileNumber].GetComponent<TileScript>().GetBurning()) 
+        if(allTiles[tileNumber].GetComponent<TileScript>().getBurning()) 
         {
-            allTiles[tileNumber].GetComponent<TileScript>().SetBurning(false);
+            allTiles[tileNumber].GetComponent<TileScript>().setBurning(false);
             Destroy(wildFires[tileNumber]);
             wildfireInstances--;
             litTiles.Remove(tileNumber);
@@ -654,7 +654,7 @@ public class GameManager : MonoBehaviour
             int unluckyTile = UnityEngine.Random.Range(1,180);
             
             // Make sure tile isn't already on fire
-            while(allTiles[unluckyTile].GetComponent<TileScript>().GetBurning()) 
+            while(allTiles[unluckyTile].GetComponent<TileScript>().getBurning()) 
             {
                 unluckyTile++;
             }
@@ -750,7 +750,7 @@ public class GameManager : MonoBehaviour
             int unluckyTile = UnityEngine.Random.Range(1,180);
             
             // Make sure tile isn't already on fire
-            while(allTiles[unluckyTile].GetComponent<TileScript>().GetBurning())
+            while(allTiles[unluckyTile].GetComponent<TileScript>().getBurning())
             {
                 unluckyTile++;
             }
@@ -786,7 +786,7 @@ public class GameManager : MonoBehaviour
             //Grab every lit tile
             for(int i = 0; i < allTiles.Length; i++)
             {
-                if(allTiles[i].GetComponent<TileScript>().GetBurning())
+                if(allTiles[i].GetComponent<TileScript>().getBurning())
                 {
                     litTileIndex.Add(i);
                 }
