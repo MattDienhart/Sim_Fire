@@ -37,6 +37,8 @@ public class FireCrew : MonoBehaviour
     public GameObject targetTile;
     public GameObject TargetMarker;
 
+    private bool startSpraying;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +49,7 @@ public class FireCrew : MonoBehaviour
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
+        startSpraying = false;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
         currentTile.GetComponent<TileScript>().SetOccupied(true);
@@ -87,6 +90,7 @@ public class FireCrew : MonoBehaviour
                 targetTile = gameManager.SelectedTile;
                 TargetMarker.SetActive(true);
                 TargetMarker.transform.position = targetTile.transform.position;
+                startSpraying = true;
                 totalWaterSprayed = 0;
             }
 
@@ -117,7 +121,11 @@ public class FireCrew : MonoBehaviour
         // spray water on the target tile until the fire is extinguished
         if ((targetTile != null) && (destinationTile == null))
         {
-            StartCoroutine("SprayWater");
+            if (startSpraying == true)
+            {
+                StartCoroutine("SprayWater");
+                startSpraying = false;
+            }
         }
         else
         {
@@ -143,30 +151,34 @@ public class FireCrew : MonoBehaviour
     // Handle spraying water on the fire
     IEnumerator SprayWater()
     {
-        if (targetTile.GetComponent<TileScript>().getBurning() == true && waterLevel >= 1)
+        while ((totalWaterSprayed < 11) && (targetTile != null))
         {
-            waterLevel -= 1;
-            totalWaterSprayed += 1;
-        }
-        else
-        {
-            targetTile = null;
-        }
-
-        if (totalWaterSprayed >= 10)
-        {
-            // Grab tile index
-            for(int i = 0; i < gameManager.AllTiles.Length; i++ ) 
+            if (targetTile.GetComponent<TileScript>().getBurning() == true && waterLevel >= 1)
             {
-                if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
+                waterLevel -= 1;
+                totalWaterSprayed += 1;
+                Debug.Log("Total water sprayed: " + totalWaterSprayed.ToString());
             }
-            Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
-            StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
-            targetTile = null;
+            else
+            {
+                targetTile = null;
+            }
+
+            if (totalWaterSprayed == 10)
+            {
+                // Grab tile index
+                for(int i = 0; i < gameManager.AllTiles.Length; i++ ) 
+                {
+                    if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
+                }
+                Debug.Log("Put out fire on tile:" + (tileIndex + 1).ToString());
+                StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
+                targetTile = null;
+            }
+
+            yield return new WaitForSeconds(1.0f);
+
         }
-
-        yield return new WaitForSeconds(1.0f);
     }
-
 
 }
