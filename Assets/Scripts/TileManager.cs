@@ -202,8 +202,18 @@ public class TileManager : MonoBehaviour
             
         }
         // Clear empty array and repopulate with tiles remaining
-   //    System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
-    //   emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
+        //    System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
+        //   emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
+        UpdateAllNeighbors();
+    }
+
+    private void UpdateAllNeighbors()
+    {
+        GameObject[] allNewTiles = GameObject.FindGameObjectsWithTag("Tile");
+        foreach(GameObject tile in allNewTiles)
+        {
+            tile.GetComponent<TileScript>().GetNeighbors();
+        }
     }
 
     private bool ValidIndex(int currentIndex, int newIndex)

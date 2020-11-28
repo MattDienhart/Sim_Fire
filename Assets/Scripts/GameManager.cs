@@ -99,9 +99,9 @@ public class GameManager : MonoBehaviour
         infoBtn.onClick.AddListener(() => InfoClicked());
         purchaseCrewBtn.onClick.AddListener(() => PurchaseCrewClicked());
         purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
-        saveBtn.onClick.AddListener(() => SaveGame());
-        loadBtn.onClick.AddListener(() => LoadGame());
-        quitBtn.onClick.AddListener(Application.Quit);
+       // saveBtn.onClick.AddListener(() => SaveGame());
+     //   loadBtn.onClick.AddListener(() => LoadGame());
+       // quitBtn.onClick.AddListener(Application.Quit);
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
         fireTruckInstances = 0;
@@ -405,7 +405,7 @@ public class GameManager : MonoBehaviour
         wildFires[tileIndex] = newWildfire;
         Debug.Log("Tile " + tileIndex.ToString() + " is on fire!");
         litTiles.Add(tileIndex);
-        wildfireInstances ++;
+        wildfireInstances++;
         yield return null;
     }
 

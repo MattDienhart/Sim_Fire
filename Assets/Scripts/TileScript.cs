@@ -112,7 +112,7 @@ public abstract class TileScript : MonoBehaviour
             fireLine.Rotate(Vector3.forward * 90);
     }
 
-    private void GetNeighbors()
+    public void GetNeighbors()
     {
         string temp = "";
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
