@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     public Text selectedText;
 
     public Text happinessText;
-
+    public GameObject notificationBox;
     public Text notificationText;
     public Text windDirectionText;
 
@@ -75,6 +75,8 @@ public class GameManager : MonoBehaviour
     public Button purchaseCrewBtn;
     public Button purchaseTruckBtn;
     public GameObject pauseMenu;
+    public Button pauseBtn;
+    public Button closePauseBtn;
     public Text pauseText;
     public Text saveText;
     public Text loadText;
@@ -99,9 +101,11 @@ public class GameManager : MonoBehaviour
         infoBtn.onClick.AddListener(() => InfoClicked());
         purchaseCrewBtn.onClick.AddListener(() => PurchaseCrewClicked());
         purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
-       // saveBtn.onClick.AddListener(() => SaveGame());
-     //   loadBtn.onClick.AddListener(() => LoadGame());
-       // quitBtn.onClick.AddListener(Application.Quit);
+        pauseBtn.onClick.AddListener(() => PauseClicked());
+        closePauseBtn.onClick.AddListener(() => ClosePauseClicked());
+        saveBtn.onClick.AddListener(() => SaveGame());
+        loadBtn.onClick.AddListener(() => LoadGame());
+        quitBtn.onClick.AddListener(Application.Quit);
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
         fireTruckInstances = 0;
@@ -208,6 +212,16 @@ public class GameManager : MonoBehaviour
                 selectedText.text = "";
             }
         }
+    }
+
+    void PauseClicked()
+    {
+        pauseMenu.SetActive(true);
+    }
+
+    void ClosePauseClicked()
+    {
+        pauseMenu.SetActive(false);
     }
 
     void PauseGame ()
@@ -810,9 +824,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator SendNotification(string text, int time)
     {
+        notificationBox.SetActive(true);
         notificationText.text = text;
         yield return new WaitForSeconds(time);
         notificationText.text = "";
+        notificationBox.SetActive(false);
     }
 
     string PickWindDirection()
@@ -882,4 +898,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
         }
     }
+
+    
 }
