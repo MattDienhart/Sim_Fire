@@ -30,8 +30,13 @@ public class TileManager : MonoBehaviour
     public Sprite[] borderSprites;
     public Sprite[] cornerSprites;
 
-    // Start is called before the first frame update
     void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
+    // Start is called before the first frame update
+    void Start()
     {
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
         //values = new int[60];
@@ -155,8 +160,9 @@ public class TileManager : MonoBehaviour
                forestPrefab.transform.parent);
             tempTile.transform.localScale = emptyTiles[j].transform.localScale;
             tempTile.name = "Tile (" + j + ")";
+            tempTile.tag = "Tile";
+
             // if water, added land border to it
-            
             if (usedValues[j] == 5)
             {
                 int next = -1;

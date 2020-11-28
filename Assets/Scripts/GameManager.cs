@@ -81,8 +81,7 @@ public class GameManager : MonoBehaviour
     public Text quitText;
     public Button saveBtn;
     public Button loadBtn;
-    public Button quitBtn;
-    
+    public Button quitBtn;    
 
     // Start is called before the first frame update
     void Start()

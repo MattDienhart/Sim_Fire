@@ -7,18 +7,20 @@ using UnityEngine.UI;
 public class StartScreenScript : MonoBehaviour
 {
     public Button startBtn;
-    public GameObject[] fires;
 
     void Start()
     {
+        //DontDestroyOnLoad(GameObject.Find("TileManager"));
+        startBtn = GameObject.Find("StartBtn").GetComponent<Button>();
         startBtn.onClick.AddListener(() => StartClicked());
     }
 
     void StartClicked()
     {
-        fires[0].GetComponent<SpriteRenderer>().enabled = true;
-        fires[1].GetComponent<SpriteRenderer>().enabled = true;
-        fires[2].GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("BigFire1").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("BigFire2").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("BigFire3").GetComponent<SpriteRenderer>().enabled = true;
+        GameObject.Find("BigFire3").GetComponent<SpriteRenderer>().enabled = true;
         Invoke("NextScene", 1.0f);
     }
 

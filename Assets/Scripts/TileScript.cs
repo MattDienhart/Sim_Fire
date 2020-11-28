@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
 
-public abstract  class TileScript : MonoBehaviour
+public abstract class TileScript : MonoBehaviour
 {
     protected int dryness;
     protected int speed;
@@ -29,6 +29,11 @@ public abstract  class TileScript : MonoBehaviour
     private GameObject borderPrefab;
     private GameObject firePrefab;
     protected List<GameObject> obstacles = new List<GameObject>();
+
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     void Start()
     {
@@ -244,6 +249,7 @@ public abstract  class TileScript : MonoBehaviour
     }
     public virtual void SetBorderSprite(Sprite sprite, float rotation)
     {
+        borderPrefab = GameObject.Find("TileManager").GetComponent<TileManager>().GetBorderPrefab();
         foreach (Transform child in this.transform)
         {
             if (!child.gameObject.CompareTag("TileBorder"))
@@ -251,7 +257,6 @@ public abstract  class TileScript : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        borderPrefab = GameObject.Find("BorderPrefab");
         GameObject newBorder = Instantiate(
                borderPrefab,
                this.transform.position,
