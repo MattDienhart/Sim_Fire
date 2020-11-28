@@ -30,6 +30,11 @@ public abstract  class TileScript : MonoBehaviour
     private GameObject firePrefab;
     protected List<GameObject> obstacles = new List<GameObject>();
 
+    void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -244,6 +249,7 @@ public abstract  class TileScript : MonoBehaviour
     }
     public virtual void SetBorderSprite(Sprite sprite, float rotation)
     {
+        borderPrefab = GameObject.Find("TileManager").GetComponent<TileManager>().GetBorderPrefab();
         foreach (Transform child in this.transform)
         {
             if (!child.gameObject.CompareTag("TileBorder"))
@@ -251,7 +257,6 @@ public abstract  class TileScript : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        borderPrefab = GameObject.Find("BorderPrefab");
         GameObject newBorder = Instantiate(
                borderPrefab,
                this.transform.position,

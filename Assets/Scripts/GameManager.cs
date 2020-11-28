@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     public Button infoBtn;
     public Button purchaseCrewBtn;
     public Button purchaseTruckBtn;
+
     
 
     // Start is called before the first frame update
