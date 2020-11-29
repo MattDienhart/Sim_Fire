@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
+        PlaceFirehouse();
     }
 
     // Update is called once per frame
@@ -922,5 +923,31 @@ public class GameManager : MonoBehaviour
         {
             AddHelicopter(GameObject.Find(helicopterTileLocations[i]));
         }
-    }    
+    } 
+
+    // positions firehouse next to road
+    void PlaceFirehouse()
+    {
+        int count = 0;
+        GameObject fireHouse = GameObject.Find("Firehouse");
+        int rnd = UnityEngine.Random.Range(0, allTiles.Length);
+        bool nearRoad = false;
+        bool goodTerrain = false;
+        while(!goodTerrain || !nearRoad)
+        {
+            rnd = UnityEngine.Random.Range(1, allTiles.Length - 1);
+            nearRoad = allTiles[rnd - 1].GetComponent<TileScript>().GetTerrain() == "Road";
+            nearRoad = nearRoad || allTiles[rnd + 1].GetComponent<TileScript>().GetTerrain() == "Road";
+            goodTerrain = allTiles[rnd].GetComponent<TileScript>().GetTerrain() == "Sand";
+            goodTerrain = goodTerrain || allTiles[rnd].GetComponent<TileScript>().GetTerrain() == "forest";
+            count++;
+            if (count > 150) break;
+        }
+        fireHouse.transform.position = allTiles[rnd].transform.position;
+        allTiles[rnd].GetComponent<TileScript>().SetOccupied(true);
+        allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
+        allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
+        allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
+        allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
+    }
 }

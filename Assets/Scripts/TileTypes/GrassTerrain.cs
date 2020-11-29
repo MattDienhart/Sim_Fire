@@ -15,6 +15,7 @@ public class GrassTerrain : TileScript
             Sprite house = buildings[Random.Range(0, buildings.Length)];
             transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = house;
             houseHere = true;
+            SetOccupied(true);
         }
 
         dryness = Random.Range(40, 60);

@@ -10,7 +10,6 @@ public abstract class TileScript : MonoBehaviour
     protected int speed;
     private int amountBurned = 0;
     public bool burning = false;
-    public Sprite sprite;
     public string terrain = "terrain tile";
 
     // Neighboring Tiles
@@ -24,7 +23,6 @@ public abstract class TileScript : MonoBehaviour
     protected int borderCount = 0;
 
     int columnCount = 18;
-    public string color = "red";
     private GameManager gameManager;
     private TileManager tileManager;
     private GameObject borderPrefab;
@@ -42,7 +40,7 @@ public abstract class TileScript : MonoBehaviour
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
         borderPrefab = tileManager.GetBorderPrefab();
         firePrefab = tileManager.GetFirePrefab();
-        GetNeighbors();
+      //  GetNeighbors();
     }
     
     public bool GetBurning()

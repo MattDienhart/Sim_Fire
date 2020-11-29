@@ -10,6 +10,7 @@ public class WaterTerrain : TileScript
     private void Start()
     {
         dryness = 0;
+        SetOccupied(true);
     }
     public override void SetBorderSprite(Sprite sprite, float rotation)
     {

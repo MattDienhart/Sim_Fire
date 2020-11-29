@@ -323,7 +323,7 @@ public class TileManager : MonoBehaviour
             if (west > -1)
             {
                 int northWest = usedValues[tileNum - columnCount - 1];
-                if (usedValues[tileNum] != northWest && northWest != east && northWest != north)
+                if (usedValues[tileNum] != northWest && northWest != west && northWest != north)
                 {
                     currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northWest], 270);
                 }
