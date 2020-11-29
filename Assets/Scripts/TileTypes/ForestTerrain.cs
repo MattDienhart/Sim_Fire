@@ -38,4 +38,5 @@ public class ForestTerrain : TileScript
             base.SetBorderSprite(sprite, rotation);
         }
     }
+
 }

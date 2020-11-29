@@ -206,12 +206,6 @@ public abstract class TileScript : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        Debug.Log("Collided");
-    }
-
-
     public int GetAmountBurned()
     {
         return amountBurned;
@@ -228,7 +222,8 @@ public abstract class TileScript : MonoBehaviour
             gameManager.SelectedUnit = null;
             gameManager.SelectedTile = null;
         }
-        else if ((gameManager.DestSelectModeOn == true || gameManager.TargetSelectModeOn == true) && gameManager.SelectedUnit != null)
+        else if ((gameManager.DestSelectModeOn == true || 
+            gameManager.TargetSelectModeOn == true) && gameManager.SelectedUnit != null)
         {
             gameManager.SelectedTile = gameObject;
         }
@@ -264,7 +259,9 @@ public abstract class TileScript : MonoBehaviour
                this.transform.parent);
         newBorder.transform.localScale = this.transform.localScale;
         // If corner adjust order layer on top of border
-        if (sprite.name.IndexOf("Corner") != -1) newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        if (sprite.name == "grassEdge" || sprite.name == "grassCorner") 
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        // just grass   if (sprite.name.IndexOf("Corner") != -1) newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
         newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
         newBorder.name = "Border";
         float current = transform.localRotation.eulerAngles.z;

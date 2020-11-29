@@ -93,8 +93,9 @@ GameObject:
   - component: {fileID: 4879523151764178125}
   - component: {fileID: 4879523151764178124}
   - component: {fileID: 4879523151764178127}
+  - component: {fileID: -4101491346138519944}
   m_Layer: 0
-  m_Name: forestTilePrefab
+  m_Name: forestPrefab
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +184,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burning: 0
   sprite: {fileID: 21300000, guid: 99669be024a0e714f8f8d0430b96db34, type: 3}
-  terrian: terrain tile
+  terrain: terrain tile
+  northTile: {fileID: 0}
+  southTile: {fileID: 0}
+  eastTile: {fileID: 0}
+  westTile: {fileID: 0}
+  occupied: 0
+  color: red
   plants:
   - {fileID: 21300000, guid: 2bc6cf3be03e90348a339ec5a94203f2, type: 3}
   - {fileID: 21300000, guid: 5c8c36c8d64f8a2409133b246b1e52a8, type: 3}
@@ -191,6 +198,32 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4c3ffbfb89703f44dafdceec2da8b3ee, type: 3}
   - {fileID: 21300000, guid: dfc8fcb21bd938745b2eb4faacc6c028, type: 3}
   - {fileID: 21300000, guid: 0e0dceae3aeeaa844baa7c4092c44824, type: 3}
+--- !u!61 &-4101491346138519944
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4879523151764178126}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.28, y: 1.28}
+  m_EdgeRadius: 0
 --- !u!1 &4879523151980372757
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,13 +19,13 @@ public class FireCrew : MonoBehaviour
     private EnergyBar energyBar;
 
     private int crewID;
-    public int CrewID 
+    public int CrewID
     {
         get
         {
             return crewID;
         }
-        set 
+        set
         {
             crewID = value;
         }
@@ -103,7 +103,7 @@ public class FireCrew : MonoBehaviour
         if ((destinationTile != null) && (currentTile != null) && (destinationTile != currentTile))
         {
             StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
-            
+
             // This keeps the destination marker from moving along with the other objects in the FireCrew prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
         }
@@ -156,9 +156,9 @@ public class FireCrew : MonoBehaviour
         if (totalWaterSprayed >= 10)
         {
             // Grab tile index
-            for(int i = 0; i < gameManager.AllTiles.Length; i++ ) 
+            for (int i = 0; i < gameManager.AllTiles.Length; i++)
             {
-                if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
+                if (GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
             }
             Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
             StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
@@ -168,6 +168,4 @@ public class FireCrew : MonoBehaviour
 
         yield return new WaitForSeconds(1.0f);
     }
-
-
 }

@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 7524791998948851064}
   - component: {fileID: 7524791998948851065}
   - component: {fileID: 4101023180146656331}
+  - component: {fileID: 2646430031865340450}
   m_Layer: 0
   m_Name: grassPrefab
   m_TagString: Untagged
@@ -180,10 +181,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   burning: 0
   sprite: {fileID: 0}
-  terrian: Grass
+  terrain: terrain tile
+  northTile: {fileID: 0}
+  southTile: {fileID: 0}
+  eastTile: {fileID: 0}
+  westTile: {fileID: 0}
+  occupied: 0
+  color: red
   buildings:
   - {fileID: 21300000, guid: 9920bbeaaf2b17d439e85c680ac58765, type: 3}
   - {fileID: 21300000, guid: 92c9c99e5e861424aa24d47609d310ea, type: 3}
   - {fileID: 21300000, guid: 4ad52e0ccde0ca74fa643ccc1d145456, type: 3}
   - {fileID: 21300000, guid: c1da0b70fb2c94540961362a7333eb23, type: 3}
   - {fileID: 21300000, guid: cc67a78a17362234890295778de815a8, type: 3}
+--- !u!61 &2646430031865340450
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524791998948851067}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.28, y: 1.28}
+  m_EdgeRadius: 0
