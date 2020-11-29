@@ -9,8 +9,6 @@ public class Helicopter : MonoBehaviour
     private GameManager gameManager;
 
     private WaterBar waterBar;
-    private int totalWaterSprayed;
-    private int tileIndex;
 
     private int helicopterID;
     public int HelicopterID 
@@ -33,6 +31,8 @@ public class Helicopter : MonoBehaviour
     public GameObject SelectionBox;
     private GameObject liftoffTile;
 
+    private bool startDousing;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +43,7 @@ public class Helicopter : MonoBehaviour
         TargetMarker.SetActive(false);
         destinationTile = null;
         liftoffTile = null;
+        startDousing = false;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
         currentTile.GetComponent<TileScript>().SetOccupied(true);
@@ -86,7 +87,7 @@ public class Helicopter : MonoBehaviour
                 targetTile = gameManager.SelectedTile;
                 TargetMarker.SetActive(true);
                 TargetMarker.transform.position = targetTile.transform.position;
-                totalWaterSprayed = 0;
+                startDousing = true;
             }
 
             // reset the selection parameters
@@ -104,6 +105,9 @@ public class Helicopter : MonoBehaviour
 
             // This keeps the destination marker from moving along with the other objects in the FireTruck prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
+
+            // If the unit was in the middle of a behavior, stop when movement begins
+            targetTile = null;
 
             // if we just lifted off, mark the liftoffTile as "unoccupied"
             if (liftoffTile == currentTile)
@@ -123,13 +127,18 @@ public class Helicopter : MonoBehaviour
         // spray water on the target tile until the fire is extinguished
         if ((targetTile != null) && (destinationTile == null))
         {
-            StartCoroutine("SprayWater");
+            if (startDousing == true)
+            {
+                StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+                startDousing = false;
+            }
         }
         else
         {
-            StopCoroutine("SprayWater");
+            StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
             TargetMarker.SetActive(false);
-            totalWaterSprayed = 0;
+            targetTile = null;
+            startDousing = false;
         }        
     }
 
@@ -145,34 +154,5 @@ public class Helicopter : MonoBehaviour
             DestinationMarker.SetActive(true);
         }
     }
-
-    // Handle spraying water on the fire
-    IEnumerator SprayWater()
-    {
-        if (targetTile.GetComponent<TileScript>().GetBurning() == true && waterLevel >= 1)
-        {
-            waterLevel -= 1;
-            totalWaterSprayed += 1;
-        }
-        else
-        {
-            targetTile = null;
-        }
-
-        if (totalWaterSprayed >= 10)
-        {
-            // Grab tile index
-            for(int i = 0; i < gameManager.AllTiles.Length; i++ ) 
-            {
-                if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
-            }
-            Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
-            StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
-            targetTile = null;
-        }
-
-        yield return new WaitForSeconds(1.0f);
-    }
-
 
 }

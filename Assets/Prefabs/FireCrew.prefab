@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -344718155
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7b51f6105e9d84cc4829b2e0e91143f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -191,6 +191,7 @@ GameObject:
   - component: {fileID: 6541402354593818476}
   - component: {fileID: 5566494944863514359}
   - component: {fileID: -2018156453334479055}
+  - component: {fileID: -6271735744847276002}
   m_Layer: 0
   m_Name: FireCrew
   m_TagString: FireCrew
@@ -263,7 +264,6 @@ MonoBehaviour:
   selected: {fileID: 21300000, guid: b6281f68eaf29453d8a00a5e0520bc97, type: 3}
   currentTile: {fileID: 0}
   destinationTile: {fileID: 0}
-  nextTile: {fileID: 0}
   DestinationMarker: {fileID: 4942951348940395426}
   targetTile: {fileID: 0}
   TargetMarker: {fileID: 4197327047562715191}
@@ -279,8 +279,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb4cf147abf5480e80e1f1d6c6f539e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
-  speed: 1
+  nextTile: {fileID: 0}
+--- !u!114 &-6271735744847276002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678436223149907044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70cac61ee0e2b4c248c3a4428b9e1a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SprayRate: 1
+  ExtinguishAmount: 10
 --- !u!1 &4942951348940395426
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +528,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -344718155
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4d95f24ecd9f64dc5a320b26051a3e65, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
