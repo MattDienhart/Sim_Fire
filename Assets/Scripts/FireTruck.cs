@@ -9,8 +9,6 @@ public class FireTruck : MonoBehaviour
     private GameManager gameManager;
 
     private WaterBar waterBar;
-    private int totalWaterSprayed;
-    private int tileIndex;
 
     private int truckID;
     public int TruckID 
@@ -32,6 +30,8 @@ public class FireTruck : MonoBehaviour
     public GameObject TargetMarker;
     public GameObject SelectionBox;
 
+    private bool startDousing;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +41,7 @@ public class FireTruck : MonoBehaviour
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
+        startDousing = false;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
         currentTile.GetComponent<TileScript>().SetOccupied(true);
@@ -81,7 +82,7 @@ public class FireTruck : MonoBehaviour
                 targetTile = gameManager.SelectedTile;
                 TargetMarker.SetActive(true);
                 TargetMarker.transform.position = targetTile.transform.position;
-                totalWaterSprayed = 0;
+                startDousing = false;
             }
 
             // reset the selection parameters
@@ -99,6 +100,9 @@ public class FireTruck : MonoBehaviour
 
             // This keeps the destination marker from moving along with the other objects in the FireTruck prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
+
+            // If the unit was in the middle of a behavior, stop when movement begins
+            targetTile = null;
         }
         if (destinationTile == currentTile)
         {
@@ -107,16 +111,21 @@ public class FireTruck : MonoBehaviour
             DestinationMarker.SetActive(false);
         }
 
-        // spray water on the target tile until the fire is extinguished
+        // spray water on the target tile until the fire is extinguished or we move away
         if ((targetTile != null) && (destinationTile == null))
         {
-            StartCoroutine("SprayWater");
+            if (startDousing == true)
+            {
+                StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+                startDousing = false;
+            }
         }
         else
         {
-            StopCoroutine("SprayWater");
+            StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
             TargetMarker.SetActive(false);
-            totalWaterSprayed = 0;
+            targetTile = null;
+            startDousing = false;
         }
     }
 
@@ -131,34 +140,6 @@ public class FireTruck : MonoBehaviour
         {
             DestinationMarker.SetActive(true);
         }
-    }
-
-    // Handle spraying water on the fire
-    IEnumerator SprayWater()
-    {
-        if (targetTile.GetComponent<TileScript>().GetBurning() == true && waterLevel >= 1)
-        {
-            waterLevel -= 1;
-            totalWaterSprayed += 1;
-        }
-        else
-        {
-            targetTile = null;
-        }
-
-        if (totalWaterSprayed >= 10)
-        {
-            // Grab tile index
-            for(int i = 0; i < gameManager.AllTiles.Length; i++ ) 
-            {
-                if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
-            }
-            Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
-            StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
-            targetTile = null;
-        }
-
-        yield return new WaitForSeconds(1.0f);
     }
 
 }

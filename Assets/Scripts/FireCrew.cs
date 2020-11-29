@@ -14,8 +14,6 @@ public class FireCrew : MonoBehaviour
     private SpriteRenderer crewSpriteRenderer;
 
     private WaterBar waterBar;
-    private int totalWaterSprayed;
-    private int tileIndex;
     private EnergyBar energyBar;
 
     private int crewID;
@@ -37,6 +35,8 @@ public class FireCrew : MonoBehaviour
     public GameObject targetTile;
     public GameObject TargetMarker;
 
+    private bool startDousing;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +47,7 @@ public class FireCrew : MonoBehaviour
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
+        startDousing = false;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
         currentTile.GetComponent<TileScript>().SetOccupied(true);
@@ -87,7 +88,7 @@ public class FireCrew : MonoBehaviour
                 targetTile = gameManager.SelectedTile;
                 TargetMarker.SetActive(true);
                 TargetMarker.transform.position = targetTile.transform.position;
-                totalWaterSprayed = 0;
+                startDousing = true;          
             }
 
             // reset the selection parameters
@@ -106,6 +107,9 @@ public class FireCrew : MonoBehaviour
 
             // This keeps the destination marker from moving along with the other objects in the FireCrew prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
+
+            // If the unit was in the middle of a behavior, stop when movement begins
+            targetTile = null;
         }
         if (destinationTile == currentTile)
         {
@@ -114,16 +118,21 @@ public class FireCrew : MonoBehaviour
             DestinationMarker.SetActive(false);
         }
 
-        // spray water on the target tile until the fire is extinguished
+        // spray water on the target tile until the fire is extinguished or we move away
         if ((targetTile != null) && (destinationTile == null))
         {
-            StartCoroutine("SprayWater");
+            if (startDousing == true)
+            {
+                StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+                startDousing = false;
+            }
         }
         else
         {
-            StopCoroutine("SprayWater");
+            StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
             TargetMarker.SetActive(false);
-            totalWaterSprayed = 0;
+            targetTile = null;
+            startDousing = false;
         }
     }
 
@@ -138,34 +147,5 @@ public class FireCrew : MonoBehaviour
         {
             DestinationMarker.SetActive(true);
         }
-    }
-
-    // Handle spraying water on the fire
-    IEnumerator SprayWater()
-    {
-        if (targetTile.GetComponent<TileScript>().GetBurning() == true && waterLevel >= 1)
-        {
-            waterLevel -= 1;
-            totalWaterSprayed += 1;
-        }
-        else
-        {
-            targetTile = null;
-        }
-
-        if (totalWaterSprayed >= 10)
-        {
-            // Grab tile index
-            for (int i = 0; i < gameManager.AllTiles.Length; i++)
-            {
-                if (GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
-            }
-            Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
-            StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
-            StartCoroutine(gameManager.GetComponent<GameManager>().SendNotification("Fire has been put out! HUZZAH!", 2));
-            targetTile = null;
-        }
-
-        yield return new WaitForSeconds(1.0f);
     }
 }
