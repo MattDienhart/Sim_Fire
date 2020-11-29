@@ -47,10 +47,9 @@ public class TileManager : MonoBehaviour
         int currentIndex = startIndex;
         values.Add(currentIndex);
         int[] oneEight = { 1, 1 };
-        oneEight[Random.Range(0, 2)] += 17;
+        oneEight[Random.Range(0, 2)] += columnCount;
         int negPos = Random.Range(0, 2) * 2 - 1;
         int count = 0;
-        Debug.Log("len: " + usedValues.Length);
 
         while (values.Count < usedValues.Length * 0.4f)
         {
@@ -79,7 +78,7 @@ public class TileManager : MonoBehaviour
             }
 
             count++;
-            if (count > 500) { Debug.Log("ISSUE"); break; }
+            if (count > 12500) { Debug.Log("ISSUE"); break; }
             currentIndex = values[Random.Range(0, values.Count)];
         }
         // ROAD select random column, if not sand try again
@@ -87,7 +86,7 @@ public class TileManager : MonoBehaviour
         if(usedValues[roadColumn] != 0) roadColumn = Random.Range(1, columnCount - 1);
         int sideStreet1 = Random.Range(1, rowCount - 1);
         int side1NegPos = Random.Range(0, 2) * 2 - 1;
-        int side1Len = Random.Range(columnCount / 4, columnCount / 4 + 2);
+        int side1Len = Random.Range(columnCount / 3 - 1, columnCount / 3 + 2);
         if ((roadColumn + side1Len * side1NegPos) < 2 || 
             ((roadColumn + side1Len * side1NegPos) > columnCount -1 ))
         {
@@ -96,7 +95,7 @@ public class TileManager : MonoBehaviour
 
         int sideStreet2 = Random.Range(1, rowCount - 2);
         int side2NegPos = Random.Range(0, 2) * 2 - 1;
-        int side2Len = Random.Range(columnCount / 4 - 1, columnCount / 4 + 2);
+        int side2Len = Random.Range(columnCount / 3 - 1, columnCount / 3 + 2);
         if ((roadColumn + side2Len * side2NegPos) < 1 || (roadColumn + side2Len * side2NegPos) > columnCount) side2NegPos *= -1;
 
         while (side1NegPos == side2NegPos && CheckSideStreets(sideStreet1, sideStreet2))
