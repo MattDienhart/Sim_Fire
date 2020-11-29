@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Text.RegularExpressions;
+using UnityEngine.SceneManagement;
 
 public abstract class TileScript : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public abstract class TileScript : MonoBehaviour
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
         borderPrefab = tileManager.GetBorderPrefab();
         firePrefab = tileManager.GetFirePrefab();
@@ -215,18 +216,23 @@ public abstract class TileScript : MonoBehaviour
     // Handle the selection of this object
     public void Selected()
     {
-        Debug.Log("Tile " + gameObject.GetInstanceID() + " has been clicked");
-        // If we are not in any selection mode, deselect all fire crews
-        if(gameManager.DestSelectModeOn == false && gameManager.TargetSelectModeOn == false)
+        if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            gameManager.SelectedUnit = null;
-            gameManager.SelectedTile = null;
+            gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+            Debug.Log("Tile " + gameObject.GetInstanceID() + " has been clicked");
+            // If we are not in any selection mode, deselect all fire crews
+            if (gameManager.DestSelectModeOn == false && gameManager.TargetSelectModeOn == false)
+            {
+                gameManager.SelectedUnit = null;
+                gameManager.SelectedTile = null;
+            }
+            else if ((gameManager.DestSelectModeOn == true ||
+                gameManager.TargetSelectModeOn == true) && gameManager.SelectedUnit != null)
+            {
+                gameManager.SelectedTile = gameObject;
+            }
         }
-        else if ((gameManager.DestSelectModeOn == true || 
-            gameManager.TargetSelectModeOn == true) && gameManager.SelectedUnit != null)
-        {
-            gameManager.SelectedTile = gameObject;
-        }
+       
     }
     public bool GetOccupied()
     {
@@ -259,8 +265,14 @@ public abstract class TileScript : MonoBehaviour
                this.transform.parent);
         newBorder.transform.localScale = this.transform.localScale;
         // If corner adjust order layer on top of border
-        if (sprite.name == "grassEdge" || sprite.name == "grassCorner") 
+        if (sprite.name == "grassEdge")
+        {
             newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        } else if (sprite.name == "grassCorner")
+        {
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        }
+            
         // just grass   if (sprite.name.IndexOf("Corner") != -1) newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
         newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
         newBorder.name = "Border";

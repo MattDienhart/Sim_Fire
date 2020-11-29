@@ -26,6 +26,7 @@ public class TileManager : MonoBehaviour
     public int columnCount = 18;
     public int rowCount = 10;
 
+
     [Header("Edges")]
     public Sprite[] borderSprites;
     public Sprite[] cornerSprites;
