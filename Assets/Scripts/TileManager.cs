@@ -26,7 +26,6 @@ public class TileManager : MonoBehaviour
     public int columnCount = 18;
     public int rowCount = 10;
 
-
     [Header("Edges")]
     public Sprite[] borderSprites;
     public Sprite[] cornerSprites;
@@ -40,7 +39,6 @@ public class TileManager : MonoBehaviour
     void Start()
     {
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
-        //values = new int[60];
         usedValues = Enumerable.Repeat(0, 180).ToArray();
         int startIndex = Random.Range(0, 179);
         int currentIndex = startIndex;

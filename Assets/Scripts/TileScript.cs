@@ -215,7 +215,6 @@ public abstract class TileScript : MonoBehaviour
         return amountBurned;
     }
 
-
     // Handle the selection of this object
     public void Selected()
     {
@@ -234,9 +233,9 @@ public abstract class TileScript : MonoBehaviour
             {
                 gameManager.SelectedTile = gameObject;
             }
-        }
-       
+        }     
     }
+
     public bool GetOccupied()
     {
         return occupied;
@@ -275,8 +274,7 @@ public abstract class TileScript : MonoBehaviour
         {
             newBorder.GetComponent<SpriteRenderer>().sortingOrder = 1;
         }
-            
-        // just grass   if (sprite.name.IndexOf("Corner") != -1) newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        // just grass 
         newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
         newBorder.name = "Border";
         float current = transform.localRotation.eulerAngles.z;
@@ -302,8 +300,8 @@ public abstract class TileScript : MonoBehaviour
 
     public void TileNotificationText(string msg)
     {
-       // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-       // gameManager.SetNotificationText(msg);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.SetNotificationText(msg);
     }
 }
 
