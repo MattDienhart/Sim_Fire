@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1828882675939310991}
   - component: {fileID: 3643679290913482430}
   - component: {fileID: 8178714245736241810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: roadPrefab
   m_TagString: Tile
   m_Icon: {fileID: 0}

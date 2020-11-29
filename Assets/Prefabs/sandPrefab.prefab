@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4482432222512293936}
   - component: {fileID: 2692483352518918861}
   - component: {fileID: 5966201062339228361}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sandPrefab
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,7 +151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4482432222866657254}
   - component: {fileID: 4482432222866657255}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4482432223125472275}
   - component: {fileID: 4482432223125472272}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4482432223710841953}
   - component: {fileID: 4482432223710841950}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4482432224084467857}
   - component: {fileID: 4482432224084467854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

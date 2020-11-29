@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4879523151182457071}
   - component: {fileID: 4879523151182457068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4879523151764178124}
   - component: {fileID: 4879523151764178127}
   - component: {fileID: -4101491346138519944}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: forestPrefab
   m_TagString: Tile
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4879523151980372762}
   - component: {fileID: 4879523151980372763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4879523152979452061}
   - component: {fileID: 4879523152979452066}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -398,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4879523153153313901}
   - component: {fileID: 4879523153153313906}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Item2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

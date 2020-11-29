@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7571711086625898115}
   - component: {fileID: 1185949647279820107}
   - component: {fileID: 4300111250803692043}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: roadHorizPrefab
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7524791998766340783}
   - component: {fileID: 7524791998766340782}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,9 +94,9 @@ GameObject:
   - component: {fileID: 7524791998948851065}
   - component: {fileID: 4101023180146656331}
   - component: {fileID: 2646430031865340450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: grassPrefab
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
