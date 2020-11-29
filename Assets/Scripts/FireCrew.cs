@@ -162,6 +162,7 @@ public class FireCrew : MonoBehaviour
             }
             Debug.Log("Spraying water on tile:" + (tileIndex + 1).ToString());
             StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
+            StartCoroutine(gameManager.GetComponent<GameManager>().SendNotification("Fire has been put out! HUZZAH!", 2));
             targetTile = null;
         }
 

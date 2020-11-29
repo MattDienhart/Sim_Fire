@@ -253,7 +253,7 @@ MonoBehaviour:
   dispatchBtn: {fileID: 1068395163}
   infoBtn: {fileID: 1304942007}
   purchaseCrewBtn: {fileID: 497960542}
-  purchaseTruckBtn: {fileID: 623623150}
+  purchaseTruckBtn: {fileID: 588130575}
   pauseMenu: {fileID: 331437181}
   pauseBtn: {fileID: 623623150}
   closePauseBtn: {fileID: 795740372}

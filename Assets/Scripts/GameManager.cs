@@ -27,6 +27,9 @@ public class GameManager : MonoBehaviour
     private GameObject[] wildFires;
     public List<int> litTiles = new List<int>();
     public List<int> loadLitTiles = new List<int>();
+    public List<string> crewTileLocations = new List<string>();
+    public List<string> truckTileLocations = new List<string>();
+    public List<string> helicopterTileLocations = new List<string>();
     public string windDirection;
     public int money;
     public int happiness;
@@ -46,7 +49,7 @@ public class GameManager : MonoBehaviour
     private int fireTruckInstances;
     private int helicopterInstances;
     private int wildfireInstances;
-    public static bool gameIsPaused;
+    //public static bool gameIsPaused;
 
     public GameObject fireCrewPrefab;
     public GameObject fireTruckPrefab;
@@ -88,7 +91,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameIsPaused = false;
+        //gameIsPaused = false;
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
         wildFires =  new GameObject[181];
         windDirection = PickWindDirection();
@@ -135,12 +138,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            gameIsPaused = !gameIsPaused;
-            PauseGame();
-        }
-
         // if (happiness != System.Convert.ToInt32(happinessText.text)) { }
         //     happinessText.text = happiness.ToString();
         if (money !=  System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")))
@@ -217,47 +214,13 @@ public class GameManager : MonoBehaviour
     void PauseClicked()
     {
         pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     void ClosePauseClicked()
     {
         pauseMenu.SetActive(false);
-    }
-
-    void PauseGame ()
-    {
-        if(gameIsPaused)
-        {
-            Time.timeScale = 0f;
-            pauseMenu.GetComponent<Image>().enabled = true;
-            pauseText.GetComponent<Text>().enabled = true;
-            saveText.GetComponent<Text>().enabled = true;
-            loadText.GetComponent<Text>().enabled = true;
-            quitText.GetComponent<Text>().enabled = true;
-            saveBtn.GetComponent<Image>().enabled = true;
-            saveBtn.GetComponent<Button>().enabled = true;
-            loadBtn.GetComponent<Image>().enabled = true;
-            loadBtn.GetComponent<Button>().enabled = true;
-            quitBtn.GetComponent<Image>().enabled = true;
-            quitBtn.GetComponent<Button>().enabled = true;
-            notificationText.GetComponent<Text>().enabled = false;
-        }
-        else 
-        {
-            Time.timeScale = 1;
-            pauseMenu.GetComponent<Image>().enabled = false;
-            pauseText.GetComponent<Text>().enabled = false;
-            saveText.GetComponent<Text>().enabled = false;
-            loadText.GetComponent<Text>().enabled = false;
-            quitText.GetComponent<Text>().enabled = false;
-            saveBtn.GetComponent<Image>().enabled = false;
-            saveBtn.GetComponent<Button>().enabled = false;
-            loadBtn.GetComponent<Image>().enabled = false;
-            loadBtn.GetComponent<Button>().enabled = false;
-            quitBtn.GetComponent<Image>().enabled = false;
-            quitBtn.GetComponent<Button>().enabled = false;
-            notificationText.GetComponent<Text>().enabled = true;
-        }
+        Time.timeScale = 1;
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab
@@ -631,7 +594,7 @@ public class GameManager : MonoBehaviour
             wildfireInstances--;
             litTiles.Remove(tileNumber);
             money += 100;
-            StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
+            //StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
             Debug.Log("Put out fire at tile: " + tileNumber.ToString());
         }
         
@@ -822,7 +785,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    IEnumerator SendNotification(string text, int time)
+    public IEnumerator SendNotification(string text, int time)
     {
         notificationBox.SetActive(true);
         notificationText.text = text;
@@ -873,6 +836,23 @@ public class GameManager : MonoBehaviour
     
     void SaveGame()
     {
+        for(int i = 0; i < fireCrew.Count; i++)
+        {
+            crewTileLocations.Add(fireCrew[i].GetComponent<FireCrew>().currentTile.name);
+            Debug.Log("Added " + crewTileLocations[i] + " to crewTileLocations");
+        }
+
+        for(int i = 0; i < fireTruck.Count; i++)
+        {
+            truckTileLocations.Add(fireTruck[i].GetComponent<FireTruck>().currentTile.name);
+            Debug.Log("Added " + truckTileLocations[i] + " to truckTileLocations");
+        }
+
+        for(int i = 0; i < helicopter.Count; i++)
+        {
+            helicopterTileLocations.Add(helicopter[i].GetComponent<Helicopter>().currentTile.name);
+            Debug.Log("Added " + helicopterTileLocations[i] + " to helicopterTileLocations");
+        }
         SaveLoadSystem.SaveGame(this);
     }
 
@@ -886,18 +866,61 @@ public class GameManager : MonoBehaviour
             StartCoroutine(PutOutFire(i));
         }
 
+        // Destroy fireCrew, trucks, and helicopters
+        for(int i = fireCrew.Count - 1; i >= 0; i--)
+        {
+            Destroy(fireCrew[i]);
+            fireCrew.RemoveAt(i);
+            fireCrewInstances = 0;
+        }
+
+        for(int i = fireTruck.Count - 1; i >= 0; i--)
+        {
+            Destroy(fireTruck[i]);
+            fireTruck.RemoveAt(i);
+            fireTruckInstances = 0;
+        }
+
+        for(int i = helicopter.Count - 1; i >= 0; i--)
+        {
+            Destroy(helicopter[i]);
+            helicopter.RemoveAt(i);
+            helicopterInstances = 0;
+        }
+
+        if((fireCrew.Count != 0) || (fireTruck.Count != 0) || (helicopter.Count != 0))
+        {
+            Debug.LogError("Objects were not wiped out");
+        }
+
         money = data.money;
         happiness = data.happiness;
         windDirection = data.windDirection;
         windDirectionText.text = "The wind blows: \n" + windDirection;
         loadLitTiles = data.litTiles;
+        crewTileLocations = data.crewTileLocations;
+        truckTileLocations = data.truckTileLocations;
+        helicopterTileLocations = data.helicopterTileLocations;
 
-        // Reinstantiate fires at proper locations
+        // Reinstantiate at proper locations
         for(int i = 0; i < loadLitTiles.Count; i++)
         {
             StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
         }
-    }
 
-    
+        for(int i = 0; i < crewTileLocations.Count; i++)
+        {
+            AddFireCrew(GameObject.Find(crewTileLocations[i]));
+        }
+
+        for(int i = 0; i < truckTileLocations.Count; i++)
+        {
+            AddFireTruck(GameObject.Find(truckTileLocations[i]));
+        }
+
+        for(int i = 0; i < helicopterTileLocations.Count; i++)
+        {
+            AddHelicopter(GameObject.Find(helicopterTileLocations[i]));
+        }
+    }    
 }
