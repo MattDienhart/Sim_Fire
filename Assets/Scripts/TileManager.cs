@@ -101,7 +101,6 @@ public class TileManager : MonoBehaviour
         {
             sideStreet2 = Random.Range(2, rowCount - 2);
         }
-
         for (int i = 0; i < rowCount; i++)
         {
             usedValues[roadColumn + (columnCount * i)] = 2;
@@ -123,7 +122,6 @@ public class TileManager : MonoBehaviour
                 if(usedValues[sideCell - 1 * side1NegPos] != 3) usedValues[sideCell - 1 * side1NegPos] = 4;
                 if (usedValues[sideCell - columnCount - 1 * side1NegPos] != 3) usedValues[sideCell - columnCount - 1 * side1NegPos] = 4;
                 if (usedValues[sideCell + columnCount - 1 * side1NegPos] != 3) usedValues[sideCell + columnCount - 1 * side1NegPos] = 4;
-
             } 
             if (i == sideStreet2)
             {
@@ -195,16 +193,11 @@ public class TileManager : MonoBehaviour
             // Make sure edge tiles go to edge of actual viewable screen, increase scale slightly
             if (j < columnCount || j > (columnCount * (rowCount - 1))-1)
             {
-                // emptyTiles[j].GetComponent<SpriteRenderer>().sprite = edgeSprites[usedValues[j]];
                 Vector3 locScale = tempTile.transform.localScale;
                 tempTile.transform.localScale = new Vector3(locScale.x, locScale.y * 1.1f, locScale.z);
             } 
-                Destroy(emptyTiles[j]);
-            
+                Destroy(emptyTiles[j]);         
         }
-        // Clear empty array and repopulate with tiles remaining
-        //    System.Array.Clear(emptyTiles, 0, emptyTiles.Length);
-        //   emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
         UpdateAllNeighbors();
     }
 
@@ -225,7 +218,6 @@ public class TileManager : MonoBehaviour
             Mathf.Abs(currentIndex - newIndex) == 1 &&
                 newIndex / columnCount != currentIndex / columnCount
             ) temp = false;
-
         return temp;
     }
 
@@ -305,10 +297,8 @@ public class TileManager : MonoBehaviour
                     currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southWest], 0);
                 }
             }
-
         }
 
-        // Checking north corners
         // Checking north corners
         if (north > -1)
         {
@@ -328,7 +318,6 @@ public class TileManager : MonoBehaviour
                     currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[northWest], 270);
                 }
             }
-
         }
     }
 
@@ -345,5 +334,10 @@ public class TileManager : MonoBehaviour
     public GameObject GetFireLinePrefab()
     {
         return fireLinePrefab;
+    }
+
+    public int[] GetEntireGrid()
+    {
+        return usedValues;
     }
 }
