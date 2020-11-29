@@ -22,12 +22,15 @@ public abstract class TileScript : MonoBehaviour
     public bool occupied = false;
     protected int borderCount = 0;
 
-    int columnCount = 18;
+
     private GameManager gameManager;
     private TileManager tileManager;
     private GameObject borderPrefab;
     private GameObject firePrefab;
     protected List<GameObject> obstacles = new List<GameObject>();
+
+    private int columnCount = 18 * 3;
+    private int rowCount = 10 * 3;
 
     void Awake()
     {
@@ -40,7 +43,9 @@ public abstract class TileScript : MonoBehaviour
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
         borderPrefab = tileManager.GetBorderPrefab();
         firePrefab = tileManager.GetFirePrefab();
-      //  GetNeighbors();
+
+        columnCount = tileManager.GetColumnCount();
+        rowCount = tileManager.GetRowCount();
     }
     
     public bool GetBurning()
@@ -120,28 +125,30 @@ public abstract class TileScript : MonoBehaviour
     {
         string temp = "";
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
+
         if (tileNum - 1 > 0 && (tileNum / columnCount) == ((tileNum - 1) / columnCount))
         {
             westTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
             neighborTiles.Add(westTile);
             temp += " west: " + westTile.name;
         }
-        if (tileNum + 1 < 180 && (tileNum / columnCount) == ((tileNum+1) / columnCount))
+        if (tileNum + 1 < rowCount * columnCount && (tileNum / columnCount) == ((tileNum + 1) / columnCount))
         {
             eastTile = GameObject.Find("Tile (" + (tileNum + 1) + ")");
             neighborTiles.Add(eastTile);
             temp += " eastTile: " + eastTile.name;
         }
-        if (tileNum - 18 > 0)
+        if (tileNum - columnCount > 0)
         {
-            northTile = GameObject.Find("Tile (" + (tileNum - 18) + ")");
+            northTile = GameObject.Find("Tile (" + (tileNum - columnCount) + ")");
 
             neighborTiles.Add(northTile);
             temp += " northTile: " + northTile.name;
         }
-        if (tileNum + 18 < 180)
+        if ((tileNum + columnCount) < (rowCount * columnCount))
         {
-            southTile = GameObject.Find("Tile (" + (tileNum + 18) + ")");
+           // Debug.Log("south: " + (tileNum + columnCount));
+            southTile = GameObject.Find("Tile (" + (tileNum + columnCount) + ")");
 
             neighborTiles.Add(southTile);
             temp += " southTile: " + southTile.name;

@@ -23,8 +23,8 @@ public class TileManager : MonoBehaviour
     List<int> values = new List<int>();
     string[] terrainTypes = { "Sand", "Forest", "Road", "SideRoad" };
 
-    public int columnCount = 18;
-    public int rowCount = 10;
+    private int columnCount = 54;
+    private int rowCount = 30;
 
     [Header("Edges")]
     public Sprite[] borderSprites;
@@ -38,15 +38,19 @@ public class TileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        int tileCount = columnCount * rowCount;
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
-        usedValues = Enumerable.Repeat(0, 180).ToArray();
-        int startIndex = Random.Range(0, 179);
+        usedValues = Enumerable.Repeat(0, tileCount).ToArray();
+        Debug.Log("rowCount: " + rowCount);
+        Debug.Log("len: " + usedValues.Length);
+        int startIndex = Random.Range(0, (columnCount * rowCount - 1));
         int currentIndex = startIndex;
         values.Add(currentIndex);
         int[] oneEight = { 1, 1 };
         oneEight[Random.Range(0, 2)] += 17;
         int negPos = Random.Range(0, 2) * 2 - 1;
         int count = 0;
+        Debug.Log("len: " + usedValues.Length);
 
         while (values.Count < usedValues.Length * 0.4f)
         {
@@ -131,7 +135,7 @@ public class TileManager : MonoBehaviour
         string mygrid = "";
         for (int i = 0; i < usedValues.Length; i++)
         {
-            if (i % 18 == 0) mygrid += "\r\n" + (i / 18 + 1) + ":  ";
+            if (i % columnCount == 0) mygrid += "\r\n" + (i / columnCount + 1) + ":  ";
             mygrid += usedValues[i];
         }
         Debug.Log("-grid: \n" + mygrid);
@@ -202,6 +206,7 @@ public class TileManager : MonoBehaviour
     private void UpdateAllNeighbors()
     {
         GameObject[] allNewTiles = GameObject.FindGameObjectsWithTag("Tile");
+        Debug.Log("all: " + allNewTiles.Length);
         foreach(GameObject tile in allNewTiles)
         {
             tile.GetComponent<TileScript>().GetNeighbors();
@@ -211,7 +216,7 @@ public class TileManager : MonoBehaviour
     private bool ValidIndex(int currentIndex, int newIndex)
     {
         bool temp = true;
-        if( newIndex < 0 || newIndex > 179 ||
+        if( newIndex < 0 || newIndex > (columnCount * rowCount - 1) ||
             values.IndexOf(newIndex) != -1 ||
             Mathf.Abs(currentIndex - newIndex) == 1 &&
                 newIndex / columnCount != currentIndex / columnCount
@@ -230,11 +235,11 @@ public class TileManager : MonoBehaviour
 
     private void SandCheck(int tileNum)
     {
-        int east = tileNum+1 < 179 && (tileNum+1)/columnCount 
+        int east = tileNum+1 < (columnCount * rowCount - 1) && (tileNum+1)/columnCount 
             == tileNum/columnCount ? usedValues[tileNum + 1] : -1;
         int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
             ? usedValues[tileNum - 1] : -1;
-        int south = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -1;
+        int south = tileNum + columnCount < (columnCount * rowCount - 1) ? usedValues[tileNum + columnCount] : -1;
         int north = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : 0;
         // if surrounded by sand tiles do nothing
         if (east == 0 || west == 0 || south == 0 || north == 0)
@@ -249,11 +254,11 @@ public class TileManager : MonoBehaviour
 
     private void SetBorders(int tileNum, GameObject currentTile)
     {
-        int east = tileNum + 1 < 179 && (tileNum + 1) / columnCount
+        int east = tileNum + 1 < (columnCount * rowCount - 1) && (tileNum + 1) / columnCount
             == tileNum / columnCount ? usedValues[tileNum + 1] : -1;
         int west = tileNum - 1 > 0 && tileNum / columnCount == (tileNum - 1) / columnCount
             ? usedValues[tileNum - 1] : -2;
-        int south = tileNum + columnCount < 179 ? usedValues[tileNum + columnCount] : -3;
+        int south = tileNum + columnCount < (columnCount * rowCount -1) ? usedValues[tileNum + columnCount] : -3;
         int north = tileNum - columnCount > 0 ? usedValues[tileNum - columnCount] : -4;
         bool eastDiff = east != usedValues[tileNum];
         bool westDiff = west != usedValues[tileNum];
@@ -337,5 +342,15 @@ public class TileManager : MonoBehaviour
     public int[] GetEntireGrid()
     {
         return usedValues;
+    }
+
+    public int GetRowCount()
+    {
+        return rowCount;
+    }
+
+    public int GetColumnCount()
+    {
+        return columnCount;
     }
 }
