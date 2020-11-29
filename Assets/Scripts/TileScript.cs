@@ -68,11 +68,16 @@ public abstract class TileScript : MonoBehaviour
         {
             Destroy(obstacles[0]);
             obstacles.RemoveAt(0);
-            dryness -= 10;
+            if(dryness - 10 > 0)dryness -= 10;
         }
     }
 
-    public int GetDryness()
+    public int GetObstacles()
+    {
+        return obstacles.Count;
+    }
+
+        public int GetDryness()
     {
         return dryness;
     }
@@ -101,7 +106,7 @@ public abstract class TileScript : MonoBehaviour
                this.transform.parent);
         newLine.transform.parent = this.transform;
         newLine.name = "FireLine";
-        dryness -= 20;
+        if (dryness - 20 > 0) dryness -= 20;
     }
 
     public void RotateFireLine()
