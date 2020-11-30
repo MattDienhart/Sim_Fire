@@ -15,6 +15,11 @@ TagManager:
   - PurchaseCrewBtn
   - PurchaseTruckBtn
   - Helicopter
+  - Fire
+  - TileBorder
+  - EmptyTile
+  - ClearVegBtn
+  - FireLineBtn
   layers:
   - Default
   - TransparentFX

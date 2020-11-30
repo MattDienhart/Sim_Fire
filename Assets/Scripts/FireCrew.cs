@@ -36,6 +36,8 @@ public class FireCrew : MonoBehaviour
     public GameObject TargetMarker;
 
     private bool startDousing;
+    private bool startClearing;
+    private bool startBuilding;
 
     // Start is called before the first frame update
     void Start()
@@ -48,6 +50,8 @@ public class FireCrew : MonoBehaviour
         TargetMarker.SetActive(false);
         destinationTile = null;
         startDousing = false;
+        startClearing = false;
+        startBuilding = false;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
         currentTile.GetComponent<TileScript>().SetOccupied(true);
@@ -83,17 +87,37 @@ public class FireCrew : MonoBehaviour
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetEast() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetSouth() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetWest()) &&
-                destinationTile == null && gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == true)
+                destinationTile == null && gameManager.SelectedTile.GetComponent<TileScript>().GetOccupied() == false)
             {
-                targetTile = gameManager.SelectedTile;
-                TargetMarker.SetActive(true);
-                TargetMarker.transform.position = targetTile.transform.position;
-                startDousing = true;          
+                if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == true) && (gameManager.SprayWaterMode == true))
+                {
+                    targetTile = gameManager.SelectedTile;
+                    TargetMarker.SetActive(true);
+                    TargetMarker.transform.position = targetTile.transform.position;
+                    startDousing = true;
+                }
+                else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.ClearVegMode == true))
+                {
+                    targetTile = gameManager.SelectedTile;
+                    TargetMarker.SetActive(true);
+                    TargetMarker.transform.position = targetTile.transform.position;
+                    startClearing = true;
+                }        
+                else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.FireLineMode == true))
+                {
+                    targetTile = gameManager.SelectedTile;
+                    TargetMarker.SetActive(true);
+                    TargetMarker.transform.position = targetTile.transform.position;
+                    startBuilding = true;
+                }
             }
 
             // reset the selection parameters
             gameManager.SelectedTile = null;
             gameManager.TargetSelectModeOn = false;
+            gameManager.SprayWaterMode = false;
+            gameManager.ClearVegMode = false;
+            gameManager.FireLineMode = false;
         }
 
         // update status bars for energy and water
@@ -118,21 +142,38 @@ public class FireCrew : MonoBehaviour
             DestinationMarker.SetActive(false);
         }
 
-        // spray water on the target tile until the fire is extinguished or we move away
+        // perform an action on the target tile
         if ((targetTile != null) && (destinationTile == null))
         {
             if (startDousing == true)
             {
+                // spray water on the target tile
                 StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
                 startDousing = false;
+            }
+            else if (startClearing == true)
+            {
+                // clear vegetation away from the target tile
+                StartCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile));
+                startClearing = false;
+            }
+            else if (startBuilding == true)
+            {
+                // build a fire line on the target tile
+                StartCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile));
+                startBuilding = false;
             }
         }
         else
         {
             StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+            StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile));
+            StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile));
             TargetMarker.SetActive(false);
             targetTile = null;
             startDousing = false;
+            startClearing = false;
+            startBuilding = false;
         }
     }
 
