@@ -192,6 +192,8 @@ GameObject:
   - component: {fileID: 5566494944863514359}
   - component: {fileID: -2018156453334479055}
   - component: {fileID: -6271735744847276002}
+  - component: {fileID: 3378011438703666891}
+  - component: {fileID: 4410673489045649479}
   m_Layer: 0
   m_Name: FireCrew
   m_TagString: FireCrew
@@ -294,6 +296,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SprayRate: 1
   ExtinguishAmount: 10
+--- !u!114 &3378011438703666891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678436223149907044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce65869c36cc74c57ac5d86078692837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkRate: 2
+  FinishAmount: 20
+--- !u!114 &4410673489045649479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678436223149907044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ade0eb453a9a6484a87e99bb98470026, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WorkRate: 2
+  FinishAmount: 20
 --- !u!1 &4942951348940395426
 GameObject:
   m_ObjectHideFlags: 0

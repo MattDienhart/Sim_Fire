@@ -257,6 +257,8 @@ MonoBehaviour:
   infoBtn: {fileID: 1304942007}
   purchaseCrewBtn: {fileID: 497960542}
   purchaseTruckBtn: {fileID: 588130575}
+  clearVegBtn: {fileID: 518750799}
+  fireLineBtn: {fileID: 1397098593}
   pauseMenu: {fileID: 331437181}
   pauseBtn: {fileID: 623623150}
   closePauseBtn: {fileID: 795740372}
@@ -857,7 +859,7 @@ GameObject:
   - component: {fileID: 518750797}
   m_Layer: 5
   m_Name: ClearVegetationBtn
-  m_TagString: PurchaseTruckBtn
+  m_TagString: ClearVegBtn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2854,7 +2856,7 @@ GameObject:
   - component: {fileID: 1397098591}
   m_Layer: 5
   m_Name: FireLineBtn
-  m_TagString: PurchaseTruckBtn
+  m_TagString: FireLineBtn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

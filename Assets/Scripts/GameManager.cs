@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
     public Button infoBtn;
     public Button purchaseCrewBtn;
     public Button purchaseTruckBtn;
+    public Button clearVegBtn;
+    public Button fireLineBtn;
     public GameObject pauseMenu;
     public Button pauseBtn;
     public Button closePauseBtn;
@@ -86,7 +88,11 @@ public class GameManager : MonoBehaviour
     public Text quitText;
     public Button saveBtn;
     public Button loadBtn;
-    public Button quitBtn;    
+    public Button quitBtn;
+
+    public bool SprayWaterMode;
+    public bool ClearVegMode;
+    public bool FireLineMode;
 
     // Start is called before the first frame update
     void Start()
@@ -104,11 +110,19 @@ public class GameManager : MonoBehaviour
         infoBtn.onClick.AddListener(() => InfoClicked());
         purchaseCrewBtn.onClick.AddListener(() => PurchaseCrewClicked());
         purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
+        clearVegBtn.onClick.AddListener(() => ClearVegClicked());
+        fireLineBtn.onClick.AddListener(() => FireLineClicked());
         pauseBtn.onClick.AddListener(() => PauseClicked());
         closePauseBtn.onClick.AddListener(() => ClosePauseClicked());
         saveBtn.onClick.AddListener(() => SaveGame());
         loadBtn.onClick.AddListener(() => LoadGame());
         quitBtn.onClick.AddListener(Application.Quit);
+
+        // initialize button modes
+        SprayWaterMode = false;
+        ClearVegMode = false;
+        FireLineMode = false;
+
         // instantiate the first set of fire crews at the start of the game
         fireCrewInstances = 0;
         fireTruckInstances = 0;
@@ -265,16 +279,18 @@ public class GameManager : MonoBehaviour
         Debug.Log("Crew button has been clicked.");
         
         // Toggle between target select mode OFF and ON
-        // Must have selected a fire crew before trying to spray water
+        // Must have selected a fire crew, fire truck, or helicopter before trying to spray water
         if ((!TargetSelectModeOn) && (SelectedUnit != null))
         {
             TargetSelectModeOn = true;
+            SprayWaterMode = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Extinguish";
         }
         else
         {
             TargetSelectModeOn = false;
+            SprayWaterMode = false;
             selectedText.text = "";
         }
     }
@@ -327,6 +343,48 @@ public class GameManager : MonoBehaviour
             money -= truckCost;
             //AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
             AddFireTruck(AllTiles[39]);
+        }
+    }
+
+    void ClearVegClicked()
+    {
+        Debug.Log("Clear Vegetation has been clicked.");
+
+        // Toggle between target select mode OFF and ON
+        // Must have selected a fire crew before trying to clear vegetation
+        if ((!TargetSelectModeOn) && (SelectedUnit != null) && (SelectedUnit.CompareTag("FireCrew")))
+        {
+            TargetSelectModeOn = true;
+            ClearVegMode = true;
+            DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
+            selectedText.text = "Clear Vegetation";
+        }
+        else
+        {
+            TargetSelectModeOn = false;
+            ClearVegMode = false;
+            selectedText.text = "";
+        }
+    }
+
+    void FireLineClicked()
+    {
+        Debug.Log("Build Fire Line has been clicked.");
+
+        // Toggle between target select mode OFF and ON
+        // Must have selected a fire crew before trying to build a fire line
+        if ((!TargetSelectModeOn) && (SelectedUnit != null) && (SelectedUnit.CompareTag("FireCrew")))
+        {
+            TargetSelectModeOn = true;
+            FireLineMode = true;
+            DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
+            selectedText.text = "Build Fire Line";
+        }
+        else
+        {
+            TargetSelectModeOn = false;
+            FireLineMode = false;
+            selectedText.text = "";
         }
     }
 
