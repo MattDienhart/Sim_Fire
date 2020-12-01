@@ -25,11 +25,13 @@ public class GameManager : MonoBehaviour
     private List<GameObject> fireTruck = new List<GameObject>();
     private List<GameObject> helicopter = new List<GameObject>();
     private GameObject[] wildFires;
+    private TileManager tileManager;
     public List<int> litTiles = new List<int>();
     public List<int> loadLitTiles = new List<int>();
     public List<string> crewTileLocations = new List<string>();
     public List<string> truckTileLocations = new List<string>();
     public List<string> helicopterTileLocations = new List<string>();
+    public int baseSpawnLocation;
     public string windDirection;
     public int money;
     public int happiness;
@@ -103,6 +105,7 @@ public class GameManager : MonoBehaviour
         windDirection = PickWindDirection();
         difficulty = 2;
         windDirectionText.text = "The wind blows: \n" + windDirection;
+        tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
 
         // Set on click listeners
         crewBtn.onClick.AddListener(() => CrewClicked());
@@ -147,7 +150,8 @@ public class GameManager : MonoBehaviour
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
-        PlaceFirehouse();
+        baseSpawnLocation = PlaceFirehouse() + tileManager.columnCount;
+        Debug.Log("baseSpawnLocation: " + baseSpawnLocation.ToString());
     }
 
     // Update is called once per frame
@@ -239,37 +243,37 @@ public class GameManager : MonoBehaviour
     }
 
     // Spawn new fireCrew instances from the FireCrew prefab
-    void AddFireCrew(GameObject spawnLocation)
+    void AddFireCrew(GameObject baseSpawnLocation)
     {
         GameObject newFireCrew = (GameObject)Instantiate(fireCrewPrefab);
-        newFireCrew.transform.position = spawnLocation.transform.position;
+        newFireCrew.transform.position = baseSpawnLocation.transform.position;
         newFireCrew.GetComponent<FireCrew>().CrewID = fireCrewInstances + 1;
         newFireCrew.GetComponent<FireCrew>().waterLevel = 100;
         newFireCrew.GetComponent<FireCrew>().energyLevel = 100;
-        newFireCrew.GetComponent<FireCrew>().currentTile = spawnLocation;
+        newFireCrew.GetComponent<FireCrew>().currentTile = baseSpawnLocation;
         fireCrew.Add(newFireCrew);
         fireCrewInstances ++;
     }
 
     // Spawn new Fire Truck instances from the FireTruck prefab
-    void AddFireTruck(GameObject spawnLocation)
+    void AddFireTruck(GameObject baseSpawnLocation)
     {
         GameObject newFireTruck = (GameObject)Instantiate(fireTruckPrefab);
-        newFireTruck.transform.position = spawnLocation.transform.position;
+        newFireTruck.transform.position = baseSpawnLocation.transform.position;
         newFireTruck.GetComponent<FireTruck>().TruckID = fireTruckInstances + 1;
         newFireTruck.GetComponent<FireTruck>().waterLevel = 100;
-        newFireTruck.GetComponent<FireTruck>().currentTile = spawnLocation;
+        newFireTruck.GetComponent<FireTruck>().currentTile = baseSpawnLocation;
         fireTruck.Add(newFireTruck);
         fireTruckInstances ++;
     }
 
-    void AddHelicopter(GameObject spawnLocation)
+    void AddHelicopter(GameObject baseSpawnLocation)
     {
         GameObject newHelicopter = (GameObject)Instantiate(helicopterPrefab);
-        newHelicopter.transform.position = spawnLocation.transform.position;
+        newHelicopter.transform.position = baseSpawnLocation.transform.position;
         newHelicopter.GetComponent<Helicopter>().HelicopterID = helicopterInstances + 1;
         newHelicopter.GetComponent<Helicopter>().waterLevel = 100;
-        newHelicopter.GetComponent<Helicopter>().currentTile = spawnLocation;
+        newHelicopter.GetComponent<Helicopter>().currentTile = baseSpawnLocation;
         helicopter.Add(newHelicopter);
         helicopterInstances ++;
     }
@@ -320,6 +324,197 @@ public class GameManager : MonoBehaviour
         selectedText.text = "Info";
     }
 
+    int generateSpawnLocation()
+    {
+        int spawnLocation = baseSpawnLocation;
+
+        while(allTiles[spawnLocation].GetComponent<TileScript>().GetOccupied())
+        {
+            // Move spawn location to random direction
+            int dice = UnityEngine.Random.Range(0, 4);
+            switch(dice)
+            {
+                // Shift spawn location up
+                case 0: 
+                // Is spawn location on top edge of map?
+                if((spawnLocation <= tileManager.columnCount) && (spawnLocation > 0))
+                {
+                    // Flip a coin
+                    if((int)UnityEngine.Random.Range(0, 2) == 0)
+                    {
+                        // Top left corner
+                        if(spawnLocation == 1)
+                        {
+                            // Flip a coin to either move right or down
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation --; // Move left
+                        }
+                    }
+                    else
+                    {
+                        // Top right corner
+                        if(spawnLocation == tileManager.columnCount)
+                        {
+                            // Flip a coin to either move left or down
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation ++; // Move right
+                        }
+                    }
+                }
+                // Not on top edge of map
+                else
+                {
+                    spawnLocation -= tileManager.columnCount; // Move up
+                }
+                break;
+
+                // Shift spawn location down
+                case 1: 
+                // Is spawn location on bottom edge of map?
+                if((spawnLocation > (allTiles.Length - tileManager.columnCount)) && (spawnLocation <= allTiles.Length))
+                {
+                    // Flip a coin
+                    if((int)UnityEngine.Random.Range(0, 2) == 0)
+                    {
+                        // Bottom left corner
+                        if(spawnLocation == (allTiles.Length - tileManager.columnCount + 1))
+                        {
+                            // Flip a coin to either move right or up
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation --; // Move left
+                        }
+                    }
+                    else
+                    {
+                        // Bottom right corner
+                        if(spawnLocation == allTiles.Length)
+                        {
+                            // Flip a coin to either move left or up
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation ++; // Move right
+                        }
+                    }
+                }
+                // Not on top edge of map
+                else
+                {
+                    spawnLocation += tileManager.columnCount; // Move down
+                }
+                break;
+
+                // Shift spawn location right
+                case 2:
+                // Is spawn location on right edge of map?
+                if(spawnLocation % tileManager.columnCount == 0)
+                {
+                    // Flip a coin
+                    if((int)UnityEngine.Random.Range(0, 2) == 0)
+                    {
+                        // Top right corner
+                        if(spawnLocation == tileManager.columnCount)
+                        {
+                            // Flip a coin to either move left or down
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation -= tileManager.columnCount; // Move up
+                        }
+                    }
+                    else
+                    {
+                        // Bottom right corner
+                        if(spawnLocation == allTiles.Length)
+                        {
+                            // Flip a coin to either move left or up
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation += tileManager.columnCount; // Move down
+                        }
+                    }
+                }
+                else
+                {
+                    spawnLocation ++; // Move right
+                }
+                break;
+
+                // Shift spawn location left
+                case 3:
+                // Is spawn location on left edge of map?
+                if(spawnLocation % tileManager.columnCount == 1)
+                {
+                    // Flip a coin
+                    if((int)UnityEngine.Random.Range(0, 2) == 0)
+                    {
+                        // Top left corner
+                        if(spawnLocation == 1)
+                        {
+                            // Flip a coin to either move right or down
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation -= tileManager.columnCount; // Move up
+                        }
+                    }
+                    else
+                    {
+                        // Bottom left corner
+                        if(spawnLocation == (allTiles.Length - tileManager.columnCount + 1))
+                        {
+                            // Flip a coin to either move right or up
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -tileManager.columnCount;
+                            spawnLocation += addThis;
+                        }
+                        else
+                        {
+                            spawnLocation += tileManager.columnCount; // Move down
+                        }
+                    }
+                }
+                else
+                {
+                    spawnLocation --; // Move left
+                }
+                break;
+            }
+
+            // Edge cases
+            if(spawnLocation > allTiles.Length)
+            {
+                spawnLocation = allTiles.Length;
+            }
+            else if(spawnLocation < 0)
+            {
+                spawnLocation = 0;
+            }
+        }
+
+        return spawnLocation;
+    }
+
     void PurchaseCrewClicked()
     {
         Debug.Log("Purchase Crew button has been clicked.");
@@ -327,9 +522,8 @@ public class GameManager : MonoBehaviour
 
         if(money >= crewCost)
         {
+            AddFireCrew(AllTiles[generateSpawnLocation()]);
             money -= crewCost;
-            //AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
-            AddFireCrew(AllTiles[39]);
         }
     }
 
@@ -341,8 +535,7 @@ public class GameManager : MonoBehaviour
         if(money >= truckCost)
         {
             money -= truckCost;
-            //AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
-            AddFireTruck(AllTiles[39]);
+            AddFireTruck(AllTiles[generateSpawnLocation()]);
         }
     }
 
@@ -432,12 +625,12 @@ public class GameManager : MonoBehaviour
     }
     
     // Spawn new Wildfire instance from wildfire prefab
-    IEnumerator LightTile(GameObject spawnLocation, int tileIndex)
+    IEnumerator LightTile(GameObject baseSpawnLocation, int tileIndex)
     {
         GameObject newWildfire = (GameObject)Instantiate(firePrefab);
-        newWildfire.transform.position = spawnLocation.transform.position;
+        newWildfire.transform.position = baseSpawnLocation.transform.position;
         newWildfire.GetComponent<Wildfire>().hitPoints = 100;
-        spawnLocation.GetComponent<TileScript>().SetBurning(true);
+        baseSpawnLocation.GetComponent<TileScript>().SetBurning(true);
         wildFires[tileIndex] = newWildfire;
         Debug.Log("Tile " + tileIndex.ToString() + " is on fire!");
         litTiles.Add(tileIndex);
@@ -984,7 +1177,7 @@ public class GameManager : MonoBehaviour
     } 
 
     // positions firehouse next to road
-    void PlaceFirehouse()
+    int PlaceFirehouse()
     {
         int count = 0;
         GameObject fireHouse = GameObject.Find("Firehouse");
@@ -1007,5 +1200,7 @@ public class GameManager : MonoBehaviour
         allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
         allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
         allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
+        allTiles[rnd].GetComponent<TileScript>().SetOccupied(true);
+        return rnd;
     }
 }
