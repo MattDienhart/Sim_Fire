@@ -55,6 +55,20 @@ public class SprayWater : MonoBehaviour
             else
             {
                 targetTile = null;
+
+                // update the target tile on the calling unit to indicate that we are done spraying water
+                if (gameObject.CompareTag("FireCrew"))
+                {
+                    gameObject.GetComponent<FireCrew>().targetTile = null;
+                }
+                else if (gameObject.CompareTag("FireTruck"))
+                {
+                    gameObject.GetComponent<FireTruck>().targetTile = null;
+                }
+                else if (gameObject.CompareTag("Helicopter"))
+                {
+                    gameObject.GetComponent<Helicopter>().targetTile = null;
+                }
             }
 
             // determine if the fire is extinguished yet
@@ -68,6 +82,20 @@ public class SprayWater : MonoBehaviour
                 Debug.Log("Put out fire on tile:" + (tileIndex + 1).ToString());
                 StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
                 targetTile = null;
+
+                // update the target tile on the calling unit to indicate that we are done spraying water
+                if (gameObject.CompareTag("FireCrew"))
+                {
+                    gameObject.GetComponent<FireCrew>().targetTile = null;
+                }
+                else if (gameObject.CompareTag("FireTruck"))
+                {
+                    gameObject.GetComponent<FireTruck>().targetTile = null;
+                }
+                else if (gameObject.CompareTag("Helicopter"))
+                {
+                    gameObject.GetComponent<Helicopter>().targetTile = null;
+                }
             }
 
             // update the water level of the calling unit

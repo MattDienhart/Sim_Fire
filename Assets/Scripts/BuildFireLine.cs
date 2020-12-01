@@ -35,7 +35,7 @@ public class BuildFireLine : MonoBehaviour
             energyLevel = gameObject.GetComponent<FireCrew>().energyLevel;
             
             // expend energy to dig the fire line
-            if (energyLevel >= WorkRate)
+            if (targetTile.GetComponent<TileScript>().fireLinePresent == false && energyLevel >= WorkRate)
             {
                 energyLevel -= WorkRate;
                 totalEnergyUsed += WorkRate;
@@ -43,10 +43,11 @@ public class BuildFireLine : MonoBehaviour
             else
             {
                 targetTile = null;
+                gameObject.GetComponent<FireCrew>().targetTile = null;
             }
 
             // required energy has been expended, so call BuildFireLine()
-            if (totalEnergyUsed >= FinishAmount)
+            if (totalEnergyUsed >= FinishAmount && targetTile.GetComponent<TileScript>().fireLinePresent == false)
             {
                 // Grab tile index
                 for(int i = 0; i < gameManager.AllTiles.Length; i++ ) 
@@ -54,8 +55,9 @@ public class BuildFireLine : MonoBehaviour
                     if(GameObject.ReferenceEquals(targetTile, gameManager.AllTiles[i])) tileIndex = i;
                 }
                 Debug.Log("Cleared vegetation on tile: " + (tileIndex + 1).ToString());
-                //targetTile.GetComponent<TileScript>().BuildFireLine();
+                targetTile.GetComponent<TileScript>().BuildFireLine();
                 targetTile = null;
+                gameObject.GetComponent<FireCrew>().targetTile = null;
             }
 
             // update the energy level of the calling unit

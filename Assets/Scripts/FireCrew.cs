@@ -60,6 +60,13 @@ public class FireCrew : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If we are near a firehouse, refill water and energy levels
+        if (currentTile.GetComponent<TileScript>().nearFireHouse == true)
+        {
+            waterLevel = 100;
+            energyLevel = 100;
+        }
+
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedUnit != gameObject)
         {
@@ -87,7 +94,7 @@ public class FireCrew : MonoBehaviour
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetEast() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetSouth() ||
                 gameManager.SelectedTile == currentTile.GetComponent<TileScript>().GetWest()) &&
-                destinationTile == null && gameManager.SelectedTile.GetComponent<TileScript>().GetOccupied() == false)
+                destinationTile == null)
             {
                 if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == true) && (gameManager.SprayWaterMode == true))
                 {
@@ -96,14 +103,16 @@ public class FireCrew : MonoBehaviour
                     TargetMarker.transform.position = targetTile.transform.position;
                     startDousing = true;
                 }
-                else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.ClearVegMode == true))
+                else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.ClearVegMode == true) &&
+                    (gameManager.SelectedTile.GetComponent<TileScript>().GetOccupied() == false))
                 {
                     targetTile = gameManager.SelectedTile;
                     TargetMarker.SetActive(true);
                     TargetMarker.transform.position = targetTile.transform.position;
                     startClearing = true;
                 }        
-                else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.FireLineMode == true))
+                else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.FireLineMode == true) && 
+                    (gameManager.SelectedTile.GetComponent<TileScript>().GetOccupied() == false)) 
                 {
                     targetTile = gameManager.SelectedTile;
                     TargetMarker.SetActive(true);
@@ -169,8 +178,8 @@ public class FireCrew : MonoBehaviour
             StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
             StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile));
             StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile));
-            TargetMarker.SetActive(false);
             targetTile = null;
+            TargetMarker.SetActive(false);
             startDousing = false;
             startClearing = false;
             startBuilding = false;

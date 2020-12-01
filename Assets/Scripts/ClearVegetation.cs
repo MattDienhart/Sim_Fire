@@ -43,6 +43,7 @@ public class ClearVegetation : MonoBehaviour
             else
             {
                 targetTile = null;
+                gameObject.GetComponent<FireCrew>().targetTile = null;
             }
 
             // required energy has been expended, so call DestroyObstacles()
@@ -56,6 +57,7 @@ public class ClearVegetation : MonoBehaviour
                 Debug.Log("Cleared vegetation on tile: " + (tileIndex + 1).ToString());
                 targetTile.GetComponent<TileScript>().DestroyObstacle();
                 targetTile = null;
+                gameObject.GetComponent<FireCrew>().targetTile = null;
             }
 
             // update the energy level of the calling unit
