@@ -29,6 +29,10 @@ public abstract class TileScript : MonoBehaviour
     private GameObject firePrefab;
     protected List<GameObject> obstacles = new List<GameObject>();
 
+    public bool fireLinePresent = false;
+    private GameObject fireLineObject = null;
+
+
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -99,14 +103,26 @@ public abstract class TileScript : MonoBehaviour
     {
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
         GameObject fireLine = tileManager.GetFireLinePrefab();
-        GameObject newLine = Instantiate(
+        fireLineObject = Instantiate(
                fireLine,
                this.transform.position,
                this.transform.rotation,
                this.transform.parent);
-        newLine.transform.parent = this.transform;
-        newLine.name = "FireLine";
+        fireLineObject.transform.parent = this.transform;
+        fireLineObject.name = "FireLine";
         if (dryness - 20 > 0) dryness -= 20;
+        fireLinePresent = true;
+    }
+
+    public bool GetFireLineBoolean()
+    {
+        return fireLinePresent;
+    }
+
+    public void DestroyFireLine()
+    {
+        fireLinePresent = false;
+        Destroy(fireLineObject);
     }
 
     public void RotateFireLine()

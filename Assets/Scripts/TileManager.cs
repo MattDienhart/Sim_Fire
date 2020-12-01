@@ -29,6 +29,7 @@ public class TileManager : MonoBehaviour
     [Header("Edges")]
     public Sprite[] borderSprites;
     public Sprite[] cornerSprites;
+    
 
     void Awake()
     {
@@ -330,6 +331,7 @@ public class TileManager : MonoBehaviour
     }
 
     public GameObject GetFireLinePrefab()
+
     {
         return fireLinePrefab;
     }
