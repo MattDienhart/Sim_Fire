@@ -1002,6 +1002,7 @@ public class GameManager : MonoBehaviour
             if (count > 150) break;
         }
         fireHouse.transform.position = allTiles[rnd].transform.position;
+        allTiles[rnd].GetComponent<TileScript>().SetFirehouseNeighbors();
         allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
         allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();
         allTiles[rnd].GetComponent<TileScript>().DestroyObstacle();

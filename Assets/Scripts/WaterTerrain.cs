@@ -6,7 +6,7 @@ public class WaterTerrain : TileScript
 {
     public override void SetBurning(bool change) => burning = false;
 
-    protected override void BuildFireLine() => base.TileNotificationText("Can't build fire line here.");
+    public override void BuildFireLine() => base.TileNotificationText("Can't build fire line here.");
     private void Start()
     {
         dryness = 0;

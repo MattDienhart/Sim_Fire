@@ -32,6 +32,7 @@ public abstract class TileScript : MonoBehaviour
     public bool fireLinePresent = false;
     private GameObject fireLineObject = null;
 
+    public bool nearFireHouse = false;
 
     void Awake()
     {
@@ -99,7 +100,7 @@ public abstract class TileScript : MonoBehaviour
         newFire.name = "Fire";
     }
 
-    protected virtual void BuildFireLine()
+    public virtual void BuildFireLine()
     {
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
         GameObject fireLine = tileManager.GetFireLinePrefab();
@@ -318,6 +319,25 @@ public abstract class TileScript : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         gameManager.SetNotificationText(msg);
+    }
+
+    public void SetFirehouseTile()
+    {
+        nearFireHouse = true;
+    }
+
+    public void SetFirehouseNeighbors()
+    {
+        nearFireHouse = true;
+        foreach (GameObject neighbor in neighborTiles)
+        {
+            neighbor.GetComponent<TileScript>().SetFirehouseTile();
+        }
+    }
+
+    public bool GetNearFirehouse()
+    {
+        return nearFireHouse;
     }
 }
 

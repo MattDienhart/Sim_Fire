@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrassTerrain : TileScript
 {
-    protected override void BuildFireLine() => CheckHouse();
+    public override void BuildFireLine() => CheckHouse();
 
     public Sprite[] buildings;
     bool houseHere = false;

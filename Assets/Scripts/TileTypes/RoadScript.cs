@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RoadScript : TileScript
 {
-   // public override void SetBurning(bool change) => burning = false;
-    protected override void BuildFireLine() => 
+    // public override void SetBurning(bool change) => burning = false;
+    public override void BuildFireLine() => 
         base.TileNotificationText("Can't build fire line here.");
 
     // Start is called before the first frame update

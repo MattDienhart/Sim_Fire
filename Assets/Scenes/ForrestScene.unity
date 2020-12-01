@@ -269,6 +269,9 @@ MonoBehaviour:
   saveBtn: {fileID: 1406047948}
   loadBtn: {fileID: 1219355713}
   quitBtn: {fileID: 1794704812}
+  SprayWaterMode: 0
+  ClearVegMode: 0
+  FireLineMode: 0
 --- !u!4 &152921759
 Transform:
   m_ObjectHideFlags: 0
@@ -2022,6 +2025,7 @@ MonoBehaviour:
   eastTile: {fileID: 0}
   westTile: {fileID: 0}
   occupied: 0
+  fireLinePresent: 0
   plants: []
 --- !u!212 &948391029
 SpriteRenderer:
