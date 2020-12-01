@@ -50,6 +50,12 @@ public class FireTruck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // If we are near a firehouse, refill water tank
+        if (currentTile.GetComponent<TileScript>().nearFireHouse == true)
+        {
+            waterLevel = 100;
+        }
+
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedUnit != gameObject)
         {
