@@ -194,6 +194,7 @@ GameObject:
   - component: {fileID: -6271735744847276002}
   - component: {fileID: 3378011438703666891}
   - component: {fileID: 4410673489045649479}
+  - component: {fileID: 6373292495521400434}
   m_Layer: 0
   m_Name: FireCrew
   m_TagString: FireCrew
@@ -324,6 +325,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkRate: 2
   FinishAmount: 20
+--- !u!95 &6373292495521400434
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4678436223149907044}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ebc4701d2759188488d058455d23b2e8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4942951348940395426
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,6 +436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3258327686602840314}
   - component: {fileID: 4926393861163315096}
+  - component: {fileID: 8158507659299468914}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -488,6 +509,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &8158507659299468914
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154026305536207457}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 41f2bc62a8ba4b0439d509333ec2cf5d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7414635212016433185
 GameObject:
   m_ObjectHideFlags: 0
