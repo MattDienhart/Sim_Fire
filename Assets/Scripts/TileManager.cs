@@ -268,7 +268,7 @@ public class TileManager : MonoBehaviour
         }
         if (westDiff && west != -2)
         {
-         //   Debug.Log("west");
+         Debug.Log("west: " + tileNum);
             currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[west], 0);
         }
         if (south != usedValues[tileNum] && south != -3)

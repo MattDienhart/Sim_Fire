@@ -1941,6 +1941,7 @@ GameObject:
   - component: {fileID: 269567854}
   - component: {fileID: 269567853}
   - component: {fileID: 269567852}
+  - component: {fileID: 269567855}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2013,6 +2014,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &269567855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269567851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ab14e082d7b27439f4e10c6e22dab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &288300543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7605,7 +7618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1396434728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7630,8 +7643,6 @@ MonoBehaviour:
   firePrefab: {fileID: 2883980223397173327, guid: 236d17e6f6e797349be62dc5275ca0d3, type: 3}
   fireLinePrefab: {fileID: 5627177511597725474, guid: b407865d492d9984b9829829b0482e5c, type: 3}
   borderPrefab: {fileID: 7590852651739720500, guid: a043007893956d34c929e5b4f79f79d8, type: 3}
-  columnCount: 18
-  rowCount: 10
   borderSprites:
   - {fileID: 21300000, guid: 82cac9a9d3bc64e46ac665bb22fede92, type: 3}
   - {fileID: 21300000, guid: 6aec37f6cbc876342a2548d76d0e5cbe, type: 3}
