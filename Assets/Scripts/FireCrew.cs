@@ -35,6 +35,7 @@ public class FireCrew : MonoBehaviour
     public GameObject targetTile;
     public GameObject TargetMarker;
 
+    private bool startMoving;
     private bool startDousing;
     private bool startClearing;
     private bool startBuilding;
@@ -49,6 +50,7 @@ public class FireCrew : MonoBehaviour
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
+        startMoving = false;
         startDousing = false;
         startClearing = false;
         startBuilding = false;
@@ -80,9 +82,9 @@ public class FireCrew : MonoBehaviour
         {
             destinationTile = gameManager.SelectedTile;
             DestinationMarker.SetActive(true);
-            DestinationMarker.transform.position = destinationTile.transform.position;
             gameManager.SelectedTile = null;
             gameManager.DestSelectModeOn = false;
+            startMoving = true;
         }
 
         // If a target has been chosen for the crew to spray water on, update the variable
@@ -136,7 +138,11 @@ public class FireCrew : MonoBehaviour
         // move the crew to the next tile if not at the destination
         if ((destinationTile != null) && (currentTile != null) && (destinationTile != currentTile))
         {
-            StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+            if (startMoving == true)
+            {
+                StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+                startMoving = false;
+            }
 
             // This keeps the destination marker from moving along with the other objects in the FireCrew prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
