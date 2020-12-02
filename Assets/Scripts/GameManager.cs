@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private List<GameObject> fireCrew = new List<GameObject>();
     private List<GameObject> fireTruck = new List<GameObject>();
     private List<GameObject> helicopter = new List<GameObject>();
-    private GameObject[] wildFires;
     private TileManager tileManager;
     public List<int> litTiles = new List<int>();
     public List<int> loadLitTiles = new List<int>();
@@ -51,12 +50,10 @@ public class GameManager : MonoBehaviour
     private int fireTruckInstances;
     private int helicopterInstances;
     private int wildfireInstances;
-    //public static bool gameIsPaused;
 
     public GameObject fireCrewPrefab;
     public GameObject fireTruckPrefab;
     public GameObject helicopterPrefab;
-    public GameObject firePrefab;
     
     private GameObject selectedUnit;
     private GameObject selectedTile;
@@ -99,9 +96,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //gameIsPaused = false;
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
-        wildFires =  new GameObject[181];
         windDirection = PickWindDirection();
         difficulty = 2;
         windDirectionText.text = "The wind blows: \n" + windDirection;
@@ -141,7 +136,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(LightTile(allTiles[29], 29));
         StartCoroutine(LightTile(allTiles[138], 138));
-        StartCoroutine(SendNotification("Oh no, there are two wildfires! Put them out!", 3));
+        StartCoroutine(SendNotification("Oh no, there are " + wildfireInstances.ToString() + " wildfires! Put them out!", 3));
 
         // Start wildfire behavior
         InvokeRepeating("WildFireBehavior", 10, 40);
@@ -159,6 +154,37 @@ public class GameManager : MonoBehaviour
     {
         // if (happiness != System.Convert.ToInt32(happinessText.text)) { }
         //     happinessText.text = happiness.ToString();
+
+        if (wildfireInstances < 0)
+        {
+            wildfireInstances = 0;
+        }
+
+        if (fireCrewInstances < 0)
+        {
+            fireCrewInstances = 0;
+        }
+
+        if (fireTruckInstances < 0)
+        {
+            fireTruckInstances = 0;
+        }
+
+        if (helicopterInstances < 0)
+        {
+            helicopterInstances = 0;
+        }
+
+        if (money < 0)
+        {
+            money = 0;
+        }
+
+        if (happiness < 0)
+        {
+            happiness = 0;
+        }
+
         if (money !=  System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")))
         {
             moneyText.text = "$" + money.ToString();
@@ -627,11 +653,7 @@ public class GameManager : MonoBehaviour
     // Spawn new Wildfire instance from wildfire prefab
     IEnumerator LightTile(GameObject baseSpawnLocation, int tileIndex)
     {
-        GameObject newWildfire = (GameObject)Instantiate(firePrefab);
-        newWildfire.transform.position = baseSpawnLocation.transform.position;
-        newWildfire.GetComponent<Wildfire>().hitPoints = 100;
         baseSpawnLocation.GetComponent<TileScript>().SetBurning(true);
-        wildFires[tileIndex] = newWildfire;
         Debug.Log("Tile " + tileIndex.ToString() + " is on fire!");
         litTiles.Add(tileIndex);
         wildfireInstances++;
@@ -709,22 +731,9 @@ public class GameManager : MonoBehaviour
         {
             case 1:
             //Check if tile is occupied
-            for(int i = 0; i < fireCrew.Count; i++)
+            if (northTile.GetComponent<TileScript>().GetOccupied())
             {
-                if(northTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
-                {
-                    Debug.Log("northTile is occupied");
-                    goto case 2;
-                }
-            }
-
-            for(int i = 0; i < fireTruck.Count; i++)
-            {
-                if(northTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
-                {
-                    Debug.Log("northTile is occupied");
-                    goto case 2;
-                }
+                goto case 2;
             }
 
             if ((northTile) && (!hasLitOne)) 
@@ -737,22 +746,9 @@ public class GameManager : MonoBehaviour
 
             case 2:
             //Check if tile is occupied
-            for(int i = 0; i < fireCrew.Count; i++)
+            if (southTile.GetComponent<TileScript>().GetOccupied())
             {
-                if(southTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
-                {
-                    Debug.Log("southTile is occupied");
-                    goto case 3;
-                }
-            }
-
-            for(int i = 0; i < fireTruck.Count; i++)
-            {
-                if(southTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
-                {
-                    Debug.Log("southTile is occupied");
-                    goto case 3;
-                }
+                goto case 3;
             }
 
             if ((southTile) && (!hasLitOne)) 
@@ -765,22 +761,9 @@ public class GameManager : MonoBehaviour
 
             case 3:
             //Check if tile is occupied
-            for(int i = 0; i < fireCrew.Count; i++)
+            if (eastTile.GetComponent<TileScript>().GetOccupied())
             {
-                if(eastTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
-                {
-                    Debug.Log("eastTile is occupied");
-                    goto case 4;
-                }
-            }
-
-            for(int i = 0; i < fireTruck.Count; i++)
-            {
-                if(eastTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
-                {
-                    Debug.Log("eastTile is occupied");
-                    goto case 4;
-                }
+                goto case 4;
             }
 
             if ((eastTile) && (!hasLitOne)) 
@@ -793,22 +776,9 @@ public class GameManager : MonoBehaviour
 
             case 4:
             //Check if tile is occupied
-            for(int i = 0; i < fireCrew.Count; i++)
+            if (westTile.GetComponent<TileScript>().GetOccupied())
             {
-                if(westTile == fireCrew[i].GetComponent<FireCrew>().currentTile)
-                {
-                    Debug.Log("WestTile is occupied");
-                    goto NoFires;
-                }
-            }
-
-            for(int i = 0; i < fireTruck.Count; i++)
-            {
-                if(westTile == fireTruck[i].GetComponent<FireTruck>().currentTile)
-                {
-                    Debug.Log("westTile is occupied");
-                    goto NoFires;
-                }
+                goto NoFires;
             }
 
             if ((westTile) && (!hasLitOne)) 
@@ -822,6 +792,7 @@ public class GameManager : MonoBehaviour
 
         NoFires:
             Debug.Log("No fires have been lit");
+
         yield return null;    
     }
 
@@ -842,11 +813,10 @@ public class GameManager : MonoBehaviour
         if(allTiles[tileNumber].GetComponent<TileScript>().GetBurning()) 
         {
             allTiles[tileNumber].GetComponent<TileScript>().SetBurning(false);
-            Destroy(wildFires[tileNumber]);
             wildfireInstances--;
             litTiles.Remove(tileNumber);
             money += 100;
-            //StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
+            // StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
             Debug.Log("Put out fire at tile: " + tileNumber.ToString());
         }
         
@@ -881,26 +851,11 @@ public class GameManager : MonoBehaviour
         {
             int unluckyTile = UnityEngine.Random.Range(1,180);
             
-            // Make sure tile isn't already on fire
-            while(allTiles[unluckyTile].GetComponent<TileScript>().GetBurning()) 
+            // Make sure tile isn't already on fire or occupied
+            while((allTiles[unluckyTile].GetComponent<TileScript>().GetBurning()) 
+            || (allTiles[unluckyTile].GetComponent<TileScript>().GetOccupied()))
             {
                 unluckyTile++;
-            }
-
-            for(int i = 0; i < fireCrew.Count; i++)
-            {
-                if(allTiles[unluckyTile] == fireCrew[i].GetComponent<FireCrew>().currentTile)
-                {
-                    unluckyTile++;
-                }
-            }
-
-            for(int i = 0; i < fireTruck.Count; i++)
-            {
-                if(allTiles[unluckyTile] == fireTruck[i].GetComponent<FireTruck>().currentTile)
-                {
-                    unluckyTile++;
-                }
             }
 
             StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
@@ -919,8 +874,7 @@ public class GameManager : MonoBehaviour
             // Add fire crew
             for(int i = 0; i < bonus; i++) 
             {
-                //AddFireCrew(GameObject.FindGameObjectWithTag("Firehouse"));
-                AddFireCrew(AllTiles[39]);
+                AddFireCrew(AllTiles[generateSpawnLocation()]);
             }
 
             string alert = "The career fair worked, we've added " + bonus.ToString() + " recruits!";
@@ -939,8 +893,7 @@ public class GameManager : MonoBehaviour
             money += donation;
 
             // Add Fire Truck
-            //AddFireTruck(GameObject.FindGameObjectWithTag("Firehouse"));
-            AddFireTruck(AllTiles[39]);
+            AddHelicopter(AllTiles[generateSpawnLocation()]);
 
             // Display alert message
             StartCoroutine(SendNotification("Generous donor alert! $" + donation.ToString() + " added as well as your very own helicopter!", 3));
@@ -977,26 +930,11 @@ public class GameManager : MonoBehaviour
         {
             int unluckyTile = UnityEngine.Random.Range(1,180);
             
-            // Make sure tile isn't already on fire
-            while(allTiles[unluckyTile].GetComponent<TileScript>().GetBurning())
+            // Make sure tile isn't already on fire or occupied
+            while((allTiles[unluckyTile].GetComponent<TileScript>().GetBurning()) 
+            || (allTiles[unluckyTile].GetComponent<TileScript>().GetOccupied()))
             {
                 unluckyTile++;
-            }
-
-            for(int i = 0; i < fireCrew.Count; i++)
-            {
-                if(allTiles[unluckyTile] == fireCrew[i].GetComponent<FireCrew>().currentTile)
-                {
-                    unluckyTile++;
-                }
-            }
-
-            for(int i = 0; i < fireTruck.Count; i++)
-            {
-                if(allTiles[unluckyTile] == fireTruck[i].GetComponent<FireTruck>().currentTile)
-                {
-                    unluckyTile++;
-                }
             }
 
             StartCoroutine(LightTile(allTiles[unluckyTile], unluckyTile));
