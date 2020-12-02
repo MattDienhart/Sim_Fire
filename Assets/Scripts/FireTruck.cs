@@ -30,6 +30,7 @@ public class FireTruck : MonoBehaviour
     public GameObject TargetMarker;
     public GameObject SelectionBox;
 
+    private bool startMoving;
     private bool startDousing;
 
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class FireTruck : MonoBehaviour
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
+        startMoving = false;
         startDousing = false;
 
         // mark the current tile as "occupied" so that other units & fires can't overlap
@@ -69,9 +71,9 @@ public class FireTruck : MonoBehaviour
         {
             destinationTile = gameManager.SelectedTile;
             DestinationMarker.SetActive(true);
-            DestinationMarker.transform.position = destinationTile.transform.position;
             gameManager.SelectedTile = null;
             gameManager.DestSelectModeOn = false;
+            startMoving = true;
         }
 
         // If a target has been chosen for the unit to spray water on, update the variable
@@ -102,7 +104,11 @@ public class FireTruck : MonoBehaviour
         // move the unit to the next tile if not at the destination
         if ((destinationTile != null) && (currentTile != null) && (destinationTile != currentTile))
         {
-            StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+            if (startMoving == true)
+            {
+                StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+                startMoving = false;
+            }
 
             // This keeps the destination marker from moving along with the other objects in the FireTruck prefab
             DestinationMarker.transform.position = destinationTile.transform.position;
