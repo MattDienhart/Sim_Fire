@@ -34,6 +34,11 @@ public class FireCrew : MonoBehaviour
     public GameObject DestinationMarker;
     public GameObject targetTile;
     public GameObject TargetMarker;
+    public GameObject sprayWater;
+    public GameObject sprayNorth;
+    public GameObject spraySouth;
+    public GameObject sprayEast;
+    public GameObject sprayWest;
 
     private bool startMoving;
     private bool startDousing;
@@ -49,6 +54,10 @@ public class FireCrew : MonoBehaviour
         energyBar = gameObject.GetComponentInChildren<EnergyBar>();
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
+        sprayNorth.SetActive(false);
+        spraySouth.SetActive(false);
+        sprayEast.SetActive(false);
+        sprayWest.SetActive(false);
         destinationTile = null;
         startMoving = false;
         startDousing = false;
@@ -164,6 +173,8 @@ public class FireCrew : MonoBehaviour
             {
                 // spray water on the target tile
                 StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+                sprayWater = sprayNorth;
+                sprayWater.SetActive(true);
                 startDousing = false;
             }
             else if (startClearing == true)
