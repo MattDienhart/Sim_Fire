@@ -34,11 +34,6 @@ public class FireCrew : MonoBehaviour
     public GameObject DestinationMarker;
     public GameObject targetTile;
     public GameObject TargetMarker;
-    public GameObject sprayWater;
-    public GameObject sprayNorth;
-    public GameObject spraySouth;
-    public GameObject sprayEast;
-    public GameObject sprayWest;
 
     private bool startMoving;
     private bool startDousing;
@@ -54,10 +49,6 @@ public class FireCrew : MonoBehaviour
         energyBar = gameObject.GetComponentInChildren<EnergyBar>();
         DestinationMarker.SetActive(false);
         TargetMarker.SetActive(false);
-        sprayNorth.SetActive(false);
-        spraySouth.SetActive(false);
-        sprayEast.SetActive(false);
-        sprayWest.SetActive(false);
         destinationTile = null;
         startMoving = false;
         startDousing = false;
@@ -172,9 +163,23 @@ public class FireCrew : MonoBehaviour
             if (startDousing == true)
             {
                 // spray water on the target tile
-                StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
-                sprayWater = sprayNorth;
-                sprayWater.SetActive(true);
+                if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "North"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "South"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "East"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "West"));
+                }
+                
                 startDousing = false;
             }
             else if (startClearing == true)
@@ -192,7 +197,23 @@ public class FireCrew : MonoBehaviour
         }
         else
         {
-            StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+            if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "North"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "South"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "East"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "West"));
+            }
+            //StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "North"));
             StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile));
             StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile));
             targetTile = null;

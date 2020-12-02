@@ -90,7 +90,7 @@ public class FireTruck : MonoBehaviour
                 targetTile = gameManager.SelectedTile;
                 TargetMarker.SetActive(true);
                 TargetMarker.transform.position = targetTile.transform.position;
-                startDousing = false;
+                startDousing = true;
             }
 
             // reset the selection parameters
@@ -128,13 +128,46 @@ public class FireTruck : MonoBehaviour
         {
             if (startDousing == true)
             {
-                StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+                // spray water on the target tile
+                if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "North"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "South"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "East"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+                {
+                    StartCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "West"));
+                }
+
                 startDousing = false;
             }
         }
         else
         {
-            StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile));
+            if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "North"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "South"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "East"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+            {
+                StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "West"));
+            }
+            //StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "North"));
             TargetMarker.SetActive(false);
             targetTile = null;
             startDousing = false;

@@ -8,6 +8,11 @@ public class SprayWater : MonoBehaviour
     private int totalWaterSprayed;
     private int waterLevel;
     private int tileIndex;
+    private GameObject spray;
+    public GameObject sprayNorth;
+    public GameObject spraySouth;
+    public GameObject sprayEast;
+    public GameObject sprayWest;
 
     public int SprayRate;           // % of unit's water bar per second
     public int ExtinguishAmount;    // % of unit's water bar needed to extinguish any fire
@@ -25,9 +30,17 @@ public class SprayWater : MonoBehaviour
         
     }
 
-    public IEnumerator Douse(GameObject targetTile)
+    public IEnumerator Douse(GameObject targetTile, string direction)
     {
         totalWaterSprayed = 0;
+
+        switch(direction)
+        {
+            case "North": spray = sprayNorth; break;
+            case "South": spray = spraySouth; break;
+            case "East": spray = sprayEast; break;
+            case "West": spray = sprayWest; break;
+        }
 
         // attempt to spray water on the fire, and put it out if totalWaterSprayed >= ExtinguishAmount
         while ((totalWaterSprayed < ExtinguishAmount) && (targetTile != null))
@@ -51,6 +64,7 @@ public class SprayWater : MonoBehaviour
             {
                 waterLevel -= SprayRate;
                 totalWaterSprayed += SprayRate;
+                spray.SetActive(true);
             }
             else
             {
@@ -82,6 +96,7 @@ public class SprayWater : MonoBehaviour
                 Debug.Log("Put out fire on tile:" + (tileIndex + 1).ToString());
                 StartCoroutine(gameManager.GetComponent<GameManager>().PutOutFire(tileIndex));
                 targetTile = null;
+                spray.SetActive(false);
 
                 // update the target tile on the calling unit to indicate that we are done spraying water
                 if (gameObject.CompareTag("FireCrew"))
