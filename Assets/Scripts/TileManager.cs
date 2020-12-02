@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TileManager : MonoBehaviour
@@ -38,6 +39,15 @@ public class TileManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().name == "MediumStart")
+        {
+            columnCount = 36;
+            rowCount = 20;
+        } else if (SceneManager.GetActiveScene().name == "SmallStart")
+        {
+            columnCount = 18;
+            rowCount = 10;
+        }
         int tileCount = columnCount * rowCount;
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
         usedValues = Enumerable.Repeat(0, tileCount).ToArray();
@@ -86,7 +96,7 @@ public class TileManager : MonoBehaviour
         if(usedValues[roadColumn] != 0) roadColumn = Random.Range(1, columnCount - 1);
         int sideStreet1 = Random.Range(1, rowCount - 1);
         int side1NegPos = Random.Range(0, 2) * 2 - 1;
-        int side1Len = Random.Range(columnCount / 3 - 1, columnCount / 3 + 2);
+        int side1Len = Random.Range(columnCount / 3 - 2, columnCount / 2 + 2);
         if ((roadColumn + side1Len * side1NegPos) < 2 || 
             ((roadColumn + side1Len * side1NegPos) > columnCount -1 ))
         {
@@ -95,7 +105,7 @@ public class TileManager : MonoBehaviour
 
         int sideStreet2 = Random.Range(1, rowCount - 2);
         int side2NegPos = Random.Range(0, 2) * 2 - 1;
-        int side2Len = Random.Range(columnCount / 3 - 1, columnCount / 3 + 2);
+        int side2Len = Random.Range(columnCount / 3 - 2, columnCount / 2 + 2);
         if ((roadColumn + side2Len * side2NegPos) < 1 || (roadColumn + side2Len * side2NegPos) > columnCount) side2NegPos *= -1;
 
         while (side1NegPos == side2NegPos && CheckSideStreets(sideStreet1, sideStreet2))
@@ -294,7 +304,7 @@ public class TileManager : MonoBehaviour
             if (west > -1)
             {
                 int southWest = usedValues[tileNum + columnCount - 1];
-                if (usedValues[tileNum] != southWest && southWest != east && southWest != south)
+                if (usedValues[tileNum] != southWest && southWest != west && southWest != south)
                 {
                     currentTile.GetComponent<TileScript>().SetBorderSprite(cornerSprites[southWest], 0);
                 }

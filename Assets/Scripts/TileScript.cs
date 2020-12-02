@@ -130,20 +130,20 @@ public abstract class TileScript : MonoBehaviour
         {
             westTile = GameObject.Find("Tile (" + (tileNum - 1) + ")");
             neighborTiles.Add(westTile);
-            temp += " west: " + westTile.name;
+
         }
         if (tileNum + 1 < rowCount * columnCount && (tileNum / columnCount) == ((tileNum + 1) / columnCount))
         {
             eastTile = GameObject.Find("Tile (" + (tileNum + 1) + ")");
             neighborTiles.Add(eastTile);
-            temp += " eastTile: " + eastTile.name;
+
         }
         if (tileNum - columnCount > 0)
         {
             northTile = GameObject.Find("Tile (" + (tileNum - columnCount) + ")");
 
             neighborTiles.Add(northTile);
-            temp += " northTile: " + northTile.name;
+
         }
         if ((tileNum + columnCount) < (rowCount * columnCount))
         {
@@ -151,7 +151,7 @@ public abstract class TileScript : MonoBehaviour
             southTile = GameObject.Find("Tile (" + (tileNum + columnCount) + ")");
 
             neighborTiles.Add(southTile);
-            temp += " southTile: " + southTile.name;
+
         }
     }
 
@@ -276,10 +276,10 @@ public abstract class TileScript : MonoBehaviour
         // If corner adjust order layer on top of border
         if (sprite.name == "grassEdge")
         {
-            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 4;
         } else if (sprite.name == "grassCorner")
         {
-            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 3;
         }
         // just grass 
         newBorder.GetComponent<SpriteRenderer>().sprite = sprite;
@@ -291,7 +291,15 @@ public abstract class TileScript : MonoBehaviour
         // Grass border should be placed on top of all others
         if (sprite.name == "grassEdge")
         {
-            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 5;
+        }
+        else if(sprite.name == "grassCorner")
+        {
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        }
+        else if (sprite.name == "dirtCorner")
+        {
+            newBorder.GetComponent<SpriteRenderer>().sortingOrder = 3;
         }
         borderCount++;
     }

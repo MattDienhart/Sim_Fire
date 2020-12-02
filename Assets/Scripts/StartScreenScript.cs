@@ -26,6 +26,6 @@ public class StartScreenScript : MonoBehaviour
 
     void NextScene()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 }
