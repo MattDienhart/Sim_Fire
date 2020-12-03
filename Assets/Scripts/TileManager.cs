@@ -356,6 +356,14 @@ public class TileManager : MonoBehaviour
     {
         return usedValues;
     }
+    public int GetRowCount()
+    {
+        return rowCount;
+    }
 
+    public int GetColumnCount()
+    {
+        return columnCount;
+    }
 
 }

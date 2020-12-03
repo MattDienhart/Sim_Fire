@@ -38,7 +38,6 @@ public abstract class TileScript : MonoBehaviour
     private int columnCount = 18 * 3;
     private int rowCount = 10 * 3;
 
-
     void Awake()
     {
         DontDestroyOnLoad(this.gameObject);

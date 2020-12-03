@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
         {
             allTiles = value;
         }
+
     }
     private List<GameObject> fireCrew = new List<GameObject>();
     private List<GameObject> fireTruck = new List<GameObject>();
@@ -148,6 +149,11 @@ public class GameManager : MonoBehaviour
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
+
+        columnCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetColumnCount();
+        rowCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetRowCount();
+
+        PlaceFirehouse();
 
     }
 
@@ -365,7 +371,7 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location up
                 case 0: 
                 // Is spawn location on top edge of map?
-                if((spawnLocation <= tileManager.columnCount) && (spawnLocation > 0))
+                if((spawnLocation <= columnCount) && (spawnLocation > 0))
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
@@ -374,7 +380,7 @@ public class GameManager : MonoBehaviour
                         if(spawnLocation == 1)
                         {
                             // Flip a coin to either move right or down
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : columnCount;
                             spawnLocation += addThis;
                         }
                         else
@@ -385,10 +391,10 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Top right corner
-                        if(spawnLocation == tileManager.columnCount)
+                        if(spawnLocation == columnCount)
                         {
                             // Flip a coin to either move left or down
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : columnCount;
                             spawnLocation += addThis;
                         }
                         else
@@ -400,23 +406,23 @@ public class GameManager : MonoBehaviour
                 // Not on top edge of map
                 else
                 {
-                    spawnLocation -= tileManager.columnCount; // Move up
+                    spawnLocation -= columnCount; // Move up
                 }
                 break;
 
                 // Shift spawn location down
                 case 1: 
                 // Is spawn location on bottom edge of map?
-                if((spawnLocation > (allTiles.Length - tileManager.columnCount)) && (spawnLocation <= allTiles.Length))
+                if((spawnLocation > (allTiles.Length - columnCount)) && (spawnLocation <= allTiles.Length))
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Bottom left corner
-                        if(spawnLocation == (allTiles.Length - tileManager.columnCount + 1))
+                        if(spawnLocation == (allTiles.Length - columnCount + 1))
                         {
                             // Flip a coin to either move right or up
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : - columnCount;
                             spawnLocation += addThis;
                         }
                         else
@@ -430,7 +436,7 @@ public class GameManager : MonoBehaviour
                         if(spawnLocation == allTiles.Length)
                         {
                             // Flip a coin to either move left or up
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : - columnCount;
                             spawnLocation += addThis;
                         }
                         else
@@ -442,28 +448,28 @@ public class GameManager : MonoBehaviour
                 // Not on top edge of map
                 else
                 {
-                    spawnLocation += tileManager.columnCount; // Move down
+                    spawnLocation += columnCount; // Move down
                 }
                 break;
 
                 // Shift spawn location right
                 case 2:
                 // Is spawn location on right edge of map?
-                if(spawnLocation % tileManager.columnCount == 0)
+                if(spawnLocation % columnCount == 0)
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Top right corner
-                        if(spawnLocation == tileManager.columnCount)
+                        if(spawnLocation == columnCount)
                         {
                             // Flip a coin to either move left or down
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : columnCount;
                             spawnLocation += addThis;
                         }
                         else
                         {
-                            spawnLocation -= tileManager.columnCount; // Move up
+                            spawnLocation -= columnCount; // Move up
                         }
                     }
                     else
@@ -472,12 +478,12 @@ public class GameManager : MonoBehaviour
                         if(spawnLocation == allTiles.Length)
                         {
                             // Flip a coin to either move left or up
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -columnCount;
                             spawnLocation += addThis;
                         }
                         else
                         {
-                            spawnLocation += tileManager.columnCount; // Move down
+                            spawnLocation += columnCount; // Move down
                         }
                     }
                 }
@@ -490,7 +496,7 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location left
                 case 3:
                 // Is spawn location on left edge of map?
-                if(spawnLocation % tileManager.columnCount == 1)
+                if(spawnLocation % columnCount == 1)
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
@@ -499,26 +505,26 @@ public class GameManager : MonoBehaviour
                         if(spawnLocation == 1)
                         {
                             // Flip a coin to either move right or down
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : columnCount;
                             spawnLocation += addThis;
                         }
                         else
                         {
-                            spawnLocation -= tileManager.columnCount; // Move up
+                            spawnLocation -= columnCount; // Move up
                         }
                     }
                     else
                     {
                         // Bottom left corner
-                        if(spawnLocation == (allTiles.Length - tileManager.columnCount + 1))
+                        if(spawnLocation == (allTiles.Length - columnCount + 1))
                         {
                             // Flip a coin to either move right or up
-                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -tileManager.columnCount;
+                            int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -columnCount;
                             spawnLocation += addThis;
                         }
                         else
                         {
-                            spawnLocation += tileManager.columnCount; // Move down
+                            spawnLocation += columnCount; // Move down
                         }
                     }
                 }
