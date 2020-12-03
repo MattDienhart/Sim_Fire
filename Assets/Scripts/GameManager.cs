@@ -650,7 +650,6 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    // Spawn new Wildfire instance from wildfire prefab
     IEnumerator LightTile(GameObject baseSpawnLocation, int tileIndex)
     {
         baseSpawnLocation.GetComponent<TileScript>().SetBurning(true);
@@ -825,7 +824,8 @@ public class GameManager : MonoBehaviour
 
     void PickEvent() 
     {
-        int dice = UnityEngine.Random.Range(0, 110);
+        int dice = UnityEngine.Random.Range(0, 120);
+        // dice = 120;
         Debug.Log("Game Event Dice Roll is: " + dice.ToString());
 
         //Nothing
@@ -972,6 +972,29 @@ public class GameManager : MonoBehaviour
             // Display alert message
             StartCoroutine(SendNotification("Sweet rain! It's putting out a few fires!", 3));
             Debug.Log("Heavy rain event triggered!");
+        }
+
+        //Destroy fire lines
+        if((dice > 110) && (dice <= 120)) 
+        {
+            bool displayMessage = false;
+            
+            for(int i = 0; i < allTiles.Length; i++)
+            {
+                if(allTiles[i].GetComponent<TileScript>().GetFireLineBoolean())
+                {
+                    allTiles[i].GetComponent<TileScript>().DestroyFireLine();
+                    displayMessage = true;
+                }
+            }
+
+            // Display alert message
+            if (displayMessage)
+            {
+                StartCoroutine(SendNotification("Oh no! A tiny earthquake filled your firelines with dirt!", 3));
+            }
+            
+            Debug.Log("Destroy fire lines triggered!");
         }
     }
 
