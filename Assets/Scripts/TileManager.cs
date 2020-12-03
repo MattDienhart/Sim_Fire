@@ -27,12 +27,11 @@ public class TileManager : MonoBehaviour
     private int columnCount = 54;
     private int rowCount = 30;
 
+    private int waterColumn;
+
     [Header("Edges")]
     public Sprite[] borderSprites;
     public Sprite[] cornerSprites;
-
-    
-    
 
     void Awake()
     {
@@ -152,7 +151,7 @@ public class TileManager : MonoBehaviour
         }
         Debug.Log("-grid: \n" + mygrid);
         // Choose the water column
-        int waterColumn = 1 + (columnCount - 1) * Random.Range(0, 2);
+        waterColumn = 1 + (columnCount - 1) * Random.Range(0, 2);
         for (int i = 0; i < rowCount; i++)
         { 
             usedValues[waterColumn - 1 + (columnCount * i)] = 5;
@@ -352,10 +351,7 @@ public class TileManager : MonoBehaviour
         return fireLinePrefab;
     }
 
-    public int[] GetEntireGrid()
-    {
-        return usedValues;
-    }
+    
     public int GetRowCount()
     {
         return rowCount;
@@ -366,4 +362,67 @@ public class TileManager : MonoBehaviour
         return columnCount;
     }
 
+    public int[] GetEntireGrid()
+    {
+        return usedValues;
+    }
+
+    public int GetWaterColumn()
+    {
+        return waterColumn;
+    }
+
+    public void UpdateTileGrid(int[] valuesArray, int waterC)
+    {
+        for (int j = 0; j < valuesArray.Length; j++)
+        {
+            // Check if sand tile island
+            GameObject tempTile = Instantiate(
+               tilePrefabs[valuesArray[j]],
+               emptyTiles[j].transform.position,
+               emptyTiles[j].transform.rotation,
+               forestPrefab.transform.parent);
+            tempTile.transform.localScale = emptyTiles[j].transform.localScale;
+            tempTile.name = "Tile (" + j + ")";
+            tempTile.tag = "Tile";
+
+            // if water, added land border to it
+            if (valuesArray[j] == 5)
+            {
+                int next = -1;
+                if (waterC < columnCount - 1) next = 1;
+                // create border for water, child over water 
+                if (valuesArray[j + next] != 3)
+                {
+                    float rotation = 0;
+                    if (waterC == 1) rotation = 180f;
+                    tempTile.GetComponent<WaterTerrain>().SetBorderSprite
+                        (borderSprites[valuesArray[j + next]], rotation);
+                }
+                else
+                {
+                    // else if a road tile make the board tile what the border above it is
+                    float rotation = 0;
+                    if (waterC == 1) rotation = 180f;
+                    int tileIndex = j + next - columnCount;
+                    if (tileIndex < 0) tileIndex = 3;
+                    tempTile.GetComponent<WaterTerrain>().SetBorderSprite
+                        (borderSprites[valuesArray[tileIndex]], rotation);
+                }
+            }
+            // If sand or dirt/forest tiles, create needed borders
+            if (valuesArray[j] == 0 || valuesArray[j] == 1 || valuesArray[j] == 5)
+            {
+                SetBorders(j, tempTile);
+            }
+            // Make sure edge tiles go to edge of actual viewable screen, increase scale slightly
+            if (j < columnCount || j > (columnCount * (rowCount - 1)) - 1)
+            {
+                Vector3 locScale = tempTile.transform.localScale;
+                tempTile.transform.localScale = new Vector3(locScale.x, locScale.y * 1.1f, locScale.z);
+            }
+            Destroy(emptyTiles[j]);
+        }
+        UpdateAllNeighbors();
+    }
 }
