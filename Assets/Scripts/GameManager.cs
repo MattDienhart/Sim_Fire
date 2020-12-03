@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private List<GameObject> fireTruck = new List<GameObject>();
     private List<GameObject> helicopter = new List<GameObject>();
     private TileManager tileManager;
+    public int[] entireGrid;
+    public int waterColumn;
     public List<int> litTiles = new List<int>();
     public List<int> loadLitTiles = new List<int>();
     public List<string> crewTileLocations = new List<string>();
@@ -35,8 +37,8 @@ public class GameManager : MonoBehaviour
     public string windDirection;
     public int money;
     public int happiness;
-    private int columnCount = 18 * 3;
-    private int rowCount = 10 * 3;
+    private int columnCount;
+    private int rowCount;
     public int Happiness 
     {
         get
@@ -105,6 +107,8 @@ public class GameManager : MonoBehaviour
         difficulty = 2;
         windDirectionText.text = "The wind blows: \n" + windDirection;
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
+        columnCount = tileManager.GetColumnCount();
+        rowCount = tileManager.GetRowCount();
 
         // Set on click listeners
         crewBtn.onClick.AddListener(() => CrewClicked());
@@ -153,7 +157,7 @@ public class GameManager : MonoBehaviour
         columnCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetColumnCount();
         rowCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetRowCount();
 
-        PlaceFirehouse();
+        baseSpawnLocation= PlaceFirehouse();
 
     }
 
@@ -1051,6 +1055,9 @@ public class GameManager : MonoBehaviour
             helicopterTileLocations.Add(helicopter[i].GetComponent<Helicopter>().currentTile.name);
             Debug.Log("Added " + helicopterTileLocations[i] + " to helicopterTileLocations");
         }
+
+        entireGrid = tileManager.GetEntireGrid();
+        waterColumn = tileManager.GetWaterColumn();
         SaveLoadSystem.SaveGame(this);
     }
 
@@ -1099,6 +1106,11 @@ public class GameManager : MonoBehaviour
         crewTileLocations = data.crewTileLocations;
         truckTileLocations = data.truckTileLocations;
         helicopterTileLocations = data.helicopterTileLocations;
+        entireGrid = data.entireGrid;
+        waterColumn = data.waterColumn;
+
+        // Regenerate tiles
+        tileManager.UpdateTileGrid(entireGrid, waterColumn);
 
         // Reinstantiate at proper locations
         for(int i = 0; i < loadLitTiles.Count; i++)
