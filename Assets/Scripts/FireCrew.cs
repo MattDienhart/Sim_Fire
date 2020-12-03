@@ -104,6 +104,7 @@ public class FireCrew : MonoBehaviour
                     TargetMarker.SetActive(true);
                     TargetMarker.transform.position = targetTile.transform.position;
                     startDousing = true;
+                    StartCoroutine(gameManager.SendNotification("Tile selected", 2));
                 }
                 else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.ClearVegMode == true) &&
                     (gameManager.SelectedTile.GetComponent<TileScript>().GetOccupied() == false))
@@ -112,6 +113,7 @@ public class FireCrew : MonoBehaviour
                     TargetMarker.SetActive(true);
                     TargetMarker.transform.position = targetTile.transform.position;
                     startClearing = true;
+                    StartCoroutine(gameManager.SendNotification("Tile selected", 2));
                 }        
                 else if ((gameManager.SelectedTile.GetComponent<TileScript>().GetBurning() == false) && (gameManager.FireLineMode == true) && 
                     (gameManager.SelectedTile.GetComponent<TileScript>().GetOccupied() == false)) 
@@ -120,7 +122,16 @@ public class FireCrew : MonoBehaviour
                     TargetMarker.SetActive(true);
                     TargetMarker.transform.position = targetTile.transform.position;
                     startBuilding = true;
+                    StartCoroutine(gameManager.SendNotification("Tile selected", 2));
                 }
+                else
+                {
+                    StartCoroutine(gameManager.SendNotification("ERROR: Select an appropriate tile next time", 2));
+                }
+            }
+            else
+            {
+                StartCoroutine(gameManager.SendNotification("ERROR: Select an appropriate tile next time", 2));
             }
 
             // reset the selection parameters

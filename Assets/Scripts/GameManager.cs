@@ -316,12 +316,14 @@ public class GameManager : MonoBehaviour
             SprayWaterMode = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Extinguish";
+            StartCoroutine(SendNotification("Select a fire to extinguish", 2));
         }
         else
         {
             TargetSelectModeOn = false;
             SprayWaterMode = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -336,11 +338,13 @@ public class GameManager : MonoBehaviour
             DestSelectModeOn = true;
             TargetSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Dispatch";
+            StartCoroutine(SendNotification("Select a tile to move to", 2));
         }
         else
         {
             DestSelectModeOn = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -353,8 +357,9 @@ public class GameManager : MonoBehaviour
     int generateSpawnLocation()
     {
         int spawnLocation = baseSpawnLocation;
+        Debug.Log("Base spawn location is: " + baseSpawnLocation.ToString());
 
-        while(allTiles[spawnLocation].GetComponent<TileScript>().GetOccupied())
+        while(allTiles[spawnLocation].GetComponent<TileScript>().GetOccupied() || (spawnLocation < 0) || (spawnLocation > allTiles.Length - 1))
         {
             // Move spawn location to random direction
             int dice = UnityEngine.Random.Range(0, 4);
@@ -363,13 +368,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location up
                 case 0: 
                 // Is spawn location on top edge of map?
-                if((spawnLocation <= tileManager.columnCount) && (spawnLocation > 0))
+                if((spawnLocation >= 0) && (spawnLocation < tileManager.columnCount))
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Top left corner
-                        if(spawnLocation == 1)
+                        if(spawnLocation == 0)
                         {
                             // Flip a coin to either move right or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : tileManager.columnCount;
@@ -383,7 +388,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Top right corner
-                        if(spawnLocation == tileManager.columnCount)
+                        if(spawnLocation == tileManager.columnCount - 1)
                         {
                             // Flip a coin to either move left or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : tileManager.columnCount;
@@ -405,13 +410,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location down
                 case 1: 
                 // Is spawn location on bottom edge of map?
-                if((spawnLocation > (allTiles.Length - tileManager.columnCount)) && (spawnLocation <= allTiles.Length))
+                if((spawnLocation > (allTiles.Length - tileManager.columnCount)) && (spawnLocation < allTiles.Length))
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Bottom left corner
-                        if(spawnLocation == (allTiles.Length - tileManager.columnCount + 1))
+                        if(spawnLocation == (allTiles.Length - tileManager.columnCount))
                         {
                             // Flip a coin to either move right or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -tileManager.columnCount;
@@ -425,7 +430,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Bottom right corner
-                        if(spawnLocation == allTiles.Length)
+                        if(spawnLocation == allTiles.Length - 1)
                         {
                             // Flip a coin to either move left or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -tileManager.columnCount;
@@ -447,13 +452,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location right
                 case 2:
                 // Is spawn location on right edge of map?
-                if(spawnLocation % tileManager.columnCount == 0)
+                if(spawnLocation % tileManager.columnCount == 17)
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Top right corner
-                        if(spawnLocation == tileManager.columnCount)
+                        if(spawnLocation == tileManager.columnCount - 1)
                         {
                             // Flip a coin to either move left or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : tileManager.columnCount;
@@ -467,7 +472,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Bottom right corner
-                        if(spawnLocation == allTiles.Length)
+                        if(spawnLocation == allTiles.Length - 1)
                         {
                             // Flip a coin to either move left or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -tileManager.columnCount;
@@ -488,13 +493,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location left
                 case 3:
                 // Is spawn location on left edge of map?
-                if(spawnLocation % tileManager.columnCount == 1)
+                if(spawnLocation % tileManager.columnCount == 0)
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Top left corner
-                        if(spawnLocation == 1)
+                        if(spawnLocation == 0)
                         {
                             // Flip a coin to either move right or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : tileManager.columnCount;
@@ -508,7 +513,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Bottom left corner
-                        if(spawnLocation == (allTiles.Length - tileManager.columnCount + 1))
+                        if(spawnLocation == (allTiles.Length - tileManager.columnCount))
                         {
                             // Flip a coin to either move right or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -tileManager.columnCount;
@@ -528,9 +533,9 @@ public class GameManager : MonoBehaviour
             }
 
             // Edge cases
-            if(spawnLocation > allTiles.Length)
+            if(spawnLocation >= allTiles.Length)
             {
-                spawnLocation = allTiles.Length;
+                spawnLocation = allTiles.Length - 1;
             }
             else if(spawnLocation < 0)
             {
@@ -538,6 +543,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        Debug.Log("Spawn location is: " + spawnLocation.ToString());
         return spawnLocation;
     }
 
@@ -550,6 +556,11 @@ public class GameManager : MonoBehaviour
         {
             AddFireCrew(AllTiles[generateSpawnLocation()]);
             money -= crewCost;
+            StartCoroutine(SendNotification("You have just added a new crew member!", 2));
+        }
+        else
+        {
+            StartCoroutine(SendNotification("You lack the funds to add a new member!", 2));
         }
     }
 
@@ -562,6 +573,11 @@ public class GameManager : MonoBehaviour
         {
             money -= truckCost;
             AddFireTruck(AllTiles[generateSpawnLocation()]);
+            StartCoroutine(SendNotification("You have just bought a new fire truck!", 2));
+        }
+        else
+        {
+            StartCoroutine(SendNotification("You lack the funds to buy a new fire truck!", 2));
         }
     }
 
@@ -577,12 +593,14 @@ public class GameManager : MonoBehaviour
             ClearVegMode = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Clear Vegetation";
+            StartCoroutine(SendNotification("Select a tile to clear vegetation", 2));
         }
         else
         {
             TargetSelectModeOn = false;
             ClearVegMode = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -598,12 +616,14 @@ public class GameManager : MonoBehaviour
             FireLineMode = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Build Fire Line";
+            StartCoroutine(SendNotification("Select a tile to dig a fire line", 2));
         }
         else
         {
             TargetSelectModeOn = false;
             FireLineMode = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -815,7 +835,7 @@ public class GameManager : MonoBehaviour
             wildfireInstances--;
             litTiles.Remove(tileNumber);
             money += 100;
-            // StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
+            StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
             Debug.Log("Put out fire at tile: " + tileNumber.ToString());
         }
         

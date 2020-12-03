@@ -58,6 +58,7 @@ public class BuildFireLine : MonoBehaviour
             {
                 targetTile = null;
                 gameObject.GetComponent<FireCrew>().targetTile = null;
+                StartCoroutine(gameManager.SendNotification("ERROR: There's already a fireline there", 2));
             }
 
             // required energy has been expended, so call BuildFireLine()
