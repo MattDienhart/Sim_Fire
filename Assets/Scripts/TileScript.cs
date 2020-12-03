@@ -35,8 +35,8 @@ public abstract class TileScript : MonoBehaviour
 
     public bool nearFireHouse = false;
 
-    private int columnCount = 18 * 3;
-    private int rowCount = 10 * 3;
+    private int columnCount;
+    private int rowCount;
 
     void Awake()
     {
@@ -45,6 +45,7 @@ public abstract class TileScript : MonoBehaviour
 
     void Start()
     {
+        
         // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
         borderPrefab = tileManager.GetBorderPrefab();
@@ -141,7 +142,7 @@ public abstract class TileScript : MonoBehaviour
 
     public void GetNeighbors()
     {
-        string temp = "";
+        TileCount();
         int tileNum = System.Int32.Parse(Regex.Match(this.name, @"\d+").Value);
 
         if (tileNum - 1 > 0 && (tileNum / columnCount) == ((tileNum - 1) / columnCount))
@@ -354,6 +355,26 @@ public abstract class TileScript : MonoBehaviour
     public bool GetNearFirehouse()
     {
         return nearFireHouse;
+    }
+
+    private void TileCount()
+    {
+        if (SceneManager.GetActiveScene().name == "MediumStart")
+        {
+            columnCount = 36;
+            rowCount = 20;
+        }
+        else if (SceneManager.GetActiveScene().name == "SmallStart")
+        {
+            columnCount = 18;
+            rowCount = 10;
+        }
+        else
+        {
+            columnCount = 54;
+            rowCount = 30;
+        }
+
     }
 }
 
