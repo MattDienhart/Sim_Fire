@@ -76,7 +76,6 @@ public class GameManager : MonoBehaviour
 
     public Button crewBtn;
     public Button dispatchBtn;
-    public Button infoBtn;
     public Button purchaseCrewBtn;
     public Button purchaseTruckBtn;
     public Button clearVegBtn;
@@ -109,7 +108,6 @@ public class GameManager : MonoBehaviour
         // Set on click listeners
         crewBtn.onClick.AddListener(() => CrewClicked());
         dispatchBtn.onClick.AddListener(() => DispatchClicked());
-        infoBtn.onClick.AddListener(() => InfoClicked());
         purchaseCrewBtn.onClick.AddListener(() => PurchaseCrewClicked());
         purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
         clearVegBtn.onClick.AddListener(() => ClearVegClicked());
