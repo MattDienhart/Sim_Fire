@@ -8,6 +8,11 @@ public class ClearVegetation : MonoBehaviour
     private int totalEnergyUsed;
     private int energyLevel;
     private int tileIndex;
+    private GameObject clear;
+    public GameObject clearNorth;
+    public GameObject clearSouth;
+    public GameObject clearEast;
+    public GameObject clearWest;
 
     public int WorkRate;        // % of unit's energy bar per second
     public int FinishAmount;    // % of unit's energy bar needed to finish clearing vegetation
@@ -24,9 +29,17 @@ public class ClearVegetation : MonoBehaviour
         
     }
 
-    public IEnumerator Clear(GameObject targetTile)
+    public IEnumerator Clear(GameObject targetTile, string direction)
     {
         totalEnergyUsed = 0;
+
+        switch(direction)
+        {
+            case "North": clear = clearNorth; break;
+            case "South": clear = clearSouth; break;
+            case "East": clear = clearEast; break;
+            case "West": clear = clearWest; break;
+        }
 
         // attempt to clear vegetation, and succeed if totalEnergyUsed >= FinishAmount
         while ((totalEnergyUsed < FinishAmount) && (targetTile != null))
@@ -39,6 +52,7 @@ public class ClearVegetation : MonoBehaviour
             {
                 energyLevel -= WorkRate;
                 totalEnergyUsed += WorkRate;
+                clear.SetActive(true);
             }
             else
             {
@@ -58,6 +72,7 @@ public class ClearVegetation : MonoBehaviour
                 targetTile.GetComponent<TileScript>().DestroyObstacle();
                 targetTile = null;
                 gameObject.GetComponent<FireCrew>().targetTile = null;
+                clear.SetActive(false);
             }
 
             // update the energy level of the calling unit

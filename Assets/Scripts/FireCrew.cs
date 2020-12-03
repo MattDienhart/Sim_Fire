@@ -185,13 +185,45 @@ public class FireCrew : MonoBehaviour
             else if (startClearing == true)
             {
                 // clear vegetation away from the target tile
-                StartCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile));
+                if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+                {
+                    StartCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "North"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+                {
+                    StartCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "South"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+                {
+                    StartCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "East"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+                {
+                    StartCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "West"));
+                }
+
                 startClearing = false;
             }
             else if (startBuilding == true)
             {
                 // build a fire line on the target tile
-                StartCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile));
+                if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+                {
+                    StartCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "North"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+                {
+                    StartCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "South"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+                {
+                    StartCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "East"));
+                }
+                else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+                {
+                    StartCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "West"));
+                }
+
                 startBuilding = false;
             }
         }
@@ -213,9 +245,41 @@ public class FireCrew : MonoBehaviour
             {
                 StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "West"));
             }
-            //StopCoroutine(gameObject.GetComponent<SprayWater>().Douse(targetTile, "North"));
-            StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile));
-            StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile));
+            
+            if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+            {
+                StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "North"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+            {
+                StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "South"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+            {
+                StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "East"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+            {
+                StopCoroutine(gameObject.GetComponent<ClearVegetation>().Clear(targetTile, "West"));
+            }
+
+            if (targetTile == currentTile.GetComponent<TileScript>().GetNorth())
+            {
+                StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "North"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetSouth())
+            {
+                StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "South"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetEast())
+            {
+                StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "East"));
+            }
+            else if (targetTile == currentTile.GetComponent<TileScript>().GetWest())
+            {
+                StopCoroutine(gameObject.GetComponent<BuildFireLine>().Build(targetTile, "West"));
+            }
+
             targetTile = null;
             TargetMarker.SetActive(false);
             startDousing = false;
