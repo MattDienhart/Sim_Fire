@@ -1069,6 +1069,7 @@ public class GameManager : MonoBehaviour
     
     void SaveGame()
     {
+        // Save game data
         for(int i = 0; i < fireCrew.Count; i++)
         {
             crewTileLocations.Add(fireCrew[i].GetComponent<FireCrew>().currentTile.name);
@@ -1087,73 +1088,94 @@ public class GameManager : MonoBehaviour
             Debug.Log("Added " + helicopterTileLocations[i] + " to helicopterTileLocations");
         }
         SaveLoadSystem.SaveGame(this);
+
+        // UI
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        StartCoroutine(SendNotification("Game has been saved!", 2));
     }
 
     void LoadGame()
     {
         GameData data = SaveLoadSystem.LoadGame();
 
-        // Put out all fires
-        for(int i = 0; i < allTiles.Length; i++)
+        if(data != null)
         {
-            StartCoroutine(PutOutFire(i));
-        }
+            // Put out all fires
+            for(int i = 0; i < allTiles.Length; i++)
+            {
+                StartCoroutine(PutOutFire(i));
+            }
 
-        // Destroy fireCrew, trucks, and helicopters
-        for(int i = fireCrew.Count - 1; i >= 0; i--)
-        {
-            Destroy(fireCrew[i]);
-            fireCrew.RemoveAt(i);
+            // Destroy fireCrew, trucks, and helicopters
+            for(int i = fireCrew.Count - 1; i >= 0; i--)
+            {
+                Destroy(fireCrew[i]);
+                fireCrew.RemoveAt(i);
+            }
+
+            for(int i = fireTruck.Count - 1; i >= 0; i--)
+            {
+                Destroy(fireTruck[i]);
+                fireTruck.RemoveAt(i);
+            }
+
+            for(int i = helicopter.Count - 1; i >= 0; i--)
+            {
+                Destroy(helicopter[i]);
+                helicopter.RemoveAt(i);
+            }
+
             fireCrewInstances = 0;
-        }
-
-        for(int i = fireTruck.Count - 1; i >= 0; i--)
-        {
-            Destroy(fireTruck[i]);
-            fireTruck.RemoveAt(i);
             fireTruckInstances = 0;
-        }
-
-        for(int i = helicopter.Count - 1; i >= 0; i--)
-        {
-            Destroy(helicopter[i]);
-            helicopter.RemoveAt(i);
             helicopterInstances = 0;
+
+            if((fireCrew.Count != 0) || (fireTruck.Count != 0) || (helicopter.Count != 0))
+            {
+                Debug.LogError("Objects were not wiped out");
+            }
+
+            money = data.money;
+            happiness = data.happiness;
+            windDirection = data.windDirection;
+            windDirectionText.text = "The wind blows: \n" + windDirection;
+            loadLitTiles = data.litTiles;
+            crewTileLocations = data.crewTileLocations;
+            truckTileLocations = data.truckTileLocations;
+            helicopterTileLocations = data.helicopterTileLocations;
+
+            // Reinstantiate at proper locations
+            for(int i = 0; i < loadLitTiles.Count; i++)
+            {
+                StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
+            }
+
+            for(int i = 0; i < crewTileLocations.Count; i++)
+            {
+                AddFireCrew(GameObject.Find(crewTileLocations[i]));
+            }
+
+            for(int i = 0; i < truckTileLocations.Count; i++)
+            {
+                AddFireTruck(GameObject.Find(truckTileLocations[i]));
+            }
+
+            for(int i = 0; i < helicopterTileLocations.Count; i++)
+            {
+                AddHelicopter(GameObject.Find(helicopterTileLocations[i]));
+            }
+
+            // UI
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            StartCoroutine(SendNotification("Game has been loaded!", 2));
         }
-
-        if((fireCrew.Count != 0) || (fireTruck.Count != 0) || (helicopter.Count != 0))
+        else
         {
-            Debug.LogError("Objects were not wiped out");
-        }
-
-        money = data.money;
-        happiness = data.happiness;
-        windDirection = data.windDirection;
-        windDirectionText.text = "The wind blows: \n" + windDirection;
-        loadLitTiles = data.litTiles;
-        crewTileLocations = data.crewTileLocations;
-        truckTileLocations = data.truckTileLocations;
-        helicopterTileLocations = data.helicopterTileLocations;
-
-        // Reinstantiate at proper locations
-        for(int i = 0; i < loadLitTiles.Count; i++)
-        {
-            StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
-        }
-
-        for(int i = 0; i < crewTileLocations.Count; i++)
-        {
-            AddFireCrew(GameObject.Find(crewTileLocations[i]));
-        }
-
-        for(int i = 0; i < truckTileLocations.Count; i++)
-        {
-            AddFireTruck(GameObject.Find(truckTileLocations[i]));
-        }
-
-        for(int i = 0; i < helicopterTileLocations.Count; i++)
-        {
-            AddHelicopter(GameObject.Find(helicopterTileLocations[i]));
+            // UI
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            StartCoroutine(SendNotification("ERROR: Unable to locate save file", 2));
         }
     } 
 
