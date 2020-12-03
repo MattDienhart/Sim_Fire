@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     public string windDirection;
     public int money;
     public int happiness;
+    private int columnCount = 18 * 3;
+    private int rowCount = 10 * 3;
     public int Happiness 
     {
         get
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
+
         windDirection = PickWindDirection();
         difficulty = 2;
         windDirectionText.text = "The wind blows: \n" + windDirection;
@@ -145,8 +148,7 @@ public class GameManager : MonoBehaviour
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
-        baseSpawnLocation = PlaceFirehouse() + tileManager.columnCount;
-        Debug.Log("baseSpawnLocation: " + baseSpawnLocation.ToString());
+
     }
 
     // Update is called once per frame
@@ -752,7 +754,7 @@ public class GameManager : MonoBehaviour
             }
 
             if ((southTile) && (!hasLitOne)) 
-                StartCoroutine(_SpreadFire(litTile, southTile, windDirection, index + 18, "South",  (i) =>
+                StartCoroutine(_SpreadFire(litTile, southTile, windDirection, index + columnCount, "South",  (i) =>
                 {
                     hasLitOne = i;
                 }));
@@ -849,7 +851,7 @@ public class GameManager : MonoBehaviour
         // Lightning Strikes
         if((dice > 55) && (dice <= 60)) 
         {
-            int unluckyTile = UnityEngine.Random.Range(1,180);
+            int unluckyTile = UnityEngine.Random.Range(1, columnCount * rowCount);
             
             // Make sure tile isn't already on fire or occupied
             while((allTiles[unluckyTile].GetComponent<TileScript>().GetBurning()) 
@@ -928,7 +930,7 @@ public class GameManager : MonoBehaviour
         //Gender reveal party
         if((dice > 90) && (dice <= 100)) 
         {
-            int unluckyTile = UnityEngine.Random.Range(1,180);
+            int unluckyTile = UnityEngine.Random.Range(1, columnCount * rowCount);
             
             // Make sure tile isn't already on fire or occupied
             while((allTiles[unluckyTile].GetComponent<TileScript>().GetBurning()) 
