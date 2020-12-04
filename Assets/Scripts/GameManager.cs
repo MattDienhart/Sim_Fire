@@ -743,61 +743,77 @@ public class GameManager : MonoBehaviour
         {
             case 1:
             //Check if tile is occupied
-            if (northTile.GetComponent<TileScript>().GetOccupied())
+            if (northTile)
             {
-                goto case 2;
+                if (northTile.GetComponent<TileScript>().GetOccupied())
+                {
+                    goto case 2;
+                }
+
+                if (!hasLitOne) 
+                    StartCoroutine(_SpreadFire(litTile, northTile, windDirection, index - 18, "North",  (i) =>
+                    {
+                        hasLitOne = i;
+                    }));
             }
 
-            if ((northTile) && (!hasLitOne)) 
-                StartCoroutine(_SpreadFire(litTile, northTile, windDirection, index - 18, "North",  (i) =>
-                {
-                    hasLitOne = i;
-                }));
             Debug.Log("hasLitOne is " + hasLitOne.ToString());
             break;
 
             case 2:
             //Check if tile is occupied
-            if (southTile.GetComponent<TileScript>().GetOccupied())
+            if (southTile)
             {
-                goto case 3;
+                if (southTile.GetComponent<TileScript>().GetOccupied())
+                {
+                    goto case 3;
+                }
+
+                if (!hasLitOne)
+                    StartCoroutine(_SpreadFire(litTile, southTile, windDirection, index + columnCount, "South",  (i) =>
+                    {
+                        hasLitOne = i;
+                    }));
             }
 
-            if ((southTile) && (!hasLitOne)) 
-                StartCoroutine(_SpreadFire(litTile, southTile, windDirection, index + columnCount, "South",  (i) =>
-                {
-                    hasLitOne = i;
-                }));
             Debug.Log("hasLitOne is " + hasLitOne.ToString());
             break;
 
             case 3:
             //Check if tile is occupied
-            if (eastTile.GetComponent<TileScript>().GetOccupied())
+            if (eastTile)
             {
-                goto case 4;
+                if (eastTile.GetComponent<TileScript>().GetOccupied())
+                {
+                    goto case 4;
+                }
+
+                if (!hasLitOne) 
+                StartCoroutine(_SpreadFire(litTile, eastTile, windDirection, index + 1, "East",  (i) =>
+                    {
+                        hasLitOne = i;
+                    }));
             }
 
-            if ((eastTile) && (!hasLitOne)) 
-            StartCoroutine(_SpreadFire(litTile, eastTile, windDirection, index + 1, "East",  (i) =>
-                {
-                    hasLitOne = i;
-                }));
             Debug.Log("hasLitOne is " + hasLitOne.ToString());
             break;
 
             case 4:
             //Check if tile is occupied
-            if (westTile.GetComponent<TileScript>().GetOccupied())
+            if (westTile)
             {
-                goto NoFires;
+                if (westTile.GetComponent<TileScript>().GetOccupied())
+                {
+                    goto NoFires;
+                }
+
+                if (!hasLitOne) 
+                StartCoroutine(_SpreadFire(litTile, westTile, windDirection, index - 1, "West",  (i) =>
+                    {
+                        hasLitOne = i;
+                    }));
             }
 
-            if ((westTile) && (!hasLitOne)) 
-            StartCoroutine(_SpreadFire(litTile, westTile, windDirection, index - 1, "West",  (i) =>
-                {
-                    hasLitOne = i;
-                }));
             Debug.Log("hasLitOne is " + hasLitOne.ToString());
             break;
         }
