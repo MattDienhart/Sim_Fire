@@ -454,7 +454,7 @@ public class GameManager : MonoBehaviour
         int spawnLocation = baseSpawnLocation;
         Debug.Log("Base spawn location is: " + baseSpawnLocation.ToString());
 
-        while(allTiles[spawnLocation].GetComponent<TileScript>().GetOccupied() || (spawnLocation < 0) || (spawnLocation > allTiles.Length - 1))
+        while(allTiles[spawnLocation].GetComponent<TileScript>().GetOccupied())
         {
             // Move spawn location to random direction
             int dice = UnityEngine.Random.Range(0, 4);
