@@ -15,7 +15,7 @@ public class CameraScript : MonoBehaviour
 
     private void Start()
     {
-        if (GameObject.Find("Tile (718)"))
+        if (GameObject.Find("Tile (718)")  && !GameObject.Find("Tile (1608)"))
         {
             yMin = -9.9f;
             xMax = 17.82f;
