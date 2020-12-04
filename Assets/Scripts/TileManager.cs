@@ -27,6 +27,9 @@ public class TileManager : MonoBehaviour
     private int columnCount = 54;
     private int rowCount = 30;
 
+    public bool mediumDifficulty = false;
+    public bool easyDifficulty = false;
+
     private int waterColumn;
 
     [Header("Edges")]
@@ -45,10 +48,12 @@ public class TileManager : MonoBehaviour
         {
             columnCount = 36;
             rowCount = 20;
+            mediumDifficulty = true;
         } else if (SceneManager.GetActiveScene().name == "SmallStart")
         {
             columnCount = 18;
             rowCount = 10;
+            easyDifficulty = true;
         }
         int tileCount = columnCount * rowCount;
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");

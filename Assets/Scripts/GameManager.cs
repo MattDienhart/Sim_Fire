@@ -50,7 +50,13 @@ public class GameManager : MonoBehaviour
             happiness = value;
         }
     }
-    public int difficulty;
+    public int spreadFactor;
+    public int spreadFrequency;
+    public int crewCost;
+    public int truckCost;
+    public int startingFires;
+    public int startingUnits;
+    public int reward;
     private int fireCrewInstances;
     private int fireTruckInstances;
     private int helicopterInstances;
@@ -65,7 +71,40 @@ public class GameManager : MonoBehaviour
 
     public bool DestSelectModeOn;
     public bool TargetSelectModeOn;
-    
+
+    enum easy
+    {
+        startingFires = 5,
+        startingUnits = 2,
+        startingMoney = 100,
+        spreadFactor = 3,
+        spreadFrequency = 40,
+        crewCost = 100,
+        truckCost = 1000,
+        reward = 100
+    }
+    enum medium
+    {
+        startingFires = 10,
+        startingUnits = 3,
+        startingMoney = 100,
+        spreadFactor = 5,
+        spreadFrequency = 35,
+        crewCost = 200,
+        truckCost = 2000,
+        reward = 75
+    }
+    enum hard
+    {
+        startingFires = 20,
+        startingUnits = 5,
+        startingMoney = 100,
+        spreadFactor = 8,
+        spreadFrequency = 30,
+        crewCost = 300,
+        truckCost = 3000,
+        reward = 50
+    }
 
     [Header("HUD")]
     public Text moneyText;
@@ -102,13 +141,47 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         allTiles = GameObject.FindGameObjectsWithTag("Tile");
-
-        windDirection = PickWindDirection();
-        difficulty = 2;
-        windDirectionText.text = "The wind blows: \n" + windDirection;
         tileManager = GameObject.Find("TileManager").GetComponent<TileManager>();
-        columnCount = tileManager.GetColumnCount();
-        rowCount = tileManager.GetRowCount();
+
+        // Set difficulty settings
+        if (tileManager.easyDifficulty)
+        {
+            startingFires = (int)easy.startingFires;
+            startingUnits = (int)easy.startingUnits;
+            money = (int)easy.startingMoney;
+            spreadFactor = (int)easy.spreadFactor;
+            spreadFrequency = (int)easy.spreadFrequency;
+            crewCost = (int)easy.crewCost;
+            truckCost = (int)easy.truckCost;
+            reward = (int)easy.reward;
+        }
+        else if (tileManager.mediumDifficulty)
+        {
+            startingFires = (int)medium.startingFires;
+            startingUnits = (int)medium.startingUnits;
+            money = (int)medium.startingMoney;
+            spreadFactor = (int)medium.spreadFactor;
+            spreadFrequency = (int)medium.spreadFrequency;
+            crewCost = (int)medium.crewCost;
+            truckCost = (int)medium.truckCost;
+            reward = (int)medium.reward;
+        }
+        else
+        {
+            startingFires = (int)hard.startingFires;
+            startingUnits = (int)hard.startingUnits;
+            money = (int)hard.startingMoney;
+            spreadFactor = (int)hard.spreadFactor;
+            spreadFrequency = (int)hard.spreadFrequency;
+            crewCost = (int)hard.crewCost;
+            truckCost = (int)hard.truckCost;
+            reward = (int)hard.reward;
+        }
+        
+        baseSpawnLocation = PlaceFirehouse();
+        columnCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetColumnCount();
+        rowCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetRowCount();
+        Debug.Log("columnCount is: " + columnCount.ToString() + " rowCount is: " + rowCount.ToString());
 
         // Set on click listeners
         crewBtn.onClick.AddListener(() => CrewClicked());
@@ -133,31 +206,40 @@ public class GameManager : MonoBehaviour
         fireCrewInstances = 0;
         fireTruckInstances = 0;
         helicopterInstances = 0;
-        AddFireCrew(allTiles[45]);
-        AddFireCrew(allTiles[110]);
-        AddFireTruck(allTiles[111]);
-        AddHelicopter(allTiles[112]);
+        for(int i = 0; i < startingUnits; i++)
+        {
+            AddFireCrew(AllTiles[generateSpawnLocation()]);
+        }
 
         // Instantiate wildfire
         wildfireInstances = 0;
         Debug.Log("here: " + System.Int32.Parse(Regex.Replace(moneyText.text, "[^.0-9]", "")));
 
-        StartCoroutine(LightTile(allTiles[29], 29));
-        StartCoroutine(LightTile(allTiles[138], 138));
+        //Randomly start fires in the map
+        for(int i = 0; i < startingFires; i++)
+        {
+            int fireLocation = (int)UnityEngine.Random.Range(0, allTiles.Length - 1);
+            while(allTiles[fireLocation].GetComponent<TileScript>().GetOccupied())
+            {
+                fireLocation++;
+                if(fireLocation >= allTiles.Length)
+                {
+                    fireLocation = 0;
+                }
+            }
+            StartCoroutine(LightTile(allTiles[fireLocation], fireLocation));
+        }
+        
         StartCoroutine(SendNotification("Oh no, there are " + wildfireInstances.ToString() + " wildfires! Put them out!", 3));
 
-        // Start wildfire behavior
-        InvokeRepeating("WildFireBehavior", 10, 40);
+        // Start game behavior
+        InvokeRepeating("WildFireBehavior", 10, spreadFrequency);
         InvokeRepeating("PickEvent", 60, 120);
         InvokeRepeating("CalcHappy", 0, 5);
+        InvokeRepeating("PickWindDirection", 0, 120);
 
         DestSelectModeOn = false;
         TargetSelectModeOn = false;
-
-        columnCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetColumnCount();
-        rowCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetRowCount();
-
-        baseSpawnLocation = PlaceFirehouse();
     }
 
     // Update is called once per frame
@@ -203,6 +285,7 @@ public class GameManager : MonoBehaviour
 
         moneyText.text = "$" + money.ToString();
         happinessText.text = happiness.ToString() + "/100";
+        windDirectionText.text = "The wind blows: \n" + windDirection;
 
         if ((selectedUnit != null) && (!DestSelectModeOn) && (!TargetSelectModeOn))
         {
@@ -365,6 +448,7 @@ public class GameManager : MonoBehaviour
         selectedText.text = "Info";
     }
 
+    // Generates spawn location closest to fire house
     int generateSpawnLocation()
     {
         int spawnLocation = baseSpawnLocation;
@@ -561,7 +645,6 @@ public class GameManager : MonoBehaviour
     void PurchaseCrewClicked()
     {
         Debug.Log("Purchase Crew button has been clicked.");
-        int crewCost = 100;
 
         if(money >= crewCost)
         {
@@ -578,7 +661,6 @@ public class GameManager : MonoBehaviour
     void PurchaseTruckClicked()
     {
         Debug.Log("Purchase Truck button has been clicked.");
-        int truckCost = 1000;
 
         if(money >= truckCost)
         {
@@ -846,8 +928,8 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(SendNotification("The fire is spreading!", 2));
 
-        //Spread fire as much as difficulty allows
-        for(int i = 0; i < difficulty; i++) {
+        //Spread fire as much as spreadFactor allows
+        for(int i = 0; i < spreadFactor; i++) {
             Debug.Log("Executing SpreadFire " + (i + 1).ToString() + " time");
             int randomIndex = (int)UnityEngine.Random.Range(0, litTiles.Count);
             StartCoroutine(SpreadFire(allTiles[litTiles[randomIndex]], windDirection, litTiles[randomIndex]));
@@ -861,7 +943,7 @@ public class GameManager : MonoBehaviour
             allTiles[tileNumber].GetComponent<TileScript>().SetBurning(false);
             wildfireInstances--;
             litTiles.Remove(tileNumber);
-            money += 100;
+            money += reward;
             StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
             Debug.Log("Put out fire at tile: " + tileNumber.ToString());
         }
@@ -1054,23 +1136,25 @@ public class GameManager : MonoBehaviour
         notificationBox.SetActive(false);
     }
 
-    string PickWindDirection()
+    void PickWindDirection()
     {
         switch ((int)UnityEngine.Random.Range(1, 4)) {
             case 1:
-                return "North";
+                windDirection = "North";
+                break;
 
             case 2:
-                return "South";
+                windDirection = "South";
+                break;
 
             case 3:
-                return "East";
+                windDirection = "East";
+                break;
 
             case 4:
-                return "West";
+                windDirection = "West";
+                break;
         }
-
-        return "East";
     }
 
     void CalcHappy()
