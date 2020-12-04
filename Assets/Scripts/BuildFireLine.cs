@@ -8,6 +8,11 @@ public class BuildFireLine : MonoBehaviour
     private int totalEnergyUsed;
     private int energyLevel;
     private int tileIndex;
+    private GameObject build;
+    public GameObject buildNorth;
+    public GameObject buildSouth;
+    public GameObject buildEast;
+    public GameObject buildWest;
 
     public int WorkRate;        // % of unit's energy bar per second
     public int FinishAmount;    // % of unit's energy bar needed to finish building the fire line
@@ -24,9 +29,17 @@ public class BuildFireLine : MonoBehaviour
         
     }
 
-    public IEnumerator Build(GameObject targetTile)
+    public IEnumerator Build(GameObject targetTile, string direction)
     {
         totalEnergyUsed = 0;
+
+        switch(direction)
+        {
+            case "North": build = buildNorth; break;
+            case "South": build = buildSouth; break;
+            case "East": build = buildEast; break;
+            case "West": build = buildWest; break;
+        }
 
         // attempt to build a fireline on the target tile, and succeed if totalEnergyUsed >= FinishAmount
         while ((totalEnergyUsed < FinishAmount) && (targetTile != null))
@@ -39,11 +52,13 @@ public class BuildFireLine : MonoBehaviour
             {
                 energyLevel -= WorkRate;
                 totalEnergyUsed += WorkRate;
+                build.SetActive(true);
             }
             else
             {
                 targetTile = null;
                 gameObject.GetComponent<FireCrew>().targetTile = null;
+                StartCoroutine(gameManager.SendNotification("ERROR: There's already a fireline there", 2));
             }
 
             // required energy has been expended, so call BuildFireLine()
@@ -58,6 +73,7 @@ public class BuildFireLine : MonoBehaviour
                 targetTile.GetComponent<TileScript>().BuildFireLine();
                 targetTile = null;
                 gameObject.GetComponent<FireCrew>().targetTile = null;
+                build.SetActive(false);
             }
 
             // update the energy level of the calling unit

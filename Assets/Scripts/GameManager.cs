@@ -157,8 +157,7 @@ public class GameManager : MonoBehaviour
         columnCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetColumnCount();
         rowCount = GameObject.Find("TileManager").GetComponent<TileManager>().GetRowCount();
 
-        baseSpawnLocation= PlaceFirehouse();
-
+        baseSpawnLocation = PlaceFirehouse();
     }
 
     // Update is called once per frame
@@ -328,12 +327,14 @@ public class GameManager : MonoBehaviour
             SprayWaterMode = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Extinguish";
+            StartCoroutine(SendNotification("Select a fire to extinguish", 2));
         }
         else
         {
             TargetSelectModeOn = false;
             SprayWaterMode = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -348,11 +349,13 @@ public class GameManager : MonoBehaviour
             DestSelectModeOn = true;
             TargetSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Dispatch";
+            StartCoroutine(SendNotification("Select a tile to move to", 2));
         }
         else
         {
             DestSelectModeOn = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -365,8 +368,9 @@ public class GameManager : MonoBehaviour
     int generateSpawnLocation()
     {
         int spawnLocation = baseSpawnLocation;
+        Debug.Log("Base spawn location is: " + baseSpawnLocation.ToString());
 
-        while(allTiles[spawnLocation].GetComponent<TileScript>().GetOccupied())
+        while(allTiles[spawnLocation].GetComponent<TileScript>().GetOccupied() || (spawnLocation < 0) || (spawnLocation > allTiles.Length - 1))
         {
             // Move spawn location to random direction
             int dice = UnityEngine.Random.Range(0, 4);
@@ -375,13 +379,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location up
                 case 0: 
                 // Is spawn location on top edge of map?
-                if((spawnLocation <= columnCount) && (spawnLocation > 0))
+                if((spawnLocation >= 0) && (spawnLocation < columnCount))
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Top left corner
-                        if(spawnLocation == 1)
+                        if(spawnLocation == 0)
                         {
                             // Flip a coin to either move right or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : columnCount;
@@ -395,7 +399,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Top right corner
-                        if(spawnLocation == columnCount)
+                        if(spawnLocation == columnCount - 1)
                         {
                             // Flip a coin to either move left or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : columnCount;
@@ -417,13 +421,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location down
                 case 1: 
                 // Is spawn location on bottom edge of map?
-                if((spawnLocation > (allTiles.Length - columnCount)) && (spawnLocation <= allTiles.Length))
+                if((spawnLocation > (allTiles.Length - columnCount)) && (spawnLocation < allTiles.Length))
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Bottom left corner
-                        if(spawnLocation == (allTiles.Length - columnCount + 1))
+                        if(spawnLocation == (allTiles.Length - columnCount))
                         {
                             // Flip a coin to either move right or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : - columnCount;
@@ -437,7 +441,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Bottom right corner
-                        if(spawnLocation == allTiles.Length)
+                        if(spawnLocation == allTiles.Length - 1)
                         {
                             // Flip a coin to either move left or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : - columnCount;
@@ -459,13 +463,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location right
                 case 2:
                 // Is spawn location on right edge of map?
-                if(spawnLocation % columnCount == 0)
+                if(spawnLocation % columnCount == columnCount - 1)
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Top right corner
-                        if(spawnLocation == columnCount)
+                        if(spawnLocation == columnCount - 1)
                         {
                             // Flip a coin to either move left or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : columnCount;
@@ -479,7 +483,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Bottom right corner
-                        if(spawnLocation == allTiles.Length)
+                        if(spawnLocation == allTiles.Length - 1)
                         {
                             // Flip a coin to either move left or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? -1 : -columnCount;
@@ -500,13 +504,13 @@ public class GameManager : MonoBehaviour
                 // Shift spawn location left
                 case 3:
                 // Is spawn location on left edge of map?
-                if(spawnLocation % columnCount == 1)
+                if(spawnLocation % columnCount == 0)
                 {
                     // Flip a coin
                     if((int)UnityEngine.Random.Range(0, 2) == 0)
                     {
                         // Top left corner
-                        if(spawnLocation == 1)
+                        if(spawnLocation == 0)
                         {
                             // Flip a coin to either move right or down
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : columnCount;
@@ -520,7 +524,7 @@ public class GameManager : MonoBehaviour
                     else
                     {
                         // Bottom left corner
-                        if(spawnLocation == (allTiles.Length - columnCount + 1))
+                        if(spawnLocation == (allTiles.Length - columnCount))
                         {
                             // Flip a coin to either move right or up
                             int addThis = ((int)UnityEngine.Random.Range(0, 2) == 0) ? 1 : -columnCount;
@@ -540,9 +544,9 @@ public class GameManager : MonoBehaviour
             }
 
             // Edge cases
-            if(spawnLocation > allTiles.Length)
+            if(spawnLocation >= allTiles.Length)
             {
-                spawnLocation = allTiles.Length;
+                spawnLocation = allTiles.Length - 1;
             }
             else if(spawnLocation < 0)
             {
@@ -550,6 +554,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        Debug.Log("Spawn location is: " + spawnLocation.ToString());
         return spawnLocation;
     }
 
@@ -562,6 +567,11 @@ public class GameManager : MonoBehaviour
         {
             AddFireCrew(AllTiles[generateSpawnLocation()]);
             money -= crewCost;
+            StartCoroutine(SendNotification("You have just added a new crew member!", 2));
+        }
+        else
+        {
+            StartCoroutine(SendNotification("You lack the funds to add a new member!", 2));
         }
     }
 
@@ -574,6 +584,11 @@ public class GameManager : MonoBehaviour
         {
             money -= truckCost;
             AddFireTruck(AllTiles[generateSpawnLocation()]);
+            StartCoroutine(SendNotification("You have just bought a new fire truck!", 2));
+        }
+        else
+        {
+            StartCoroutine(SendNotification("You lack the funds to buy a new fire truck!", 2));
         }
     }
 
@@ -589,12 +604,14 @@ public class GameManager : MonoBehaviour
             ClearVegMode = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Clear Vegetation";
+            StartCoroutine(SendNotification("Select a tile to clear vegetation", 2));
         }
         else
         {
             TargetSelectModeOn = false;
             ClearVegMode = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -610,12 +627,14 @@ public class GameManager : MonoBehaviour
             FireLineMode = true;
             DestSelectModeOn = false;  // don't want to have two selection modes active at the same time
             selectedText.text = "Build Fire Line";
+            StartCoroutine(SendNotification("Select a tile to dig a fire line", 2));
         }
         else
         {
             TargetSelectModeOn = false;
             FireLineMode = false;
             selectedText.text = "";
+            StartCoroutine(SendNotification("ERROR: Select a unit first", 2));
         }
     }
 
@@ -662,7 +681,6 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    // Spawn new Wildfire instance from wildfire prefab
     IEnumerator LightTile(GameObject baseSpawnLocation, int tileIndex)
     {
         baseSpawnLocation.GetComponent<TileScript>().SetBurning(true);
@@ -844,7 +862,7 @@ public class GameManager : MonoBehaviour
             wildfireInstances--;
             litTiles.Remove(tileNumber);
             money += 100;
-            // StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
+            StartCoroutine(SendNotification("Fire has been put out! HUZZAH!", 2));
             Debug.Log("Put out fire at tile: " + tileNumber.ToString());
         }
         
@@ -853,7 +871,8 @@ public class GameManager : MonoBehaviour
 
     void PickEvent() 
     {
-        int dice = UnityEngine.Random.Range(0, 110);
+        int dice = UnityEngine.Random.Range(0, 120);
+        // dice = 120;
         Debug.Log("Game Event Dice Roll is: " + dice.ToString());
 
         //Nothing
@@ -1001,6 +1020,29 @@ public class GameManager : MonoBehaviour
             StartCoroutine(SendNotification("Sweet rain! It's putting out a few fires!", 3));
             Debug.Log("Heavy rain event triggered!");
         }
+
+        //Destroy fire lines
+        if((dice > 110) && (dice <= 120)) 
+        {
+            bool displayMessage = false;
+            
+            for(int i = 0; i < allTiles.Length; i++)
+            {
+                if(allTiles[i].GetComponent<TileScript>().GetFireLineBoolean())
+                {
+                    allTiles[i].GetComponent<TileScript>().DestroyFireLine();
+                    displayMessage = true;
+                }
+            }
+
+            // Display alert message
+            if (displayMessage)
+            {
+                StartCoroutine(SendNotification("Oh no! A tiny earthquake filled your firelines with dirt!", 3));
+            }
+            
+            Debug.Log("Destroy fire lines triggered!");
+        }
     }
 
     public IEnumerator SendNotification(string text, int time)
@@ -1054,6 +1096,7 @@ public class GameManager : MonoBehaviour
     
     void SaveGame()
     {
+        // Save game data
         for(int i = 0; i < fireCrew.Count; i++)
         {
             crewTileLocations.Add(fireCrew[i].GetComponent<FireCrew>().currentTile.name);
@@ -1075,78 +1118,98 @@ public class GameManager : MonoBehaviour
         entireGrid = tileManager.GetEntireGrid();
         waterColumn = tileManager.GetWaterColumn();
         SaveLoadSystem.SaveGame(this);
+
+        // UI
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        StartCoroutine(SendNotification("Game has been saved!", 2));
     }
 
     void LoadGame()
     {
         GameData data = SaveLoadSystem.LoadGame();
 
-        // Put out all fires
-        for(int i = 0; i < allTiles.Length; i++)
+        if(data != null)
         {
-            StartCoroutine(PutOutFire(i));
-        }
+            // Put out all fires
+            for(int i = 0; i < allTiles.Length; i++)
+            {
+                StartCoroutine(PutOutFire(i));
+            }
 
-        // Destroy fireCrew, trucks, and helicopters
-        for(int i = fireCrew.Count - 1; i >= 0; i--)
-        {
-            Destroy(fireCrew[i]);
-            fireCrew.RemoveAt(i);
+            // Destroy fireCrew, trucks, and helicopters
+            for(int i = fireCrew.Count - 1; i >= 0; i--)
+            {
+                Destroy(fireCrew[i]);
+                fireCrew.RemoveAt(i);
+            }
+
+            for(int i = fireTruck.Count - 1; i >= 0; i--)
+            {
+                Destroy(fireTruck[i]);
+                fireTruck.RemoveAt(i);
+            }
+
+            for(int i = helicopter.Count - 1; i >= 0; i--)
+            {
+                Destroy(helicopter[i]);
+                helicopter.RemoveAt(i);
+            }
+
             fireCrewInstances = 0;
-        }
-
-        for(int i = fireTruck.Count - 1; i >= 0; i--)
-        {
-            Destroy(fireTruck[i]);
-            fireTruck.RemoveAt(i);
             fireTruckInstances = 0;
-        }
-
-        for(int i = helicopter.Count - 1; i >= 0; i--)
-        {
-            Destroy(helicopter[i]);
-            helicopter.RemoveAt(i);
             helicopterInstances = 0;
+
+            if((fireCrew.Count != 0) || (fireTruck.Count != 0) || (helicopter.Count != 0))
+            {
+                Debug.LogError("Objects were not wiped out");
+            }
+
+            money = data.money;
+            happiness = data.happiness;
+            windDirection = data.windDirection;
+            windDirectionText.text = "The wind blows: \n" + windDirection;
+            loadLitTiles = data.litTiles;
+            crewTileLocations = data.crewTileLocations;
+            truckTileLocations = data.truckTileLocations;
+            helicopterTileLocations = data.helicopterTileLocations;
+            entireGrid = data.entireGrid;
+            waterColumn = data.waterColumn;
+
+            // Regenerate tiles
+            tileManager.UpdateTileGrid(entireGrid, waterColumn);
+
+            for(int i = 0; i < loadLitTiles.Count; i++)
+            {
+                StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
+            }
+
+            for(int i = 0; i < crewTileLocations.Count; i++)
+            {
+                AddFireCrew(GameObject.Find(crewTileLocations[i]));
+            }
+
+            for(int i = 0; i < truckTileLocations.Count; i++)
+            {
+                AddFireTruck(GameObject.Find(truckTileLocations[i]));
+            }
+
+            for(int i = 0; i < helicopterTileLocations.Count; i++)
+            {
+                AddHelicopter(GameObject.Find(helicopterTileLocations[i]));
+            }
+
+            // UI
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            StartCoroutine(SendNotification("Game has been loaded!", 2));
         }
-
-        if((fireCrew.Count != 0) || (fireTruck.Count != 0) || (helicopter.Count != 0))
+        else
         {
-            Debug.LogError("Objects were not wiped out");
-        }
-
-        money = data.money;
-        happiness = data.happiness;
-        windDirection = data.windDirection;
-        windDirectionText.text = "The wind blows: \n" + windDirection;
-        loadLitTiles = data.litTiles;
-        crewTileLocations = data.crewTileLocations;
-        truckTileLocations = data.truckTileLocations;
-        helicopterTileLocations = data.helicopterTileLocations;
-        entireGrid = data.entireGrid;
-        waterColumn = data.waterColumn;
-
-        // Regenerate tiles
-        tileManager.UpdateTileGrid(entireGrid, waterColumn);
-
-        // Reinstantiate at proper locations
-        for(int i = 0; i < loadLitTiles.Count; i++)
-        {
-            StartCoroutine(LightTile(allTiles[loadLitTiles[i]], loadLitTiles[i]));
-        }
-
-        for(int i = 0; i < crewTileLocations.Count; i++)
-        {
-            AddFireCrew(GameObject.Find(crewTileLocations[i]));
-        }
-
-        for(int i = 0; i < truckTileLocations.Count; i++)
-        {
-            AddFireTruck(GameObject.Find(truckTileLocations[i]));
-        }
-
-        for(int i = 0; i < helicopterTileLocations.Count; i++)
-        {
-            AddHelicopter(GameObject.Find(helicopterTileLocations[i]));
+            // UI
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            StartCoroutine(SendNotification("ERROR: Unable to locate save file", 2));
         }
     } 
 

@@ -81,6 +81,7 @@ public abstract class TileScript : MonoBehaviour
             Destroy(obstacles[0]);
             obstacles.RemoveAt(0);
             if(dryness - 10 > 0)dryness -= 10;
+            StartCoroutine(gameManager.SendNotification("Vegetation has cleared!", 2));
         }
     }
 
@@ -120,6 +121,7 @@ public abstract class TileScript : MonoBehaviour
         fireLineObject.name = "FireLine";
         if (dryness - 20 > 0) dryness -= 20;
         fireLinePresent = true;
+        StartCoroutine(gameManager.SendNotification("Fire line is complete!", 2));
     }
 
     public bool GetFireLineBoolean()
