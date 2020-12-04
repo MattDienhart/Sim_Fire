@@ -238,7 +238,7 @@ MonoBehaviour:
   helicopterTileLocations: []
   baseSpawnLocation: 0
   windDirection: 
-  money: 1000000
+  money: 100000
   happiness: 0
   difficulty: 0
   fireCrewPrefab: {fileID: 4678436223149907044, guid: 1a7d9194cba214c9eadc4657b5eeab9b, type: 3}
