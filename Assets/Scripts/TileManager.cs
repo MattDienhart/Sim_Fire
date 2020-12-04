@@ -53,8 +53,8 @@ public class TileManager : MonoBehaviour
         int tileCount = columnCount * rowCount;
         emptyTiles = GameObject.FindGameObjectsWithTag("EmptyTile");
         usedValues = Enumerable.Repeat(0, tileCount).ToArray();
-        Debug.Log("rowCount: " + rowCount);
-        Debug.Log("len: " + usedValues.Length);
+      //  Debug.Log("rowCount: " + rowCount);
+      //  Debug.Log("len: " + usedValues.Length);
         int startIndex = Random.Range(0, (columnCount * rowCount - 1));
         int currentIndex = startIndex;
         values.Add(currentIndex);
@@ -217,7 +217,6 @@ public class TileManager : MonoBehaviour
     private void UpdateAllNeighbors()
     {
         GameObject[] allNewTiles = GameObject.FindGameObjectsWithTag("Tile");
-        Debug.Log("all: " + allNewTiles.Length);
         foreach(GameObject tile in allNewTiles)
         {
             tile.GetComponent<TileScript>().GetNeighbors();
@@ -280,7 +279,7 @@ public class TileManager : MonoBehaviour
         }
         if (westDiff && west != -2)
         {
-         Debug.Log("west: " + tileNum);
+        // Debug.Log("west: " + tileNum);
             currentTile.GetComponent<TileScript>().SetBorderSprite(borderSprites[west], 0);
         }
         if (south != usedValues[tileNum] && south != -3)
