@@ -14,10 +14,17 @@ public class MoveToDest : MonoBehaviour
     private GameObject southTile;
     private GameObject westTile;
 
+    private GameObject currentTile;
+    private GameObject destinationTile;
+    private GameObject prevDestination;
+
     // Start is called before the first frame update
     void Start()
     {
         nextTile = null;
+        currentTile = null;
+        destinationTile = null;
+        prevDestination = null;
     }
 
     // Update is called once per frame
@@ -27,27 +34,51 @@ public class MoveToDest : MonoBehaviour
     }
 
     // Handle unit's movmenet to the destination
-    public IEnumerator Move(GameObject currentTile, GameObject destinationTile, float movementSpeed)
+    public IEnumerator Move(float movementSpeed)
     {
-        Vector3 destPosition = destinationTile.transform.position;
         bool destUnreachable= false;
         adjacentTiles.Clear();
         visitedTiles.Clear();
 
+        // fetch current tile and destination tile from the calling unit
+        if (gameObject.CompareTag("FireCrew"))
+        {
+            currentTile = gameObject.GetComponent<FireCrew>().currentTile;
+            destinationTile = gameObject.GetComponent<FireCrew>().destinationTile;
+        }
+        else if (gameObject.CompareTag("FireTruck"))
+        {
+            currentTile = gameObject.GetComponent<FireTruck>().currentTile;
+            destinationTile = gameObject.GetComponent<FireTruck>().destinationTile;
+        }
+
         while(destUnreachable == false && currentTile != destinationTile)
         {
-            Vector3 currentTilePosition = currentTile.transform.position;
             adjacentTiles.Clear();
+            prevDestination = destinationTile;
 
             // keep the calling unit's destination marker from moving as the unit moves
             if (gameObject.CompareTag("FireCrew"))
             {
+                currentTile = gameObject.GetComponent<FireCrew>().currentTile;
+                destinationTile = gameObject.GetComponent<FireCrew>().destinationTile;
                 gameObject.GetComponent<FireCrew>().DestinationMarker.transform.position = destinationTile.transform.position;
             }
             else if (gameObject.CompareTag("FireTruck"))
             {
+                currentTile = gameObject.GetComponent<FireTruck>().currentTile;
+                destinationTile = gameObject.GetComponent<FireTruck>().destinationTile;
                 gameObject.GetComponent<FireTruck>().DestinationMarker.transform.position = destinationTile.transform.position;
             }
+
+            // check to see if the destination has changed mid-movement; if so, purge the visited tiles list
+            if (prevDestination != destinationTile)
+            {
+                visitedTiles.Clear();
+            }
+
+            Vector3 currentTilePosition = currentTile.transform.position;
+            Vector3 destPosition = destinationTile.transform.position;
 
             // Choose the next tile to move to, if we haven't already
             if (nextTile == null)
