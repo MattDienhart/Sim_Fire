@@ -9,10 +9,6 @@ public class FireCrew : MonoBehaviour
     public float movementSpeed = 1.0f;
     private GameManager gameManager;
 
-    public Sprite unselected;
-    public Sprite selected;
-    private SpriteRenderer crewSpriteRenderer;
-
     private WaterBar waterBar;
     private EnergyBar energyBar;
 
@@ -33,6 +29,7 @@ public class FireCrew : MonoBehaviour
     public GameObject destinationTile;
     public GameObject DestinationMarker;
     public GameObject targetTile;
+    public GameObject SelectionBox;
     public GameObject TargetMarker;
 
     private bool startMoving;
@@ -43,11 +40,11 @@ public class FireCrew : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        crewSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         waterBar = gameObject.GetComponentInChildren<WaterBar>();
         energyBar = gameObject.GetComponentInChildren<EnergyBar>();
         DestinationMarker.SetActive(false);
+        SelectionBox.SetActive(false);
         TargetMarker.SetActive(false);
         destinationTile = null;
         startMoving = false;
@@ -72,7 +69,7 @@ public class FireCrew : MonoBehaviour
         // If this is not the currently selected object, show the "unselected" sprite and remove the destination marker
         if (gameManager.SelectedUnit != gameObject)
         {
-            crewSpriteRenderer.sprite = unselected;
+            SelectionBox.SetActive(false);
             DestinationMarker.SetActive(false);
             TargetMarker.SetActive(false);
         }
@@ -151,7 +148,7 @@ public class FireCrew : MonoBehaviour
         {
             if (startMoving == true)
             {
-                StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+                StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(movementSpeed));
                 startMoving = false;
             }
 
@@ -163,7 +160,7 @@ public class FireCrew : MonoBehaviour
         }
         if (destinationTile == currentTile)
         {
-            StopCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+            StopCoroutine(gameObject.GetComponent<MoveToDest>().Move(movementSpeed));
             destinationTile = null;
             DestinationMarker.SetActive(false);
         }
@@ -303,7 +300,7 @@ public class FireCrew : MonoBehaviour
     public void Selected()
     {
         // If this is the currently selected game object, update the sprite
-        crewSpriteRenderer.sprite = selected;
+        SelectionBox.SetActive(true);
         gameManager.SelectedUnit = gameObject;
 
         if (destinationTile != null)

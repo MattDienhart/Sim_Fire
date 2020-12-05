@@ -646,8 +646,8 @@ MonoBehaviour:
   spraySouth: {fileID: 2349489195952019216}
   sprayEast: {fileID: 2190221904627753}
   sprayWest: {fileID: 6272235807758382859}
-  SprayRate: 2
-  ExtinguishAmount: 10
+  SprayRate: 5
+  ExtinguishAmount: 20
 --- !u!1001 &627276790331116543
 PrefabInstance:
   m_ObjectHideFlags: 0
