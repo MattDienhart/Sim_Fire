@@ -12,8 +12,8 @@ public class GameData
     public List<string> crewTileLocations = new List<string>();
     public List<string> truckTileLocations = new List<string>();
     public List<string> helicopterTileLocations = new List<string>();
-    public int[] entireGrid;
-    public int waterColumn;
+    // public int[] entireGrid;
+    // public int waterColumn;
 
     public GameData (GameManager gameManager) 
     {
@@ -24,7 +24,7 @@ public class GameData
         crewTileLocations = gameManager.crewTileLocations;
         truckTileLocations = gameManager.truckTileLocations;
         helicopterTileLocations = gameManager.helicopterTileLocations;
-        entireGrid = gameManager.entireGrid;
-        waterColumn = gameManager.waterColumn;
+        // entireGrid = gameManager.entireGrid;
+        // waterColumn = gameManager.waterColumn;
     }
 }

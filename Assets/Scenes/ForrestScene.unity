@@ -242,7 +242,14 @@ MonoBehaviour:
   windDirection: 
   money: 100000
   happiness: 0
-  difficulty: 0
+  spreadFactor: 0
+  spreadFrequency: 0
+  crewCost: 0
+  truckCost: 0
+  helicopterCost: 0
+  startingFires: 0
+  startingUnits: 0
+  reward: 0
   fireCrewPrefab: {fileID: 4678436223149907044, guid: 1a7d9194cba214c9eadc4657b5eeab9b, type: 3}
   fireTruckPrefab: {fileID: 359308276648517986, guid: 860f6db3d754c488a8ec28b892fff0b4, type: 3}
   helicopterPrefab: {fileID: 8118731332800751640, guid: e3e80cc0de3754bd99c51e0f94bf9c8a, type: 3}
@@ -258,6 +265,7 @@ MonoBehaviour:
   dispatchBtn: {fileID: 1068395163}
   purchaseCrewBtn: {fileID: 497960542}
   purchaseTruckBtn: {fileID: 588130575}
+  purchaseHelicopterBtn: {fileID: 1698985116}
   clearVegBtn: {fileID: 518750799}
   fireLineBtn: {fileID: 1397098593}
   pauseMenu: {fileID: 331437181}

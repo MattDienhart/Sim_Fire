@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     public int spreadFrequency;
     public int crewCost;
     public int truckCost;
+    public int helicopterCost;
     public int startingFires;
     public int startingUnits;
     public int reward;
@@ -81,6 +82,7 @@ public class GameManager : MonoBehaviour
         spreadFrequency = 40,
         crewCost = 100,
         truckCost = 1000,
+        helicopterCost = 2000,
         reward = 100
     }
     enum medium
@@ -92,6 +94,7 @@ public class GameManager : MonoBehaviour
         spreadFrequency = 35,
         crewCost = 200,
         truckCost = 2000,
+        helicopterCost = 4000,
         reward = 75
     }
     enum hard
@@ -103,6 +106,7 @@ public class GameManager : MonoBehaviour
         spreadFrequency = 30,
         crewCost = 300,
         truckCost = 3000,
+        helicopterCost = 6000,
         reward = 50
     }
 
@@ -119,6 +123,7 @@ public class GameManager : MonoBehaviour
     public Button dispatchBtn;
     public Button purchaseCrewBtn;
     public Button purchaseTruckBtn;
+    public Button purchaseHelicopterBtn;
     public Button clearVegBtn;
     public Button fireLineBtn;
     public GameObject pauseMenu;
@@ -152,6 +157,7 @@ public class GameManager : MonoBehaviour
             spreadFrequency = (int)easy.spreadFrequency;
             crewCost = (int)easy.crewCost;
             truckCost = (int)easy.truckCost;
+            helicopterCost = (int)easy.helicopterCost;
             reward = (int)easy.reward;
         }
         else if (tileManager.mediumDifficulty)
@@ -163,6 +169,7 @@ public class GameManager : MonoBehaviour
             spreadFrequency = (int)medium.spreadFrequency;
             crewCost = (int)medium.crewCost;
             truckCost = (int)medium.truckCost;
+            helicopterCost = (int)medium.helicopterCost;
             reward = (int)medium.reward;
         }
         else
@@ -174,6 +181,7 @@ public class GameManager : MonoBehaviour
             spreadFrequency = (int)hard.spreadFrequency;
             crewCost = (int)hard.crewCost;
             truckCost = (int)hard.truckCost;
+            helicopterCost = (int)hard.helicopterCost;
             reward = (int)hard.reward;
         }
         
@@ -187,6 +195,7 @@ public class GameManager : MonoBehaviour
         dispatchBtn.onClick.AddListener(() => DispatchClicked());
         purchaseCrewBtn.onClick.AddListener(() => PurchaseCrewClicked());
         purchaseTruckBtn.onClick.AddListener(() => PurchaseTruckClicked());
+        purchaseHelicopterBtn.onClick.AddListener(() => PurchaseHelicopterClicked());
         clearVegBtn.onClick.AddListener(() => ClearVegClicked());
         fireLineBtn.onClick.AddListener(() => FireLineClicked());
         pauseBtn.onClick.AddListener(() => PauseClicked());
@@ -206,7 +215,9 @@ public class GameManager : MonoBehaviour
         helicopterInstances = 0;
         for(int i = 0; i < startingUnits; i++)
         {
-            AddFireCrew(AllTiles[generateSpawnLocation()]);
+            int spawnHere = generateSpawnLocation();
+            AddFireCrew(AllTiles[spawnHere]);
+            allTiles[spawnHere].GetComponent<TileScript>().SetOccupied(true);
         }
 
         // Instantiate wildfire
@@ -669,6 +680,22 @@ public class GameManager : MonoBehaviour
         else
         {
             StartCoroutine(SendNotification("You lack the funds to buy a new fire truck!", 2));
+        }
+    }
+
+    void PurchaseHelicopterClicked()
+    {
+        Debug.Log("Purchase Helicopter button has been clicked.");
+
+        if(money >= helicopterCost)
+        {
+            money -= helicopterCost;
+            AddHelicopter(AllTiles[generateSpawnLocation()]);
+            StartCoroutine(SendNotification("You have just bought a new helicopter!", 2));
+        }
+        else
+        {
+            StartCoroutine(SendNotification("You lack the funds to buy a new helicopter!", 2));
         }
     }
 
@@ -1197,8 +1224,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Added " + helicopterTileLocations[i] + " to helicopterTileLocations");
         }
 
-        entireGrid = tileManager.GetEntireGrid();
-        waterColumn = tileManager.GetWaterColumn();
+        // entireGrid = tileManager.GetEntireGrid();
+        // waterColumn = tileManager.GetWaterColumn();
         SaveLoadSystem.SaveGame(this);
 
         // UI
@@ -1255,11 +1282,11 @@ public class GameManager : MonoBehaviour
             crewTileLocations = data.crewTileLocations;
             truckTileLocations = data.truckTileLocations;
             helicopterTileLocations = data.helicopterTileLocations;
-            entireGrid = data.entireGrid;
-            waterColumn = data.waterColumn;
+            // entireGrid = data.entireGrid;
+            // waterColumn = data.waterColumn;
 
             // Regenerate tiles
-            tileManager.UpdateTileGrid(entireGrid, waterColumn);
+            // tileManager.UpdateTileGrid(entireGrid, waterColumn);
 
             for(int i = 0; i < loadLitTiles.Count; i++)
             {
