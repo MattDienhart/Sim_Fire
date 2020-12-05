@@ -106,7 +106,7 @@ public class FireTruck : MonoBehaviour
         {
             if (startMoving == true)
             {
-                StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+                StartCoroutine(gameObject.GetComponent<MoveToDest>().Move(movementSpeed));
                 startMoving = false;
             }
 
@@ -118,7 +118,7 @@ public class FireTruck : MonoBehaviour
         }
         if (destinationTile == currentTile)
         {
-            StopCoroutine(gameObject.GetComponent<MoveToDest>().Move(currentTile, destinationTile, movementSpeed));
+            StopCoroutine(gameObject.GetComponent<MoveToDest>().Move(movementSpeed));
             destinationTile = null;
             DestinationMarker.SetActive(false);
         }
